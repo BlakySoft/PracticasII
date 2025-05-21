@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{885874D0-31B2-45C6-AB5B-EE6AAA8214D5}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>CapaPresentacion</RootNamespace>
+    <AssemblyName>CapaPresentacion</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="FontAwesome.Sharp, Version=6.6.0.0, Culture=neutral, PublicKeyToken=d16d1e4e568ec10f, processorArchitecture=MSIL">
+      <HintPath>..\packages\FontAwesome.Sharp.6.6.0\lib\net472\FontAwesome.Sharp.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="FormAgregarCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAgregarCliente.Designer.cs">
+      <DependentUpon>FormAgregarCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormAgregarMateria.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAgregarMateria.Designer.cs">
+      <DependentUpon>FormAgregarMateria.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormAgregarProducto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAgregarProducto.Designer.cs">
+      <DependentUpon>FormAgregarProducto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormAgregarProveedor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAgregarProveedor.Designer.cs">
+      <DependentUpon>FormAgregarProveedor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormABMBarrios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormABMBarrios.Designer.cs">
+      <DependentUpon>FormABMBarrios.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormBuscarCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormBuscarCliente.Designer.cs">
+      <DependentUpon>FormBuscarCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormBuscarMaterias.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormBuscarMaterias.Designer.cs">
+      <DependentUpon>FormBuscarMaterias.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormBuscarProductos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormBuscarProductos.Designer.cs">
+      <DependentUpon>FormBuscarProductos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormBuscarProveedor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormBuscarProveedor.Designer.cs">
+      <DependentUpon>FormBuscarProveedor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormCOMPRAS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCOMPRAS.Designer.cs">
+      <DependentUpon>FormCOMPRAS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormPAPELERABarrios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPAPELERABarrios.Designer.cs">
+      <DependentUpon>FormPAPELERABarrios.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormABMClientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormABMClientes.Designer.cs">
+      <DependentUpon>FormABMClientes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormPAPELERAClientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPAPELERAClientes.Designer.cs">
+      <DependentUpon>FormPAPELERAClientes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormABMLocalidades.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormABMLocalidades.Designer.cs">
+      <DependentUpon>FormABMLocalidades.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormPAPELERALocalidades.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPAPELERALocalidades.Designer.cs">
+      <DependentUpon>FormPAPELERALocalidades.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormPAPELERAMateriaprima.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPAPELERAMateriaprima.Designer.cs">
+      <DependentUpon>FormPAPELERAMateriaprima.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormABMMateriasPrimas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormABMMateriasPrimas.Designer.cs">
+      <DependentUpon>FormABMMateriasPrimas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormMENU.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMENU.Designer.cs">
+      <DependentUpon>FormMENU.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormABMMetododepago.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormABMMetododepago.Designer.cs">
+      <DependentUpon>FormABMMetododepago.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormPAPELERAMetodosdepago.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPAPELERAMetodosdepago.Designer.cs">
+      <DependentUpon>FormPAPELERAMetodosdepago.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormABMProductos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormABMProductos.Designer.cs">
+      <DependentUpon>FormABMProductos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormPAPELERAProductos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPAPELERAProductos.Designer.cs">
+      <DependentUpon>FormPAPELERAProductos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormABMProveedores.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormABMProveedores.Designer.cs">
+      <DependentUpon>FormABMProveedores.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormPAPELERAProveedores.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPAPELERAProveedores.Designer.cs">
+      <DependentUpon>FormPAPELERAProveedores.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormABMRubros.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormABMRubros.Designer.cs">
+      <DependentUpon>FormABMRubros.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormPAPELERARubros.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPAPELERARubros.Designer.cs">
+      <DependentUpon>FormPAPELERARubros.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormPEDIDOS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPEDIDOS.Designer.cs">
+      <DependentUpon>FormPEDIDOS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormPEDIDOScancelados.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPEDIDOScancelados.Designer.cs">
+      <DependentUpon>FormPEDIDOScancelados.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormPEDIDOSentregados.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPEDIDOSentregados.Designer.cs">
+      <DependentUpon>FormPEDIDOSentregados.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormPEDIDOSpendientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPEDIDOSpendientes.Designer.cs">
+      <DependentUpon>FormPEDIDOSpendientes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FormAgregarCliente.resx">
+      <DependentUpon>FormAgregarCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAgregarMateria.resx">
+      <DependentUpon>FormAgregarMateria.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAgregarProducto.resx">
+      <DependentUpon>FormAgregarProducto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAgregarProveedor.resx">
+      <DependentUpon>FormAgregarProveedor.cs</DependentUpon>
+    </EmbeddedResource>
+    <!-- Embedded Resources -->
+    <EmbeddedResource Include="FormABMBarrios.resx">
+      <DependentUpon>FormABMBarrios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormBuscarCliente.resx">
+      <DependentUpon>FormBuscarCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormBuscarMaterias.resx">
+      <DependentUpon>FormBuscarMaterias.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormBuscarProductos.resx">
+      <DependentUpon>FormBuscarProductos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormBuscarProveedor.resx">
+      <DependentUpon>FormBuscarProveedor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormCOMPRAS.resx">
+      <DependentUpon>FormCOMPRAS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPAPELERABarrios.resx">
+      <DependentUpon>FormPAPELERABarrios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormABMClientes.resx">
+      <DependentUpon>FormABMClientes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPAPELERAClientes.resx">
+      <DependentUpon>FormPAPELERAClientes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormABMLocalidades.resx">
+      <DependentUpon>FormABMLocalidades.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPAPELERALocalidades.resx">
+      <DependentUpon>FormPAPELERALocalidades.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPAPELERAMateriaprima.resx">
+      <DependentUpon>FormPAPELERAMateriaprima.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormABMMateriasPrimas.resx">
+      <DependentUpon>FormABMMateriasPrimas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMENU.resx">
+      <DependentUpon>FormMENU.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormABMMetododepago.resx">
+      <DependentUpon>FormABMMetododepago.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPAPELERAMetodosdepago.resx">
+      <DependentUpon>FormPAPELERAMetodosdepago.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormABMProductos.resx">
+      <DependentUpon>FormABMProductos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPAPELERAProductos.resx">
+      <DependentUpon>FormPAPELERAProductos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormABMProveedores.resx">
+      <DependentUpon>FormABMProveedores.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPAPELERAProveedores.resx">
+      <DependentUpon>FormPAPELERAProveedores.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormABMRubros.resx">
+      <DependentUpon>FormABMRubros.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPAPELERARubros.resx">
+      <DependentUpon>FormPAPELERARubros.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPEDIDOS.resx">
+      <DependentUpon>FormPEDIDOS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPEDIDOScancelados.resx">
+      <DependentUpon>FormPEDIDOScancelados.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPEDIDOSentregados.resx">
+      <DependentUpon>FormPEDIDOSentregados.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPEDIDOSpendientes.resx">
+      <DependentUpon>FormPEDIDOSpendientes.cs</DependentUpon>
+    </EmbeddedResource>
+    <!-- Properties -->
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CapaDatos\CapaDatos.csproj">
+      <Project>{1f00e21a-dfee-4055-a8ca-a02c62bf562f}</Project>
+      <Name>CapaDatos</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CapaNegocio\CapaNegocio.csproj">
+      <Project>{09cd1b00-3e64-47df-aae3-7ea75e14ed27}</Project>
+      <Name>CapaNegocio</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pan.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
