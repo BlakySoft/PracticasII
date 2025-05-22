@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace CapaNegocios
 {
-   public class Rubro
+   public class Categoria
     {
-        public int IdRubro { get; set; }
+        public int IdCat { get; set; }
         public string Descripcion { get; set; }
         public bool Estado { get; set; }
     }

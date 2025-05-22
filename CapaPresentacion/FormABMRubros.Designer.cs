@@ -1,6 +1,6 @@
 ﻿namespace CapaPresentacion
 {
-    partial class FormABMRubros
+    partial class FormABMCategoria
     { /// <summary>
       /// Required designer variable.
       /// </summary>
@@ -40,7 +40,7 @@
             this.BtnEliminar = new FontAwesome.Sharp.IconButton();
             this.BtnGrabar = new FontAwesome.Sharp.IconButton();
             this.BtnNuevo = new FontAwesome.Sharp.IconButton();
-            this.LblIdRubro = new System.Windows.Forms.Label();
+            this.LblIdCat = new System.Windows.Forms.Label();
             this.TxtDescripcion = new System.Windows.Forms.TextBox();
             this.LblDescripcion = new System.Windows.Forms.Label();
             this.Grilla = new System.Windows.Forms.DataGridView();
@@ -223,16 +223,16 @@
             this.BtnNuevo.UseVisualStyleBackColor = false;
             this.BtnNuevo.Click += new System.EventHandler(this.BtnNuevo_Click);
             // 
-            // LblIdRubro
+            // LblIdCat
             // 
-            this.LblIdRubro.AutoSize = true;
-            this.LblIdRubro.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblIdRubro.ForeColor = System.Drawing.Color.Black;
-            this.LblIdRubro.Location = new System.Drawing.Point(6, 9);
-            this.LblIdRubro.Name = "LblIdRubro";
-            this.LblIdRubro.Size = new System.Drawing.Size(17, 18);
-            this.LblIdRubro.TabIndex = 1;
-            this.LblIdRubro.Text = "0";
+            this.LblIdCat.AutoSize = true;
+            this.LblIdCat.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblIdCat.ForeColor = System.Drawing.Color.Black;
+            this.LblIdCat.Location = new System.Drawing.Point(6, 9);
+            this.LblIdCat.Name = "LblIdCat";
+            this.LblIdCat.Size = new System.Drawing.Size(17, 18);
+            this.LblIdCat.TabIndex = 1;
+            this.LblIdCat.Text = "0";
             // 
             // TxtDescripcion
             // 
@@ -330,22 +330,22 @@
             this.LblBuscar.TabIndex = 34;
             this.LblBuscar.Text = "Buscar:";
             // 
-            // FormABMRubros
+            // FormABMCategoria
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Tan;
             this.ClientSize = new System.Drawing.Size(450, 382);
             this.Controls.Add(this.TxtDescripcion);
-            this.Controls.Add(this.LblIdRubro);
+            this.Controls.Add(this.LblIdCat);
             this.Controls.Add(this.LblDescripcion);
             this.Controls.Add(this.Grilla);
             this.Controls.Add(this.TxtBuscar);
             this.Controls.Add(this.LblBuscar);
             this.Controls.Add(this.PnlBarraLateral);
-            this.Name = "FormABMRubros";
+            this.Name = "FormABMCategoria";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Rubros";
+            this.Text = "Categoria";
             this.PnlBarraLateral.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.Grilla)).EndInit();
             this.ResumeLayout(false);
@@ -356,7 +356,7 @@
         #endregion
 
         private System.Windows.Forms.Panel PnlBarraLateral;
-        private System.Windows.Forms.Label LblIdRubro;
+        private System.Windows.Forms.Label LblIdCat;
         private System.Windows.Forms.TextBox TxtDescripcion;
         private System.Windows.Forms.Label LblDescripcion;
         private System.Windows.Forms.DataGridView Grilla;

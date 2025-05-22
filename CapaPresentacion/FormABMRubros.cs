@@ -12,11 +12,11 @@ using System.Windows.Forms;
 
 namespace CapaPresentacion
 {
-    public partial class FormABMRubros: Form
+    public partial class FormABMCategoria: Form
     {
         #region Metodos
         Boolean nuevo;
-        public FormABMRubros()
+        public FormABMCategoria()
         {
             InitializeComponent();
             BtnModificar.Enabled = false;
@@ -30,16 +30,16 @@ namespace CapaPresentacion
         }
         private void LimpiarTextos()
         {
-            LblIdRubro.Text = "";
+            LblIdCat.Text = "";
             TxtDescripcion.Clear();
         }
         private void Listar()
         {
-            ConeRubros cone = new ConeRubros();
-            Grilla.DataSource = cone.ListarRubro();
+            ConeCategoria cone = new ConeCategoria();
+            Grilla.DataSource = cone.ListarCat();
             Grilla.Columns[0].HeaderText = "Código";
             Grilla.Columns[0].Width = 100;
-            Grilla.Columns[1].HeaderText = "Rubro";
+            Grilla.Columns[1].HeaderText = "Categoria";
             Grilla.Columns[2].Visible = false;
 
         }
@@ -74,17 +74,17 @@ namespace CapaPresentacion
             {
                 if (TxtDescripcion.Text == "")
                 {
-                    MessageBox.Show("Ingrese el Rubro", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageBox.Show("Ingrese el Categoria", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
                 else if (nuevo == true)
                 {
-                    ConeRubros cone = new ConeRubros();
-                    Rubro Agregar = new Rubro
+                    ConeCategoria cone = new ConeCategoria();
+                    Categoria Agregar = new Categoria
                     {
                         Descripcion = TxtDescripcion.Text
                     };
 
-                    cone.AgregarRubro(Agregar);
+                    cone.AgregarCat(Agregar);
 
                     #region Enabled yes/no 
                     //true
@@ -101,14 +101,14 @@ namespace CapaPresentacion
                 }
                 else
                 {
-                    ConeRubros cone = new ConeRubros();
-                    Rubro Actualizar = new Rubro
+                    ConeCategoria cone = new ConeCategoria();
+                    Categoria Actualizar = new Categoria
                     {
-                        IdRubro = int.Parse(LblIdRubro.Text),
+                        IdCat = int.Parse(LblIdCat.Text),
                         Descripcion = TxtDescripcion.Text
                     };
 
-                    cone.ActualizarRubro(Actualizar);
+                    cone.ActualizarCat(Actualizar);
 
                     TxtDescripcion.Enabled = false;
                     BtnNuevo.Enabled = true;
@@ -176,17 +176,17 @@ namespace CapaPresentacion
         private void BtnEliminar_Click(object sender, EventArgs e)
         {
 
-            ConeRubros cone = new ConeRubros();
-            Rubro Eliminar = new Rubro
+            ConeCategoria cone = new ConeCategoria();
+            Categoria Eliminar = new Categoria
             {
-                IdRubro = int.Parse(LblIdRubro.Text)
+                IdCat = int.Parse(LblIdCat.Text)
             };
 
-            cone.BorrarRubro(Eliminar);
+            cone.BorrarCat(Eliminar);
 
             try
             {
-                MessageBox.Show("El Rubro se eliminó correctamente!!!", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("El Categoria se eliminó correctamente!!!", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 LimpiarTextos();
                 Listar();
             }
@@ -209,7 +209,7 @@ namespace CapaPresentacion
         }
         private void BtnPapelera_Click(object sender, EventArgs e)
         {
-            FormPAPELERARubros form = new FormPAPELERARubros();
+            FormPAPELERACategoria form = new FormPAPELERACategoria();
             form.ShowDialog();
         }
         private void BtnVolver_Click(object sender, EventArgs e)
@@ -221,7 +221,7 @@ namespace CapaPresentacion
         #region Interacciones con formulario
         private void Grilla_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            LblIdRubro.Text = Grilla.Rows[e.RowIndex].Cells[0].Value.ToString();
+            LblIdCat.Text = Grilla.Rows[e.RowIndex].Cells[0].Value.ToString();
             TxtDescripcion.Text = Grilla.Rows[e.RowIndex].Cells[1].Value.ToString();
 
             #region Enabled yes/no
@@ -247,13 +247,13 @@ namespace CapaPresentacion
             }
             else
             {
-                ConeRubros cone = new ConeRubros();
-                Barrio Buscar = new Barrio
+                ConeCategoria cone = new ConeCategoria();
+                Categoria Buscar = new Categoria
                 {
                     Descripcion = TxtBuscar.Text
                 };
 
-                Grilla.DataSource = cone.BuscarRubro(Buscar.Descripcion);
+                Grilla.DataSource = cone.BuscarCat(Buscar.Descripcion);
 
             }
         }

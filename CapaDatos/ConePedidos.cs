@@ -34,8 +34,8 @@ namespace CapaDatos
         }
         public string ConectarDB()
         {
-            _ = new OleDbConnection("Provider = Microsoft.Jet.OLEDB.4.0; Data Source =|DataDirectory|elfrances.mdb;");
-            return "Provider=Microsoft.Jet.OLEDB.4.0; Data Source=|DataDirectory|elfrances.mdb;";
+            _ = new OleDbConnection("Provider = Microsoft.Jet.OLEDB.4.0; Data Source =|DataDirectory|DB.mdb;");
+            return "Provider=Microsoft.Jet.OLEDB.4.0; Data Source=|DataDirectory|DB.mdb;";
 
         }
         public List<Pedido> ListarPedidoPendiente()

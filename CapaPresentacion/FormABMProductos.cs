@@ -18,7 +18,7 @@ namespace CapaPresentacion
     {
         #region Metodos y declaraciones
         Boolean nuevo;
-        int VarRubro;
+        int VarCat;
         public FormABMProductos()
         {
             InitializeComponent();
@@ -46,7 +46,7 @@ namespace CapaPresentacion
             Grilla.Columns[5].Width = 60;
             Grilla.Columns[1].HeaderText = "Descripcion";
             Grilla.Columns[2].HeaderText = "Detalle";
-            Grilla.Columns[3].HeaderText = "Rubro";
+            Grilla.Columns[3].HeaderText = "Categoria";
             Grilla.Columns[4].HeaderText = "Precio";
             Grilla.Columns[5].HeaderText = "Stock";
             Grilla.Columns[6].Visible = false;
@@ -54,11 +54,11 @@ namespace CapaPresentacion
         }
         private void CargarCbo()
         {
-            ConeRubros cone = new ConeRubros();
+            ConeCategoria cone = new ConeCategoria();
 
-            CboIdRubro.ValueMember = "IdRubro";
-            CboIdRubro.DisplayMember = "Descripcion";
-            CboIdRubro.DataSource = cone.ListarRubro();
+            CboIdCat.ValueMember = "IdCat";
+            CboIdCat.DisplayMember = "Descripcion";
+            CboIdCat.DataSource = cone.ListarCat();
         }
         private void LimpiarTextos()
         {
@@ -119,7 +119,7 @@ namespace CapaPresentacion
                     {
                         Descripcion = TxtDescripcion.Text,
                         Detalle = TxtDetalle.Text,
-                        IdRubro = VarRubro,     
+                        IdCat = VarCat,     
                         Precio = Convert.ToDecimal(TxtPrecio.Text),
                          Stock = int.Parse(TxtStock.Text),
                     };
@@ -148,7 +148,7 @@ namespace CapaPresentacion
                         IdProducto = int.Parse(LblIdProducto.Text),
                         Descripcion = TxtDescripcion.Text,
                         Detalle = TxtDetalle.Text,
-                        IdRubro = VarRubro,
+                        IdCat = VarCat,
                         Stock = int.Parse(TxtStock.Text),
                         Precio = Convert.ToDecimal(TxtPrecio.Text)
                     };
@@ -241,7 +241,7 @@ namespace CapaPresentacion
             #endregion
             CargarCbo();
 
-            CboIdRubro.SelectedValue = VarRubro;
+            CboIdCat.SelectedValue = VarCat;
         }
         private void BtnCancelar_Click(object sender, EventArgs e)
         {
@@ -272,9 +272,9 @@ namespace CapaPresentacion
             ListarProducto();
             CargarCbo();
         }
-        private void BtnRubro_Click(object sender, EventArgs e)
+        private void BtnCat_Click(object sender, EventArgs e)
         {
-            FormABMRubros form = new FormABMRubros();
+            FormABMCategoria form = new FormABMCategoria();
             form.ShowDialog();
             CargarCbo();
         }
@@ -309,20 +309,20 @@ namespace CapaPresentacion
             LblIdProducto.Text = Grilla.Rows[e.RowIndex].Cells[0].Value.ToString();
             TxtDescripcion.Text = Grilla.Rows[e.RowIndex].Cells[1].Value.ToString();
             TxtDetalle.Text = Grilla.Rows[e.RowIndex].Cells[2].Value.ToString();
-            VarRubro = Convert.ToInt32(Grilla.Rows[e.RowIndex].Cells[3].Value.ToString());
+            VarCat = Convert.ToInt32(Grilla.Rows[e.RowIndex].Cells[3].Value.ToString());
             TxtPrecio.Text = Grilla.Rows[e.RowIndex].Cells[4].Value.ToString();
             TxtStock.Text = Grilla.Rows[e.RowIndex].Cells[5].Value.ToString();
 
-            ConeRubros cone = new ConeRubros();
+            ConeCategoria cone = new ConeCategoria();
 
-            _ = new Rubro
+            _ = new Categoria
             {
-                IdRubro = VarRubro
+                IdCat = VarCat
             };
 
-            CboIdRubro.ValueMember = "IdRubro";
-            CboIdRubro.DisplayMember = "Descripcion";
-            CboIdRubro.DataSource = cone.BuscarIdRubro(VarRubro);
+            CboIdCat.ValueMember = "IdCat";
+            CboIdCat.DisplayMember = "Descripcion";
+            CboIdCat.DataSource = cone.BuscarIdCat(VarCat);
 
             #region Enabled yes/no
 
@@ -338,7 +338,7 @@ namespace CapaPresentacion
                 LblIdProducto.Text = Grilla.Rows[e.RowIndex].Cells[0].Value.ToString();
                 TxtDescripcion.Text = Grilla.Rows[e.RowIndex].Cells[1].Value.ToString();
                 TxtDetalle.Text = Grilla.Rows[e.RowIndex].Cells[2].Value.ToString();
-                VarRubro = Convert.ToInt32(Grilla.Rows[e.RowIndex].Cells[3].Value.ToString());
+                VarCat = Convert.ToInt32(Grilla.Rows[e.RowIndex].Cells[3].Value.ToString());
                 TxtPrecio.Text = Grilla.Rows[e.RowIndex].Cells[4].Value.ToString();
                 TxtStock.Text = Grilla.Rows[e.RowIndex].Cells[5].Value.ToString();
 
@@ -363,9 +363,9 @@ namespace CapaPresentacion
                 MessageBox.Show("Imposible seleccionar desde la cabecera.", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
-        private void CboIdRubro_SelectionChangeCommitted(object sender, EventArgs e)
+        private void CboIdCat_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            VarRubro = int.Parse(CboIdRubro.SelectedValue.ToString());
+            VarCat = int.Parse(CboIdCat.SelectedValue.ToString());
         }
         #endregion
 

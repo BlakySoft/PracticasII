@@ -28,8 +28,8 @@
         private void InitializeComponent()
         {
             this.PanelDatos = new System.Windows.Forms.Panel();
-            this.BtnRubro = new FontAwesome.Sharp.IconButton();
-            this.CboIdRubro = new System.Windows.Forms.ComboBox();
+            this.BtnCat = new FontAwesome.Sharp.IconButton();
+            this.CboIdCat = new System.Windows.Forms.ComboBox();
             this.TxtPrecio = new System.Windows.Forms.TextBox();
             this.TxtStock = new System.Windows.Forms.TextBox();
             this.TxtDetalle = new System.Windows.Forms.TextBox();
@@ -53,8 +53,8 @@
             // PanelDatos
             // 
             this.PanelDatos.BackColor = System.Drawing.Color.Tan;
-            this.PanelDatos.Controls.Add(this.BtnRubro);
-            this.PanelDatos.Controls.Add(this.CboIdRubro);
+            this.PanelDatos.Controls.Add(this.BtnCat);
+            this.PanelDatos.Controls.Add(this.CboIdCat);
             this.PanelDatos.Controls.Add(this.TxtPrecio);
             this.PanelDatos.Controls.Add(this.TxtStock);
             this.PanelDatos.Controls.Add(this.TxtDetalle);
@@ -73,35 +73,35 @@
             this.PanelDatos.Size = new System.Drawing.Size(218, 296);
             this.PanelDatos.TabIndex = 40;
             // 
-            // BtnRubro
+            // BtnCat
             // 
-            this.BtnRubro.BackColor = System.Drawing.Color.Linen;
-            this.BtnRubro.FlatAppearance.BorderSize = 0;
-            this.BtnRubro.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnRubro.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnRubro.ForeColor = System.Drawing.Color.White;
-            this.BtnRubro.IconChar = FontAwesome.Sharp.IconChar.MagnifyingGlassPlus;
-            this.BtnRubro.IconColor = System.Drawing.Color.Tan;
-            this.BtnRubro.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.BtnRubro.IconSize = 20;
-            this.BtnRubro.Location = new System.Drawing.Point(170, 136);
-            this.BtnRubro.Name = "BtnRubro";
-            this.BtnRubro.Size = new System.Drawing.Size(30, 27);
-            this.BtnRubro.TabIndex = 58;
-            this.BtnRubro.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.BtnRubro.UseVisualStyleBackColor = false;
-            this.BtnRubro.Click += new System.EventHandler(this.BtnRubro_Click);
+            this.BtnCat.BackColor = System.Drawing.Color.Linen;
+            this.BtnCat.FlatAppearance.BorderSize = 0;
+            this.BtnCat.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnCat.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnCat.ForeColor = System.Drawing.Color.White;
+            this.BtnCat.IconChar = FontAwesome.Sharp.IconChar.MagnifyingGlassPlus;
+            this.BtnCat.IconColor = System.Drawing.Color.Tan;
+            this.BtnCat.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.BtnCat.IconSize = 20;
+            this.BtnCat.Location = new System.Drawing.Point(170, 136);
+            this.BtnCat.Name = "BtnCat";
+            this.BtnCat.Size = new System.Drawing.Size(30, 27);
+            this.BtnCat.TabIndex = 58;
+            this.BtnCat.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.BtnCat.UseVisualStyleBackColor = false;
+            this.BtnCat.Click += new System.EventHandler(this.BtnCat_Click);
             // 
-            // CboIdRubro
+            // CboIdCat
             // 
-            this.CboIdRubro.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.CboIdRubro.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CboIdRubro.FormattingEnabled = true;
-            this.CboIdRubro.Location = new System.Drawing.Point(9, 136);
-            this.CboIdRubro.Name = "CboIdRubro";
-            this.CboIdRubro.Size = new System.Drawing.Size(155, 27);
-            this.CboIdRubro.TabIndex = 57;
-            this.CboIdRubro.SelectionChangeCommitted += new System.EventHandler(this.CboIdRubro_SelectionChangeCommitted);
+            this.CboIdCat.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CboIdCat.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CboIdCat.FormattingEnabled = true;
+            this.CboIdCat.Location = new System.Drawing.Point(9, 136);
+            this.CboIdCat.Name = "CboIdCat";
+            this.CboIdCat.Size = new System.Drawing.Size(155, 27);
+            this.CboIdCat.TabIndex = 57;
+            this.CboIdCat.SelectionChangeCommitted += new System.EventHandler(this.CboIdCat_SelectionChangeCommitted);
             // 
             // TxtPrecio
             // 
@@ -161,7 +161,7 @@
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(63, 19);
             this.label5.TabIndex = 51;
-            this.label5.Text = "Rubro:";
+            this.label5.Text = "Categoria:";
             // 
             // label4
             // 
@@ -337,8 +337,8 @@
         private FontAwesome.Sharp.IconButton BtnNuevo;
         private FontAwesome.Sharp.IconButton BtnVolver;
         private System.Windows.Forms.Label LblIdProducto;
-        private FontAwesome.Sharp.IconButton BtnRubro;
-        private System.Windows.Forms.ComboBox CboIdRubro;
+        private FontAwesome.Sharp.IconButton BtnCat;
+        private System.Windows.Forms.ComboBox CboIdCat;
         private System.Windows.Forms.TextBox TxtPrecio;
         private System.Windows.Forms.TextBox TxtStock;
         private System.Windows.Forms.TextBox TxtDetalle;
