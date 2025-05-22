@@ -32,11 +32,6 @@ namespace CapaPresentacion
             FormABMProductos form = new FormABMProductos();
             form.ShowDialog();
         }
-        private void mATERIASPRIMASToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            FormABMMateriasPrimas form = new FormABMMateriasPrimas();
-            form.ShowDialog();
-        }
         private void bARRIOSToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             unuFormABMBarrios form = new unuFormABMBarrios();
@@ -55,11 +50,6 @@ namespace CapaPresentacion
         private void proveedoresToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FormPAPELERAProveedores form = new FormPAPELERAProveedores();
-            form.ShowDialog();
-        }
-        private void materiaPrimaToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            FormPAPELERAMateriaprima form = new FormPAPELERAMateriaprima();
             form.ShowDialog();
         }
         private void iconMenuItem5_Click(object sender, EventArgs e)

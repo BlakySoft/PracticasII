@@ -101,7 +101,7 @@
             this.mATERIASPRIMASToolStripMenuItem1.Name = "mATERIASPRIMASToolStripMenuItem1";
             this.mATERIASPRIMASToolStripMenuItem1.Size = new System.Drawing.Size(231, 22);
             this.mATERIASPRIMASToolStripMenuItem1.Text = "MATERIAS PRIMAS";
-            this.mATERIASPRIMASToolStripMenuItem1.Click += new System.EventHandler(this.mATERIASPRIMASToolStripMenuItem1_Click);
+            //this.mATERIASPRIMASToolStripMenuItem1.Click += new System.EventHandler(this.mATERIASPRIMASToolStripMenuItem1_Click);
             // 
             // iconMenuItem2
             // 
@@ -210,7 +210,7 @@
             this.materiaPrimaToolStripMenuItem.Name = "materiaPrimaToolStripMenuItem";
             this.materiaPrimaToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
             this.materiaPrimaToolStripMenuItem.Text = "MATERIA PRIMA";
-            this.materiaPrimaToolStripMenuItem.Click += new System.EventHandler(this.materiaPrimaToolStripMenuItem_Click);
+            //this.materiaPrimaToolStripMenuItem.Click += new System.EventHandler(this.materiaPrimaToolStripMenuItem_Click);
             // 
             // iconMenuItem5
             // 

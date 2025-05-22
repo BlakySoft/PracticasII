@@ -40,7 +40,6 @@ namespace CapaPresentacion
             BtnBuscarProveedor.Enabled = false;
             BtnAgregarProducto.Enabled = false;
             BtnBuscarProducto.Enabled = false;
-            TxtIdMateria.Enabled = false;
             TxtCantidad.Enabled = false;
             //true
             BtnNuevo.Enabled = true;
@@ -56,7 +55,6 @@ namespace CapaPresentacion
             TxtSubTotal.Text = "";
             TxtTotal.Text = "";
             TxtCantidad.Text = "1";
-            TxtIdMateria.Text = "";
             #endregion
 
             Grilla.Rows.Clear();
@@ -75,7 +73,6 @@ namespace CapaPresentacion
         }
         private void LimpiarTextos()
         {
-            TxtIdMateria.Text = "";
             TxtCantidad.Text = "1";
             TxtDescripcion.Text = "";
             TxtStock.Text = "";
@@ -95,7 +92,6 @@ namespace CapaPresentacion
             FechaActual.Enabled = true;
             BtnGrabar.Enabled = true;
             BtnCancelar.Enabled = true;
-            TxtIdMateria.Enabled = true;
             Grilla.Visible = true;
             BtnAgregarProveedor.Enabled = true;
             BtnBuscarProveedor.Enabled = true;
@@ -113,7 +109,6 @@ namespace CapaPresentacion
             TxtSubTotal.Text = "";
             TxtTotal.Text = "";
             TxtCantidad.Text = "1";
-            TxtIdMateria.Text = "";
             #endregion
 
             Grilla.Rows.Clear();
@@ -173,12 +168,11 @@ namespace CapaPresentacion
                         OleDbCommand comando1 = new OleDbCommand
                         {
                             CommandType = CommandType.Text,
-                            CommandText = "insert into DetalleCompras (IdCompra, IdMateria, Descripcion, Cantidad, PrecioCompra, Subtotal) values (@IdCompra, @IdMateria, @Descripcion, @Cantidad, @PrecioCompra, @Subtotal)",
+                            CommandText = "insert into DetalleCompras (IdCompra, Descripcion, Cantidad, PrecioCompra, Subtotal) values (@IdCompra, @Descripcion, @Cantidad, @PrecioCompra, @Subtotal)",
                             Connection = conecta
                         };
 
                         comando1.Parameters.AddWithValue("@IdCompra", Convert.ToString(TxtCompra.Text));
-                        comando1.Parameters.AddWithValue("@IdMateria", Convert.ToInt32(row.Cells["Column1"].Value));
                         comando1.Parameters.AddWithValue("@Descripcion", Convert.ToString(row.Cells["Column2"].Value));
                         comando1.Parameters.AddWithValue("@Cantidad", Convert.ToDecimal(row.Cells["Column3"].Value));
                         comando1.Parameters.AddWithValue("@Precio", Convert.ToDecimal(row.Cells["Column4"].Value));
@@ -192,32 +186,7 @@ namespace CapaPresentacion
                         comando1.ExecuteNonQuery();
                         conecta.Close();
 
-                        comando.CommandText = $"Select Stock from Materias where IdMateria = {IdArti}";
-                        comando.Connection = conecta;
-                        conecta.Open();
-                        lector = comando.ExecuteReader();
 
-                        if (lector.Read())
-                        {
-                            Materia materia = new Materia
-                            {
-                                Stock = lector.GetInt32(0)
-                            };
-                            Stock = materia.Stock;
-                            Stock += Cantidad;
-                            conecta.Close();
-
-                            OleDbCommand com = new OleDbCommand
-                            {
-                                CommandType = CommandType.Text,
-
-                                CommandText = $"update Materias set Stock = {Stock} where IdMateria = {IdArti}",
-                                Connection = con
-                            };
-                            con.Open();
-                            com.ExecuteNonQuery();
-                            con.Close();
-                        }
                     }
                 }
                 MessageBox.Show("Compra realizada con éxito.", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -230,7 +199,6 @@ namespace CapaPresentacion
                 BtnBuscarProveedor.Enabled = false;
                 BtnAgregarProducto.Enabled = false;
                 BtnBuscarProducto.Enabled = false;
-                TxtIdMateria.Enabled = false;
                 TxtCantidad.Enabled = false;
                 //true
                 BtnNuevo.Enabled = true;
@@ -246,7 +214,6 @@ namespace CapaPresentacion
                 TxtSubTotal.Text = "";
                 TxtTotal.Text = "";
                 TxtCantidad.Text = "1";
-                TxtIdMateria.Text = "";
                 #endregion
 
                 Grilla.Rows.Clear();
@@ -254,6 +221,7 @@ namespace CapaPresentacion
                 BtnNuevo.Focus();
             }
         }
+        
         private void BtnCancelar_Click(object sender, EventArgs e)
         {
             #region EnabledNO
@@ -267,7 +235,6 @@ namespace CapaPresentacion
             BtnBuscarProveedor.Enabled = false;
             BtnAgregarProducto.Enabled = false;
             BtnBuscarProducto.Enabled = false;
-            TxtIdMateria.Enabled = false;
             TxtCantidad.Enabled = false;
             //true
             BtnNuevo.Enabled = true;
@@ -283,7 +250,6 @@ namespace CapaPresentacion
             TxtSubTotal.Text = "";
             TxtTotal.Text = "";
             TxtCantidad.Text = "1";
-            TxtIdMateria.Text = "";
             #endregion
 
             Grilla.Rows.Clear();
@@ -304,16 +270,11 @@ namespace CapaPresentacion
         }
         private void BtnBuscarProducto_Click(object sender, EventArgs e)
         {
-            FormBuscarMaterias form = new FormBuscarMaterias();
-            AddOwnedForm(form);
-            form.ShowDialog();
             TxtCantidad.Enabled = true;
             TxtCantidad.Focus();
         }
         private void BtnAgregarProducto_Click(object sender, EventArgs e)
         {
-            FormAgregarMateria form = new FormAgregarMateria();
-            form.ShowDialog();
         }
         private void BtnMetodo_Click(object sender, EventArgs e)
         {
@@ -388,14 +349,13 @@ namespace CapaPresentacion
                         }
                         else
                         {
-                            Grilla.Rows.Add(TxtIdMateria.Text, TxtDescripcion.Text, TxtCantidad.Text, TxtPrecio.Text, TxtSubTotal.Text);
+                            Grilla.Rows.Add(TxtDescripcion.Text, TxtCantidad.Text, TxtPrecio.Text, TxtSubTotal.Text);
 
                             Total += Subtotal;
                             TxtTotal.Text = Total.ToString("0,0");
 
                             LimpiarTextos();
 
-                            TxtIdMateria.Focus();
                             BtnGrabar.Enabled = true;
                         }
                     }
@@ -405,7 +365,6 @@ namespace CapaPresentacion
 
                         LimpiarTextos();
 
-                        TxtIdMateria.Focus();
                         return;
                     }
                 }
@@ -414,7 +373,6 @@ namespace CapaPresentacion
             {
                 LimpiarTextos();
                 TxtCantidad.Enabled = false;
-                TxtIdMateria.Focus();
             }
         }
         private void Grilla_CellEndEdit(object sender, DataGridViewCellEventArgs e)
@@ -435,65 +393,6 @@ namespace CapaPresentacion
             Total = Suma;
             TxtTotal.Text = Suma.ToString("0,0");
         }   
-        private void TxtIdMateria_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (Char.IsDigit(e.KeyChar))
-            {
-                e.Handled = false;
-            }
-            else if (Char.IsControl(e.KeyChar))
-            {
-                e.Handled = false;
-            }
-            else if (Char.IsSeparator(e.KeyChar))
-            {
-                e.Handled = false;
-            }
-            else
-            {
-                e.Handled = true;
-            }
-
-            if (e.KeyChar == (int)Keys.Enter)
-            {
-                if (TxtIdMateria.Text == "")
-                {
-                    FormBuscarMaterias form = new FormBuscarMaterias();
-                    AddOwnedForm(form);
-                    form.ShowDialog();
-
-                    TxtPrecio.Text = Precio.ToString("0,0");
-                    TxtCantidad.Enabled = true;
-                    TxtCantidad.Focus();
-                }
-                else
-                {
-                    OleDbCommand cm = new OleDbCommand($"SELECT Descripcion, Stock, Precio FROM Materias WHERE IdMateria = {TxtIdMateria.Text}", con);
-                    con.Open();
-                    OleDbDataReader dr = cm.ExecuteReader();
-
-                    if (dr.HasRows)
-                    {
-                        while (dr.Read())
-                        {
-                            TxtDescripcion.Text = dr.GetString(0);
-                            TxtStock.Text = dr.GetInt32(1).ToString();
-                            Precio = dr.GetDecimal(2);
-                            TxtPrecio.Text = Precio.ToString("0,0");
-                            
-                        }
-                        TxtCantidad.Enabled = true;
-                        TxtCantidad.Focus();
-                    }
-                    dr.Close();
-                    con.Close();
-                }
-            }
-            if (e.KeyChar == (int)Keys.Escape)
-            {
-                LimpiarTextos();
-            }
-        }
         private void Grilla_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
         {
             Resultado = 0;
