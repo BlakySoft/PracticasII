@@ -150,9 +150,12 @@ namespace CapaDatos
                 Prod.Descripcion = reader.GetString(1);
                 Prod.Detalle = reader.GetString(2);
                 Prod.IdCat = reader.GetInt32(3);
-                Prod.Precio = reader.GetDecimal(4);
-                Prod.Stock = reader.GetInt32(5);
+                Prod.IdOrigen = reader.GetInt32(4);
 
+                Prod.IdMarca = reader.GetInt32(5);
+                Prod.IdColor = reader.GetInt32(6);
+                Prod.Precio = reader.GetDecimal(7);
+                Prod.Stock = reader.GetInt32(8);
 
                 list.Add(Prod);
             }

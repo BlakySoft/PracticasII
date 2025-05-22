@@ -95,7 +95,7 @@ namespace CapaPresentacion
                         Documento = TxtDocumento.Text,
                         Telefono = TxtTelefono.Text,
                         Domicilio = TxtDomicilio.Text,
-                        IdBarrio = VarBarrio
+                        //IdBarrio = VarBarrio No se encuentra en uso
                     };
 
                     cone.AgregarCliente(Agregar);
