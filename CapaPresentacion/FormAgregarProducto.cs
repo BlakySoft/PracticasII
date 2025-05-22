@@ -17,7 +17,7 @@ namespace CapaPresentacion
 
         #region Metodos y declaraciones
         Boolean nuevo;
-        int VarRubro;
+        int VarCat;
         public FormAgregarProducto()
         {
             InitializeComponent();
@@ -30,11 +30,11 @@ namespace CapaPresentacion
         }
         private void CargarCbo()
         {
-            ConeRubros cone = new ConeRubros();
+            ConeCategoria cone = new ConeCategoria();
 
-            CboIdRubro.ValueMember = "IdRubro";
-            CboIdRubro.DisplayMember = "Descripcion";
-            CboIdRubro.DataSource = cone.ListarRubro();
+            CboIdCat.ValueMember = "IdCat";
+            CboIdCat.DisplayMember = "Descripcion";
+            CboIdCat.DataSource = cone.ListarCat();
         }
         private void LimpiarTextos()
         {
@@ -92,7 +92,7 @@ namespace CapaPresentacion
                     {
                         Descripcion = TxtDescripcion.Text,
                         Detalle = TxtDetalle.Text,
-                        IdRubro = VarRubro,
+                        IdCat = VarCat,
                         Precio = Convert.ToDecimal(TxtPrecio.Text),
                         Stock = int.Parse(TxtStock.Text),
                     };
@@ -145,15 +145,15 @@ namespace CapaPresentacion
         {
             Close();
         }
-        private void BtnRubro_Click(object sender, EventArgs e)
+        private void BtnCat_Click(object sender, EventArgs e)
         {
-            FormABMRubros form = new FormABMRubros();
+            FormABMCategoria form = new FormABMCategoria();
             form.ShowDialog();
             CargarCbo();
         }
-        private void CboIdRubro_SelectionChangeCommitted(object sender, EventArgs e)
+        private void CboIdCat_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            VarRubro = int.Parse(CboIdRubro.SelectedValue.ToString());
+            VarCat = int.Parse(CboIdCat.SelectedValue.ToString());
         }
         #endregion
 

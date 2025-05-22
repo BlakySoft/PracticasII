@@ -11,7 +11,7 @@ namespace CapaNegocios
         public int IdProducto { get; set; }
          public string Descripcion { get; set; }
         public string Detalle { get; set; }
-        public int IdRubro { get; set; }
+        public int IdCat { get; set; }
         public decimal Precio { get; set; }
         public int Stock { get; set; }
         public bool Estado { get; set; }

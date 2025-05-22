@@ -1,6 +1,6 @@
 ﻿namespace CapaPresentacion
 {
-    partial class FormPAPELERARubros
+    partial class FormPAPELERACategoria
     {
         /// <summary>
         /// Required designer variable.
@@ -38,7 +38,7 @@
             this.Grilla = new System.Windows.Forms.DataGridView();
             this.TxtBuscar = new System.Windows.Forms.TextBox();
             this.LblBuscar = new System.Windows.Forms.Label();
-            this.LblIdRubro = new System.Windows.Forms.Label();
+            this.LblIdCat = new System.Windows.Forms.Label();
             this.PnlBarraLateral.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Grilla)).BeginInit();
             this.SuspendLayout();
@@ -168,31 +168,31 @@
             this.LblBuscar.TabIndex = 34;
             this.LblBuscar.Text = "Buscar:";
             // 
-            // LblIdRubro
+            // LblIdCat
             // 
-            this.LblIdRubro.AutoSize = true;
-            this.LblIdRubro.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblIdRubro.ForeColor = System.Drawing.Color.Black;
-            this.LblIdRubro.Location = new System.Drawing.Point(3, 8);
-            this.LblIdRubro.Name = "LblIdRubro";
-            this.LblIdRubro.Size = new System.Drawing.Size(17, 18);
-            this.LblIdRubro.TabIndex = 1;
-            this.LblIdRubro.Text = "0";
+            this.LblIdCat.AutoSize = true;
+            this.LblIdCat.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblIdCat.ForeColor = System.Drawing.Color.Black;
+            this.LblIdCat.Location = new System.Drawing.Point(3, 8);
+            this.LblIdCat.Name = "LblIdCat";
+            this.LblIdCat.Size = new System.Drawing.Size(17, 18);
+            this.LblIdCat.TabIndex = 1;
+            this.LblIdCat.Text = "0";
             // 
-            // FormRubrosPapelera
+            // FormCategoriaPapelera
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Tan;
             this.ClientSize = new System.Drawing.Size(318, 297);
-            this.Controls.Add(this.LblIdRubro);
+            this.Controls.Add(this.LblIdCat);
             this.Controls.Add(this.Grilla);
             this.Controls.Add(this.TxtBuscar);
             this.Controls.Add(this.LblBuscar);
             this.Controls.Add(this.PnlBarraLateral);
-            this.Name = "FormRubrosPapelera";
+            this.Name = "FormCategoriaPapelera";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Papelera de rubros";
+            this.Text = "Papelera de cat";
             this.PnlBarraLateral.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.Grilla)).EndInit();
             this.ResumeLayout(false);
@@ -208,6 +208,6 @@
         private System.Windows.Forms.Label LblBuscar;
         private FontAwesome.Sharp.IconButton BtnRecuperar;
         private FontAwesome.Sharp.IconButton BtnVolver;
-        private System.Windows.Forms.Label LblIdRubro;
+        private System.Windows.Forms.Label LblIdCat;
     }
 }

@@ -8,48 +8,30 @@ using System.Threading.Tasks;
 
 namespace CapaDatos
 {
-   public class ConeRubros
+   public class ConeCategoria
     {
         public string ConectarDB()
         {
-            OleDbConnection con = new OleDbConnection("Provider = Microsoft.Jet.OLEDB.4.0; Data Source =|DataDirectory|elfrances.mdb;");
-            string cadenaconexion = ("Provider =Microsoft.Jet.OLEDB.4.0; Data Source =|DataDirectory|elfrances.mdb;");
+            OleDbConnection con = new OleDbConnection("Provider = Microsoft.Jet.OLEDB.4.0; Data Source =|DataDirectory|DB.mdb;");
+            string cadenaconexion = ("Provider =Microsoft.Jet.OLEDB.4.0; Data Source =|DataDirectory|DB.mdb;");
             return cadenaconexion;
         }
-        public void AgregarRubro(Rubro Rubro)
+        public void AgregarCat(Categoria Categoria)
         {
             OleDbConnection cone = new OleDbConnection();
             OleDbCommand cm = new OleDbCommand();
 
             cone.ConnectionString = ConectarDB();
             cm.CommandType = System.Data.CommandType.Text;
-            cm.CommandText = "insert into Rubros (Descripcion, Estado) values (@Descripcion, true)";
+            cm.CommandText = "insert into Categoria (Descripcion, Estado) values (@Descripcion, true)";
             cm.Connection = cone;
-            cm.Parameters.AddWithValue("Descripcion", Rubro.Descripcion);
+            cm.Parameters.AddWithValue("Descripcion", Categoria.Descripcion);
 
             cone.Open();
             cm.ExecuteNonQuery();
             cone.Close();
         }
-        public void ActualizarRubro(Rubro Rubro)
-        {
-            OleDbConnection cone = new OleDbConnection();
-            OleDbCommand cm = new OleDbCommand();
-
-            cone.ConnectionString = ConectarDB();
-            cm.CommandType = System.Data.CommandType.Text;
-
-
-            cm.CommandText = $"update Rubros set Descripcion=@Descripcion where IdRubro = {Rubro.IdRubro}";
-            cm.Connection = cone;
-
-            cm.Parameters.AddWithValue("Descripcion", Rubro.Descripcion);
-
-            cone.Open();
-            cm.ExecuteNonQuery();
-            cone.Close();
-        }
-        public void RecuperarRubro(Rubro Rubro)
+        public void ActualizarCat(Categoria Categoria)
         {
             OleDbConnection cone = new OleDbConnection();
             OleDbCommand cm = new OleDbCommand();
@@ -58,14 +40,16 @@ namespace CapaDatos
             cm.CommandType = System.Data.CommandType.Text;
 
 
-            cm.CommandText = $"update Rubros set Estado = true where IdRubro = {Rubro.IdRubro}";
+            cm.CommandText = $"update Categoria set Descripcion=@Descripcion where IdCat = {Categoria.IdCat}";
             cm.Connection = cone;
+
+            cm.Parameters.AddWithValue("Descripcion", Categoria.Descripcion);
 
             cone.Open();
             cm.ExecuteNonQuery();
             cone.Close();
         }
-        public void BorrarRubro(Rubro Rubro)
+        public void RecuperarCat(Categoria Categoria)
         {
             OleDbConnection cone = new OleDbConnection();
             OleDbCommand cm = new OleDbCommand();
@@ -74,16 +58,32 @@ namespace CapaDatos
             cm.CommandType = System.Data.CommandType.Text;
 
 
-            cm.CommandText = $"update Rubros set Estado = false where IdRubro = {Rubro.IdRubro}";
+            cm.CommandText = $"update Categoria set Estado = true where IdCat = {Categoria.IdCat}";
             cm.Connection = cone;
 
             cone.Open();
             cm.ExecuteNonQuery();
             cone.Close();
         }
-        public List<Rubro> ListarRubroPapelera()
+        public void BorrarCat(Categoria Categoria)
         {
-            List<Rubro> list = new List<Rubro>();
+            OleDbConnection cone = new OleDbConnection();
+            OleDbCommand cm = new OleDbCommand();
+
+            cone.ConnectionString = ConectarDB();
+            cm.CommandType = System.Data.CommandType.Text;
+
+
+            cm.CommandText = $"update Categoria set Estado = false where IdCat = {Categoria.IdCat}";
+            cm.Connection = cone;
+
+            cone.Open();
+            cm.ExecuteNonQuery();
+            cone.Close();
+        }
+        public List<Categoria> ListarCatPapelera()
+        {
+            List<Categoria> list = new List<Categoria>();
             OleDbConnection con = new OleDbConnection();
             OleDbCommand cm = new OleDbCommand();
 
@@ -91,28 +91,28 @@ namespace CapaDatos
 
             con.ConnectionString = ConectarDB();
             cm.CommandType = System.Data.CommandType.Text;
-            cm.CommandText = "SELECT * FROM Rubros WHERE Estado = false";
+            cm.CommandText = "SELECT * FROM Categoria WHERE Estado = false";
             cm.Connection = con;
 
             con.Open();
             reader = cm.ExecuteReader();
             while (reader.Read())
             {
-                Rubro Rubros = new Rubro();
+                Categoria Categoria = new Categoria();
 
-                Rubros.IdRubro = reader.GetInt32(0);
-                Rubros.Descripcion = reader.GetString(1);
+                Categoria.IdCat = reader.GetInt32(0);
+                Categoria.Descripcion = reader.GetString(1);
 
 
-                list.Add(Rubros);
+                list.Add(Categoria);
             }
             con.Close();
 
             return list;
         }
-        public List<Rubro> ListarRubro()
+        public List<Categoria> ListarCat()
         {
-            List<Rubro> list = new List<Rubro>();
+            List<Categoria> list = new List<Categoria>();
             OleDbConnection con = new OleDbConnection();
             OleDbCommand cm = new OleDbCommand();
 
@@ -120,28 +120,28 @@ namespace CapaDatos
 
             con.ConnectionString = ConectarDB();
             cm.CommandType = System.Data.CommandType.Text;
-            cm.CommandText = "SELECT * FROM Rubros WHERE Estado = true";
+            cm.CommandText = "SELECT * FROM Categoria WHERE Estado = true";
             cm.Connection = con;
 
             con.Open();
             reader = cm.ExecuteReader();
             while (reader.Read())
             {
-                Rubro rubros = new Rubro();
+                Categoria cat = new Categoria();
 
-                rubros.IdRubro = reader.GetInt32(0);
-                rubros.Descripcion = reader.GetString(1);
+                cat.IdCat = reader.GetInt32(0);
+                cat.Descripcion = reader.GetString(1);
 
 
-                list.Add(rubros);
+                list.Add(cat);
             }
             con.Close();
 
             return list;
         }
-        public List<Rubro> BuscarIdRubro(int IdRubro)
+        public List<Categoria> BuscarIdCat(int IdCat)
         {
-            List<Rubro> list = new List<Rubro>();
+            List<Categoria> list = new List<Categoria>();
             OleDbConnection cone = new OleDbConnection();
             OleDbCommand cm = new OleDbCommand();
             OleDbDataReader reader;
@@ -149,7 +149,7 @@ namespace CapaDatos
             cone.ConnectionString = ConectarDB();
             cm.CommandType = System.Data.CommandType.Text;
 
-            cm.CommandText = $"Select IdRubro, Descripcion from Rubros where IdRubro like ('%{IdRubro}%')";
+            cm.CommandText = $"Select IdCat, Descripcion from Categoria where IdCat like ('%{IdCat}%')";
             cm.Connection = cone;
             cone.Open();
 
@@ -158,21 +158,21 @@ namespace CapaDatos
             while (reader.Read())
             {
 
-                Rubro rubros = new Rubro();
+                Categoria cat = new Categoria();
 
-                rubros.IdRubro = reader.GetInt32(0);
-                rubros.Descripcion = reader.GetString(1);
+                cat.IdCat = reader.GetInt32(0);
+                cat.Descripcion = reader.GetString(1);
 
 
-                list.Add(rubros);
+                list.Add(cat);
             }
 
             cone.Close();
             return list;
         }
-        public List<Rubro> BuscarRubro(string Descripcion)
+        public List<Categoria> BuscarCat(string Descripcion)
         {
-            List<Rubro> list = new List<Rubro>();
+            List<Categoria> list = new List<Categoria>();
             OleDbConnection cone = new OleDbConnection();
             OleDbCommand cm = new OleDbCommand();
             OleDbDataReader reader;
@@ -180,7 +180,7 @@ namespace CapaDatos
             cone.ConnectionString = ConectarDB();
             cm.CommandType = System.Data.CommandType.Text;
 
-            cm.CommandText = $"Select IdRubro, Descripcion from Rubros where Descripcion like ('%{Descripcion}%')";
+            cm.CommandText = $"Select IdCat, Descripcion from Categoria where Descripcion like ('%{Descripcion}%')";
             cm.Connection = cone;
             cone.Open();
 
@@ -189,21 +189,21 @@ namespace CapaDatos
             while (reader.Read())
             {
 
-                Rubro rubros = new Rubro();
+                Categoria cat = new Categoria();
 
-                rubros.IdRubro = reader.GetInt32(0);
-                rubros.Descripcion = reader.GetString(1);
+                cat.IdCat = reader.GetInt32(0);
+                cat.Descripcion = reader.GetString(1);
 
 
-                list.Add(rubros);
+                list.Add(cat);
             }
 
             cone.Close();
             return list;
         }
-        public List<Rubro> BuscarPapelera(string Descripcion)
+        public List<Categoria> BuscarPapelera(string Descripcion)
         {
-            List<Rubro> list = new List<Rubro>();
+            List<Categoria> list = new List<Categoria>();
             OleDbConnection cone = new OleDbConnection();
             OleDbCommand cm = new OleDbCommand();
             OleDbDataReader reader;
@@ -211,7 +211,7 @@ namespace CapaDatos
             cone.ConnectionString = ConectarDB();
             cm.CommandType = System.Data.CommandType.Text;
 
-            cm.CommandText = $"Select IdRubro, Descripcion from Rubros where Descripcion like ('%{Descripcion}%') AND Estado = false";
+            cm.CommandText = $"Select IdCat, Descripcion from Categoria where Descripcion like ('%{Descripcion}%') AND Estado = false";
             cm.Connection = cone;
             cone.Open();
 
@@ -220,13 +220,13 @@ namespace CapaDatos
             while (reader.Read())
             {
 
-                Rubro rubros = new Rubro();
+                Categoria cat = new Categoria();
 
-                rubros.IdRubro = reader.GetInt32(0);
-                rubros.Descripcion = reader.GetString(1);
+                cat.IdCat = reader.GetInt32(0);
+                cat.Descripcion = reader.GetString(1);
 
 
-                list.Add(rubros);
+                list.Add(cat);
             }
 
             cone.Close();

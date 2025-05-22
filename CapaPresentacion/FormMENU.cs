@@ -71,7 +71,7 @@ namespace CapaPresentacion
         private void rubrosToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
-            FormPAPELERARubros form = new FormPAPELERARubros();
+            FormPAPELERACategoria form = new FormPAPELERACategoria();
             form.ShowDialog();
         }
         private void localidadesToolStripMenuItem_Click(object sender, EventArgs e)

@@ -14,7 +14,7 @@ namespace CapaDatos
         public string ConectarDB()
         {
             OleDbConnection con = new OleDbConnection("Provider = Microsoft.Jet.OLEDB.4.0; Data Source =|DataDirectory|elfrancesrances.mdb;");
-            string cadenaconexion = ("Provider =Microsoft.Jet.OLEDB.4.0; Data Source =|DataDirectory|elfrances.mdb;");
+            string cadenaconexion = ("Provider =Microsoft.Jet.OLEDB.4.0; Data Source =|DataDirectory|DB.mdb;");
             return cadenaconexion;
         }
         #endregion
@@ -26,12 +26,12 @@ namespace CapaDatos
             con.ConnectionString = ConectarDB();
             cm.CommandType = System.Data.CommandType.Text;
 
-            cm.CommandText = "insert into Productos(Descripcion, Detalle, IdRubro, Precio, Stock, Estado) values (@Descripcion, @Detalle, @IdRubro, @Precio, @Stock, true)";
+            cm.CommandText = "insert into Productos(Descripcion, Detalle, IdCat, Precio, Stock, Estado) values (@Descripcion, @Detalle, @IdCat, @Precio, @Stock, true)";
             cm.Connection = con;
 
             cm.Parameters.AddWithValue("Descripcion", Prod.Descripcion);
             cm.Parameters.AddWithValue("Detalle", Prod.Detalle);
-            cm.Parameters.AddWithValue("IdRubro", Prod.IdRubro);
+            cm.Parameters.AddWithValue("IdCat", Prod.IdCat);
             cm.Parameters.AddWithValue("Precio", Prod.Precio);
             cm.Parameters.AddWithValue("Stock", Prod.Stock);
 
@@ -48,13 +48,13 @@ namespace CapaDatos
             cm.CommandType = System.Data.CommandType.Text;
 
 
-            cm.CommandText = $"update Productos set Descripcion=@Descripcion, Detalle=@Detalle, IdRubro=@IdRubro, Precio=@Precio, Stock=@Stock where IdProducto = {Prod.IdProducto}";
+            cm.CommandText = $"update Productos set Descripcion=@Descripcion, Detalle=@Detalle, IdCat=@IdCat, Precio=@Precio, Stock=@Stock where IdProducto = {Prod.IdProducto}";
             cm.Connection = con;
 
 
             cm.Parameters.AddWithValue("Descripcion", Prod.Descripcion);
             cm.Parameters.AddWithValue("Detalle", Prod.Detalle);
-            cm.Parameters.AddWithValue("IdRubro", Prod.IdRubro);
+            cm.Parameters.AddWithValue("IdCat", Prod.IdCat);
             cm.Parameters.AddWithValue("Precio", Prod.Precio);
             cm.Parameters.AddWithValue("Stock", Prod.Stock);
 
@@ -116,7 +116,7 @@ namespace CapaDatos
                 Prod.IdProducto = reader.GetInt32(0);
                 Prod.Descripcion = reader.GetString(1);
                 Prod.Detalle = reader.GetString(2);
-                Prod.IdRubro = reader.GetInt32(3);
+                Prod.IdCat = reader.GetInt32(3);
                 Prod.Precio = reader.GetDecimal(4);
                 Prod.Stock = reader.GetInt32(5);
 
@@ -149,7 +149,7 @@ namespace CapaDatos
                 Prod.IdProducto = reader.GetInt32(0);
                 Prod.Descripcion = reader.GetString(1);
                 Prod.Detalle = reader.GetString(2);
-                Prod.IdRubro = reader.GetInt32(3);
+                Prod.IdCat = reader.GetInt32(3);
                 Prod.Precio = reader.GetDecimal(4);
                 Prod.Stock = reader.GetInt32(5);
 
@@ -170,7 +170,7 @@ namespace CapaDatos
             con.ConnectionString = ConectarDB();
             cm.CommandType = System.Data.CommandType.Text;
 
-            cm.CommandText = $"SELECT IdProducto, Descripcion, Detalle, IdRubro, Precio, Stock FROM Productos WHERE Descripcion LIKE ('%{Descripcion}%') AND Estado = true";
+            cm.CommandText = $"SELECT IdProducto, Descripcion, Detalle, IdCat, Precio, Stock FROM Productos WHERE Descripcion LIKE ('%{Descripcion}%') AND Estado = true";
             cm.Connection = con;
             con.Open();
 
@@ -183,7 +183,7 @@ namespace CapaDatos
                 Prod.IdProducto = reader.GetInt32(0);
                 Prod.Descripcion = reader.GetString(1);
                 Prod.Detalle = reader.GetString(2);
-                Prod.IdRubro = reader.GetInt32(3);
+                Prod.IdCat = reader.GetInt32(3);
                 Prod.Precio = reader.GetDecimal(4);
                 Prod.Stock = reader.GetInt32(5);
 
@@ -204,7 +204,7 @@ namespace CapaDatos
             con.ConnectionString = ConectarDB();
             cm.CommandType = System.Data.CommandType.Text;
 
-            cm.CommandText = $"SELECT IdProducto, Descripcion, Detalle, IdRubro, Precio, Stock FROM Productos WHERE Descripcion LIKE ('%{Descripcion}%') AND Estado = false";
+            cm.CommandText = $"SELECT IdProducto, Descripcion, Detalle, IdCat, Precio, Stock FROM Productos WHERE Descripcion LIKE ('%{Descripcion}%') AND Estado = false";
             cm.Connection = con;
             con.Open();
 
@@ -217,7 +217,7 @@ namespace CapaDatos
                 Prod.IdProducto = reader.GetInt32(0);
                 Prod.Descripcion = reader.GetString(1);
                 Prod.Detalle = reader.GetString(2);
-                Prod.IdRubro = reader.GetInt32(3);
+                Prod.IdCat = reader.GetInt32(3);
                 Prod.Precio = reader.GetDecimal(4);
                 Prod.Stock = reader.GetInt32(5);
 

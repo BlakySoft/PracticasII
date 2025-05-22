@@ -19,7 +19,7 @@ namespace CapaPresentacion
         public decimal Stock, Cantidad, Precio, Subtotal, Total, Resultado;
         public int IdCliente, VarMetodo;
 
-        OleDbConnection con = new OleDbConnection("Provider = Microsoft.Jet.OLEDB.4.0; Data Source =|DataDirectory|elfrances.mdb;");
+        OleDbConnection con = new OleDbConnection("Provider = Microsoft.Jet.OLEDB.4.0; Data Source =|DataDirectory|DB.mdb;");
         #endregion
 
         #region Metodo

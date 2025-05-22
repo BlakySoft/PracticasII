@@ -51,9 +51,9 @@
             this.TxtDetalle = new System.Windows.Forms.TextBox();
             this.TxtStock = new System.Windows.Forms.TextBox();
             this.TxtPrecio = new System.Windows.Forms.TextBox();
-            this.CboIdRubro = new System.Windows.Forms.ComboBox();
+            this.CboIdCat = new System.Windows.Forms.ComboBox();
             this.LblIdProducto = new System.Windows.Forms.Label();
-            this.BtnRubro = new FontAwesome.Sharp.IconButton();
+            this.BtnCat = new FontAwesome.Sharp.IconButton();
             this.PanelDatos = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label7 = new System.Windows.Forms.Label();
@@ -322,7 +322,7 @@
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(63, 19);
             this.label5.TabIndex = 4;
-            this.label5.Text = "Rubro:";
+            this.label5.Text = "Categoria:";
             // 
             // label6
             // 
@@ -368,15 +368,15 @@
             this.TxtPrecio.Size = new System.Drawing.Size(205, 26);
             this.TxtPrecio.TabIndex = 11;
             // 
-            // CboIdRubro
+            // CboIdCat
             // 
-            this.CboIdRubro.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.CboIdRubro.FormattingEnabled = true;
-            this.CboIdRubro.Location = new System.Drawing.Point(1, 224);
-            this.CboIdRubro.Name = "CboIdRubro";
-            this.CboIdRubro.Size = new System.Drawing.Size(169, 27);
-            this.CboIdRubro.TabIndex = 12;
-            this.CboIdRubro.SelectionChangeCommitted += new System.EventHandler(this.CboIdRubro_SelectionChangeCommitted);
+            this.CboIdCat.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CboIdCat.FormattingEnabled = true;
+            this.CboIdCat.Location = new System.Drawing.Point(1, 224);
+            this.CboIdCat.Name = "CboIdCat";
+            this.CboIdCat.Size = new System.Drawing.Size(169, 27);
+            this.CboIdCat.TabIndex = 12;
+            this.CboIdCat.SelectionChangeCommitted += new System.EventHandler(this.CboIdCat_SelectionChangeCommitted);
             // 
             // LblIdProducto
             // 
@@ -389,32 +389,32 @@
             this.LblIdProducto.TabIndex = 13;
             this.LblIdProducto.Text = "0";
             // 
-            // BtnRubro
+            // BtnCat
             // 
-            this.BtnRubro.BackColor = System.Drawing.Color.Linen;
-            this.BtnRubro.FlatAppearance.BorderSize = 0;
-            this.BtnRubro.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnRubro.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnRubro.ForeColor = System.Drawing.Color.White;
-            this.BtnRubro.IconChar = FontAwesome.Sharp.IconChar.MagnifyingGlassPlus;
-            this.BtnRubro.IconColor = System.Drawing.Color.DarkGoldenrod;
-            this.BtnRubro.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.BtnRubro.IconSize = 20;
-            this.BtnRubro.Location = new System.Drawing.Point(176, 224);
-            this.BtnRubro.Name = "BtnRubro";
-            this.BtnRubro.Size = new System.Drawing.Size(30, 27);
-            this.BtnRubro.TabIndex = 24;
-            this.BtnRubro.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.BtnRubro.UseVisualStyleBackColor = false;
-            this.BtnRubro.Click += new System.EventHandler(this.BtnRubro_Click);
+            this.BtnCat.BackColor = System.Drawing.Color.Linen;
+            this.BtnCat.FlatAppearance.BorderSize = 0;
+            this.BtnCat.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnCat.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnCat.ForeColor = System.Drawing.Color.White;
+            this.BtnCat.IconChar = FontAwesome.Sharp.IconChar.MagnifyingGlassPlus;
+            this.BtnCat.IconColor = System.Drawing.Color.DarkGoldenrod;
+            this.BtnCat.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.BtnCat.IconSize = 20;
+            this.BtnCat.Location = new System.Drawing.Point(176, 224);
+            this.BtnCat.Name = "BtnCat";
+            this.BtnCat.Size = new System.Drawing.Size(30, 27);
+            this.BtnCat.TabIndex = 24;
+            this.BtnCat.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.BtnCat.UseVisualStyleBackColor = false;
+            this.BtnCat.Click += new System.EventHandler(this.BtnCat_Click);
             // 
             // PanelDatos
             // 
             this.PanelDatos.BackColor = System.Drawing.Color.Tan;
             this.PanelDatos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.PanelDatos.Controls.Add(this.BtnRubro);
+            this.PanelDatos.Controls.Add(this.BtnCat);
             this.PanelDatos.Controls.Add(this.LblIdProducto);
-            this.PanelDatos.Controls.Add(this.CboIdRubro);
+            this.PanelDatos.Controls.Add(this.CboIdCat);
             this.PanelDatos.Controls.Add(this.TxtPrecio);
             this.PanelDatos.Controls.Add(this.TxtStock);
             this.PanelDatos.Controls.Add(this.TxtDetalle);
@@ -527,9 +527,9 @@
         private System.Windows.Forms.TextBox TxtDetalle;
         private System.Windows.Forms.TextBox TxtStock;
         private System.Windows.Forms.TextBox TxtPrecio;
-        private System.Windows.Forms.ComboBox CboIdRubro;
+        private System.Windows.Forms.ComboBox CboIdCat;
         private System.Windows.Forms.Label LblIdProducto;
-        private FontAwesome.Sharp.IconButton BtnRubro;
+        private FontAwesome.Sharp.IconButton BtnCat;
         private System.Windows.Forms.Panel PanelDatos;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label label7;

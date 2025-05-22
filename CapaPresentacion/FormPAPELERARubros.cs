@@ -12,10 +12,10 @@ using System.Windows.Forms;
 
 namespace CapaPresentacion
 {
-    public partial class FormPAPELERARubros : Form
+    public partial class FormPAPELERACategoria : Form
     {
         #region Metodos
-        public FormPAPELERARubros()
+        public FormPAPELERACategoria()
         {
             InitializeComponent();
             LimpiarTextos();
@@ -23,15 +23,15 @@ namespace CapaPresentacion
         }
         private void LimpiarTextos()
         {
-            LblIdRubro.Text = "";
+            LblIdCat.Text = "";
         }
         private void Listar()
         {
-            ConeRubros cone = new ConeRubros();
-            Grilla.DataSource = cone.ListarRubroPapelera();
+            ConeCategoria cone = new ConeCategoria();
+            Grilla.DataSource = cone.ListarCatPapelera();
             Grilla.Columns[0].HeaderText = "Código";
             Grilla.Columns[0].Width = 100;
-            Grilla.Columns[1].HeaderText = "Rubro";
+            Grilla.Columns[1].HeaderText = "Categoria";
             Grilla.Columns[2].Visible = false;
 
         }
@@ -40,17 +40,17 @@ namespace CapaPresentacion
         #region Botones
         private void BtnRecuperar_Click(object sender, EventArgs e)
         {
-            ConeRubros cone = new ConeRubros();
-            Rubro Recuperar = new Rubro
+            ConeCategoria cone = new ConeCategoria();
+            Categoria Recuperar = new Categoria
             {
-                IdRubro = int.Parse(LblIdRubro.Text)
+                IdCat = int.Parse(LblIdCat.Text)
             };
 
-            cone.RecuperarRubro(Recuperar);
+            cone.RecuperarCat(Recuperar);
 
             try
             {
-                MessageBox.Show("El Rubro se recuperó correctamente!!!", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("El Categoria se recuperó correctamente!!!", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 LimpiarTextos();
                 Listar();
             }
@@ -71,7 +71,7 @@ namespace CapaPresentacion
         #region Interacciones con Formulario
         private void Grilla_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            LblIdRubro.Text = Grilla.Rows[e.RowIndex].Cells[0].Value.ToString();
+            LblIdCat.Text = Grilla.Rows[e.RowIndex].Cells[0].Value.ToString();
         }
         private void TxtBuscar_TextChanged(object sender, EventArgs e)
         {
@@ -82,8 +82,8 @@ namespace CapaPresentacion
             }
             else
             {
-                ConeRubros cone = new ConeRubros();
-                Rubro Buscar = new Rubro
+                ConeCategoria cone = new ConeCategoria();
+                Categoria Buscar = new Categoria
                 {
                     Descripcion = TxtBuscar.Text
                 };

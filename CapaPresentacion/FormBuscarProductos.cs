@@ -36,7 +36,7 @@ namespace CapaPresentacion
             Grilla.Columns[5].Width = 60;
             Grilla.Columns[1].HeaderText = "Descripcion";
             Grilla.Columns[2].HeaderText = "Detalle";
-            Grilla.Columns[3].HeaderText = "Rubro";
+            Grilla.Columns[3].HeaderText = "Categoria";
             Grilla.Columns[4].HeaderText = "Precio";
             Grilla.Columns[5].HeaderText = "Stock";
             Grilla.Columns[6].Visible = false;
