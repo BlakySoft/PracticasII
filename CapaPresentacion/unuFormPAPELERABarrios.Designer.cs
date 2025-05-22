@@ -1,6 +1,6 @@
 ﻿namespace CapaPresentacion
 {
-    partial class FormPAPELERABarrios
+    partial class unuFormPAPELERABarrios
     {
         /// <summary>
         /// Required designer variable.

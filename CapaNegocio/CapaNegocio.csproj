@@ -46,7 +46,6 @@
     <Compile Include="Cliente.cs" />
     <Compile Include="Compra.cs" />
     <Compile Include="Localidad.cs" />
-    <Compile Include="Materia.cs" />
     <Compile Include="Metododepago.cs" />
     <Compile Include="Pedido.cs" />
     <Compile Include="Productos.cs" />

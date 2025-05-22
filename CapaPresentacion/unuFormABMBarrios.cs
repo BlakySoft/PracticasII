@@ -13,11 +13,11 @@ using CapaNegocios;
 
 namespace CapaPresentacion
 {
-    public partial class FormABMBarrios: Form
+    public partial class unuFormABMBarrios: Form
     {
         #region Metodos y declaraciones
         Boolean nuevo;
-        public FormABMBarrios()
+        public unuFormABMBarrios()
         {
             InitializeComponent();
             BtnModificar.Enabled = false;
@@ -212,7 +212,7 @@ namespace CapaPresentacion
         }
         private void iconButton1_Click_1(object sender, EventArgs e)
         {
-            FormPAPELERABarrios form = new FormPAPELERABarrios();
+            unuFormPAPELERABarrios form = new unuFormPAPELERABarrios();
             form.ShowDialog();
         }
         #endregion 
