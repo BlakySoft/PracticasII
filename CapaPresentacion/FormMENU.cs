@@ -15,22 +15,20 @@ namespace CapaPresentacion
         public FormMENU()
         {
             InitializeComponent();
+            menuStrip1.Renderer = new CustomRenderer();
         }
 
         private void cLIENTESToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            FormABMClientes form = new FormABMClientes();
-            form.ShowDialog();
+            AbrirFrmHijo(new FormABMClientes());
         }
         private void pROVEEDORESToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            FormABMProveedores form = new FormABMProveedores();
-            form.ShowDialog();
+            AbrirFrmHijo(new FormABMProveedores());
         }
         private void pRODUCTOSToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            FormABMProductos form = new FormABMProductos();
-            form.ShowDialog();
+            AbrirFrmHijo(new FormABMProductos());
         }
         private void mATERIASPRIMASToolStripMenuItem1_Click(object sender, EventArgs e)
         {
@@ -88,8 +86,7 @@ namespace CapaPresentacion
         }
         private void rEALIZARCOMPRAToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FormCOMPRAS form = new FormCOMPRAS();
-            form.ShowDialog();
+            AbrirFrmHijo(new FormCOMPRAS());
         }
         private void pEDIDOSENTREGADOSToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -120,7 +117,63 @@ namespace CapaPresentacion
 
         private void Timer_Tick(object sender, EventArgs e)
         {
-            Reloj.Text = DateTime.Now.ToString("HH:mm:ss");
+            Reloj.Text = DateTime.Now.ToString("HH:mm");
         }
+
+        public class CustomRenderer : ToolStripProfessionalRenderer
+        {
+            public CustomRenderer() : base(new CustomColorTable()) { }
+
+            protected override void OnRenderMenuItemBackground(ToolStripItemRenderEventArgs e)
+            {
+                // Fondo del botón al pasar el mouse o al estar seleccionado
+                if (e.Item.Selected || e.Item.Pressed)
+                {
+                    e.Graphics.FillRectangle(new SolidBrush(Color.FromArgb(50, 50, 50)), e.Item.ContentRectangle);
+                }
+                else
+                {
+                    e.Graphics.FillRectangle(new SolidBrush(Color.FromArgb(30, 30, 30)), e.Item.ContentRectangle);
+                }
+            }
+
+            protected override void OnRenderItemText(ToolStripItemTextRenderEventArgs e)
+            {
+                // Forzar texto blanco
+                e.TextColor = Color.White;
+                base.OnRenderItemText(e);
+            }
+        }
+
+        public class CustomColorTable : ProfessionalColorTable
+        {
+            public override Color MenuItemSelected => Color.FromArgb(50, 50, 50);
+            public override Color MenuItemSelectedGradientBegin => Color.FromArgb(50, 50, 50);
+            public override Color MenuItemSelectedGradientEnd => Color.FromArgb(50, 50, 50);
+
+            public override Color ToolStripDropDownBackground => Color.FromArgb(30, 30, 30);
+            public override Color MenuBorder => Color.Gray;
+            public override Color MenuItemBorder => Color.Gray;
+
+            public override Color ImageMarginGradientBegin => Color.FromArgb(30, 30, 30);
+            public override Color ImageMarginGradientMiddle => Color.FromArgb(30, 30, 30);
+            public override Color ImageMarginGradientEnd => Color.FromArgb(30, 30, 30);
+        }
+
+        private Form frmActivo = null;
+        public void AbrirFrmHijo(Form FrmHijo)
+        {
+            if (frmActivo != null)
+                frmActivo.Close();
+            frmActivo = FrmHijo;
+            FrmHijo.TopLevel = false;
+            FrmHijo.FormBorderStyle = FormBorderStyle.None;
+            FrmHijo.Dock = DockStyle.Fill;
+            PanelVisual.Controls.Add(FrmHijo);
+            PanelVisual.Tag = FrmHijo;
+            FrmHijo.BringToFront();
+            FrmHijo.Show();
+        }
+
     }
 }
