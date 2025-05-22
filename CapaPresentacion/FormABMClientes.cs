@@ -148,7 +148,7 @@ namespace CapaPresentacion
         }
         private void BtnBarrio_Click(object sender, EventArgs e)
         {
-            FormABMBarrios form = new FormABMBarrios();
+            unuFormABMBarrios form = new unuFormABMBarrios();
             form.ShowDialog();
             CargarCbo();
         }

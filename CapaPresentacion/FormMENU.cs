@@ -39,7 +39,7 @@ namespace CapaPresentacion
         }
         private void bARRIOSToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            FormABMBarrios form = new FormABMBarrios();
+            unuFormABMBarrios form = new unuFormABMBarrios();
             form.ShowDialog();
         }
         private void clientesToolStripMenuItem2_Click(object sender, EventArgs e)
@@ -65,7 +65,7 @@ namespace CapaPresentacion
         private void iconMenuItem5_Click(object sender, EventArgs e)
         {
 
-            FormPAPELERABarrios form = new FormPAPELERABarrios();
+            unuFormPAPELERABarrios form = new unuFormPAPELERABarrios();
             form.ShowDialog();
         }
         private void rubrosToolStripMenuItem_Click(object sender, EventArgs e)

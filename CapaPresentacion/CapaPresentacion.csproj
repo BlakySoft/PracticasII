@@ -59,12 +59,6 @@
     <Compile Include="FormAgregarCliente.Designer.cs">
       <DependentUpon>FormAgregarCliente.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormAgregarMateria.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormAgregarMateria.Designer.cs">
-      <DependentUpon>FormAgregarMateria.cs</DependentUpon>
-    </Compile>
     <Compile Include="FormAgregarProducto.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -77,23 +71,17 @@
     <Compile Include="FormAgregarProveedor.Designer.cs">
       <DependentUpon>FormAgregarProveedor.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormABMBarrios.cs">
+    <Compile Include="unuFormABMBarrios.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormABMBarrios.Designer.cs">
-      <DependentUpon>FormABMBarrios.cs</DependentUpon>
+    <Compile Include="unuFormABMBarrios.Designer.cs">
+      <DependentUpon>unuFormABMBarrios.cs</DependentUpon>
     </Compile>
     <Compile Include="FormBuscarCliente.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormBuscarCliente.Designer.cs">
       <DependentUpon>FormBuscarCliente.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FormBuscarMaterias.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormBuscarMaterias.Designer.cs">
-      <DependentUpon>FormBuscarMaterias.cs</DependentUpon>
     </Compile>
     <Compile Include="FormBuscarProductos.cs">
       <SubType>Form</SubType>
@@ -113,11 +101,11 @@
     <Compile Include="FormCOMPRAS.Designer.cs">
       <DependentUpon>FormCOMPRAS.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormPAPELERABarrios.cs">
+    <Compile Include="unuFormPAPELERABarrios.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormPAPELERABarrios.Designer.cs">
-      <DependentUpon>FormPAPELERABarrios.cs</DependentUpon>
+    <Compile Include="unuFormPAPELERABarrios.Designer.cs">
+      <DependentUpon>unuFormPAPELERABarrios.cs</DependentUpon>
     </Compile>
     <Compile Include="FormABMClientes.cs">
       <SubType>Form</SubType>
@@ -142,18 +130,6 @@
     </Compile>
     <Compile Include="FormPAPELERALocalidades.Designer.cs">
       <DependentUpon>FormPAPELERALocalidades.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FormPAPELERAMateriaprima.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormPAPELERAMateriaprima.Designer.cs">
-      <DependentUpon>FormPAPELERAMateriaprima.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FormABMMateriasPrimas.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormABMMateriasPrimas.Designer.cs">
-      <DependentUpon>FormABMMateriasPrimas.cs</DependentUpon>
     </Compile>
     <Compile Include="FormMENU.cs">
       <SubType>Form</SubType>
@@ -197,17 +173,17 @@
     <Compile Include="FormPAPELERAProveedores.Designer.cs">
       <DependentUpon>FormPAPELERAProveedores.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormABMRubros.cs">
+    <Compile Include="FormABMCategoria.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormABMRubros.Designer.cs">
-      <DependentUpon>FormABMRubros.cs</DependentUpon>
+    <Compile Include="FormABMCategoria.Designer.cs">
+      <DependentUpon>FormABMCategoria.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormPAPELERARubros.cs">
+    <Compile Include="FormPAPELERACat.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormPAPELERARubros.Designer.cs">
-      <DependentUpon>FormPAPELERARubros.cs</DependentUpon>
+    <Compile Include="FormPAPELERACat.Designer.cs">
+      <DependentUpon>FormPAPELERACat.cs</DependentUpon>
     </Compile>
     <Compile Include="FormPEDIDOS.cs">
       <SubType>Form</SubType>
@@ -238,9 +214,6 @@
     <EmbeddedResource Include="FormAgregarCliente.resx">
       <DependentUpon>FormAgregarCliente.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormAgregarMateria.resx">
-      <DependentUpon>FormAgregarMateria.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="FormAgregarProducto.resx">
       <DependentUpon>FormAgregarProducto.cs</DependentUpon>
     </EmbeddedResource>
@@ -248,14 +221,11 @@
       <DependentUpon>FormAgregarProveedor.cs</DependentUpon>
     </EmbeddedResource>
     <!-- Embedded Resources -->
-    <EmbeddedResource Include="FormABMBarrios.resx">
-      <DependentUpon>FormABMBarrios.cs</DependentUpon>
+    <EmbeddedResource Include="unuFormABMBarrios.resx">
+      <DependentUpon>unuFormABMBarrios.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormBuscarCliente.resx">
       <DependentUpon>FormBuscarCliente.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormBuscarMaterias.resx">
-      <DependentUpon>FormBuscarMaterias.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormBuscarProductos.resx">
       <DependentUpon>FormBuscarProductos.cs</DependentUpon>
@@ -266,8 +236,8 @@
     <EmbeddedResource Include="FormCOMPRAS.resx">
       <DependentUpon>FormCOMPRAS.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormPAPELERABarrios.resx">
-      <DependentUpon>FormPAPELERABarrios.cs</DependentUpon>
+    <EmbeddedResource Include="unuFormPAPELERABarrios.resx">
+      <DependentUpon>unuFormPAPELERABarrios.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormABMClientes.resx">
       <DependentUpon>FormABMClientes.cs</DependentUpon>
@@ -280,12 +250,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormPAPELERALocalidades.resx">
       <DependentUpon>FormPAPELERALocalidades.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormPAPELERAMateriaprima.resx">
-      <DependentUpon>FormPAPELERAMateriaprima.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormABMMateriasPrimas.resx">
-      <DependentUpon>FormABMMateriasPrimas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMENU.resx">
       <DependentUpon>FormMENU.cs</DependentUpon>
@@ -308,11 +272,11 @@
     <EmbeddedResource Include="FormPAPELERAProveedores.resx">
       <DependentUpon>FormPAPELERAProveedores.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormABMRubros.resx">
-      <DependentUpon>FormABMRubros.cs</DependentUpon>
+    <EmbeddedResource Include="FormABMCategoria.resx">
+      <DependentUpon>FormABMCategoria.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormPAPELERARubros.resx">
-      <DependentUpon>FormPAPELERARubros.cs</DependentUpon>
+    <EmbeddedResource Include="FormPAPELERACat.resx">
+      <DependentUpon>FormPAPELERACat.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPEDIDOS.resx">
       <DependentUpon>FormPEDIDOS.cs</DependentUpon>

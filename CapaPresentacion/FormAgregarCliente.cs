@@ -46,7 +46,7 @@ namespace CapaPresentacion
         #region Botones
         private void BtnBarrios_Click(object sender, EventArgs e)
         {
-            FormABMBarrios form = new FormABMBarrios();
+            unuFormABMBarrios form = new unuFormABMBarrios();
             form.ShowDialog();
         }
         private void BtnNuevo_Click(object sender, EventArgs e)
