@@ -49,7 +49,14 @@
             this.TxtStock = new System.Windows.Forms.Label();
             this.TxtCantidad = new System.Windows.Forms.TextBox();
             this.LblTitleStock = new System.Windows.Forms.Label();
-            this.TxtIdMateria = new System.Windows.Forms.TextBox();
+            //this.TxtId
+                
+                
+                
+                
+                
+                
+            //    = new System.Windows.Forms.TextBox();
             this.iconButton1 = new FontAwesome.Sharp.IconButton();
             this.BtnCancelar = new FontAwesome.Sharp.IconButton();
             this.BtnGrabar = new FontAwesome.Sharp.IconButton();
@@ -101,7 +108,10 @@
             this.PanelBotones.Controls.Add(this.TxtStock);
             this.PanelBotones.Controls.Add(this.TxtCantidad);
             this.PanelBotones.Controls.Add(this.LblTitleStock);
-            this.PanelBotones.Controls.Add(this.TxtIdMateria);
+            //this.PanelBotones.Controls.Add(this.TxtId
+                
+                
+            //    );
             this.PanelBotones.Dock = System.Windows.Forms.DockStyle.Left;
             this.PanelBotones.ForeColor = System.Drawing.Color.Black;
             this.PanelBotones.Location = new System.Drawing.Point(0, 0);
@@ -329,16 +339,16 @@
             // 
             // TxtIdMateria
             // 
-            this.TxtIdMateria.BackColor = System.Drawing.Color.White;
-            this.TxtIdMateria.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.TxtIdMateria.Enabled = false;
-            this.TxtIdMateria.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtIdMateria.ForeColor = System.Drawing.Color.Black;
-            this.TxtIdMateria.Location = new System.Drawing.Point(122, 145);
-            this.TxtIdMateria.Name = "TxtIdMateria";
-            this.TxtIdMateria.Size = new System.Drawing.Size(19, 22);
-            this.TxtIdMateria.TabIndex = 45;
-            this.TxtIdMateria.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtIdMateria_KeyPress);
+            //this.TxtIdMateria.BackColor = System.Drawing.Color.White;
+            //this.TxtIdMateria.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            //this.TxtIdMateria.Enabled = false;
+            //this.TxtIdMateria.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            //this.TxtIdMateria.ForeColor = System.Drawing.Color.Black;
+            //this.TxtIdMateria.Location = new System.Drawing.Point(122, 83);
+            //this.TxtIdMateria.Name = "TxtIdMateria";
+            //this.TxtIdMateria.Size = new System.Drawing.Size(19, 22);
+            //this.TxtIdMateria.TabIndex = 45;
+            //this.TxtIdMateria.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtIdMateria_KeyPress);
             // 
             // iconButton1
             // 

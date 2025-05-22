@@ -33,7 +33,7 @@ namespace CapaDatos
             cm.Parameters.AddWithValue("Documento", Cli.Documento);
             cm.Parameters.AddWithValue("Telefono", Cli.Telefono);
             cm.Parameters.AddWithValue("Domicilio", Cli.Domicilio);
-            cm.Parameters.AddWithValue("IdBarrio", Cli.IdBarrio);
+            //cm.Parameters.AddWithValue("IdBarrio", Cli.IdBarrio); No se encuentra en uso
 
             con.Open();
             cm.ExecuteNonQuery();
@@ -56,7 +56,7 @@ namespace CapaDatos
             cm.Parameters.AddWithValue("Documento", Cli.Documento);
             cm.Parameters.AddWithValue("Telefono", Cli.Telefono);
             cm.Parameters.AddWithValue("Domicilio", Cli.Domicilio);
-            cm.Parameters.AddWithValue("IdBarrio", Cli.IdBarrio);
+            //cm.Parameters.AddWithValue("IdBarrio", Cli.IdBarrio); No se encuentra en uso
 
             con.Open();
             cm.ExecuteNonQuery();
@@ -118,7 +118,7 @@ namespace CapaDatos
                 Cli.Documento = reader.GetString(2);
                 Cli.Telefono = reader.GetString(3);
                 Cli.Domicilio = reader.GetString(4);
-                Cli.IdBarrio = reader.GetInt32(5);
+                //Cli.IdBarrio = reader.GetInt32(5); No se encuentra en uso
 
 
                 list.Add(Cli);
@@ -151,7 +151,7 @@ namespace CapaDatos
                 Cli.Documento = reader.GetString(2);
                 Cli.Telefono = reader.GetString(3);
                 Cli.Domicilio = reader.GetString(4);
-                Cli.IdBarrio = reader.GetInt32(5);
+                //Cli.IdBarrio = reader.GetInt32(5); No se encuentra en uso
 
 
                 list.Add(Cli);
@@ -186,7 +186,7 @@ namespace CapaDatos
                 Cli.Documento = reader.GetString(2);
                 Cli.Telefono = reader.GetString(3);
                 Cli.Domicilio = reader.GetString(4);
-                Cli.IdBarrio = reader.GetInt32(5);
+                //Cli.IdBarrio = reader.GetInt32(5); No se encuentra en uso
 
 
                 list.Add(Cli);
@@ -221,7 +221,7 @@ namespace CapaDatos
                 Cli.Documento = reader.GetString(2);
                 Cli.Telefono = reader.GetString(3);
                 Cli.Domicilio = reader.GetString(4);
-                Cli.IdBarrio = reader.GetInt32(5);
+                //Cli.IdBarrio = reader.GetInt32(5); No se encuentra en uso
 
 
                 list.Add(Cli);

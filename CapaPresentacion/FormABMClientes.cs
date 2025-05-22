@@ -65,8 +65,8 @@ namespace CapaPresentacion
             Grilla.Columns[2].HeaderText = "Documento";
             Grilla.Columns[3].HeaderText = "Teléfono";
             Grilla.Columns[4].HeaderText = "Domicilio";
-            Grilla.Columns[5].HeaderText = "Barrio";
-            Grilla.Columns[6].Visible = false;
+            //Grilla.Columns[5].HeaderText = "Barrio";
+            //Grilla.Columns[6].Visible = false;
         }
 
         #endregion
@@ -148,7 +148,7 @@ namespace CapaPresentacion
         }
         private void BtnBarrio_Click(object sender, EventArgs e)
         {
-            FormABMBarrios form = new FormABMBarrios();
+            unuFormABMBarrios form = new unuFormABMBarrios();
             form.ShowDialog();
             CargarCbo();
         }
@@ -201,7 +201,7 @@ namespace CapaPresentacion
                         Documento = TxtDocumento.Text,
                         Telefono = TxtTelefono.Text,
                         Domicilio = TxtDomicilio.Text,
-                        IdBarrio = VarBarrio
+                        //IdBarrio = VarBarrio No se encuentra en uso
                     };
 
                     cone.AgregarCliente(Agregar);
@@ -230,7 +230,7 @@ namespace CapaPresentacion
                         Documento = TxtDocumento.Text,
                         Telefono = TxtTelefono.Text,
                         Domicilio = TxtDomicilio.Text,
-                        IdBarrio = VarBarrio
+                        //IdBarrio = VarBarrio No se encuentra en uso
                     };
 
                     cone.ActualizarCliente(Actualizar);
@@ -312,22 +312,22 @@ namespace CapaPresentacion
             try
             {
                 LblIdCliente.Text = Grilla.Rows[e.RowIndex].Cells[0].Value.ToString();
-            TxtNombre.Text = Grilla.Rows[e.RowIndex].Cells[1].Value.ToString();
-            TxtDocumento.Text = Grilla.Rows[e.RowIndex].Cells[2].Value.ToString();
-            TxtTelefono.Text = Grilla.Rows[e.RowIndex].Cells[3].Value.ToString();
-            TxtDomicilio.Text = Grilla.Rows[e.RowIndex].Cells[4].Value.ToString();
-            VarBarrio = Convert.ToInt32(Grilla.Rows[e.RowIndex].Cells[5].Value.ToString());
+                TxtNombre.Text = Grilla.Rows[e.RowIndex].Cells[1].Value.ToString();
+                TxtDocumento.Text = Grilla.Rows[e.RowIndex].Cells[2].Value.ToString();
+                TxtTelefono.Text = Grilla.Rows[e.RowIndex].Cells[3].Value.ToString();
+                TxtDomicilio.Text = Grilla.Rows[e.RowIndex].Cells[4].Value.ToString();
+                //VarBarrio = Convert.ToInt32(Grilla.Rows[e.RowIndex].Cells[5].Value.ToString()); No se encuentra en uso 
 
-            ConeBarrios cone = new ConeBarrios();
+                //ConeBarrios cone = new ConeBarrios();
 
-            _ = new Barrio
-            {
-                IdBarrio = VarBarrio
-            };
+                // _ = new Barrio
+                // {
+                //     IdBarrio = VarBarrio
+                // };
 
-            CboIdBarrio.ValueMember = "IdBarrio";
-            CboIdBarrio.DisplayMember = "Descripcion";
-            CboIdBarrio.DataSource = cone.BuscarIdBarrio(VarBarrio);
+                //CboIdBarrio.ValueMember = "IdBarrio";
+                //CboIdBarrio.DisplayMember = "Descripcion";
+                //CboIdBarrio.DataSource = cone.BuscarIdBarrio(VarBarrio);
 
             #region Enabled yes/no
 

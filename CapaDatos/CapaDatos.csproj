@@ -46,7 +46,6 @@
     <Compile Include="ConeClientes.cs" />
     <Compile Include="ConeCompras.cs" />
     <Compile Include="ConeLocalidades.cs" />
-    <Compile Include="ConeMateria.cs" />
     <Compile Include="ConeMetododepago.cs" />
     <Compile Include="ConePedidos.cs" />
     <Compile Include="ConeProductos.cs" />

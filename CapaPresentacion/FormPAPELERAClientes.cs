@@ -36,8 +36,8 @@ namespace CapaPresentacion
             Grilla.Columns[2].HeaderText = "Documento";
             Grilla.Columns[3].HeaderText = "Teléfono";
             Grilla.Columns[4].HeaderText = "Domicilio";
-            Grilla.Columns[5].HeaderText = "Barrio";
-            Grilla.Columns[6].Visible = false;
+            //Grilla.Columns[5].HeaderText = "Barrio"; No se encuentra en uso
+            Grilla.Columns[5].Visible = false;
 
         }
         #endregion

@@ -46,7 +46,7 @@ namespace CapaPresentacion
         #region Botones
         private void BtnBarrios_Click(object sender, EventArgs e)
         {
-            FormABMBarrios form = new FormABMBarrios();
+            unuFormABMBarrios form = new unuFormABMBarrios();
             form.ShowDialog();
         }
         private void BtnNuevo_Click(object sender, EventArgs e)
@@ -95,7 +95,7 @@ namespace CapaPresentacion
                         Documento = TxtDocumento.Text,
                         Telefono = TxtTelefono.Text,
                         Domicilio = TxtDomicilio.Text,
-                        IdBarrio = VarBarrio
+                        //IdBarrio = VarBarrio No se encuentra en uso
                     };
 
                     cone.AgregarCliente(Agregar);

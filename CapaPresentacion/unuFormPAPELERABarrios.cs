@@ -12,10 +12,10 @@ using System.Windows.Forms;
 
 namespace CapaPresentacion
 {
-    public partial class FormPAPELERABarrios: Form
+    public partial class unuFormPAPELERABarrios: Form
     {
         #region Metodos
-        public FormPAPELERABarrios()
+        public unuFormPAPELERABarrios()
         {
             InitializeComponent();
             LimpiarTextos();
