@@ -143,8 +143,8 @@
             this.iconMenuItem3.IconColor = System.Drawing.Color.White;
             this.iconMenuItem3.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconMenuItem3.Name = "iconMenuItem3";
-            this.iconMenuItem3.Size = new System.Drawing.Size(110, 23);
-            this.iconMenuItem3.Text = "PEDIDOS";
+            this.iconMenuItem3.Size = new System.Drawing.Size(102, 23);
+            this.iconMenuItem3.Text = "VENTAS";
             // 
             // cLIENTESToolStripMenuItem
             // 
