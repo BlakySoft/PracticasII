@@ -26,7 +26,7 @@ namespace CapaDatos
             con.ConnectionString = ConectarDB();
             cm.CommandType = System.Data.CommandType.Text;
 
-            cm.CommandText = "insert into Clientes(Nombre, Documento, Telefono, Domicilio, IdBarrio, Estado) values (@Nombre, @Documento, @Telefono, @Domicilio, @IdBarrio, true)";
+            cm.CommandText = "insert into Clientes(Nombre, Documento, Telefono, Domicilio, Estado) values (@Nombre, @Documento, @Telefono, @Domicilio, true)";
             cm.Connection = con;
 
             cm.Parameters.AddWithValue("Nombre", Cli.Nombre);
@@ -48,7 +48,7 @@ namespace CapaDatos
             cm.CommandType = System.Data.CommandType.Text;
 
 
-            cm.CommandText = $"update Clientes set Nombre=@Nombre, Documento=@Documento, Telefono=@Telefono, Domicilio=@Domicilio, IdBarrio=@IdBarrio where IdCliente = {Cli.IdCliente}";
+            cm.CommandText = $"update Clientes set Nombre=@Nombre, Documento=@Documento, Telefono=@Telefono, Domicilio=@Domicilio where IdCliente = {Cli.IdCliente}";
             cm.Connection = con;
 
 
