@@ -45,7 +45,7 @@
             // 
             // PnlBarraLateral
             // 
-            this.PnlBarraLateral.BackColor = System.Drawing.Color.AntiqueWhite;
+            this.PnlBarraLateral.BackColor = System.Drawing.Color.Linen;
             this.PnlBarraLateral.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.PnlBarraLateral.Controls.Add(this.BtnVolver);
             this.PnlBarraLateral.Controls.Add(this.BtnRecuperar);
@@ -57,7 +57,7 @@
             // 
             // BtnVolver
             // 
-            this.BtnVolver.BackColor = System.Drawing.Color.Tan;
+            this.BtnVolver.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.BtnVolver.FlatAppearance.BorderSize = 0;
             this.BtnVolver.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnVolver.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -76,7 +76,7 @@
             // 
             // BtnRecuperar
             // 
-            this.BtnRecuperar.BackColor = System.Drawing.Color.Tan;
+            this.BtnRecuperar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.BtnRecuperar.FlatAppearance.BorderSize = 0;
             this.BtnRecuperar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnRecuperar.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -160,8 +160,9 @@
             // LblBuscar
             // 
             this.LblBuscar.AutoSize = true;
+            this.LblBuscar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.LblBuscar.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblBuscar.ForeColor = System.Drawing.Color.Black;
+            this.LblBuscar.ForeColor = System.Drawing.Color.White;
             this.LblBuscar.Location = new System.Drawing.Point(23, 8);
             this.LblBuscar.Name = "LblBuscar";
             this.LblBuscar.Size = new System.Drawing.Size(70, 19);
@@ -171,8 +172,9 @@
             // LblIdClientes
             // 
             this.LblIdClientes.AutoSize = true;
+            this.LblIdClientes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.LblIdClientes.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblIdClientes.ForeColor = System.Drawing.Color.Black;
+            this.LblIdClientes.ForeColor = System.Drawing.Color.White;
             this.LblIdClientes.Location = new System.Drawing.Point(9, 8);
             this.LblIdClientes.Name = "LblIdClientes";
             this.LblIdClientes.Size = new System.Drawing.Size(17, 18);
@@ -183,7 +185,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Tan;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.ClientSize = new System.Drawing.Size(322, 295);
             this.Controls.Add(this.LblIdClientes);
             this.Controls.Add(this.Grilla);

@@ -51,7 +51,7 @@ namespace CapaPresentacion
             {
                 if (IdProducto != 0)
                 {
-                    FormPEDIDOS pedidos = Owner as FormPEDIDOS;
+                    FormVENTAS pedidos = Owner as FormVENTAS;
                     pedidos.TxtIdProducto.Text = IdProducto.ToString();
                     pedidos.TxtDescripcion.Text = Descripcion;
                     pedidos.TxtDetalle.Text = Detalle;

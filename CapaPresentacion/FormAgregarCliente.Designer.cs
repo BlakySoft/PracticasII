@@ -53,7 +53,7 @@
             // 
             // PanelDatos
             // 
-            this.PanelDatos.BackColor = System.Drawing.Color.Tan;
+            this.PanelDatos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.PanelDatos.Controls.Add(this.LblIdCliente);
             this.PanelDatos.Controls.Add(this.BtnMarca);
             this.PanelDatos.Controls.Add(this.CboIdBarrio);
@@ -92,7 +92,7 @@
             this.BtnMarca.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnMarca.ForeColor = System.Drawing.Color.White;
             this.BtnMarca.IconChar = FontAwesome.Sharp.IconChar.MagnifyingGlassPlus;
-            this.BtnMarca.IconColor = System.Drawing.Color.Tan;
+            this.BtnMarca.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.BtnMarca.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.BtnMarca.IconSize = 20;
             this.BtnMarca.Location = new System.Drawing.Point(201, 239);
@@ -118,7 +118,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.Black;
+            this.label6.ForeColor = System.Drawing.Color.White;
             this.label6.Location = new System.Drawing.Point(8, 217);
             this.label6.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label6.Name = "label6";
@@ -148,7 +148,7 @@
             // 
             this.LblDireccion.AutoSize = true;
             this.LblDireccion.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblDireccion.ForeColor = System.Drawing.Color.Black;
+            this.LblDireccion.ForeColor = System.Drawing.Color.White;
             this.LblDireccion.Location = new System.Drawing.Point(4, 167);
             this.LblDireccion.Name = "LblDireccion";
             this.LblDireccion.Size = new System.Drawing.Size(77, 18);
@@ -170,7 +170,7 @@
             // 
             this.LblTelefono.AutoSize = true;
             this.LblTelefono.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblTelefono.ForeColor = System.Drawing.Color.Black;
+            this.LblTelefono.ForeColor = System.Drawing.Color.White;
             this.LblTelefono.Location = new System.Drawing.Point(4, 113);
             this.LblTelefono.Name = "LblTelefono";
             this.LblTelefono.Size = new System.Drawing.Size(71, 18);
@@ -192,7 +192,7 @@
             // 
             this.LblApellido.AutoSize = true;
             this.LblApellido.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblApellido.ForeColor = System.Drawing.Color.Black;
+            this.LblApellido.ForeColor = System.Drawing.Color.White;
             this.LblApellido.Location = new System.Drawing.Point(3, 56);
             this.LblApellido.Name = "LblApellido";
             this.LblApellido.Size = new System.Drawing.Size(89, 18);
@@ -214,7 +214,7 @@
             // 
             this.LblNombre.AutoSize = true;
             this.LblNombre.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblNombre.ForeColor = System.Drawing.Color.Black;
+            this.LblNombre.ForeColor = System.Drawing.Color.White;
             this.LblNombre.Location = new System.Drawing.Point(4, 7);
             this.LblNombre.Name = "LblNombre";
             this.LblNombre.Size = new System.Drawing.Size(139, 18);
@@ -223,7 +223,7 @@
             // 
             // PanelBotones
             // 
-            this.PanelBotones.BackColor = System.Drawing.Color.AntiqueWhite;
+            this.PanelBotones.BackColor = System.Drawing.Color.Linen;
             this.PanelBotones.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.PanelBotones.Controls.Add(this.BtnVolver);
             this.PanelBotones.Controls.Add(this.BtnCancelar);
@@ -237,7 +237,7 @@
             // 
             // BtnVolver
             // 
-            this.BtnVolver.BackColor = System.Drawing.Color.Tan;
+            this.BtnVolver.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.BtnVolver.FlatAppearance.BorderSize = 0;
             this.BtnVolver.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnVolver.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -256,7 +256,7 @@
             // 
             // BtnCancelar
             // 
-            this.BtnCancelar.BackColor = System.Drawing.Color.Tan;
+            this.BtnCancelar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.BtnCancelar.FlatAppearance.BorderSize = 0;
             this.BtnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnCancelar.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -276,7 +276,7 @@
             // 
             // BtnGrabar
             // 
-            this.BtnGrabar.BackColor = System.Drawing.Color.Tan;
+            this.BtnGrabar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.BtnGrabar.FlatAppearance.BorderSize = 0;
             this.BtnGrabar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnGrabar.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -296,7 +296,7 @@
             // 
             // BtnNuevo
             // 
-            this.BtnNuevo.BackColor = System.Drawing.Color.Tan;
+            this.BtnNuevo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.BtnNuevo.FlatAppearance.BorderSize = 0;
             this.BtnNuevo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnNuevo.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));

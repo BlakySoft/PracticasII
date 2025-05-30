@@ -185,11 +185,11 @@
     <Compile Include="FormPAPELERACat.Designer.cs">
       <DependentUpon>FormPAPELERACat.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormPEDIDOS.cs">
+    <Compile Include="FormVENTAS.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormPEDIDOS.Designer.cs">
-      <DependentUpon>FormPEDIDOS.cs</DependentUpon>
+    <Compile Include="FormVENTAS.Designer.cs">
+      <DependentUpon>FormVENTAS.cs</DependentUpon>
     </Compile>
     <Compile Include="FormPEDIDOScancelados.cs">
       <SubType>Form</SubType>
@@ -278,8 +278,8 @@
     <EmbeddedResource Include="FormPAPELERACat.resx">
       <DependentUpon>FormPAPELERACat.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormPEDIDOS.resx">
-      <DependentUpon>FormPEDIDOS.cs</DependentUpon>
+    <EmbeddedResource Include="FormVENTAS.resx">
+      <DependentUpon>FormVENTAS.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPEDIDOScancelados.resx">
       <DependentUpon>FormPEDIDOScancelados.cs</DependentUpon>

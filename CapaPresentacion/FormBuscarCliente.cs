@@ -61,7 +61,7 @@ namespace CapaPresentacion
             {
                 if (IdCliente != "")
                 {
-                    FormPEDIDOS pedidos = Owner as FormPEDIDOS;
+                    FormVENTAS pedidos = Owner as FormVENTAS;
                     pedidos.TxtCliente.Text = $"{Nombre}";
                     pedidos.IdCliente = Convert.ToInt32(IdCliente);
                     Close();

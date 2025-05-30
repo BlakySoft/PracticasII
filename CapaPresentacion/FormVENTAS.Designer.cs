@@ -1,6 +1,6 @@
 ﻿namespace CapaPresentacion
 {
-    partial class FormPEDIDOS
+    partial class FormVENTAS
     {
         /// <summary>
         /// Required designer variable.
@@ -82,7 +82,7 @@
             // 
             // PanelBotones
             // 
-            this.PanelBotones.BackColor = System.Drawing.Color.Tan;
+            this.PanelBotones.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.PanelBotones.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.PanelBotones.Controls.Add(this.Fecha);
             this.PanelBotones.Controls.Add(this.TxtDetalle);
@@ -113,7 +113,7 @@
             // 
             this.Fecha.AutoSize = true;
             this.Fecha.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Fecha.ForeColor = System.Drawing.Color.Black;
+            this.Fecha.ForeColor = System.Drawing.Color.White;
             this.Fecha.Location = new System.Drawing.Point(3, 9);
             this.Fecha.Name = "Fecha";
             this.Fecha.Size = new System.Drawing.Size(86, 19);
@@ -140,7 +140,7 @@
             this.BtnMetodo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnMetodo.ForeColor = System.Drawing.Color.White;
             this.BtnMetodo.IconChar = FontAwesome.Sharp.IconChar.MagnifyingGlassPlus;
-            this.BtnMetodo.IconColor = System.Drawing.Color.DarkGoldenrod;
+            this.BtnMetodo.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.BtnMetodo.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.BtnMetodo.IconSize = 20;
             this.BtnMetodo.Location = new System.Drawing.Point(208, 302);
@@ -154,7 +154,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.Black;
+            this.label3.ForeColor = System.Drawing.Color.White;
             this.label3.Location = new System.Drawing.Point(3, 101);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(67, 19);
@@ -188,7 +188,7 @@
             // 
             this.LblIdProducto.AutoSize = true;
             this.LblIdProducto.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblIdProducto.ForeColor = System.Drawing.Color.Black;
+            this.LblIdProducto.ForeColor = System.Drawing.Color.White;
             this.LblIdProducto.Location = new System.Drawing.Point(3, 44);
             this.LblIdProducto.Name = "LblIdProducto";
             this.LblIdProducto.Size = new System.Drawing.Size(86, 19);
@@ -235,7 +235,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.Black;
+            this.label2.ForeColor = System.Drawing.Color.White;
             this.label2.Location = new System.Drawing.Point(3, 274);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(138, 19);
@@ -250,7 +250,7 @@
             this.BtnBuscarProducto.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnBuscarProducto.ForeColor = System.Drawing.Color.White;
             this.BtnBuscarProducto.IconChar = FontAwesome.Sharp.IconChar.MagnifyingGlassArrowRight;
-            this.BtnBuscarProducto.IconColor = System.Drawing.Color.DarkGoldenrod;
+            this.BtnBuscarProducto.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.BtnBuscarProducto.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.BtnBuscarProducto.IconSize = 20;
             this.BtnBuscarProducto.Location = new System.Drawing.Point(174, 71);
@@ -269,7 +269,7 @@
             this.BtnAgregarProducto.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnAgregarProducto.ForeColor = System.Drawing.Color.White;
             this.BtnAgregarProducto.IconChar = FontAwesome.Sharp.IconChar.PlusSquare;
-            this.BtnAgregarProducto.IconColor = System.Drawing.Color.DarkGoldenrod;
+            this.BtnAgregarProducto.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.BtnAgregarProducto.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.BtnAgregarProducto.IconSize = 20;
             this.BtnAgregarProducto.Location = new System.Drawing.Point(205, 72);
@@ -284,7 +284,7 @@
             // 
             this.LblTitlePrecio.AutoSize = true;
             this.LblTitlePrecio.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblTitlePrecio.ForeColor = System.Drawing.Color.Black;
+            this.LblTitlePrecio.ForeColor = System.Drawing.Color.White;
             this.LblTitlePrecio.Location = new System.Drawing.Point(3, 334);
             this.LblTitlePrecio.Name = "LblTitlePrecio";
             this.LblTitlePrecio.Size = new System.Drawing.Size(64, 19);
@@ -295,7 +295,7 @@
             // 
             this.LblCantidad.AutoSize = true;
             this.LblCantidad.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblCantidad.ForeColor = System.Drawing.Color.Black;
+            this.LblCantidad.ForeColor = System.Drawing.Color.White;
             this.LblCantidad.Location = new System.Drawing.Point(3, 155);
             this.LblCantidad.Name = "LblCantidad";
             this.LblCantidad.Size = new System.Drawing.Size(84, 19);
@@ -330,7 +330,7 @@
             // 
             this.LblTitleStock.AutoSize = true;
             this.LblTitleStock.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblTitleStock.ForeColor = System.Drawing.Color.Black;
+            this.LblTitleStock.ForeColor = System.Drawing.Color.White;
             this.LblTitleStock.Location = new System.Drawing.Point(3, 210);
             this.LblTitleStock.Name = "LblTitleStock";
             this.LblTitleStock.Size = new System.Drawing.Size(59, 19);
@@ -340,7 +340,7 @@
             // iconButton1
             // 
             this.iconButton1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.iconButton1.BackColor = System.Drawing.Color.Tan;
+            this.iconButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.iconButton1.FlatAppearance.BorderSize = 0;
             this.iconButton1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.iconButton1.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -361,7 +361,7 @@
             // BtnCancelar
             // 
             this.BtnCancelar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.BtnCancelar.BackColor = System.Drawing.Color.Tan;
+            this.BtnCancelar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.BtnCancelar.FlatAppearance.BorderSize = 0;
             this.BtnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnCancelar.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -384,7 +384,7 @@
             // BtnGrabar
             // 
             this.BtnGrabar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.BtnGrabar.BackColor = System.Drawing.Color.Tan;
+            this.BtnGrabar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.BtnGrabar.FlatAppearance.BorderSize = 0;
             this.BtnGrabar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnGrabar.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -406,7 +406,7 @@
             // BtnNuevo
             // 
             this.BtnNuevo.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.BtnNuevo.BackColor = System.Drawing.Color.Tan;
+            this.BtnNuevo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.BtnNuevo.FlatAppearance.BorderSize = 0;
             this.BtnNuevo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnNuevo.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -453,7 +453,7 @@
             // 
             this.LblTitleApellidoNombre.AutoSize = true;
             this.LblTitleApellidoNombre.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblTitleApellidoNombre.ForeColor = System.Drawing.Color.Black;
+            this.LblTitleApellidoNombre.ForeColor = System.Drawing.Color.White;
             this.LblTitleApellidoNombre.Location = new System.Drawing.Point(18, 45);
             this.LblTitleApellidoNombre.Name = "LblTitleApellidoNombre";
             this.LblTitleApellidoNombre.Size = new System.Drawing.Size(68, 19);
@@ -469,7 +469,7 @@
             this.BtnAgregarCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnAgregarCliente.ForeColor = System.Drawing.Color.White;
             this.BtnAgregarCliente.IconChar = FontAwesome.Sharp.IconChar.PlusSquare;
-            this.BtnAgregarCliente.IconColor = System.Drawing.Color.DarkGoldenrod;
+            this.BtnAgregarCliente.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.BtnAgregarCliente.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.BtnAgregarCliente.IconSize = 26;
             this.BtnAgregarCliente.Location = new System.Drawing.Point(485, 41);
@@ -489,7 +489,7 @@
             this.BtnBuscarCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnBuscarCliente.ForeColor = System.Drawing.Color.White;
             this.BtnBuscarCliente.IconChar = FontAwesome.Sharp.IconChar.MagnifyingGlassArrowRight;
-            this.BtnBuscarCliente.IconColor = System.Drawing.Color.DarkGoldenrod;
+            this.BtnBuscarCliente.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.BtnBuscarCliente.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.BtnBuscarCliente.IconSize = 20;
             this.BtnBuscarCliente.Location = new System.Drawing.Point(449, 41);
@@ -548,7 +548,7 @@
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Tan;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
@@ -634,7 +634,7 @@
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.Tan;
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.iconButton1);
             this.panel1.Controls.Add(this.BtnCancelar);
@@ -648,7 +648,7 @@
             // 
             // panel3
             // 
-            this.panel3.BackColor = System.Drawing.Color.Tan;
+            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.panel3.Controls.Add(this.label1);
             this.panel3.Controls.Add(this.LblRazon);
             this.panel3.Controls.Add(this.BtnAgregarCliente);
@@ -665,7 +665,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.Black;
+            this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(4, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(144, 19);
@@ -683,7 +683,7 @@
             this.LblRazon.TabIndex = 35;
             this.LblRazon.Text = "0";
             // 
-            // FormPEDIDOS
+            // FormVENTAS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -699,9 +699,10 @@
             this.Controls.Add(this.PanelBotones);
             this.Controls.Add(this.TxtPedido);
             this.Controls.Add(this.panel1);
-            this.Name = "FormPEDIDOS";
+            this.ForeColor = System.Drawing.Color.White;
+            this.Name = "FormVENTAS";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Pedidos";
+            this.Text = "Ventas";
             this.PanelBotones.ResumeLayout(false);
             this.PanelBotones.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Grilla)).EndInit();

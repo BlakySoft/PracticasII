@@ -13,7 +13,7 @@ using System.Windows.Forms;
 
 namespace CapaPresentacion
 {
-    public partial class FormPEDIDOS: Form
+    public partial class FormVENTAS: Form
     {
         #region Declaraciones y cponexion
         public decimal Stock, Cantidad, Precio, Subtotal, Total, Resultado;
@@ -23,7 +23,7 @@ namespace CapaPresentacion
         #endregion
 
         #region Metodo
-        public FormPEDIDOS()
+        public FormVENTAS()
         {
             InitializeComponent();
             CargarCbo();

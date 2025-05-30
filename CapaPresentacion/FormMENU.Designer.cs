@@ -270,7 +270,7 @@
             this.Panelinf.Controls.Add(this.Reloj);
             this.Panelinf.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.Panelinf.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.Panelinf.Location = new System.Drawing.Point(0, 727);
+            this.Panelinf.Location = new System.Drawing.Point(0, 708);
             this.Panelinf.Name = "Panelinf";
             this.Panelinf.Size = new System.Drawing.Size(1300, 41);
             this.Panelinf.TabIndex = 2;
@@ -282,7 +282,7 @@
             this.PanelVisual.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PanelVisual.Location = new System.Drawing.Point(0, 27);
             this.PanelVisual.Name = "PanelVisual";
-            this.PanelVisual.Size = new System.Drawing.Size(1300, 700);
+            this.PanelVisual.Size = new System.Drawing.Size(1300, 681);
             this.PanelVisual.TabIndex = 3;
             // 
             // iconSplitButton1
@@ -302,7 +302,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(5F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.ClientSize = new System.Drawing.Size(1300, 768);
+            this.ClientSize = new System.Drawing.Size(1300, 749);
             this.Controls.Add(this.PanelVisual);
             this.Controls.Add(this.Panelinf);
             this.Controls.Add(this.menuStrip1);
