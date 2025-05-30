@@ -70,6 +70,7 @@ namespace CapaPresentacion
         }
         private void BtnVolver_Click(object sender, EventArgs e)
         {
+            this.DialogResult = DialogResult.OK;
             Close();
         }
 
