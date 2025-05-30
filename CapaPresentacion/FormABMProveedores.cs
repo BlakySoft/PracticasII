@@ -54,14 +54,15 @@ namespace CapaPresentacion
             Grilla.DataSource = cone.ListarProveedor();
 
             Grilla.Columns[0].HeaderText = "Código";
-            Grilla.Columns[0].Width = 50;
-            Grilla.Columns[1].Width = 150;
+            Grilla.Columns[0].Width = 100;
+            Grilla.Columns[1].Width = 200;
             Grilla.Columns[1].HeaderText = "Razón Social";
             Grilla.Columns[2].HeaderText = "CUIT";
             Grilla.Columns[3].HeaderText = "Teléfono";
             Grilla.Columns[4].HeaderText = "Direccion";
+            Grilla.Columns[4].Width = 200;
             Grilla.Columns[5].HeaderText = "Localidad";
-            Grilla.Columns[6].Visible = false;
+            Grilla.Columns[6].Visible = false; //Estado
         }
 
 
@@ -87,6 +88,7 @@ namespace CapaPresentacion
             TxtBuscar.Enabled = false;
             Grilla.Enabled = false;
             BtnNuevo.Enabled = false;
+            BtnPapelera.Enabled = false;
             #endregion
 
             CargarCbo();
@@ -100,18 +102,22 @@ namespace CapaPresentacion
                 if (TxtRazon.Text == "")
                 {
                     MessageBox.Show("Ingrese la Razon Social", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    TxtRazon.Focus();
                 }
                 else if (TxtDocumento.Text == "")
                 {
                     MessageBox.Show("Ingrese el Numero de documento ", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    TxtDocumento.Focus();
                 }
                 else if (TxtTelefono.Text == "")
                 {
                     MessageBox.Show("Ingrese el Teléfono", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    TxtTelefono.Focus();
                 }
                 else if (TxtDomicilio.Text == "")
                 {
                     MessageBox.Show("Ingrese la Direccion", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    TxtDomicilio.Focus();
                 }
                 else if (nuevo == true)
                 {
@@ -179,21 +185,21 @@ namespace CapaPresentacion
             finally
             {
 
-                #region Enabled yes/no
-                //true
-                TxtBuscar.Enabled = true;
-                Grilla.Enabled = true;
-                BtnNuevo.Enabled = true;
-                //false
-                BtnGrabar.Enabled = false;
-                BtnCancelar.Enabled = false;
-                BtnEliminar.Enabled = false;
-                PanelDatos.Enabled = false;
-                #endregion
+                //#region Enabled yes/no
+                ////true
+                //TxtBuscar.Enabled = true;
+                //Grilla.Enabled = true;
+                //BtnNuevo.Enabled = true;
+                ////false
+                //BtnGrabar.Enabled = false;
+                //BtnCancelar.Enabled = false;
+                //BtnEliminar.Enabled = false;
+                //PanelDatos.Enabled = false;
+                //#endregion
 
-                ListarProveedores();
-                LimpiarTextos();
-                BtnNuevo.Focus();
+                //ListarProveedores();
+                //LimpiarTextos();
+                //BtnNuevo.Focus();
             }
         }
         private void BtnEliminar_Click(object sender, EventArgs e)
@@ -239,13 +245,14 @@ namespace CapaPresentacion
             //true
             PanelDatos.Enabled = true;
             BtnGrabar.Enabled = true;
+            BtnCancelar.Enabled = true;
 
             //false
             BtnNuevo.Enabled = false;
             Grilla.Enabled = false;
             BtnEliminar.Enabled = false;
             BtnModificar.Enabled = false;
-            BtnCancelar.Enabled = true;
+            BtnPapelera.Enabled = false;
             #endregion
         }
         private void BtnCancelar_Click(object sender, EventArgs e)
@@ -255,6 +262,7 @@ namespace CapaPresentacion
             TxtBuscar.Enabled = true;
             Grilla.Enabled = true;
             BtnNuevo.Enabled = true;
+            BtnPapelera.Enabled = true;
             //false
             BtnModificar.Enabled = false;
             BtnGrabar.Enabled = false;
@@ -268,8 +276,14 @@ namespace CapaPresentacion
         }
         private void BtnPapelera_Click(object sender, EventArgs e)
         {
-            FormPAPELERAProveedores form = new FormPAPELERAProveedores();
-            form.ShowDialog();
+            using (FormPAPELERAProveedores form = new FormPAPELERAProveedores())
+            {
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    ListarProveedores();
+                }
+            }
+            
         }
         private void BtnActualizar_Click(object sender, EventArgs e)
         {
