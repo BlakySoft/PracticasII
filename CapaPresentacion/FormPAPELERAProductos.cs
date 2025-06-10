@@ -70,6 +70,7 @@ namespace CapaPresentacion
         }
         private void iconButton1_Click(object sender, EventArgs e)
         {
+            this.DialogResult = DialogResult.OK;
             Close();
         }
         #endregion

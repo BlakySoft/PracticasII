@@ -85,6 +85,7 @@ namespace CapaPresentacion
             TxtBuscar.Enabled = false;
             Grilla.Enabled = false;
             BtnNuevo.Enabled = false;
+            BtnPapelera.Enabled = false;
             #endregion
 
             CargarCbo();
@@ -98,18 +99,22 @@ namespace CapaPresentacion
                 if (TxtDescripcion.Text == "")
                 {
                     MessageBox.Show("Ingrese la Descripción.", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    TxtDescripcion.Focus();
                 }
                 else if (TxtDetalle.Text == "")
                 {
                     MessageBox.Show("Ingrese el detalle del producto.", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    TxtDetalle.Focus();
                 }
                 else if (TxtStock.Text == "")
                 {
                     MessageBox.Show("Ingrese el Stock.", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    TxtStock.Focus();
                 }
                 else if (TxtPrecio.Text == "")
                 {
                     MessageBox.Show("Ingrese el Precio.", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    TxtPrecio.Focus();
                 }
                 else if (nuevo == true)
                 {
@@ -172,21 +177,21 @@ namespace CapaPresentacion
             }
             finally
             {
-                #region Enabled yes/no
-                //true 
-                TxtBuscar.Enabled = true;
-                Grilla.Enabled = true;
-                BtnNuevo.Enabled = true;
-                //false
-                PanelDatos.Enabled = false;
-                BtnGrabar.Enabled = false;
-                BtnCancelar.Enabled = false;
-                BtnEliminar.Enabled = false;
-                #endregion
+                //#region Enabled yes/no
+                ////true 
+                //TxtBuscar.Enabled = true;
+                //Grilla.Enabled = true;
+                //BtnNuevo.Enabled = true;
+                ////false
+                //PanelDatos.Enabled = false;
+                //BtnGrabar.Enabled = false;
+                //BtnCancelar.Enabled = false;
+                //BtnEliminar.Enabled = false;
+                //#endregion
 
-                LimpiarTextos();
-                ListarProducto();
-                BtnNuevo.Focus();
+                //LimpiarTextos();
+                //ListarProducto();
+                //BtnNuevo.Focus();
             }
         }
         private void BtnEliminar_Click(object sender, EventArgs e)
@@ -250,6 +255,7 @@ namespace CapaPresentacion
             TxtBuscar.Enabled = true;
             Grilla.Enabled = true;
             BtnNuevo.Enabled = true;
+            BtnPapelera.Enabled = true;
             //false
             PanelDatos.Enabled = false;
             BtnGrabar.Enabled = false;
@@ -263,8 +269,15 @@ namespace CapaPresentacion
         }
         private void BtnPapelera_Click(object sender, EventArgs e)
         {
-            FormPAPELERAProductos form = new FormPAPELERAProductos();
-            form.ShowDialog();
+            using (FormPAPELERAProductos form = new FormPAPELERAProductos())
+            {
+
+                if(form.ShowDialog() == DialogResult.OK)
+                {
+                    ListarProducto();
+                }
+
+            };
          
         }
         private void BtnActualizar_Click(object sender, EventArgs e)
