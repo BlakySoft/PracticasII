@@ -87,6 +87,8 @@
             // 
             // Grilla
             // 
+            this.Grilla.AllowUserToAddRows = false;
+            this.Grilla.AllowUserToDeleteRows = false;
             this.Grilla.BackgroundColor = System.Drawing.Color.Linen;
             this.Grilla.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.Grilla.Location = new System.Drawing.Point(225, 87);

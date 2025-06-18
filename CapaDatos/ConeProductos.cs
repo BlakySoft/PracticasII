@@ -1,6 +1,7 @@
 ﻿using CapaNegocios;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.OleDb;
 using System.Linq;
 using System.Text;
@@ -13,7 +14,7 @@ namespace CapaDatos
         #region conexion a BD
         public string ConectarDB()
         {
-            OleDbConnection con = new OleDbConnection("Provider = Microsoft.Jet.OLEDB.4.0; Data Source =|DataDirectory|elfrancesrances.mdb;");
+            OleDbConnection con = new OleDbConnection("Provider = Microsoft.Jet.OLEDB.4.0; Data Source =|DataDirectory|DB.mdb;");
             string cadenaconexion = ("Provider =Microsoft.Jet.OLEDB.4.0; Data Source =|DataDirectory|DB.mdb;");
             return cadenaconexion;
         }
@@ -130,42 +131,62 @@ namespace CapaDatos
 
             return list;
         }
-        public List<Productos> Listar()
+        public DataTable Listar()
         {
-            List<Productos> list = new List<Productos>();
-            OleDbConnection con = new OleDbConnection();
-            OleDbCommand cm = new OleDbCommand();
+            DataTable dt = new DataTable();
 
-            OleDbDataReader reader;
-
-            con.ConnectionString = ConectarDB();
-            cm.CommandType = System.Data.CommandType.Text;
-            cm.CommandText = "SELECT * FROM Productos WHERE Estado = true";
-            cm.Connection = con;
-
-            con.Open();
-            reader = cm.ExecuteReader();
-            while (reader.Read())
+            using (OleDbConnection con = new OleDbConnection(ConectarDB())) //Es un nuevo enfoque al conectar con la base de datos
             {
-                Productos Prod = new Productos();
+                string query = "Select IdProducto, Descripcion, Detalle, IdCat, IdOrigen, IdMarca, IdColor, Precio, Stock, Estado from Productos Where Estado = true;";
+                OleDbCommand cm = new OleDbCommand(query, con);
 
-                Prod.IdProducto = reader.GetInt32(0);
-                Prod.Descripcion = reader.GetString(1);
-                Prod.Detalle = reader.GetString(2);
-                Prod.IdCat = reader.GetInt32(3);
-                Prod.IdOrigen = reader.GetInt32(4);
+                con.Open();
 
-                Prod.IdMarca = reader.GetInt32(5);
-                Prod.IdColor = reader.GetInt32(6);
-                Prod.Precio = reader.GetDecimal(7);
-                Prod.Stock = reader.GetInt32(8);
-
-                list.Add(Prod);
+                OleDbDataAdapter da = new OleDbDataAdapter(cm);
+                da.Fill(dt);
             }
-            con.Close();
 
-            return list;
+            return dt;
         }
+
+        #region Deshabilidato
+        //public List<Productos> Listar()
+        //{
+        //    List<Productos> list = new List<Productos>();
+        //    OleDbConnection con = new OleDbConnection();
+        //    OleDbCommand cm = new OleDbCommand();
+
+        //    OleDbDataReader reader;
+
+        //    con.ConnectionString = ConectarDB();
+        //    cm.CommandType = System.Data.CommandType.Text;
+        //    cm.CommandText = "SELECT * FROM Productos WHERE Estado = true";
+        //    cm.Connection = con;
+
+        //    con.Open();
+        //    reader = cm.ExecuteReader();
+        //    while (reader.Read())
+        //    {
+        //        Productos Prod = new Productos();
+
+        //        Prod.IdProducto = reader.GetInt32(0);
+        //        Prod.Descripcion = reader.GetString(1);
+        //        Prod.Detalle = reader.GetString(2);
+        //        Prod.IdCat = reader.GetInt32(3);
+        //        Prod.IdOrigen = reader.GetInt32(4);
+
+        //        Prod.IdMarca = reader.GetInt32(5);
+        //        Prod.IdColor = reader.GetInt32(6);
+        //        Prod.Precio = reader.GetDecimal(7);
+        //        Prod.Stock = reader.GetInt32(8);
+
+        //        list.Add(Prod);
+        //    }
+        //    con.Close();
+
+        //    return list;
+        //}
+        #endregion
         public List<Productos> Buscar(string Descripcion)
         {
             List<Productos> list = new List<Productos>();
