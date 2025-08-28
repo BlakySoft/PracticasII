@@ -45,7 +45,6 @@
             this.clientesToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.productosToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.proveedoresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.iconMenuItem5 = new FontAwesome.Sharp.IconMenuItem();
             this.rubrosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.localidadesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.metodosDePagoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -54,6 +53,8 @@
             this.Panelinf = new System.Windows.Forms.Panel();
             this.PanelVisual = new System.Windows.Forms.Panel();
             this.iconSplitButton1 = new FontAwesome.Sharp.IconSplitButton();
+            this.mARCASToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cOLORESToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.Panelinf.SuspendLayout();
             this.SuspendLayout();
@@ -180,10 +181,11 @@
             this.clientesToolStripMenuItem2,
             this.productosToolStripMenuItem2,
             this.proveedoresToolStripMenuItem,
-            this.iconMenuItem5,
             this.rubrosToolStripMenuItem,
             this.localidadesToolStripMenuItem,
-            this.metodosDePagoToolStripMenuItem});
+            this.metodosDePagoToolStripMenuItem,
+            this.mARCASToolStripMenuItem,
+            this.cOLORESToolStripMenuItem});
             this.iconMenuItem4.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.iconMenuItem4.ForeColor = System.Drawing.Color.White;
             this.iconMenuItem4.IconChar = FontAwesome.Sharp.IconChar.TrashRestore;
@@ -213,18 +215,6 @@
             this.proveedoresToolStripMenuItem.Size = new System.Drawing.Size(235, 24);
             this.proveedoresToolStripMenuItem.Text = "PROVEEDORES";
             this.proveedoresToolStripMenuItem.Click += new System.EventHandler(this.proveedoresToolStripMenuItem_Click);
-            // 
-            // iconMenuItem5
-            // 
-            this.iconMenuItem5.Enabled = false;
-            this.iconMenuItem5.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.iconMenuItem5.IconColor = System.Drawing.Color.Black;
-            this.iconMenuItem5.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconMenuItem5.Name = "iconMenuItem5";
-            this.iconMenuItem5.Size = new System.Drawing.Size(235, 24);
-            this.iconMenuItem5.Text = "BARRIOS";
-            this.iconMenuItem5.Visible = false;
-            this.iconMenuItem5.Click += new System.EventHandler(this.iconMenuItem5_Click);
             // 
             // rubrosToolStripMenuItem
             // 
@@ -297,6 +287,20 @@
             this.iconSplitButton1.Size = new System.Drawing.Size(23, 23);
             this.iconSplitButton1.Text = "iconSplitButton1";
             // 
+            // mARCASToolStripMenuItem
+            // 
+            this.mARCASToolStripMenuItem.Name = "mARCASToolStripMenuItem";
+            this.mARCASToolStripMenuItem.Size = new System.Drawing.Size(235, 24);
+            this.mARCASToolStripMenuItem.Text = "MARCAS";
+            this.mARCASToolStripMenuItem.Click += new System.EventHandler(this.mARCASToolStripMenuItem_Click);
+            // 
+            // cOLORESToolStripMenuItem
+            // 
+            this.cOLORESToolStripMenuItem.Name = "cOLORESToolStripMenuItem";
+            this.cOLORESToolStripMenuItem.Size = new System.Drawing.Size(235, 24);
+            this.cOLORESToolStripMenuItem.Text = "COLORES";
+            this.cOLORESToolStripMenuItem.Click += new System.EventHandler(this.cOLORESToolStripMenuItem_Click);
+            // 
             // FormMENU
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(5F, 15F);
@@ -341,12 +345,13 @@
         private System.Windows.Forms.ToolStripMenuItem metodosDePagoToolStripMenuItem;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem rEALIZARCOMPRAToolStripMenuItem;
-        private FontAwesome.Sharp.IconMenuItem iconMenuItem5;
         private FontAwesome.Sharp.IconSplitButton iconSplitButton1;
         private System.Windows.Forms.ToolStripMenuItem cABCELADOSToolStripMenuItem;
         private System.Windows.Forms.Label Reloj;
         private System.Windows.Forms.Timer Timer;
         private System.Windows.Forms.Panel Panelinf;
         private System.Windows.Forms.Panel PanelVisual;
+        private System.Windows.Forms.ToolStripMenuItem mARCASToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cOLORESToolStripMenuItem;
     }
 }

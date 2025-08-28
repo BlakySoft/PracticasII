@@ -1,4 +1,5 @@
 ﻿using CapaDatos;
+using CapaNegocio;
 using CapaNegocios;
 using System;
 using System.Collections.Generic;
@@ -19,6 +20,8 @@ namespace CapaPresentacion
         #region Metodos y declaraciones
         Boolean nuevo;
         int VarCat;
+        int VarMar;
+        int VarCol;
         public FormABMProductos()
         {
             InitializeComponent();
@@ -30,6 +33,8 @@ namespace CapaPresentacion
             TxtBuscar.Enabled = true;
 
             CargarCbo();
+            CargarCbo1();
+            CargarCbo2();
             LimpiarTextos();
             ListarProducto();
         }
@@ -41,15 +46,19 @@ namespace CapaPresentacion
             Grilla.Columns[0].Width = 70;
             Grilla.Columns[1].Width = 140;
             Grilla.Columns[2].Width = 100;
-            Grilla.Columns[3].Width = 60;
-            Grilla.Columns[4].Width = 60;
-            Grilla.Columns[5].Width = 60;
+            Grilla.Columns[3].Width = 100;
+            Grilla.Columns[4].Width = 70;
+            Grilla.Columns[5].Width = 70;
+            Grilla.Columns[6].Width = 70;
+            Grilla.Columns[7].Width = 70;
             Grilla.Columns[1].HeaderText = "Descripcion";
             Grilla.Columns[2].HeaderText = "Detalle";
             Grilla.Columns[3].HeaderText = "Categoria";
-            Grilla.Columns[4].HeaderText = "Precio";
-            Grilla.Columns[5].HeaderText = "Stock";
-            Grilla.Columns[6].Visible = false;
+            Grilla.Columns[4].HeaderText = "Marca";
+            Grilla.Columns[5].HeaderText = "Color";
+            Grilla.Columns[6].HeaderText = "Precio";
+            Grilla.Columns[7].HeaderText = "Stock";
+            Grilla.Columns[8].Visible = false;
 
         }
         private void CargarCbo()
@@ -59,6 +68,24 @@ namespace CapaPresentacion
             CboIdCat.ValueMember = "IdCat";
             CboIdCat.DisplayMember = "Descripcion";
             CboIdCat.DataSource = cone.ListarCat();
+        }
+        private void CargarCbo1()
+        {
+            ConeMarca cone = new ConeMarca();
+
+            CboIdMar.ValueMember = "IdMarca";
+            CboIdMar.DisplayMember = "Descripcion";
+            CboIdMar.DataSource = cone.ListarMarca();
+
+        }
+        private void CargarCbo2()
+        {
+            ConeColores cone = new ConeColores();
+
+            CboIdCol.ValueMember = "IdColor";
+            CboIdCol.DisplayMember = "Descripcion";
+            CboIdCol.DataSource = cone.ListarColor();
+
         }
         private void LimpiarTextos()
         {
@@ -88,6 +115,8 @@ namespace CapaPresentacion
             #endregion
 
             CargarCbo();
+            CargarCbo1();
+            CargarCbo2();
             LimpiarTextos();
             TxtDescripcion.Focus();
         }
@@ -119,7 +148,9 @@ namespace CapaPresentacion
                     {
                         Descripcion = TxtDescripcion.Text,
                         Detalle = TxtDetalle.Text,
-                        IdCat = VarCat,     
+                        IdCat = VarCat,
+                        IdMarca = VarMar,
+                        IdColor = VarCol,
                         Precio = Convert.ToDecimal(TxtPrecio.Text),
                          Stock = int.Parse(TxtStock.Text),
                     };
@@ -149,6 +180,8 @@ namespace CapaPresentacion
                         Descripcion = TxtDescripcion.Text,
                         Detalle = TxtDetalle.Text,
                         IdCat = VarCat,
+                        IdMarca = VarMar,
+                        IdColor = VarCol,
                         Stock = int.Parse(TxtStock.Text),
                         Precio = Convert.ToDecimal(TxtPrecio.Text)
                     };
@@ -258,6 +291,8 @@ namespace CapaPresentacion
             #endregion
             LimpiarTextos();
             CargarCbo();
+            CargarCbo1();
+            CargarCbo2();
             ListarProducto();
             BtnNuevo.Focus();
         }
@@ -271,6 +306,8 @@ namespace CapaPresentacion
         {
             ListarProducto();
             CargarCbo();
+            CargarCbo1();
+            CargarCbo2();
         }
         private void BtnCat_Click(object sender, EventArgs e)
         {
@@ -282,7 +319,20 @@ namespace CapaPresentacion
         {
             Close();
         }
+        private void BtnMar_Click(object sender, EventArgs e)
+        {
+            FormABMMarca form = new FormABMMarca();
+            form.ShowDialog();
+            CargarCbo();
+        }
+        private void btnCol_Click(object sender, EventArgs e)
+        {
 
+            FormABMColor form = new FormABMColor();
+            form.ShowDialog();
+            CargarCbo();
+
+        }
         #endregion
 
         #region Interaccion con Formulario
@@ -306,23 +356,35 @@ namespace CapaPresentacion
         }
         private void Grilla_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            // Datos básicos
             LblIdProducto.Text = Grilla.Rows[e.RowIndex].Cells[0].Value.ToString();
             TxtDescripcion.Text = Grilla.Rows[e.RowIndex].Cells[1].Value.ToString();
             TxtDetalle.Text = Grilla.Rows[e.RowIndex].Cells[2].Value.ToString();
+
+            // IDs relacionados
             VarCat = Convert.ToInt32(Grilla.Rows[e.RowIndex].Cells[3].Value.ToString());
-            TxtPrecio.Text = Grilla.Rows[e.RowIndex].Cells[4].Value.ToString();
-            TxtStock.Text = Grilla.Rows[e.RowIndex].Cells[5].Value.ToString();
+            VarMar = Convert.ToInt32(Grilla.Rows[e.RowIndex].Cells[4].Value.ToString());
+            VarCol = Convert.ToInt32(Grilla.Rows[e.RowIndex].Cells[5].Value.ToString());
+
+            // Datos numéricos
+            TxtPrecio.Text = Grilla.Rows[e.RowIndex].Cells[6].Value.ToString();
+            TxtStock.Text = Grilla.Rows[e.RowIndex].Cells[7].Value.ToString();
 
             ConeCategoria cone = new ConeCategoria();
-
-            _ = new Categoria
-            {
-                IdCat = VarCat
-            };
-
             CboIdCat.ValueMember = "IdCat";
             CboIdCat.DisplayMember = "Descripcion";
             CboIdCat.DataSource = cone.BuscarIdCat(VarCat);
+
+            ConeMarca coneMar = new ConeMarca();
+            CboIdMar.ValueMember = "IdMarca";
+            CboIdMar.DisplayMember = "Descripcion";
+            CboIdMar.DataSource = coneMar.BuscarIdMarca(VarMar);
+
+            ConeColores coneCol = new ConeColores();
+            CboIdCol.ValueMember = "IdColor";
+            CboIdCol.DisplayMember = "Descripcion";
+            CboIdCol.DataSource = coneCol.BuscarIdColor(VarCol);
+
 
             #region Enabled yes/no
 
@@ -335,12 +397,19 @@ namespace CapaPresentacion
         {
             try
             {
+                // Datos básicos
                 LblIdProducto.Text = Grilla.Rows[e.RowIndex].Cells[0].Value.ToString();
                 TxtDescripcion.Text = Grilla.Rows[e.RowIndex].Cells[1].Value.ToString();
                 TxtDetalle.Text = Grilla.Rows[e.RowIndex].Cells[2].Value.ToString();
+
+                // IDs relacionados
                 VarCat = Convert.ToInt32(Grilla.Rows[e.RowIndex].Cells[3].Value.ToString());
-                TxtPrecio.Text = Grilla.Rows[e.RowIndex].Cells[4].Value.ToString();
-                TxtStock.Text = Grilla.Rows[e.RowIndex].Cells[5].Value.ToString();
+                VarMar = Convert.ToInt32(Grilla.Rows[e.RowIndex].Cells[4].Value.ToString());
+                VarCol = Convert.ToInt32(Grilla.Rows[e.RowIndex].Cells[5].Value.ToString());
+
+                // Datos numéricos
+                TxtPrecio.Text = Grilla.Rows[e.RowIndex].Cells[6].Value.ToString();
+                TxtStock.Text = Grilla.Rows[e.RowIndex].Cells[7].Value.ToString();
 
                 nuevo = false;
 
@@ -356,6 +425,8 @@ namespace CapaPresentacion
                 #endregion 
 
                 CargarCbo();
+                CargarCbo1();
+                CargarCbo2();
                 TxtDescripcion.Focus();
             }
             catch (Exception)
@@ -366,6 +437,14 @@ namespace CapaPresentacion
         private void CboIdCat_SelectionChangeCommitted(object sender, EventArgs e)
         {
             VarCat = int.Parse(CboIdCat.SelectedValue.ToString());
+        }
+        private void CboIdMar_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            VarMar = int.Parse(CboIdMar.SelectedValue.ToString());
+        }
+        private void CboIdCol_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            VarCol = int.Parse(CboIdCol.SelectedValue.ToString());
         }
         #endregion
 
@@ -436,7 +515,10 @@ namespace CapaPresentacion
                 e.HasMorePages = false;
             }
         }
+
+
         #endregion
+
 
     }
 }

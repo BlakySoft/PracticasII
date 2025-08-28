@@ -165,5 +165,19 @@ namespace CapaPresentacion
             FrmHijo.Show();
         }
 
+        private void mARCASToolStripMenuItem_Click(object sender, EventArgs e)
+       
+        {
+            FormPAPELERAMarca form = new FormPAPELERAMarca();
+            form.ShowDialog();
+        }
+
+        private void cOLORESToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormPAPELERAColor form = new FormPAPELERAColor();
+            form.ShowDialog();
+        }
     }
-}
+    }
+    
+

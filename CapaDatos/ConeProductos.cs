@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CapaDatos
 {
-   public class ConeProductos
+    public class ConeProductos
     {
         #region conexion a BD
         public string ConectarDB()
@@ -20,47 +20,62 @@ namespace CapaDatos
         #endregion
         public void Agregar(Productos Prod)
         {
-            OleDbConnection con = new OleDbConnection();
-            OleDbCommand cm = new OleDbCommand();
+            using (OleDbConnection con = new OleDbConnection(ConectarDB()))
+            {
+                using (OleDbCommand cm = new OleDbCommand())
+                {
+                    cm.Connection = con;
+                    cm.CommandType = System.Data.CommandType.Text;
+                    cm.CommandText = @"INSERT INTO Productos
+                               (Descripcion, Detalle, IdCat, IdMarca, IdColor, Precio, Stock, Estado)
+                               VALUES (@Descripcion, @Detalle, @IdCat, @IdMarca, @IdColor, @Precio, @Stock, true)";
 
-            con.ConnectionString = ConectarDB();
-            cm.CommandType = System.Data.CommandType.Text;
+                    cm.Parameters.AddWithValue("Descripcion", Prod.Descripcion);
+                    cm.Parameters.AddWithValue("Detalle", Prod.Detalle);
+                    cm.Parameters.AddWithValue("IdCat", Prod.IdCat);
+                    cm.Parameters.AddWithValue("IdMarca", Prod.IdMarca);
+                    cm.Parameters.AddWithValue("IdColor", Prod.IdColor);
+                    cm.Parameters.AddWithValue("Precio", Prod.Precio);
+                    cm.Parameters.AddWithValue("Stock", Prod.Stock);
 
-            cm.CommandText = "insert into Productos(Descripcion, Detalle, IdCat, Precio, Stock, Estado) values (@Descripcion, @Detalle, @IdCat, @Precio, @Stock, true)";
-            cm.Connection = con;
-
-            cm.Parameters.AddWithValue("Descripcion", Prod.Descripcion);
-            cm.Parameters.AddWithValue("Detalle", Prod.Detalle);
-            cm.Parameters.AddWithValue("IdCat", Prod.IdCat);
-            cm.Parameters.AddWithValue("Precio", Prod.Precio);
-            cm.Parameters.AddWithValue("Stock", Prod.Stock);
-
-            con.Open();
-            cm.ExecuteNonQuery();
-            con.Close();
+                    con.Open();
+                    cm.ExecuteNonQuery();
+                }
+            }
         }
         public void Actualizar(Productos Prod)
         {
-            OleDbConnection con = new OleDbConnection();
-            OleDbCommand cm = new OleDbCommand();
+            using (OleDbConnection con = new OleDbConnection(ConectarDB()))
+            {
+                using (OleDbCommand cm = new OleDbCommand())
+                {
+                    cm.Connection = con;
+                    cm.CommandType = System.Data.CommandType.Text;
 
-            con.ConnectionString = ConectarDB();
-            cm.CommandType = System.Data.CommandType.Text;
+                    // Actualizamos todas las columnas relacionadas con relaciones
+                    cm.CommandText = @"UPDATE Productos
+                               SET Descripcion=@Descripcion,
+                                   Detalle=@Detalle,
+                                   IdCat=@IdCat,
+                                   IdMarca=@IdMarca,
+                                   IdColor=@IdColor,
+                                   Precio=@Precio,
+                                   Stock=@Stock
+                               WHERE IdProducto=@IdProducto";
 
+                    cm.Parameters.AddWithValue("Descripcion", Prod.Descripcion);
+                    cm.Parameters.AddWithValue("Detalle", Prod.Detalle);
+                    cm.Parameters.AddWithValue("IdCat", Prod.IdCat);
+                    cm.Parameters.AddWithValue("IdMarca", Prod.IdMarca);
+                    cm.Parameters.AddWithValue("IdColor", Prod.IdColor);
+                    cm.Parameters.AddWithValue("Precio", Prod.Precio);
+                    cm.Parameters.AddWithValue("Stock", Prod.Stock);
+                    cm.Parameters.AddWithValue("IdProducto", Prod.IdProducto);
 
-            cm.CommandText = $"update Productos set Descripcion=@Descripcion, Detalle=@Detalle, IdCat=@IdCat, Precio=@Precio, Stock=@Stock where IdProducto = {Prod.IdProducto}";
-            cm.Connection = con;
-
-
-            cm.Parameters.AddWithValue("Descripcion", Prod.Descripcion);
-            cm.Parameters.AddWithValue("Detalle", Prod.Detalle);
-            cm.Parameters.AddWithValue("IdCat", Prod.IdCat);
-            cm.Parameters.AddWithValue("Precio", Prod.Precio);
-            cm.Parameters.AddWithValue("Stock", Prod.Stock);
-
-            con.Open();
-            cm.ExecuteNonQuery();
-            con.Close();
+                    con.Open();
+                    cm.ExecuteNonQuery();
+                }
+            }
         }
         public void Borrar(Productos Prod)
         {
@@ -117,11 +132,10 @@ namespace CapaDatos
                 Prod.Descripcion = reader.GetString(1);
                 Prod.Detalle = reader.GetString(2);
                 Prod.IdCat = reader.GetInt32(3);
-                Prod.IdOrigen = reader.GetInt32(4);
-                Prod.IdMarca = reader.GetInt32(5);
-                Prod.IdColor = reader.GetInt32(6);
-                Prod.Precio = reader.GetDecimal(7);
-                Prod.Stock = reader.GetInt32(8);
+                Prod.IdMarca = reader.GetInt32(4);
+                Prod.IdColor = reader.GetInt32(5);
+                Prod.Precio = reader.GetDecimal(6);
+                Prod.Stock = reader.GetInt32(7);
 
 
                 list.Add(Prod);
@@ -153,12 +167,10 @@ namespace CapaDatos
                 Prod.Descripcion = reader.GetString(1);
                 Prod.Detalle = reader.GetString(2);
                 Prod.IdCat = reader.GetInt32(3);
-                Prod.IdOrigen = reader.GetInt32(4);
-
-                Prod.IdMarca = reader.GetInt32(5);
-                Prod.IdColor = reader.GetInt32(6);
-                Prod.Precio = reader.GetDecimal(7);
-                Prod.Stock = reader.GetInt32(8);
+                Prod.IdMarca = reader.GetInt32(4);
+                Prod.IdColor = reader.GetInt32(5);
+                Prod.Precio = reader.GetDecimal(6);
+                Prod.Stock = reader.GetInt32(7);
 
                 list.Add(Prod);
             }
@@ -176,7 +188,7 @@ namespace CapaDatos
             con.ConnectionString = ConectarDB();
             cm.CommandType = System.Data.CommandType.Text;
 
-            cm.CommandText = $"SELECT IdProducto, Descripcion, Detalle, IdCat, Precio, Stock FROM Productos WHERE Descripcion LIKE ('%{Descripcion}%') AND Estado = true";
+            cm.CommandText = $"SELECT IdProducto, Descripcion, Detalle, IdCat, IdMarca, IdColor, Precio, Stock FROM Productos WHERE Descripcion LIKE ('%{Descripcion}%') AND Estado = true";
             cm.Connection = con;
             con.Open();
 
@@ -190,9 +202,10 @@ namespace CapaDatos
                 Prod.Descripcion = reader.GetString(1);
                 Prod.Detalle = reader.GetString(2);
                 Prod.IdCat = reader.GetInt32(3);
-                Prod.Precio = reader.GetDecimal(4);
-                Prod.Stock = reader.GetInt32(5);
-
+                Prod.IdMarca = reader.GetInt32(4);
+                Prod.IdColor = reader.GetInt32(5);
+                Prod.Precio = reader.GetDecimal(6);
+                Prod.Stock = reader.GetInt32(7);
 
                 list.Add(Prod);
             }
@@ -224,9 +237,10 @@ namespace CapaDatos
                 Prod.Descripcion = reader.GetString(1);
                 Prod.Detalle = reader.GetString(2);
                 Prod.IdCat = reader.GetInt32(3);
-                Prod.Precio = reader.GetDecimal(4);
-                Prod.Stock = reader.GetInt32(5);
-
+                Prod.IdMarca = reader.GetInt32(4);
+                Prod.IdColor = reader.GetInt32(5);
+                Prod.Precio = reader.GetDecimal(6);
+                Prod.Stock = reader.GetInt32(7);
 
                 list.Add(Prod);
             }
@@ -234,5 +248,12 @@ namespace CapaDatos
             con.Close();
             return list;
         }
-    }
+
 }
+
+    }
+
+
+
+
+

@@ -52,14 +52,16 @@
   <ItemGroup>
     <Compile Include="Barrio.cs" />
     <Compile Include="Cliente.cs" />
+    <Compile Include="Colores.cs" />
     <Compile Include="Compra.cs" />
     <Compile Include="Localidad.cs" />
+    <Compile Include="Marca.cs" />
     <Compile Include="Metododepago.cs" />
     <Compile Include="Pedido.cs" />
     <Compile Include="Productos.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Proveedores.cs" />
-    <Compile Include="Rubro.cs" />
+    <Compile Include="Categoria.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

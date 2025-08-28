@@ -270,11 +270,16 @@ namespace CapaPresentacion
         }
         private void BtnBuscarProducto_Click(object sender, EventArgs e)
         {
+            FormBuscarProducto form = new FormBuscarProducto();
+            AddOwnedForm(form);
+            form.ShowDialog();
             TxtCantidad.Enabled = true;
             TxtCantidad.Focus();
         }
         private void BtnAgregarProducto_Click(object sender, EventArgs e)
         {
+            FormAgregarProducto form = new FormAgregarProducto();
+            form.ShowDialog();
         }
         private void BtnMetodo_Click(object sender, EventArgs e)
         {

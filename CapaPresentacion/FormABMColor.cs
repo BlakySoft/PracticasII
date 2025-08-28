@@ -1,4 +1,5 @@
 ﻿using CapaDatos;
+using CapaNegocio;
 using CapaNegocios;
 using System;
 using System.Collections.Generic;
@@ -12,11 +13,11 @@ using System.Windows.Forms;
 
 namespace CapaPresentacion
 {
-    public partial class FormABMCategoria: Form
+    public partial class FormABMColor: Form
     {
         #region Metodos
         Boolean nuevo;
-        public FormABMCategoria()
+        public FormABMColor()
         {
             InitializeComponent();
             BtnModificar.Enabled = false;
@@ -30,20 +31,18 @@ namespace CapaPresentacion
         }
         private void LimpiarTextos()
         {
-            LblIdCat.Text = "";
+            LblIdColor.Text = "";
             TxtDescripcion.Clear();
         }
         private void Listar()
         {
-            ConeCategoria cone = new ConeCategoria();
-            Grilla.DataSource = cone.ListarCat();
+            ConeColores cone = new ConeColores();
+            Grilla.DataSource = cone.ListarColor();
             Grilla.Columns[0].HeaderText = "Código";
             Grilla.Columns[0].Width = 100;
-            Grilla.Columns[1].HeaderText = "Categoria";
+            Grilla.Columns[1].HeaderText = "Color";
             Grilla.Columns[2].Visible = false;
-
         }
-
         #endregion
 
         #region Botones
@@ -53,7 +52,6 @@ namespace CapaPresentacion
         }
         private void BtnNuevo_Click(object sender, EventArgs e)
         {
-
             #region Enabled yes/no
             //true
             nuevo = true;
@@ -74,17 +72,17 @@ namespace CapaPresentacion
             {
                 if (TxtDescripcion.Text == "")
                 {
-                    MessageBox.Show("Ingrese el Categoria", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageBox.Show("Ingrese el Color", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
                 else if (nuevo == true)
                 {
-                    ConeCategoria cone = new ConeCategoria();
-                    Categoria Agregar = new Categoria
+                    ConeColores cone = new ConeColores();
+                    Colores Agregar = new Colores
                     {
                         Descripcion = TxtDescripcion.Text
                     };
 
-                    cone.AgregarCat(Agregar);
+                    cone.Agregar(Agregar);
 
                     #region Enabled yes/no 
                     //true
@@ -101,14 +99,14 @@ namespace CapaPresentacion
                 }
                 else
                 {
-                    ConeCategoria cone = new ConeCategoria();
-                    Categoria Actualizar = new Categoria
+                    ConeColores cone = new ConeColores();
+                    Colores Actualizar = new Colores
                     {
-                        IdCat = int.Parse(LblIdCat.Text),
+                        IdColor = int.Parse(LblIdColor.Text),
                         Descripcion = TxtDescripcion.Text
                     };
 
-                    cone.ActualizarCat(Actualizar);
+                    cone.Actualizar(Actualizar);
 
                     TxtDescripcion.Enabled = false;
                     BtnNuevo.Enabled = true;
@@ -171,22 +169,20 @@ namespace CapaPresentacion
             BtnEliminar.Enabled = false;
             BtnModificar.Enabled = false;
             #endregion
-
         }
         private void BtnEliminar_Click(object sender, EventArgs e)
         {
-
-            ConeCategoria cone = new ConeCategoria();
-            Categoria Eliminar = new Categoria
+            ConeColores cone = new ConeColores();
+            Colores Eliminar = new Colores
             {
-                IdCat = int.Parse(LblIdCat.Text)
+                IdColor = int.Parse(LblIdColor.Text)
             };
 
-            cone.BorrarCat(Eliminar);
+            cone.Borrar(Eliminar);
 
             try
             {
-                MessageBox.Show("La Categoria se eliminó correctamente!!!", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("El Color se eliminó correctamente!!!", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 LimpiarTextos();
                 Listar();
             }
@@ -207,21 +203,17 @@ namespace CapaPresentacion
             BtnNuevo.Focus();
             #endregion
         }
-        private void BtnPapelera_Click(object sender, EventArgs e)
-        {
-            FormPAPELERACategoria form = new FormPAPELERACategoria();
-            form.ShowDialog();
-        }
         private void BtnVolver_Click(object sender, EventArgs e)
         {
             Close();
         }
         #endregion
 
-        #region Interacciones con formulario
+        #region Interaccion con el formulario
         private void Grilla_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            LblIdCat.Text = Grilla.Rows[e.RowIndex].Cells[0].Value.ToString();
+
+            LblIdColor.Text = Grilla.Rows[e.RowIndex].Cells[0].Value.ToString();
             TxtDescripcion.Text = Grilla.Rows[e.RowIndex].Cells[1].Value.ToString();
 
             #region Enabled yes/no
@@ -240,25 +232,26 @@ namespace CapaPresentacion
         }
         private void TxtBuscar_TextChanged(object sender, EventArgs e)
         {
-
             if (TxtBuscar.Text == "")
             {
                 Listar();
             }
             else
             {
-                ConeCategoria cone = new ConeCategoria();
-                Categoria Buscar = new Categoria
+                ConeColores cone = new ConeColores();
+                Colores Buscar = new Colores
                 {
                     Descripcion = TxtBuscar.Text
                 };
 
-                Grilla.DataSource = cone.BuscarCat(Buscar.Descripcion);
+                Grilla.DataSource = cone.BuscarColor(Buscar.Descripcion);
 
             }
         }
         #endregion
 
-       
     }
 }
+
+    
+

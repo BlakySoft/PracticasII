@@ -1,6 +1,6 @@
 ﻿namespace CapaPresentacion
 {
-    partial class FormPAPELERACategoria
+    partial class FormPAPELERAColor
     {
         /// <summary>
         /// Required designer variable.
@@ -38,7 +38,7 @@
             this.Grilla = new System.Windows.Forms.DataGridView();
             this.TxtBuscar = new System.Windows.Forms.TextBox();
             this.LblBuscar = new System.Windows.Forms.Label();
-            this.LblIdCat = new System.Windows.Forms.Label();
+            this.LblIdColor = new System.Windows.Forms.Label();
             this.PnlBarraLateral.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Grilla)).BeginInit();
             this.SuspendLayout();
@@ -71,7 +71,7 @@
             this.BtnVolver.TabIndex = 45;
             this.BtnVolver.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.BtnVolver.UseVisualStyleBackColor = false;
-            this.BtnVolver.Click += new System.EventHandler(this.iconButton1_Click);
+            this.BtnVolver.Click += new System.EventHandler(this.BtnVolver_Click);
             // 
             // BtnRecuperar
             // 
@@ -168,31 +168,31 @@
             this.LblBuscar.TabIndex = 34;
             this.LblBuscar.Text = "Buscar:";
             // 
-            // LblIdCat
+            // LblIdColor
             // 
-            this.LblIdCat.AutoSize = true;
-            this.LblIdCat.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblIdCat.ForeColor = System.Drawing.Color.White;
-            this.LblIdCat.Location = new System.Drawing.Point(3, 8);
-            this.LblIdCat.Name = "LblIdCat";
-            this.LblIdCat.Size = new System.Drawing.Size(17, 18);
-            this.LblIdCat.TabIndex = 1;
-            this.LblIdCat.Text = "0";
+            this.LblIdColor.AutoSize = true;
+            this.LblIdColor.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblIdColor.ForeColor = System.Drawing.Color.White;
+            this.LblIdColor.Location = new System.Drawing.Point(3, 8);
+            this.LblIdColor.Name = "LblIdColor";
+            this.LblIdColor.Size = new System.Drawing.Size(17, 18);
+            this.LblIdColor.TabIndex = 1;
+            this.LblIdColor.Text = "0";
             // 
-            // FormPAPELERACategoria
+            // FormPAPELERAColor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.ClientSize = new System.Drawing.Size(318, 297);
-            this.Controls.Add(this.LblIdCat);
+            this.Controls.Add(this.LblIdColor);
             this.Controls.Add(this.Grilla);
             this.Controls.Add(this.TxtBuscar);
             this.Controls.Add(this.LblBuscar);
             this.Controls.Add(this.PnlBarraLateral);
-            this.Name = "FormPAPELERACategoria";
+            this.Name = "FormPAPELERAColor";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Papelera de Categorias";
+            this.Text = "Papelera de Colores";
             this.PnlBarraLateral.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.Grilla)).EndInit();
             this.ResumeLayout(false);
@@ -208,6 +208,6 @@
         private System.Windows.Forms.Label LblBuscar;
         private FontAwesome.Sharp.IconButton BtnRecuperar;
         private FontAwesome.Sharp.IconButton BtnVolver;
-        private System.Windows.Forms.Label LblIdCat;
+        private System.Windows.Forms.Label LblIdColor;
     }
 }

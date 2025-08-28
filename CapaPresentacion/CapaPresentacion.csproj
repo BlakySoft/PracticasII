@@ -53,6 +53,12 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormABMMarca.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormABMMarca.Designer.cs">
+      <DependentUpon>FormABMMarca.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormAgregarCliente.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -70,6 +76,24 @@
     </Compile>
     <Compile Include="FormAgregarProveedor.Designer.cs">
       <DependentUpon>FormAgregarProveedor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormABMColor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormABMColor.Designer.cs">
+      <DependentUpon>FormABMColor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormPAPELERAColor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPAPELERAColor.Designer.cs">
+      <DependentUpon>FormPAPELERAColor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormPAPELERAMarca.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPAPELERAMarca.Designer.cs">
+      <DependentUpon>FormPAPELERAMarca.cs</DependentUpon>
     </Compile>
     <Compile Include="unuFormABMBarrios.cs">
       <SubType>Form</SubType>
@@ -211,6 +235,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FormABMMarca.resx">
+      <DependentUpon>FormABMMarca.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormAgregarCliente.resx">
       <DependentUpon>FormAgregarCliente.cs</DependentUpon>
     </EmbeddedResource>
@@ -219,6 +246,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormAgregarProveedor.resx">
       <DependentUpon>FormAgregarProveedor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormABMColor.resx">
+      <DependentUpon>FormABMColor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPAPELERAColor.resx">
+      <DependentUpon>FormPAPELERAColor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPAPELERAMarca.resx">
+      <DependentUpon>FormPAPELERAMarca.cs</DependentUpon>
     </EmbeddedResource>
     <!-- Embedded Resources -->
     <EmbeddedResource Include="unuFormABMBarrios.resx">

@@ -12,12 +12,10 @@ namespace CapaNegocios
          public string Descripcion { get; set; }
         public string Detalle { get; set; }
         public int IdCat { get; set; }
-        public int IdOrigen { get; set; }
         public int IdMarca { get; set; }
         public int IdColor { get; set; }
         public decimal Precio { get; set; }
         public int Stock { get; set; }
         public bool Estado { get; set; }
-
     }
 }

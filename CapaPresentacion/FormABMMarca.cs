@@ -1,4 +1,5 @@
 ﻿using CapaDatos;
+using CapaNegocio;
 using CapaNegocios;
 using System;
 using System.Collections.Generic;
@@ -12,11 +13,11 @@ using System.Windows.Forms;
 
 namespace CapaPresentacion
 {
-    public partial class FormABMCategoria: Form
+    public partial class FormABMMarca: Form
     {
         #region Metodos
         Boolean nuevo;
-        public FormABMCategoria()
+        public FormABMMarca()
         {
             InitializeComponent();
             BtnModificar.Enabled = false;
@@ -30,30 +31,23 @@ namespace CapaPresentacion
         }
         private void LimpiarTextos()
         {
-            LblIdCat.Text = "";
+            LblIdMarca.Text = "";
             TxtDescripcion.Clear();
         }
         private void Listar()
         {
-            ConeCategoria cone = new ConeCategoria();
-            Grilla.DataSource = cone.ListarCat();
+            ConeMarca cone = new ConeMarca();
+            Grilla.DataSource = cone.ListarMarca();
             Grilla.Columns[0].HeaderText = "Código";
             Grilla.Columns[0].Width = 100;
-            Grilla.Columns[1].HeaderText = "Categoria";
+            Grilla.Columns[1].HeaderText = "Marca";
             Grilla.Columns[2].Visible = false;
-
         }
-
         #endregion
 
         #region Botones
-        private void BtnActualizar_Click(object sender, EventArgs e)
-        {
-            Listar();
-        }
         private void BtnNuevo_Click(object sender, EventArgs e)
         {
-
             #region Enabled yes/no
             //true
             nuevo = true;
@@ -74,22 +68,20 @@ namespace CapaPresentacion
             {
                 if (TxtDescripcion.Text == "")
                 {
-                    MessageBox.Show("Ingrese el Categoria", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageBox.Show("Ingrese la Marca", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
                 else if (nuevo == true)
                 {
-                    ConeCategoria cone = new ConeCategoria();
-                    Categoria Agregar = new Categoria
+                    ConeMarca cone = new ConeMarca();
+                    Marca Agregar = new Marca
                     {
                         Descripcion = TxtDescripcion.Text
                     };
 
-                    cone.AgregarCat(Agregar);
+                    cone.Agregar(Agregar);
 
                     #region Enabled yes/no 
-                    //true
                     BtnNuevo.Enabled = true;
-                    //false
                     TxtDescripcion.Enabled = false;
                     BtnGrabar.Enabled = false;
                     BtnCancelar.Enabled = false;
@@ -101,19 +93,21 @@ namespace CapaPresentacion
                 }
                 else
                 {
-                    ConeCategoria cone = new ConeCategoria();
-                    Categoria Actualizar = new Categoria
+                    ConeMarca cone = new ConeMarca();
+                    Marca Actualizar = new Marca
                     {
-                        IdCat = int.Parse(LblIdCat.Text),
+                        IdMarca = int.Parse(LblIdMarca.Text),
                         Descripcion = TxtDescripcion.Text
                     };
 
-                    cone.ActualizarCat(Actualizar);
+                    cone.Actualizar(Actualizar);
 
+                    #region Enabled yes/no
                     TxtDescripcion.Enabled = false;
                     BtnNuevo.Enabled = true;
                     BtnGrabar.Enabled = false;
                     BtnCancelar.Enabled = false;
+                    #endregion
 
                     LimpiarTextos();
                     Listar();
@@ -127,10 +121,8 @@ namespace CapaPresentacion
             finally
             {
                 #region Enabled yes/no
-                //true
                 TxtBuscar.Enabled = true;
                 BtnNuevo.Enabled = true;
-                //false
                 BtnGrabar.Enabled = false;
                 BtnCancelar.Enabled = false;
                 BtnEliminar.Enabled = false;
@@ -145,10 +137,8 @@ namespace CapaPresentacion
         private void BtnCancelar_Click(object sender, EventArgs e)
         {
             #region Enabled yes/no
-            //true
             TxtBuscar.Enabled = true;
             BtnNuevo.Enabled = true;
-            //false
             BtnModificar.Enabled = false;
             BtnGrabar.Enabled = false;
             BtnCancelar.Enabled = false;
@@ -161,32 +151,29 @@ namespace CapaPresentacion
         }
         private void BtnModificar_Click(object sender, EventArgs e)
         {
+
             #region Enabled yes/no
-            //true
             PnlBarraLateral.Enabled = true;
             BtnGrabar.Enabled = true;
-            //false
             Grilla.Enabled = false;
             BtnNuevo.Enabled = false;
             BtnEliminar.Enabled = false;
             BtnModificar.Enabled = false;
             #endregion
-
         }
         private void BtnEliminar_Click(object sender, EventArgs e)
         {
-
-            ConeCategoria cone = new ConeCategoria();
-            Categoria Eliminar = new Categoria
+            ConeMarca cone = new ConeMarca();
+            Marca Eliminar = new Marca
             {
-                IdCat = int.Parse(LblIdCat.Text)
+                IdMarca = int.Parse(LblIdMarca.Text)
             };
 
-            cone.BorrarCat(Eliminar);
+            cone.Borrar(Eliminar);
 
             try
             {
-                MessageBox.Show("La Categoria se eliminó correctamente!!!", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("La Marca se eliminó correctamente!!!", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 LimpiarTextos();
                 Listar();
             }
@@ -209,26 +196,28 @@ namespace CapaPresentacion
         }
         private void BtnPapelera_Click(object sender, EventArgs e)
         {
-            FormPAPELERACategoria form = new FormPAPELERACategoria();
+            FormPAPELERAMarca form = new FormPAPELERAMarca();
             form.ShowDialog();
         }
         private void BtnVolver_Click(object sender, EventArgs e)
         {
             Close();
         }
+        private void BtnActualizar_Click(object sender, EventArgs e)
+        {
+            Listar();
+        }
         #endregion
 
-        #region Interacciones con formulario
+        #region Interacciones con el formulario
         private void Grilla_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            LblIdCat.Text = Grilla.Rows[e.RowIndex].Cells[0].Value.ToString();
+            LblIdMarca.Text = Grilla.Rows[e.RowIndex].Cells[0].Value.ToString();
             TxtDescripcion.Text = Grilla.Rows[e.RowIndex].Cells[1].Value.ToString();
 
             #region Enabled yes/no
-            //false
             nuevo = false;
             BtnNuevo.Enabled = false;
-            //true
             TxtDescripcion.Enabled = true;
             BtnGrabar.Enabled = true;
             BtnCancelar.Enabled = true;
@@ -247,18 +236,19 @@ namespace CapaPresentacion
             }
             else
             {
-                ConeCategoria cone = new ConeCategoria();
-                Categoria Buscar = new Categoria
+                ConeMarca cone = new ConeMarca();
+                Marca Buscar = new Marca
                 {
                     Descripcion = TxtBuscar.Text
                 };
 
-                Grilla.DataSource = cone.BuscarCat(Buscar.Descripcion);
+                Grilla.DataSource = cone.BuscarMarca(Buscar.Descripcion);
 
             }
         }
+
         #endregion
 
-       
+      
     }
 }

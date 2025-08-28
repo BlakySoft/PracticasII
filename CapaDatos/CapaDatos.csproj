@@ -52,13 +52,15 @@
   <ItemGroup>
     <Compile Include="ConeBarrios.cs" />
     <Compile Include="ConeClientes.cs" />
+    <Compile Include="ConeColores.cs" />
     <Compile Include="ConeCompras.cs" />
     <Compile Include="ConeLocalidades.cs" />
+    <Compile Include="ConeMarca.cs" />
     <Compile Include="ConeMetododepago.cs" />
     <Compile Include="ConePedidos.cs" />
     <Compile Include="ConeProductos.cs" />
     <Compile Include="ConeProveedores.cs" />
-    <Compile Include="ConeRubros.cs" />
+    <Compile Include="ConeCategorias.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
