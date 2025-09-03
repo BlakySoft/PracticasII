@@ -93,14 +93,16 @@
             // 
             // Grilla
             // 
+            this.Grilla.AllowUserToAddRows = false;
+            this.Grilla.AllowUserToDeleteRows = false;
             this.Grilla.BackgroundColor = System.Drawing.Color.Linen;
             this.Grilla.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.Grilla.Location = new System.Drawing.Point(225, 87);
             this.Grilla.Name = "Grilla";
+            this.Grilla.RowHeadersVisible = false;
             this.Grilla.Size = new System.Drawing.Size(910, 589);
             this.Grilla.TabIndex = 10;
             this.Grilla.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Grilla_CellClick);
-            this.Grilla.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Grilla_CellDoubleClick);
             // 
             // BtnModificar
             // 
@@ -217,9 +219,9 @@
             this.panel2.Controls.Add(this.BtnGrabar);
             this.panel2.Controls.Add(this.BtnNuevo);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel2.Location = new System.Drawing.Point(1141, 0);
+            this.panel2.Location = new System.Drawing.Point(1105, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(159, 700);
+            this.panel2.Size = new System.Drawing.Size(159, 613);
             this.panel2.TabIndex = 40;
             // 
             // BtnImprimir
@@ -240,7 +242,7 @@
             this.BtnImprimir.Text = "&Imprimir";
             this.BtnImprimir.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.BtnImprimir.UseVisualStyleBackColor = false;
-            this.BtnImprimir.Click += new System.EventHandler(this.BtnImprimir_Click);
+            this.BtnImprimir.Click += new System.EventHandler(this.BtnImprimir_Click_1);
             // 
             // BtnSalir
             // 
@@ -403,7 +405,6 @@
             this.CboIdCat.Name = "CboIdCat";
             this.CboIdCat.Size = new System.Drawing.Size(169, 27);
             this.CboIdCat.TabIndex = 12;
-            this.CboIdCat.SelectionChangeCommitted += new System.EventHandler(this.CboIdCat_SelectionChangeCommitted);
             // 
             // LblIdProducto
             // 
@@ -461,7 +462,7 @@
             this.PanelDatos.Dock = System.Windows.Forms.DockStyle.Left;
             this.PanelDatos.Location = new System.Drawing.Point(0, 0);
             this.PanelDatos.Name = "PanelDatos";
-            this.PanelDatos.Size = new System.Drawing.Size(219, 700);
+            this.PanelDatos.Size = new System.Drawing.Size(219, 613);
             this.PanelDatos.TabIndex = 8;
             // 
             // btnCol
@@ -491,7 +492,6 @@
             this.CboIdMar.Name = "CboIdMar";
             this.CboIdMar.Size = new System.Drawing.Size(169, 27);
             this.CboIdMar.TabIndex = 32;
-            this.CboIdMar.SelectionChangeCommitted += new System.EventHandler(this.CboIdMar_SelectionChangeCommitted);
             // 
             // label11
             // 
@@ -532,7 +532,6 @@
             this.CboIdCol.Name = "CboIdCol";
             this.CboIdCol.Size = new System.Drawing.Size(169, 27);
             this.CboIdCol.TabIndex = 26;
-            this.CboIdCol.SelectionChangeCommitted += new System.EventHandler(this.CboIdCol_SelectionChangeCommitted);
             // 
             // label9
             // 
@@ -555,7 +554,7 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(219, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(922, 81);
+            this.panel3.Size = new System.Drawing.Size(886, 81);
             this.panel3.TabIndex = 46;
             // 
             // label7
@@ -569,16 +568,12 @@
             this.label7.TabIndex = 37;
             this.label7.Text = "Buscar Producto:";
             // 
-            // Imprimir
-            // 
-            this.Imprimir.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.Imprimir_PrintPage);
-            // 
             // FormABMProductos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.ClientSize = new System.Drawing.Size(1300, 700);
+            this.ClientSize = new System.Drawing.Size(1264, 613);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.Grilla);

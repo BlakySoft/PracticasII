@@ -366,7 +366,7 @@
             this.BtnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnCancelar.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnCancelar.ForeColor = System.Drawing.Color.White;
-            this.BtnCancelar.IconChar = FontAwesome.Sharp.IconChar.FileCircleXmark;
+            this.BtnCancelar.IconChar = FontAwesome.Sharp.IconChar.X;
             this.BtnCancelar.IconColor = System.Drawing.Color.White;
             this.BtnCancelar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.BtnCancelar.IconSize = 60;
@@ -533,9 +533,11 @@
             this.Grilla.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
             this.Grilla.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Tan;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.BurlyWood;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.BurlyWood;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Tan;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.Grilla.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.Grilla.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -555,7 +557,7 @@
             this.Grilla.DefaultCellStyle = dataGridViewCellStyle2;
             this.Grilla.EnableHeadersVisualStyles = false;
             this.Grilla.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.Grilla.Location = new System.Drawing.Point(243, 85);
+            this.Grilla.Location = new System.Drawing.Point(240, 85);
             this.Grilla.Name = "Grilla";
             this.Grilla.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -571,31 +573,31 @@
             // 
             this.Column1.HeaderText = "Codigo";
             this.Column1.Name = "Column1";
-            this.Column1.Width = 70;
+            this.Column1.Width = 95;
             // 
             // Column2
             // 
             this.Column2.HeaderText = "Descripicion";
             this.Column2.Name = "Column2";
-            this.Column2.Width = 101;
+            this.Column2.Width = 138;
             // 
             // Column3
             // 
             this.Column3.HeaderText = "Precio";
             this.Column3.Name = "Column3";
-            this.Column3.Width = 67;
+            this.Column3.Width = 88;
             // 
             // Column4
             // 
             this.Column4.HeaderText = "Cantidad";
             this.Column4.Name = "Column4";
-            this.Column4.Width = 81;
+            this.Column4.Width = 108;
             // 
             // Column5
             // 
             this.Column5.HeaderText = "Subtotal";
             this.Column5.Name = "Column5";
-            this.Column5.Width = 78;
+            this.Column5.Width = 102;
             // 
             // TxtSubTotal
             // 

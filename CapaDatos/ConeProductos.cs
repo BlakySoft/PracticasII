@@ -1,6 +1,7 @@
 ﻿using CapaNegocios;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.OleDb;
 using System.Linq;
 using System.Text;
@@ -13,7 +14,7 @@ namespace CapaDatos
         #region conexion a BD
         public string ConectarDB()
         {
-            OleDbConnection con = new OleDbConnection("Provider = Microsoft.Jet.OLEDB.4.0; Data Source =|DataDirectory|elfrancesrances.mdb;");
+            OleDbConnection con = new OleDbConnection("Provider = Microsoft.Jet.OLEDB.4.0; Data Source =|DataDirectory|DB.mdb;");
             string cadenaconexion = ("Provider =Microsoft.Jet.OLEDB.4.0; Data Source =|DataDirectory|DB.mdb;");
             return cadenaconexion;
         }
@@ -144,40 +145,44 @@ namespace CapaDatos
 
             return list;
         }
+
         public List<Productos> Listar()
         {
             List<Productos> list = new List<Productos>();
-            OleDbConnection con = new OleDbConnection();
-            OleDbCommand cm = new OleDbCommand();
-
-            OleDbDataReader reader;
-
-            con.ConnectionString = ConectarDB();
-            cm.CommandType = System.Data.CommandType.Text;
-            cm.CommandText = "SELECT * FROM Productos WHERE Estado = true";
-            cm.Connection = con;
-
-            con.Open();
-            reader = cm.ExecuteReader();
-            while (reader.Read())
+            using (OleDbConnection con = new OleDbConnection(ConectarDB()))
             {
-                Productos Prod = new Productos();
+                OleDbCommand cm = new OleDbCommand();
+                cm.Connection = con;
+                cm.CommandType = CommandType.Text;
 
-                Prod.IdProducto = reader.GetInt32(0);
-                Prod.Descripcion = reader.GetString(1);
-                Prod.Detalle = reader.GetString(2);
-                Prod.IdCat = reader.GetInt32(3);
-                Prod.IdMarca = reader.GetInt32(4);
-                Prod.IdColor = reader.GetInt32(5);
-                Prod.Precio = reader.GetDecimal(6);
-                Prod.Stock = reader.GetInt32(7);
+                // Consulta simple, solo trae los IDs relacionados
+                cm.CommandText = "SELECT * FROM Productos WHERE Estado = True";
 
-                list.Add(Prod);
+                con.Open();
+                using (OleDbDataReader reader = cm.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        Productos Prod = new Productos
+                        {
+                            IdProducto = reader.GetInt32(0),
+                            Descripcion = reader.GetString(1),
+                            Detalle = reader.GetString(2),
+                            IdCat = reader.GetInt32(3),
+                            IdMarca = reader.GetInt32(4),
+                            IdColor = reader.GetInt32(5),
+                            Precio = reader.GetDecimal(6),
+                            Stock = reader.GetInt32(7)
+                        };
+
+                        list.Add(Prod);
+                    }
+                }
+                con.Close();
             }
-            con.Close();
-
             return list;
         }
+
         public List<Productos> Buscar(string Descripcion)
         {
             List<Productos> list = new List<Productos>();

@@ -250,6 +250,11 @@ namespace CapaPresentacion
         }
         #endregion
 
+        private void BtnPapelera_Click(object sender, EventArgs e)
+        {
+            FormPAPELERAColor form = new FormPAPELERAColor();
+            form.ShowDialog();
+        }
     }
 }
 

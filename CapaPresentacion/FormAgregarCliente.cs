@@ -25,14 +25,6 @@ namespace CapaPresentacion
             BtnGrabar.Enabled = false;
             BtnCancelar.Enabled = false;
         }
-        private void CargarCbo()
-        {
-            ConeBarrios cone = new ConeBarrios();
-
-            CboIdBarrio.ValueMember = "IdBarrio";
-            CboIdBarrio.DisplayMember = "Descripcion";
-            CboIdBarrio.DataSource = cone.ListarBarrio();
-        }
         private void LimpiarTextos()
         {
             LblIdCliente.Text = "";
@@ -44,11 +36,11 @@ namespace CapaPresentacion
         #endregion
 
         #region Botones
-        private void BtnBarrios_Click(object sender, EventArgs e)
-        {
-            unuFormABMBarrios form = new unuFormABMBarrios();
-            form.ShowDialog();
-        }
+        //private void BtnBarrios_Click(object sender, EventArgs e)
+        //{
+        //    unuFormABMBarrios form = new unuFormABMBarrios();
+        //    form.ShowDialog();
+        //}
         private void BtnNuevo_Click(object sender, EventArgs e)
         {
             nuevo = true;
@@ -62,7 +54,6 @@ namespace CapaPresentacion
             BtnNuevo.Enabled = false;
             #endregion
 
-            CargarCbo();
             LimpiarTextos();
             TxtNombre.Focus();
         }
@@ -155,10 +146,6 @@ namespace CapaPresentacion
             Close();       
         }
 
-        private void CboIdBarrio_SelectionChangeCommitted(object sender, EventArgs e)
-        {
-            VarBarrio = int.Parse(CboIdBarrio.SelectedValue.ToString());
-        }
         #endregion
 
 

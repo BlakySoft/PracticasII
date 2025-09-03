@@ -20,12 +20,11 @@ namespace CapaDatos
             cone.ConnectionString = ConectarDB();
             cm.CommandType = System.Data.CommandType.Text;
 
-            cm.CommandText = "insert into Pedidos (IdCliente, IdMetodo, IdEntrega, Total) values (@IdCliente, @IdMetodo, @IdEntrega, @Total)";
+            cm.CommandText = "insert into Ventas (IdCliente, IdMetodo, Total) values (@IdCliente, @IdMetodo, @Total)";
             cm.Connection = cone;
 
             cm.Parameters.AddWithValue("@IdCliente", pedido.IdCliente);
             cm.Parameters.AddWithValue("@IdMetodo", pedido.IdMetodo);
-            cm.Parameters.AddWithValue("@IdEntrega", pedido.IdEntrega);
             cm.Parameters.AddWithValue("@Total", pedido.Total);
 
             cone.Open();

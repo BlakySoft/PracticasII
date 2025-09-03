@@ -211,9 +211,9 @@
             this.panel2.Controls.Add(this.BtnGrabar);
             this.panel2.Controls.Add(this.BtnNuevo);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel2.Location = new System.Drawing.Point(1141, 0);
+            this.panel2.Location = new System.Drawing.Point(1105, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(159, 700);
+            this.panel2.Size = new System.Drawing.Size(159, 613);
             this.panel2.TabIndex = 40;
             // 
             // BtnSalir
@@ -429,7 +429,7 @@
             this.PanelDatos.Dock = System.Windows.Forms.DockStyle.Left;
             this.PanelDatos.Location = new System.Drawing.Point(0, 0);
             this.PanelDatos.Name = "PanelDatos";
-            this.PanelDatos.Size = new System.Drawing.Size(219, 700);
+            this.PanelDatos.Size = new System.Drawing.Size(219, 613);
             this.PanelDatos.TabIndex = 8;
             // 
             // panel3
@@ -441,7 +441,7 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(219, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(922, 81);
+            this.panel3.Size = new System.Drawing.Size(886, 81);
             this.panel3.TabIndex = 47;
             // 
             // label7
@@ -480,7 +480,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.ClientSize = new System.Drawing.Size(1300, 700);
+            this.ClientSize = new System.Drawing.Size(1264, 613);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.Grilla);

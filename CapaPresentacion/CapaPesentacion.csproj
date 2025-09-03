@@ -95,12 +95,6 @@
     <Compile Include="FormPAPELERAMarca.Designer.cs">
       <DependentUpon>FormPAPELERAMarca.cs</DependentUpon>
     </Compile>
-    <Compile Include="unuFormABMBarrios.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="unuFormABMBarrios.Designer.cs">
-      <DependentUpon>unuFormABMBarrios.cs</DependentUpon>
-    </Compile>
     <Compile Include="FormBuscarCliente.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -124,12 +118,6 @@
     </Compile>
     <Compile Include="FormCOMPRAS.Designer.cs">
       <DependentUpon>FormCOMPRAS.cs</DependentUpon>
-    </Compile>
-    <Compile Include="unuFormPAPELERABarrios.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="unuFormPAPELERABarrios.Designer.cs">
-      <DependentUpon>unuFormPAPELERABarrios.cs</DependentUpon>
     </Compile>
     <Compile Include="FormABMClientes.cs">
       <SubType>Form</SubType>
@@ -215,24 +203,6 @@
     <Compile Include="FormVENTAS.Designer.cs">
       <DependentUpon>FormVENTAS.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormPEDIDOScancelados.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormPEDIDOScancelados.Designer.cs">
-      <DependentUpon>FormPEDIDOScancelados.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FormPEDIDOSentregados.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormPEDIDOSentregados.Designer.cs">
-      <DependentUpon>FormPEDIDOSentregados.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FormPEDIDOSpendientes.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormPEDIDOSpendientes.Designer.cs">
-      <DependentUpon>FormPEDIDOSpendientes.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormABMMarca.resx">
@@ -257,9 +227,6 @@
       <DependentUpon>FormPAPELERAMarca.cs</DependentUpon>
     </EmbeddedResource>
     <!-- Embedded Resources -->
-    <EmbeddedResource Include="unuFormABMBarrios.resx">
-      <DependentUpon>unuFormABMBarrios.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="FormBuscarCliente.resx">
       <DependentUpon>FormBuscarCliente.cs</DependentUpon>
     </EmbeddedResource>
@@ -271,9 +238,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormCOMPRAS.resx">
       <DependentUpon>FormCOMPRAS.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="unuFormPAPELERABarrios.resx">
-      <DependentUpon>unuFormPAPELERABarrios.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormABMClientes.resx">
       <DependentUpon>FormABMClientes.cs</DependentUpon>
@@ -316,15 +280,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormVENTAS.resx">
       <DependentUpon>FormVENTAS.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormPEDIDOScancelados.resx">
-      <DependentUpon>FormPEDIDOScancelados.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormPEDIDOSentregados.resx">
-      <DependentUpon>FormPEDIDOSentregados.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormPEDIDOSpendientes.resx">
-      <DependentUpon>FormPEDIDOSpendientes.cs</DependentUpon>
     </EmbeddedResource>
     <!-- Properties -->
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -369,6 +324,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\IconoAPP.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LizLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LizLogo2.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

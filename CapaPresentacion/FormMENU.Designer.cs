@@ -38,9 +38,6 @@
             this.rEALIZARCOMPRAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.iconMenuItem3 = new FontAwesome.Sharp.IconMenuItem();
             this.cLIENTESToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.pRODUCTOSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.pEDIDOSENTREGADOSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cABCELADOSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.iconMenuItem4 = new FontAwesome.Sharp.IconMenuItem();
             this.clientesToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.productosToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
@@ -48,20 +45,20 @@
             this.rubrosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.localidadesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.metodosDePagoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mARCASToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cOLORESToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Reloj = new System.Windows.Forms.Label();
             this.Timer = new System.Windows.Forms.Timer(this.components);
             this.Panelinf = new System.Windows.Forms.Panel();
             this.PanelVisual = new System.Windows.Forms.Panel();
             this.iconSplitButton1 = new FontAwesome.Sharp.IconSplitButton();
-            this.mARCASToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cOLORESToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.Panelinf.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
             // 
-            this.menuStrip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.menuStrip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(203)))), ((int)(((byte)(204)))));
             this.menuStrip1.Font = new System.Drawing.Font("Arial Narrow", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.iconMenuItem1,
@@ -71,7 +68,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1300, 27);
+            this.menuStrip1.Size = new System.Drawing.Size(1264, 27);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -82,9 +79,9 @@
             this.pROVEEDORESToolStripMenuItem1,
             this.pRODUCTOSToolStripMenuItem1});
             this.iconMenuItem1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.iconMenuItem1.ForeColor = System.Drawing.Color.White;
+            this.iconMenuItem1.ForeColor = System.Drawing.Color.Black;
             this.iconMenuItem1.IconChar = FontAwesome.Sharp.IconChar.BoxesPacking;
-            this.iconMenuItem1.IconColor = System.Drawing.Color.White;
+            this.iconMenuItem1.IconColor = System.Drawing.Color.Black;
             this.iconMenuItem1.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconMenuItem1.Name = "iconMenuItem1";
             this.iconMenuItem1.Size = new System.Drawing.Size(73, 23);
@@ -116,9 +113,9 @@
             this.iconMenuItem2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.rEALIZARCOMPRAToolStripMenuItem});
             this.iconMenuItem2.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.iconMenuItem2.ForeColor = System.Drawing.Color.White;
+            this.iconMenuItem2.ForeColor = System.Drawing.Color.Black;
             this.iconMenuItem2.IconChar = FontAwesome.Sharp.IconChar.Shopify;
-            this.iconMenuItem2.IconColor = System.Drawing.Color.White;
+            this.iconMenuItem2.IconColor = System.Drawing.Color.Black;
             this.iconMenuItem2.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconMenuItem2.Name = "iconMenuItem2";
             this.iconMenuItem2.Size = new System.Drawing.Size(119, 23);
@@ -134,14 +131,11 @@
             // iconMenuItem3
             // 
             this.iconMenuItem3.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.cLIENTESToolStripMenuItem,
-            this.pRODUCTOSToolStripMenuItem,
-            this.pEDIDOSENTREGADOSToolStripMenuItem,
-            this.cABCELADOSToolStripMenuItem});
+            this.cLIENTESToolStripMenuItem});
             this.iconMenuItem3.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.iconMenuItem3.ForeColor = System.Drawing.Color.White;
+            this.iconMenuItem3.ForeColor = System.Drawing.Color.Black;
             this.iconMenuItem3.IconChar = FontAwesome.Sharp.IconChar.BreadSlice;
-            this.iconMenuItem3.IconColor = System.Drawing.Color.White;
+            this.iconMenuItem3.IconColor = System.Drawing.Color.Black;
             this.iconMenuItem3.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconMenuItem3.Name = "iconMenuItem3";
             this.iconMenuItem3.Size = new System.Drawing.Size(102, 23);
@@ -150,30 +144,9 @@
             // cLIENTESToolStripMenuItem
             // 
             this.cLIENTESToolStripMenuItem.Name = "cLIENTESToolStripMenuItem";
-            this.cLIENTESToolStripMenuItem.Size = new System.Drawing.Size(235, 24);
-            this.cLIENTESToolStripMenuItem.Text = "REALIZAR PEDIDOS";
+            this.cLIENTESToolStripMenuItem.Size = new System.Drawing.Size(216, 24);
+            this.cLIENTESToolStripMenuItem.Text = "REALIZAR VENTA";
             this.cLIENTESToolStripMenuItem.Click += new System.EventHandler(this.cLIENTESToolStripMenuItem_Click);
-            // 
-            // pRODUCTOSToolStripMenuItem
-            // 
-            this.pRODUCTOSToolStripMenuItem.Name = "pRODUCTOSToolStripMenuItem";
-            this.pRODUCTOSToolStripMenuItem.Size = new System.Drawing.Size(235, 24);
-            this.pRODUCTOSToolStripMenuItem.Text = "PENDIENTES";
-            this.pRODUCTOSToolStripMenuItem.Click += new System.EventHandler(this.pRODUCTOSToolStripMenuItem_Click);
-            // 
-            // pEDIDOSENTREGADOSToolStripMenuItem
-            // 
-            this.pEDIDOSENTREGADOSToolStripMenuItem.Name = "pEDIDOSENTREGADOSToolStripMenuItem";
-            this.pEDIDOSENTREGADOSToolStripMenuItem.Size = new System.Drawing.Size(235, 24);
-            this.pEDIDOSENTREGADOSToolStripMenuItem.Text = "ENTREGADOS ";
-            this.pEDIDOSENTREGADOSToolStripMenuItem.Click += new System.EventHandler(this.pEDIDOSENTREGADOSToolStripMenuItem_Click);
-            // 
-            // cABCELADOSToolStripMenuItem
-            // 
-            this.cABCELADOSToolStripMenuItem.Name = "cABCELADOSToolStripMenuItem";
-            this.cABCELADOSToolStripMenuItem.Size = new System.Drawing.Size(235, 24);
-            this.cABCELADOSToolStripMenuItem.Text = "CANCELADOS";
-            this.cABCELADOSToolStripMenuItem.Click += new System.EventHandler(this.cABCELADOSToolStripMenuItem_Click);
             // 
             // iconMenuItem4
             // 
@@ -187,9 +160,9 @@
             this.mARCASToolStripMenuItem,
             this.cOLORESToolStripMenuItem});
             this.iconMenuItem4.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.iconMenuItem4.ForeColor = System.Drawing.Color.White;
+            this.iconMenuItem4.ForeColor = System.Drawing.Color.Black;
             this.iconMenuItem4.IconChar = FontAwesome.Sharp.IconChar.TrashRestore;
-            this.iconMenuItem4.IconColor = System.Drawing.Color.White;
+            this.iconMenuItem4.IconColor = System.Drawing.Color.Black;
             this.iconMenuItem4.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconMenuItem4.Name = "iconMenuItem4";
             this.iconMenuItem4.Size = new System.Drawing.Size(124, 23);
@@ -237,56 +210,6 @@
             this.metodosDePagoToolStripMenuItem.Text = "METODOS DE PAGO";
             this.metodosDePagoToolStripMenuItem.Click += new System.EventHandler(this.metodosDePagoToolStripMenuItem_Click);
             // 
-            // Reloj
-            // 
-            this.Reloj.AutoSize = true;
-            this.Reloj.Dock = System.Windows.Forms.DockStyle.Right;
-            this.Reloj.Font = new System.Drawing.Font("Bernard MT Condensed", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Reloj.ForeColor = System.Drawing.Color.White;
-            this.Reloj.Location = new System.Drawing.Point(1209, 0);
-            this.Reloj.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.Reloj.Name = "Reloj";
-            this.Reloj.Size = new System.Drawing.Size(91, 38);
-            this.Reloj.TabIndex = 1;
-            this.Reloj.Text = "RELOJ";
-            // 
-            // Timer
-            // 
-            this.Timer.Tick += new System.EventHandler(this.Timer_Tick);
-            // 
-            // Panelinf
-            // 
-            this.Panelinf.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.Panelinf.Controls.Add(this.Reloj);
-            this.Panelinf.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.Panelinf.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.Panelinf.Location = new System.Drawing.Point(0, 708);
-            this.Panelinf.Name = "Panelinf";
-            this.Panelinf.Size = new System.Drawing.Size(1300, 41);
-            this.Panelinf.TabIndex = 2;
-            // 
-            // PanelVisual
-            // 
-            this.PanelVisual.BackgroundImage = global::CapaPresentacion.Properties.Resources.IconoAPP;
-            this.PanelVisual.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.PanelVisual.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PanelVisual.Location = new System.Drawing.Point(0, 27);
-            this.PanelVisual.Name = "PanelVisual";
-            this.PanelVisual.Size = new System.Drawing.Size(1300, 681);
-            this.PanelVisual.TabIndex = 3;
-            // 
-            // iconSplitButton1
-            // 
-            this.iconSplitButton1.Flip = FontAwesome.Sharp.FlipOrientation.Normal;
-            this.iconSplitButton1.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.iconSplitButton1.IconColor = System.Drawing.Color.Black;
-            this.iconSplitButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconSplitButton1.IconSize = 48;
-            this.iconSplitButton1.Name = "iconSplitButton1";
-            this.iconSplitButton1.Rotation = 0D;
-            this.iconSplitButton1.Size = new System.Drawing.Size(23, 23);
-            this.iconSplitButton1.Text = "iconSplitButton1";
-            // 
             // mARCASToolStripMenuItem
             // 
             this.mARCASToolStripMenuItem.Name = "mARCASToolStripMenuItem";
@@ -301,12 +224,63 @@
             this.cOLORESToolStripMenuItem.Text = "COLORES";
             this.cOLORESToolStripMenuItem.Click += new System.EventHandler(this.cOLORESToolStripMenuItem_Click);
             // 
+            // Reloj
+            // 
+            this.Reloj.AutoSize = true;
+            this.Reloj.Dock = System.Windows.Forms.DockStyle.Right;
+            this.Reloj.Font = new System.Drawing.Font("Bernard MT Condensed", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Reloj.ForeColor = System.Drawing.Color.Black;
+            this.Reloj.Location = new System.Drawing.Point(1173, 0);
+            this.Reloj.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.Reloj.Name = "Reloj";
+            this.Reloj.Size = new System.Drawing.Size(91, 38);
+            this.Reloj.TabIndex = 1;
+            this.Reloj.Text = "RELOJ";
+            // 
+            // Timer
+            // 
+            this.Timer.Tick += new System.EventHandler(this.Timer_Tick);
+            // 
+            // Panelinf
+            // 
+            this.Panelinf.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(203)))), ((int)(((byte)(204)))));
+            this.Panelinf.Controls.Add(this.Reloj);
+            this.Panelinf.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.Panelinf.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.Panelinf.Location = new System.Drawing.Point(0, 640);
+            this.Panelinf.Name = "Panelinf";
+            this.Panelinf.Size = new System.Drawing.Size(1264, 41);
+            this.Panelinf.TabIndex = 2;
+            // 
+            // PanelVisual
+            // 
+            this.PanelVisual.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(234)))), ((int)(((byte)(233)))));
+            this.PanelVisual.BackgroundImage = global::CapaPresentacion.Properties.Resources.LizLogo2;
+            this.PanelVisual.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.PanelVisual.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PanelVisual.Location = new System.Drawing.Point(0, 27);
+            this.PanelVisual.Name = "PanelVisual";
+            this.PanelVisual.Size = new System.Drawing.Size(1264, 613);
+            this.PanelVisual.TabIndex = 3;
+            // 
+            // iconSplitButton1
+            // 
+            this.iconSplitButton1.Flip = FontAwesome.Sharp.FlipOrientation.Normal;
+            this.iconSplitButton1.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.iconSplitButton1.IconColor = System.Drawing.Color.Black;
+            this.iconSplitButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconSplitButton1.IconSize = 48;
+            this.iconSplitButton1.Name = "iconSplitButton1";
+            this.iconSplitButton1.Rotation = 0D;
+            this.iconSplitButton1.Size = new System.Drawing.Size(23, 23);
+            this.iconSplitButton1.Text = "iconSplitButton1";
+            // 
             // FormMENU
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(5F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.ClientSize = new System.Drawing.Size(1300, 749);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(140)))), ((int)(((byte)(174)))));
+            this.ClientSize = new System.Drawing.Size(1264, 681);
             this.Controls.Add(this.PanelVisual);
             this.Controls.Add(this.Panelinf);
             this.Controls.Add(this.menuStrip1);
@@ -334,8 +308,6 @@
         private FontAwesome.Sharp.IconMenuItem iconMenuItem2;
         private FontAwesome.Sharp.IconMenuItem iconMenuItem3;
         private System.Windows.Forms.ToolStripMenuItem cLIENTESToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem pRODUCTOSToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem pEDIDOSENTREGADOSToolStripMenuItem;
         private FontAwesome.Sharp.IconMenuItem iconMenuItem4;
         private System.Windows.Forms.ToolStripMenuItem clientesToolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem productosToolStripMenuItem2;
@@ -346,7 +318,6 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem rEALIZARCOMPRAToolStripMenuItem;
         private FontAwesome.Sharp.IconSplitButton iconSplitButton1;
-        private System.Windows.Forms.ToolStripMenuItem cABCELADOSToolStripMenuItem;
         private System.Windows.Forms.Label Reloj;
         private System.Windows.Forms.Timer Timer;
         private System.Windows.Forms.Panel Panelinf;

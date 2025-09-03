@@ -30,9 +30,6 @@
         {
             this.PanelDatos = new System.Windows.Forms.Panel();
             this.LblIdCliente = new System.Windows.Forms.Label();
-            this.BtnMarca = new FontAwesome.Sharp.IconButton();
-            this.CboIdBarrio = new System.Windows.Forms.ComboBox();
-            this.label6 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.TxtDomicilio = new System.Windows.Forms.TextBox();
             this.LblDireccion = new System.Windows.Forms.Label();
@@ -55,9 +52,6 @@
             // 
             this.PanelDatos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.PanelDatos.Controls.Add(this.LblIdCliente);
-            this.PanelDatos.Controls.Add(this.BtnMarca);
-            this.PanelDatos.Controls.Add(this.CboIdBarrio);
-            this.PanelDatos.Controls.Add(this.label6);
             this.PanelDatos.Controls.Add(this.panel1);
             this.PanelDatos.Controls.Add(this.TxtDomicilio);
             this.PanelDatos.Controls.Add(this.LblDireccion);
@@ -70,7 +64,7 @@
             this.PanelDatos.Dock = System.Windows.Forms.DockStyle.Left;
             this.PanelDatos.Location = new System.Drawing.Point(0, 0);
             this.PanelDatos.Name = "PanelDatos";
-            this.PanelDatos.Size = new System.Drawing.Size(243, 301);
+            this.PanelDatos.Size = new System.Drawing.Size(243, 248);
             this.PanelDatos.TabIndex = 40;
             // 
             // LblIdCliente
@@ -83,48 +77,6 @@
             this.LblIdCliente.Size = new System.Drawing.Size(16, 18);
             this.LblIdCliente.TabIndex = 47;
             this.LblIdCliente.Text = "0";
-            // 
-            // BtnMarca
-            // 
-            this.BtnMarca.BackColor = System.Drawing.Color.Linen;
-            this.BtnMarca.FlatAppearance.BorderSize = 0;
-            this.BtnMarca.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnMarca.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnMarca.ForeColor = System.Drawing.Color.White;
-            this.BtnMarca.IconChar = FontAwesome.Sharp.IconChar.MagnifyingGlassPlus;
-            this.BtnMarca.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.BtnMarca.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.BtnMarca.IconSize = 20;
-            this.BtnMarca.Location = new System.Drawing.Point(201, 239);
-            this.BtnMarca.Name = "BtnMarca";
-            this.BtnMarca.Size = new System.Drawing.Size(30, 27);
-            this.BtnMarca.TabIndex = 27;
-            this.BtnMarca.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.BtnMarca.UseVisualStyleBackColor = false;
-            this.BtnMarca.Click += new System.EventHandler(this.BtnBarrios_Click);
-            // 
-            // CboIdBarrio
-            // 
-            this.CboIdBarrio.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.CboIdBarrio.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CboIdBarrio.FormattingEnabled = true;
-            this.CboIdBarrio.Location = new System.Drawing.Point(8, 239);
-            this.CboIdBarrio.Name = "CboIdBarrio";
-            this.CboIdBarrio.Size = new System.Drawing.Size(187, 26);
-            this.CboIdBarrio.TabIndex = 26;
-            this.CboIdBarrio.SelectionChangeCommitted += new System.EventHandler(this.CboIdBarrio_SelectionChangeCommitted);
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(8, 217);
-            this.label6.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(62, 19);
-            this.label6.TabIndex = 25;
-            this.label6.Text = "Barrio:";
             // 
             // panel1
             // 
@@ -232,7 +184,7 @@
             this.PanelBotones.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PanelBotones.Location = new System.Drawing.Point(0, 0);
             this.PanelBotones.Name = "PanelBotones";
-            this.PanelBotones.Size = new System.Drawing.Size(391, 301);
+            this.PanelBotones.Size = new System.Drawing.Size(391, 248);
             this.PanelBotones.TabIndex = 41;
             // 
             // BtnVolver
@@ -246,7 +198,7 @@
             this.BtnVolver.IconColor = System.Drawing.Color.White;
             this.BtnVolver.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.BtnVolver.IconSize = 30;
-            this.BtnVolver.Location = new System.Drawing.Point(291, 244);
+            this.BtnVolver.Location = new System.Drawing.Point(291, 178);
             this.BtnVolver.Name = "BtnVolver";
             this.BtnVolver.Size = new System.Drawing.Size(51, 41);
             this.BtnVolver.TabIndex = 46;
@@ -319,7 +271,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.ClientSize = new System.Drawing.Size(391, 301);
+            this.ClientSize = new System.Drawing.Size(391, 248);
             this.Controls.Add(this.PanelDatos);
             this.Controls.Add(this.PanelBotones);
             this.Name = "FormAgregarCliente";
@@ -348,9 +300,6 @@
         private FontAwesome.Sharp.IconButton BtnGrabar;
         private FontAwesome.Sharp.IconButton BtnNuevo;
         private FontAwesome.Sharp.IconButton BtnVolver;
-        private FontAwesome.Sharp.IconButton BtnMarca;
-        private System.Windows.Forms.ComboBox CboIdBarrio;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label LblIdCliente;
     }
 }

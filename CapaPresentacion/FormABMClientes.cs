@@ -56,10 +56,10 @@ namespace CapaPresentacion
 
             Grilla.Columns[0].HeaderText = "Codigo";
             Grilla.Columns[0].Width = 85;
-            Grilla.Columns[1].Width = 140;
-            Grilla.Columns[2].Width = 150;
-            Grilla.Columns[3].Width = 100;
-            Grilla.Columns[4].Width = 200;
+            Grilla.Columns[1].Width = 240;
+            Grilla.Columns[2].Width = 130;
+            Grilla.Columns[3].Width = 130;
+            Grilla.Columns[4].Width = 300;
             //Grilla.Columns[5].Width = 200;
             Grilla.Columns[1].HeaderText = "Nombre y apellido";
             Grilla.Columns[2].HeaderText = "Documento";
@@ -151,12 +151,12 @@ namespace CapaPresentacion
 
             BtnNuevo.Focus();
         }
-        private void BtnBarrio_Click(object sender, EventArgs e)
-        {
-            unuFormABMBarrios form = new unuFormABMBarrios();
-            form.ShowDialog();
-            CargarCbo();
-        }
+        //private void BtnBarrio_Click(object sender, EventArgs e)
+        //{
+        //    unuFormABMBarrios form = new unuFormABMBarrios();
+        //    form.ShowDialog();
+        //    CargarCbo();
+        //}
         private void BtnNuevo_Click(object sender, EventArgs e)
         {
             nuevo = true;
@@ -328,18 +328,7 @@ namespace CapaPresentacion
                 TxtDocumento.Text = Grilla.Rows[e.RowIndex].Cells[2].Value.ToString();
                 TxtTelefono.Text = Grilla.Rows[e.RowIndex].Cells[3].Value.ToString();
                 TxtDomicilio.Text = Grilla.Rows[e.RowIndex].Cells[4].Value.ToString();
-                //VarBarrio = Convert.ToInt32(Grilla.Rows[e.RowIndex].Cells[5].Value.ToString()); No se encuentra en uso 
-
-                //ConeBarrios cone = new ConeBarrios();
-
-                // _ = new Barrio
-                // {
-                //     IdBarrio = VarBarrio
-                // };
-
-                //CboIdBarrio.ValueMember = "IdBarrio";
-                //CboIdBarrio.DisplayMember = "Descripcion";
-                //CboIdBarrio.DataSource = cone.BuscarIdBarrio(VarBarrio);
+     
 
             #region Enabled yes/no
 
@@ -448,15 +437,6 @@ namespace CapaPresentacion
 
         #endregion
 
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Grilla_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
     }
 }
 

@@ -46,6 +46,12 @@
             this.BtnCancelar = new FontAwesome.Sharp.IconButton();
             this.BtnGrabar = new FontAwesome.Sharp.IconButton();
             this.BtnNuevo = new FontAwesome.Sharp.IconButton();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.iconButton1 = new FontAwesome.Sharp.IconButton();
+            this.iconButton2 = new FontAwesome.Sharp.IconButton();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             this.PanelDatos.SuspendLayout();
             this.PanelBotones.SuspendLayout();
             this.SuspendLayout();
@@ -53,6 +59,12 @@
             // PanelDatos
             // 
             this.PanelDatos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.PanelDatos.Controls.Add(this.label7);
+            this.PanelDatos.Controls.Add(this.label1);
+            this.PanelDatos.Controls.Add(this.iconButton2);
+            this.PanelDatos.Controls.Add(this.iconButton1);
+            this.PanelDatos.Controls.Add(this.comboBox2);
+            this.PanelDatos.Controls.Add(this.comboBox1);
             this.PanelDatos.Controls.Add(this.BtnCat);
             this.PanelDatos.Controls.Add(this.CboIdCat);
             this.PanelDatos.Controls.Add(this.TxtPrecio);
@@ -70,7 +82,7 @@
             this.PanelDatos.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PanelDatos.Location = new System.Drawing.Point(0, 0);
             this.PanelDatos.Name = "PanelDatos";
-            this.PanelDatos.Size = new System.Drawing.Size(218, 296);
+            this.PanelDatos.Size = new System.Drawing.Size(218, 408);
             this.PanelDatos.TabIndex = 40;
             // 
             // BtnCat
@@ -84,7 +96,7 @@
             this.BtnCat.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.BtnCat.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.BtnCat.IconSize = 20;
-            this.BtnCat.Location = new System.Drawing.Point(170, 136);
+            this.BtnCat.Location = new System.Drawing.Point(173, 138);
             this.BtnCat.Name = "BtnCat";
             this.BtnCat.Size = new System.Drawing.Size(30, 27);
             this.BtnCat.TabIndex = 58;
@@ -107,7 +119,7 @@
             // 
             this.TxtPrecio.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.TxtPrecio.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtPrecio.Location = new System.Drawing.Point(9, 187);
+            this.TxtPrecio.Location = new System.Drawing.Point(12, 319);
             this.TxtPrecio.Name = "TxtPrecio";
             this.TxtPrecio.Size = new System.Drawing.Size(191, 26);
             this.TxtPrecio.TabIndex = 56;
@@ -116,7 +128,7 @@
             // 
             this.TxtStock.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.TxtStock.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtStock.Location = new System.Drawing.Point(9, 238);
+            this.TxtStock.Location = new System.Drawing.Point(12, 370);
             this.TxtStock.Name = "TxtStock";
             this.TxtStock.Size = new System.Drawing.Size(191, 26);
             this.TxtStock.TabIndex = 55;
@@ -144,7 +156,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(8, 216);
+            this.label6.Location = new System.Drawing.Point(8, 348);
             this.label6.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(59, 19);
@@ -168,7 +180,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(8, 165);
+            this.label4.Location = new System.Drawing.Point(8, 297);
             this.label4.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(64, 19);
@@ -228,7 +240,7 @@
             this.PanelBotones.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PanelBotones.Location = new System.Drawing.Point(0, 0);
             this.PanelBotones.Name = "PanelBotones";
-            this.PanelBotones.Size = new System.Drawing.Size(374, 296);
+            this.PanelBotones.Size = new System.Drawing.Size(374, 408);
             this.PanelBotones.TabIndex = 41;
             // 
             // BtnVolver
@@ -310,12 +322,92 @@
             this.BtnNuevo.UseVisualStyleBackColor = false;
             this.BtnNuevo.Click += new System.EventHandler(this.BtnNuevo_Click);
             // 
+            // comboBox1
+            // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(9, 197);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(155, 27);
+            this.comboBox1.TabIndex = 59;
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox2.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Location = new System.Drawing.Point(9, 257);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(155, 27);
+            this.comboBox2.TabIndex = 60;
+            // 
+            // iconButton1
+            // 
+            this.iconButton1.BackColor = System.Drawing.Color.Linen;
+            this.iconButton1.FlatAppearance.BorderSize = 0;
+            this.iconButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.iconButton1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.iconButton1.ForeColor = System.Drawing.Color.White;
+            this.iconButton1.IconChar = FontAwesome.Sharp.IconChar.MagnifyingGlassPlus;
+            this.iconButton1.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconButton1.IconSize = 20;
+            this.iconButton1.Location = new System.Drawing.Point(172, 198);
+            this.iconButton1.Name = "iconButton1";
+            this.iconButton1.Size = new System.Drawing.Size(30, 27);
+            this.iconButton1.TabIndex = 61;
+            this.iconButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.iconButton1.UseVisualStyleBackColor = false;
+            // 
+            // iconButton2
+            // 
+            this.iconButton2.BackColor = System.Drawing.Color.Linen;
+            this.iconButton2.FlatAppearance.BorderSize = 0;
+            this.iconButton2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.iconButton2.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.iconButton2.ForeColor = System.Drawing.Color.White;
+            this.iconButton2.IconChar = FontAwesome.Sharp.IconChar.MagnifyingGlassPlus;
+            this.iconButton2.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.iconButton2.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconButton2.IconSize = 20;
+            this.iconButton2.Location = new System.Drawing.Point(170, 257);
+            this.iconButton2.Name = "iconButton2";
+            this.iconButton2.Size = new System.Drawing.Size(30, 27);
+            this.iconButton2.TabIndex = 62;
+            this.iconButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.iconButton2.UseVisualStyleBackColor = false;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(8, 171);
+            this.label1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(61, 19);
+            this.label1.TabIndex = 63;
+            this.label1.Text = "Marca:";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.Color.White;
+            this.label7.Location = new System.Drawing.Point(8, 232);
+            this.label7.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(57, 19);
+            this.label7.TabIndex = 64;
+            this.label7.Text = "Color:";
+            // 
             // FormAgregarProducto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.ClientSize = new System.Drawing.Size(374, 296);
+            this.ClientSize = new System.Drawing.Size(374, 408);
             this.Controls.Add(this.PanelDatos);
             this.Controls.Add(this.PanelBotones);
             this.Name = "FormAgregarProducto";
@@ -348,5 +440,11 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label1;
+        private FontAwesome.Sharp.IconButton iconButton2;
+        private FontAwesome.Sharp.IconButton iconButton1;
+        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }
