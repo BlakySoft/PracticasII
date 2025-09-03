@@ -145,44 +145,62 @@ namespace CapaDatos
 
             return list;
         }
-
-        public List<Productos> Listar()
+        public DataTable Listar()
         {
-            List<Productos> list = new List<Productos>();
-            using (OleDbConnection con = new OleDbConnection(ConectarDB()))
-            {
-                OleDbCommand cm = new OleDbCommand();
-                cm.Connection = con;
-                cm.CommandType = CommandType.Text;
+            DataTable dt = new DataTable();
 
-                // Consulta simple, solo trae los IDs relacionados
-                cm.CommandText = "SELECT * FROM Productos WHERE Estado = True";
+            using (OleDbConnection con = new OleDbConnection(ConectarDB())) //Es un nuevo enfoque al conectar con la base de datos
+            {
+                string query = "Select IdProducto, Descripcion, Detalle, IdCat, IdOrigen, IdMarca, IdColor, Precio, Stock, Estado from Productos Where Estado = true;";
+                OleDbCommand cm = new OleDbCommand(query, con);
 
                 con.Open();
-                using (OleDbDataReader reader = cm.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        Productos Prod = new Productos
-                        {
-                            IdProducto = reader.GetInt32(0),
-                            Descripcion = reader.GetString(1),
-                            Detalle = reader.GetString(2),
-                            IdCat = reader.GetInt32(3),
-                            IdMarca = reader.GetInt32(4),
-                            IdColor = reader.GetInt32(5),
-                            Precio = reader.GetDecimal(6),
-                            Stock = reader.GetInt32(7)
-                        };
 
-                        list.Add(Prod);
-                    }
-                }
-                con.Close();
+                OleDbDataAdapter da = new OleDbDataAdapter(cm);
+                da.Fill(dt);
             }
-            return list;
+
+            return dt;
         }
 
+        #region Deshabilidato
+        //public List<Productos> Listar()
+        //{
+        //    List<Productos> list = new List<Productos>();
+        //    OleDbConnection con = new OleDbConnection();
+        //    OleDbCommand cm = new OleDbCommand();
+
+        //    OleDbDataReader reader;
+
+        //    con.ConnectionString = ConectarDB();
+        //    cm.CommandType = System.Data.CommandType.Text;
+        //    cm.CommandText = "SELECT * FROM Productos WHERE Estado = true";
+        //    cm.Connection = con;
+
+        //    con.Open();
+        //    reader = cm.ExecuteReader();
+        //    while (reader.Read())
+        //    {
+        //        Productos Prod = new Productos();
+
+        //        Prod.IdProducto = reader.GetInt32(0);
+        //        Prod.Descripcion = reader.GetString(1);
+        //        Prod.Detalle = reader.GetString(2);
+        //        Prod.IdCat = reader.GetInt32(3);
+        //        Prod.IdOrigen = reader.GetInt32(4);
+
+        //        Prod.IdMarca = reader.GetInt32(5);
+        //        Prod.IdColor = reader.GetInt32(6);
+        //        Prod.Precio = reader.GetDecimal(7);
+        //        Prod.Stock = reader.GetInt32(8);
+
+        //        list.Add(Prod);
+        //    }
+        //    con.Close();
+
+        //    return list;
+        //}
+        #endregion
         public List<Productos> Buscar(string Descripcion)
         {
             List<Productos> list = new List<Productos>();

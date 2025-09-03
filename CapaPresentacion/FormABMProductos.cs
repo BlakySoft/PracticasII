@@ -211,21 +211,21 @@ namespace CapaPresentacion
             }
             finally
             {
-                #region Enabled yes/no
-                //true 
-                TxtBuscar.Enabled = true;
-                Grilla.Enabled = true;
-                BtnNuevo.Enabled = true;
-                //false
-                PanelDatos.Enabled = false;
-                BtnGrabar.Enabled = false;
-                BtnCancelar.Enabled = false;
-                BtnEliminar.Enabled = false;
-                #endregion
+                //#region Enabled yes/no
+                ////true 
+                //TxtBuscar.Enabled = true;
+                //Grilla.Enabled = true;
+                //BtnNuevo.Enabled = true;
+                ////false
+                //PanelDatos.Enabled = false;
+                //BtnGrabar.Enabled = false;
+                //BtnCancelar.Enabled = false;
+                //BtnEliminar.Enabled = false;
+                //#endregion
 
-                LimpiarTextos();
-                ListarProducto();
-                BtnNuevo.Focus();
+                //LimpiarTextos();
+                //ListarProducto();
+                //BtnNuevo.Focus();
             }
         }
         private void BtnEliminar_Click(object sender, EventArgs e)
@@ -308,14 +308,13 @@ namespace CapaPresentacion
             using (FormPAPELERAProductos form = new FormPAPELERAProductos())
             {
 
-                if (form.ShowDialog() == DialogResult.OK)
+                if(form.ShowDialog() == DialogResult.OK)
                 {
                     ListarProducto();
                 }
 
-            }
-            ;
-
+            };
+         
         }
         private void BtnActualizar_Click(object sender, EventArgs e)
         {
@@ -371,48 +370,30 @@ namespace CapaPresentacion
         }
         private void Grilla_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            try
-            {
-                LblIdProducto.Text = Grilla.Rows[e.RowIndex].Cells[0].Value.ToString();
+            LblIdProducto.Text = Grilla.Rows[e.RowIndex].Cells[0].Value.ToString();
             TxtDescripcion.Text = Grilla.Rows[e.RowIndex].Cells[1].Value.ToString();
             TxtDetalle.Text = Grilla.Rows[e.RowIndex].Cells[2].Value.ToString();
-
             VarCat = Convert.ToInt32(Grilla.Rows[e.RowIndex].Cells[3].Value.ToString());
-            VarMar = Convert.ToInt32(Grilla.Rows[e.RowIndex].Cells[4].Value.ToString());
-            VarCol = Convert.ToInt32(Grilla.Rows[e.RowIndex].Cells[5].Value.ToString());
+            TxtPrecio.Text = Grilla.Rows[e.RowIndex].Cells[4].Value.ToString();
+            TxtStock.Text = Grilla.Rows[e.RowIndex].Cells[5].Value.ToString();
 
-            TxtPrecio.Text = Grilla.Rows[e.RowIndex].Cells[6].Value.ToString();
-            TxtStock.Text = Grilla.Rows[e.RowIndex].Cells[7].Value.ToString();
+            ConeCategoria cone = new ConeCategoria();
 
-            // 🔹 Categoría
-            ConeCategoria coneCat = new ConeCategoria();
+            _ = new Categoria
+            {
+                IdCat = VarCat
+            };
+
             CboIdCat.ValueMember = "IdCat";
             CboIdCat.DisplayMember = "Descripcion";
-            CboIdCat.DataSource = coneCat.BuscarIdCat(VarCat);
+            CboIdCat.DataSource = cone.BuscarIdCat(VarCat);
 
-            // 🔹 Mar
-            ConeMarca coneMar = new ConeMarca();
-            CboIdMar.ValueMember = "IdMarca";
-            CboIdMar.DisplayMember = "Descripcion";
-            CboIdMar.DataSource = coneMar.BuscarIdMarca(VarMar);
-
-            // 🔹 Color
-            ConeColores coneCol = new ConeColores();
-            CboIdCol.ValueMember = "IdColor";
-            CboIdCol.DisplayMember = "Descripcion";
-            CboIdCol.DataSource = coneCol.BuscarIdColor(VarCol);
-
-            #region Enabled yes/no
+                #region Enabled yes/no
 
             BtnCancelar.Enabled = true;
             BtnEliminar.Enabled = true;
             BtnModificar.Enabled = true;
-                #endregion
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Imposible seleccionar desde aquí.", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
+            #endregion
         }
         private void Grilla_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -452,7 +433,7 @@ namespace CapaPresentacion
             }
             catch (Exception)
             {
-
+                MessageBox.Show("Imposible seleccionar desde la cabecera.", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
         private void CboIdCat_SelectionChangeCommitted(object sender, EventArgs e)
@@ -502,25 +483,18 @@ namespace CapaPresentacion
 
 
             ConeProductos listar = new ConeProductos();
-            List<Productos> productos = listar.Listar();
+            //List<Productos> productos = listar.Listar();
+            
+            DataTable table = listar.Listar();
 
             decimal stockValorizadoTotal = 0;
 
+      
             foreach (var prod in productos)
             {
                 e.Graphics.DrawString(prod.IdProducto.ToString(), fuenteDetalle, Brushes.Black, margenIzquierdo, lineaY);
                 e.Graphics.DrawString(prod.Descripcion, fuenteDetalle, Brushes.Black, margenIzquierdo + 80, lineaY);
-                e.Graphics.DrawString(prod.Precio.ToString("C", CultureInfo.CreateSpecificCulture("en-US")), fuenteDetalle, Brushes.Black, margenIzquierdo + 300, lineaY);
-                e.Graphics.DrawString(prod.Stock.ToString(), fuenteDetalle, Brushes.Black, margenIzquierdo + 450, lineaY);
-                e.Graphics.DrawString((prod.Precio * prod.Stock).ToString("C", CultureInfo.CreateSpecificCulture("en-US")), fuenteDetalle, Brushes.Black, margenIzquierdo + 540, lineaY);
-
-                stockValorizadoTotal += prod.Precio * prod.Stock;
-                lineaY += espacioEntreLineas;
-
-
-                e.Graphics.DrawString(prod.IdProducto.ToString(), fuenteDetalle, Brushes.Black, margenIzquierdo, lineaY);
-                e.Graphics.DrawString(prod.Descripcion, fuenteDetalle, Brushes.Black, margenIzquierdo + 80, lineaY);
-                e.Graphics.DrawString(prod.Precio.ToString("C", CultureInfo.CreateSpecificCulture("en-US")), fuenteDetalle, Brushes.Black, margenIzquierdo + 300, lineaY); // Formateamos el precio como moneda
+                e.Graphics.DrawString(prod.Precio.ToString("C"), fuenteDetalle, Brushes.Black, margenIzquierdo + 300, lineaY); // Formateamos el precio como moneda
                 e.Graphics.DrawString(prod.Stock.ToString(), fuenteDetalle, Brushes.Black, margenIzquierdo + 450, lineaY);
                 e.Graphics.DrawString((prod.Precio * prod.Stock).ToString("C", CultureInfo.CreateSpecificCulture("en-US")), fuenteDetalle, Brushes.Black, margenIzquierdo + 540, lineaY); // Stock valorizado
 
