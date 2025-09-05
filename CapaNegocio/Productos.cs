@@ -14,6 +14,9 @@ namespace CapaNegocios
         public int IdCat { get; set; }
         public int IdMarca { get; set; }
         public int IdColor { get; set; }
+        public string Categoria { get; set; }
+        public string Marca { get; set; }
+        public string Color { get; set; }
         public decimal Precio { get; set; }
         public int Stock { get; set; }
         public bool Estado { get; set; }

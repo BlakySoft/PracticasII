@@ -151,7 +151,7 @@ namespace CapaDatos
 
             using (OleDbConnection con = new OleDbConnection(ConectarDB())) //Es un nuevo enfoque al conectar con la base de datos
             {
-                string query = "Select IdProducto, Descripcion, Detalle, IdCat, IdOrigen, IdMarca, IdColor, Precio, Stock, Estado from Productos Where Estado = true;";
+                string query = "Select IdProducto, Descripcion, Detalle, IdCat, IdMarca, IdColor, Precio, Stock, Estado from Productos Where Estado = true;";
                 OleDbCommand cm = new OleDbCommand(query, con);
 
                 con.Open();
@@ -162,119 +162,171 @@ namespace CapaDatos
 
             return dt;
         }
-
-        #region Deshabilidato
-        //public List<Productos> Listar()
-        //{
-        //    List<Productos> list = new List<Productos>();
-        //    OleDbConnection con = new OleDbConnection();
-        //    OleDbCommand cm = new OleDbCommand();
-
-        //    OleDbDataReader reader;
-
-        //    con.ConnectionString = ConectarDB();
-        //    cm.CommandType = System.Data.CommandType.Text;
-        //    cm.CommandText = "SELECT * FROM Productos WHERE Estado = true";
-        //    cm.Connection = con;
-
-        //    con.Open();
-        //    reader = cm.ExecuteReader();
-        //    while (reader.Read())
-        //    {
-        //        Productos Prod = new Productos();
-
-        //        Prod.IdProducto = reader.GetInt32(0);
-        //        Prod.Descripcion = reader.GetString(1);
-        //        Prod.Detalle = reader.GetString(2);
-        //        Prod.IdCat = reader.GetInt32(3);
-        //        Prod.IdOrigen = reader.GetInt32(4);
-
-        //        Prod.IdMarca = reader.GetInt32(5);
-        //        Prod.IdColor = reader.GetInt32(6);
-        //        Prod.Precio = reader.GetDecimal(7);
-        //        Prod.Stock = reader.GetInt32(8);
-
-        //        list.Add(Prod);
-        //    }
-        //    con.Close();
-
-        //    return list;
-        //}
-        #endregion
         public List<Productos> Buscar(string Descripcion)
         {
-            List<Productos> list = new List<Productos>();
-            OleDbConnection con = new OleDbConnection();
-            OleDbCommand cm = new OleDbCommand();
-            OleDbDataReader reader;
+            List<Productos> lista = new List<Productos>();
 
-            con.ConnectionString = ConectarDB();
-            cm.CommandType = System.Data.CommandType.Text;
-
-            cm.CommandText = $"SELECT IdProducto, Descripcion, Detalle, IdCat, IdMarca, IdColor, Precio, Stock FROM Productos WHERE Descripcion LIKE ('%{Descripcion}%') AND Estado = true";
-            cm.Connection = con;
-            con.Open();
-
-            reader = cm.ExecuteReader();
-
-            while (reader.Read())
+            using (OleDbConnection con = new OleDbConnection(ConectarDB()))
+            using (OleDbCommand cm = con.CreateCommand())
             {
-                Productos Prod = new Productos();
+                cm.CommandText = @"
+            SELECT p.IdProducto, p.Descripcion, p.Detalle,
+                   c.IdCat, c.Descripcion AS Categoria,
+                   m.IdMarca, m.Descripcion AS Marca,
+                   col.IdColor, col.Descripcion AS Color,
+                   p.Precio, p.Stock, p.Estado
+            FROM ((Productos p
+            INNER JOIN Categoria c ON p.IdCat = c.IdCat)
+            INNER JOIN Marcas m ON p.IdMarca = m.IdMarca)
+            INNER JOIN Color col ON p.IdColor = col.IdColor
+            WHERE p.Estado = True
+              AND p.Descripcion LIKE @desc
+            ORDER BY p.IdProducto";
 
-                Prod.IdProducto = reader.GetInt32(0);
-                Prod.Descripcion = reader.GetString(1);
-                Prod.Detalle = reader.GetString(2);
-                Prod.IdCat = reader.GetInt32(3);
-                Prod.IdMarca = reader.GetInt32(4);
-                Prod.IdColor = reader.GetInt32(5);
-                Prod.Precio = reader.GetDecimal(6);
-                Prod.Stock = reader.GetInt32(7);
+                // 🔹 Usamos parámetros para evitar errores y SQL Injection
+                cm.Parameters.AddWithValue("@desc", Descripcion + "%");
 
-                list.Add(Prod);
+                con.Open();
+                using (OleDbDataReader reader = cm.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        Productos prod = new Productos
+                        {
+                            IdProducto = reader["IdProducto"] != DBNull.Value ? Convert.ToInt32(reader["IdProducto"]) : 0,
+                            Descripcion = reader["Descripcion"] != DBNull.Value ? reader["Descripcion"].ToString() : string.Empty,
+                            Detalle = reader["Detalle"] != DBNull.Value ? reader["Detalle"].ToString() : string.Empty,
+                            IdCat = reader["IdCat"] != DBNull.Value ? Convert.ToInt32(reader["IdCat"]) : 0,
+                            Categoria = reader["Categoria"] != DBNull.Value ? reader["Categoria"].ToString() : string.Empty,
+                            IdMarca = reader["IdMarca"] != DBNull.Value ? Convert.ToInt32(reader["IdMarca"]) : 0,
+                            Marca = reader["Marca"] != DBNull.Value ? reader["Marca"].ToString() : string.Empty,
+                            IdColor = reader["IdColor"] != DBNull.Value ? Convert.ToInt32(reader["IdColor"]) : 0,
+                            Color = reader["Color"] != DBNull.Value ? reader["Color"].ToString() : string.Empty,
+                            Precio = reader["Precio"] != DBNull.Value ? Convert.ToDecimal(reader["Precio"]) : 0m,
+                            Stock = reader["Stock"] != DBNull.Value ? Convert.ToInt32(reader["Stock"]) : 0,
+                            Estado = reader["Estado"] != DBNull.Value ? Convert.ToBoolean(reader["Estado"]) : false
+                        };
+
+                        lista.Add(prod);
+                    }
+                }
             }
 
-            con.Close();
-            return list;
+            return lista;
         }
         public List<Productos> BuscarPapelera(string Descripcion)
         {
-            List<Productos> list = new List<Productos>();
-            OleDbConnection con = new OleDbConnection();
-            OleDbCommand cm = new OleDbCommand();
-            OleDbDataReader reader;
+            List<Productos> lista = new List<Productos>();
 
-            con.ConnectionString = ConectarDB();
-            cm.CommandType = System.Data.CommandType.Text;
-
-            cm.CommandText = $"SELECT IdProducto, Descripcion, Detalle, IdCat, Precio, Stock FROM Productos WHERE Descripcion LIKE ('%{Descripcion}%') AND Estado = false";
-            cm.Connection = con;
-            con.Open();
-
-            reader = cm.ExecuteReader();
-
-            while (reader.Read())
+            using (OleDbConnection con = new OleDbConnection(ConectarDB()))
+            using (OleDbCommand cm = con.CreateCommand())
             {
-                Productos Prod = new Productos();
+                cm.CommandText = @"
+            SELECT p.IdProducto, p.Descripcion, p.Detalle,
+                   c.IdCat, c.Descripcion AS Categoria,
+                   m.IdMarca, m.Descripcion AS Marca,
+                   col.IdColor, col.Descripcion AS Color,
+                   p.Precio, p.Stock, p.Estado
+            FROM ((Productos p
+            INNER JOIN Categoria c ON p.IdCat = c.IdCat)
+            INNER JOIN Marcas m ON p.IdMarca = m.IdMarca)
+            INNER JOIN Color col ON p.IdColor = col.IdColor
+            WHERE p.Estado = False
+              AND p.Descripcion LIKE @desc
+            ORDER BY p.IdProducto";
 
-                Prod.IdProducto = reader.GetInt32(0);
-                Prod.Descripcion = reader.GetString(1);
-                Prod.Detalle = reader.GetString(2);
-                Prod.IdCat = reader.GetInt32(3);
-                Prod.IdMarca = reader.GetInt32(4);
-                Prod.IdColor = reader.GetInt32(5);
-                Prod.Precio = reader.GetDecimal(6);
-                Prod.Stock = reader.GetInt32(7);
+                cm.Parameters.AddWithValue("@desc", Descripcion + "%");
 
-                list.Add(Prod);
+                con.Open();
+                using (OleDbDataReader reader = cm.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        Productos prod = new Productos
+                        {
+                            IdProducto = reader["IdProducto"] != DBNull.Value ? Convert.ToInt32(reader["IdProducto"]) : 0,
+                            Descripcion = reader["Descripcion"] != DBNull.Value ? reader["Descripcion"].ToString() : string.Empty,
+                            Detalle = reader["Detalle"] != DBNull.Value ? reader["Detalle"].ToString() : string.Empty,
+                            IdCat = reader["IdCat"] != DBNull.Value ? Convert.ToInt32(reader["IdCat"]) : 0,
+                            Categoria = reader["Categoria"] != DBNull.Value ? reader["Categoria"].ToString() : string.Empty,
+                            IdMarca = reader["IdMarca"] != DBNull.Value ? Convert.ToInt32(reader["IdMarca"]) : 0,
+                            Marca = reader["Marca"] != DBNull.Value ? reader["Marca"].ToString() : string.Empty,
+                            IdColor = reader["IdColor"] != DBNull.Value ? Convert.ToInt32(reader["IdColor"]) : 0,
+                            Color = reader["Color"] != DBNull.Value ? reader["Color"].ToString() : string.Empty,
+                            Precio = reader["Precio"] != DBNull.Value ? Convert.ToDecimal(reader["Precio"]) : 0m,
+                            Stock = reader["Stock"] != DBNull.Value ? Convert.ToInt32(reader["Stock"]) : 0,
+                            Estado = reader["Estado"] != DBNull.Value ? Convert.ToBoolean(reader["Estado"]) : false
+                        };
+
+                        lista.Add(prod);
+                    }
+                }
             }
 
-            con.Close();
-            return list;
+            return lista;
         }
+        private bool ColumnExists(IDataRecord r, string columnName)
+        {
+            for (int i = 0; i < r.FieldCount; i++)
+                if (r.GetName(i).Equals(columnName, StringComparison.OrdinalIgnoreCase)) return true;
+            return false;
+        }
+        public List<Productos> ListarINNERJOIN()
+        {
+            List<Productos> lista = new List<Productos>();
 
+            using (OleDbConnection con = new OleDbConnection(ConectarDB()))
+            using (OleDbCommand cm = con.CreateCommand())
+            {
+
+                cm.CommandText = @"
+                SELECT p.IdProducto, p.Descripcion, p.Detalle,
+                       c.IdCat, c.Descripcion AS Categoria,
+                       m.IdMarca, m.Descripcion AS Marca,
+                       col.IdColor, col.Descripcion AS Color,
+                       p.Precio, p.Stock, p.Estado
+                FROM ((Productos p
+                INNER JOIN Categoria c ON p.IdCat = c.IdCat)
+                INNER JOIN Marcas m ON p.IdMarca = m.IdMarca)
+                INNER JOIN Color col ON p.IdColor = col.IdColor
+                WHERE p.Estado = True
+                ORDER BY p.IdProducto";
+
+                con.Open();
+                using (OleDbDataReader reader = cm.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        Productos prod = new Productos
+                        {
+                            IdProducto = reader["IdProducto"] != DBNull.Value ? Convert.ToInt32(reader["IdProducto"]) : 0,
+                            Descripcion = reader["Descripcion"] != DBNull.Value ? reader["Descripcion"].ToString() : string.Empty,
+                            Detalle = reader["Detalle"] != DBNull.Value ? reader["Detalle"].ToString() : string.Empty,
+                            IdCat = reader["IdCat"] != DBNull.Value ? Convert.ToInt32(reader["IdCat"]) : 0,
+                            Categoria = ColumnExists(reader, "Categoria") ? reader["Categoria"].ToString() :
+                                               (ColumnExists(reader, "Categoria") ? reader["Categoria"].ToString() : string.Empty),
+                            IdMarca = reader["IdMarca"] != DBNull.Value ? Convert.ToInt32(reader["IdMarca"]) : 0,
+                            Marca = ColumnExists(reader, "Marca") ? reader["Marca"].ToString() :
+                                            (ColumnExists(reader, "Marca") ? reader["Marca"].ToString() : string.Empty),
+                            IdColor = reader["IdColor"] != DBNull.Value ? Convert.ToInt32(reader["IdColor"]) : 0,
+                            Color = ColumnExists(reader, "Color") ? reader["Color"].ToString() :
+                                            (ColumnExists(reader, "Color") ? reader["Color"].ToString() : string.Empty),
+                            Precio = reader["Precio"] != DBNull.Value ? Convert.ToDecimal(reader["Precio"]) : 0m,
+                            Stock = reader["Stock"] != DBNull.Value ? Convert.ToInt32(reader["Stock"]) : 0,
+                            Estado = reader["Estado"] != DBNull.Value ? Convert.ToBoolean(reader["Estado"]) : false
+                        };
+
+                        lista.Add(prod);
+                    }
+                }
+            }
+
+            return lista;
+        }
+    }
 }
 
-    }
+    
 
 
 

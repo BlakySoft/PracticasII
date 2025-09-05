@@ -50,14 +50,13 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Barrio.cs" />
     <Compile Include="Cliente.cs" />
     <Compile Include="Colores.cs" />
     <Compile Include="Compra.cs" />
     <Compile Include="Localidad.cs" />
     <Compile Include="Marca.cs" />
     <Compile Include="Metododepago.cs" />
-    <Compile Include="Pedido.cs" />
+    <Compile Include="Venta.cs" />
     <Compile Include="Productos.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Proveedores.cs" />

@@ -29,6 +29,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label8 = new System.Windows.Forms.Label();
             this.TxtBuscar = new System.Windows.Forms.TextBox();
             this.Grilla = new System.Windows.Forms.DataGridView();
@@ -38,10 +39,10 @@
             this.BtnNuevo = new FontAwesome.Sharp.IconButton();
             this.BtnCancelar = new FontAwesome.Sharp.IconButton();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.iconButton2 = new FontAwesome.Sharp.IconButton();
+            this.BtnPapelera = new FontAwesome.Sharp.IconButton();
             this.BtnImprimir = new FontAwesome.Sharp.IconButton();
             this.BtnSalir = new FontAwesome.Sharp.IconButton();
-            this.BtnActualizar = new FontAwesome.Sharp.IconButton();
-            this.BtnPapelera = new FontAwesome.Sharp.IconButton();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -63,6 +64,7 @@
             this.CboIdCol = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.iconButton1 = new FontAwesome.Sharp.IconButton();
             this.label7 = new System.Windows.Forms.Label();
             this.Imprimir = new System.Drawing.Printing.PrintDocument();
             ((System.ComponentModel.ISupportInitialize)(this.Grilla)).BeginInit();
@@ -74,7 +76,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.ForeColor = System.Drawing.Color.White;
+            this.label8.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label8.Location = new System.Drawing.Point(17, 44);
             this.label8.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label8.Name = "label8";
@@ -87,7 +89,7 @@
             this.TxtBuscar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.TxtBuscar.Location = new System.Drawing.Point(99, 42);
             this.TxtBuscar.Name = "TxtBuscar";
-            this.TxtBuscar.Size = new System.Drawing.Size(570, 26);
+            this.TxtBuscar.Size = new System.Drawing.Size(703, 26);
             this.TxtBuscar.TabIndex = 9;
             this.TxtBuscar.TextChanged += new System.EventHandler(this.TxtBuscar_TextChanged);
             // 
@@ -95,28 +97,39 @@
             // 
             this.Grilla.AllowUserToAddRows = false;
             this.Grilla.AllowUserToDeleteRows = false;
-            this.Grilla.BackgroundColor = System.Drawing.Color.Linen;
+            this.Grilla.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(216)))), ((int)(((byte)(228)))));
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(216)))), ((int)(((byte)(228)))));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(216)))), ((int)(((byte)(228)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.Grilla.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.Grilla.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.Grilla.Location = new System.Drawing.Point(225, 87);
+            this.Grilla.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(216)))), ((int)(((byte)(228)))));
+            this.Grilla.Location = new System.Drawing.Point(219, 81);
             this.Grilla.Name = "Grilla";
+            this.Grilla.ReadOnly = true;
             this.Grilla.RowHeadersVisible = false;
-            this.Grilla.Size = new System.Drawing.Size(910, 589);
+            this.Grilla.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.Grilla.Size = new System.Drawing.Size(886, 532);
             this.Grilla.TabIndex = 10;
             this.Grilla.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Grilla_CellClick);
+            this.Grilla.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Grilla_CellDoubleClick);
             // 
             // BtnModificar
             // 
-            this.BtnModificar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.BtnModificar.Dock = System.Windows.Forms.DockStyle.Top;
+            this.BtnModificar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(234)))), ((int)(((byte)(233)))));
             this.BtnModificar.Enabled = false;
             this.BtnModificar.FlatAppearance.BorderSize = 0;
             this.BtnModificar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnModificar.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnModificar.ForeColor = System.Drawing.Color.White;
+            this.BtnModificar.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.BtnModificar.IconChar = FontAwesome.Sharp.IconChar.Archive;
-            this.BtnModificar.IconColor = System.Drawing.Color.White;
+            this.BtnModificar.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(156)))), ((int)(((byte)(191)))), ((int)(((byte)(227)))));
             this.BtnModificar.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.BtnModificar.Location = new System.Drawing.Point(0, 198);
+            this.BtnModificar.Location = new System.Drawing.Point(-4, 140);
             this.BtnModificar.Name = "BtnModificar";
             this.BtnModificar.Size = new System.Drawing.Size(157, 66);
             this.BtnModificar.TabIndex = 38;
@@ -127,16 +140,15 @@
             // 
             // BtnEliminar
             // 
-            this.BtnEliminar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.BtnEliminar.Dock = System.Windows.Forms.DockStyle.Top;
+            this.BtnEliminar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(234)))), ((int)(((byte)(233)))));
             this.BtnEliminar.FlatAppearance.BorderSize = 0;
             this.BtnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnEliminar.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnEliminar.ForeColor = System.Drawing.Color.White;
+            this.BtnEliminar.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.BtnEliminar.IconChar = FontAwesome.Sharp.IconChar.TrashRestoreAlt;
-            this.BtnEliminar.IconColor = System.Drawing.Color.White;
+            this.BtnEliminar.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(156)))), ((int)(((byte)(191)))), ((int)(((byte)(227)))));
             this.BtnEliminar.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.BtnEliminar.Location = new System.Drawing.Point(0, 132);
+            this.BtnEliminar.Location = new System.Drawing.Point(-1, 335);
             this.BtnEliminar.Name = "BtnEliminar";
             this.BtnEliminar.Size = new System.Drawing.Size(157, 66);
             this.BtnEliminar.TabIndex = 37;
@@ -147,16 +159,15 @@
             // 
             // BtnGrabar
             // 
-            this.BtnGrabar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.BtnGrabar.Dock = System.Windows.Forms.DockStyle.Top;
+            this.BtnGrabar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(234)))), ((int)(((byte)(233)))));
             this.BtnGrabar.FlatAppearance.BorderSize = 0;
             this.BtnGrabar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnGrabar.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnGrabar.ForeColor = System.Drawing.Color.White;
+            this.BtnGrabar.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.BtnGrabar.IconChar = FontAwesome.Sharp.IconChar.FileCirclePlus;
-            this.BtnGrabar.IconColor = System.Drawing.Color.White;
+            this.BtnGrabar.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(156)))), ((int)(((byte)(191)))), ((int)(((byte)(227)))));
             this.BtnGrabar.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.BtnGrabar.Location = new System.Drawing.Point(0, 66);
+            this.BtnGrabar.Location = new System.Drawing.Point(-1, 277);
             this.BtnGrabar.Name = "BtnGrabar";
             this.BtnGrabar.Size = new System.Drawing.Size(157, 66);
             this.BtnGrabar.TabIndex = 36;
@@ -167,16 +178,15 @@
             // 
             // BtnNuevo
             // 
-            this.BtnNuevo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.BtnNuevo.Dock = System.Windows.Forms.DockStyle.Top;
+            this.BtnNuevo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(234)))), ((int)(((byte)(233)))));
             this.BtnNuevo.FlatAppearance.BorderSize = 0;
             this.BtnNuevo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnNuevo.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnNuevo.ForeColor = System.Drawing.Color.White;
+            this.BtnNuevo.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.BtnNuevo.IconChar = FontAwesome.Sharp.IconChar.SquareCheck;
-            this.BtnNuevo.IconColor = System.Drawing.Color.White;
+            this.BtnNuevo.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(156)))), ((int)(((byte)(191)))), ((int)(((byte)(227)))));
             this.BtnNuevo.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.BtnNuevo.Location = new System.Drawing.Point(0, 0);
+            this.BtnNuevo.Location = new System.Drawing.Point(-4, 80);
             this.BtnNuevo.Name = "BtnNuevo";
             this.BtnNuevo.Size = new System.Drawing.Size(157, 66);
             this.BtnNuevo.TabIndex = 35;
@@ -187,16 +197,15 @@
             // 
             // BtnCancelar
             // 
-            this.BtnCancelar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.BtnCancelar.Dock = System.Windows.Forms.DockStyle.Top;
+            this.BtnCancelar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(234)))), ((int)(((byte)(233)))));
             this.BtnCancelar.FlatAppearance.BorderSize = 0;
             this.BtnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnCancelar.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnCancelar.ForeColor = System.Drawing.Color.White;
+            this.BtnCancelar.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.BtnCancelar.IconChar = FontAwesome.Sharp.IconChar.FileCircleXmark;
-            this.BtnCancelar.IconColor = System.Drawing.Color.White;
+            this.BtnCancelar.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(156)))), ((int)(((byte)(191)))), ((int)(((byte)(227)))));
             this.BtnCancelar.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.BtnCancelar.Location = new System.Drawing.Point(0, 264);
+            this.BtnCancelar.Location = new System.Drawing.Point(1, 212);
             this.BtnCancelar.Name = "BtnCancelar";
             this.BtnCancelar.Size = new System.Drawing.Size(157, 66);
             this.BtnCancelar.TabIndex = 39;
@@ -207,26 +216,67 @@
             // 
             // panel2
             // 
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(234)))), ((int)(((byte)(233)))));
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel2.Controls.Add(this.BtnImprimir);
-            this.panel2.Controls.Add(this.BtnSalir);
-            this.panel2.Controls.Add(this.BtnActualizar);
+            this.panel2.Controls.Add(this.iconButton2);
             this.panel2.Controls.Add(this.BtnPapelera);
             this.panel2.Controls.Add(this.BtnCancelar);
             this.panel2.Controls.Add(this.BtnModificar);
             this.panel2.Controls.Add(this.BtnEliminar);
             this.panel2.Controls.Add(this.BtnGrabar);
             this.panel2.Controls.Add(this.BtnNuevo);
+            this.panel2.Controls.Add(this.BtnImprimir);
+            this.panel2.Controls.Add(this.BtnSalir);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.panel2.Location = new System.Drawing.Point(1105, 0);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(159, 613);
             this.panel2.TabIndex = 40;
             // 
+            // iconButton2
+            // 
+            this.iconButton2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(234)))), ((int)(((byte)(233)))));
+            this.iconButton2.FlatAppearance.BorderSize = 0;
+            this.iconButton2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.iconButton2.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.iconButton2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.iconButton2.IconChar = FontAwesome.Sharp.IconChar.TrashRestore;
+            this.iconButton2.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(156)))), ((int)(((byte)(191)))), ((int)(((byte)(227)))));
+            this.iconButton2.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconButton2.IconSize = 42;
+            this.iconButton2.Location = new System.Drawing.Point(-3, 398);
+            this.iconButton2.Name = "iconButton2";
+            this.iconButton2.Size = new System.Drawing.Size(159, 66);
+            this.iconButton2.TabIndex = 47;
+            this.iconButton2.Text = "Papelera";
+            this.iconButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.iconButton2.UseVisualStyleBackColor = false;
+            this.iconButton2.Click += new System.EventHandler(this.BtnPapelera_Click);
+            // 
+            // BtnPapelera
+            // 
+            this.BtnPapelera.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(234)))), ((int)(((byte)(233)))));
+            this.BtnPapelera.FlatAppearance.BorderSize = 0;
+            this.BtnPapelera.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnPapelera.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnPapelera.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.BtnPapelera.IconChar = FontAwesome.Sharp.IconChar.TrashRestore;
+            this.BtnPapelera.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(156)))), ((int)(((byte)(191)))), ((int)(((byte)(227)))));
+            this.BtnPapelera.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.BtnPapelera.IconSize = 42;
+            this.BtnPapelera.Location = new System.Drawing.Point(-1, 407);
+            this.BtnPapelera.Name = "BtnPapelera";
+            this.BtnPapelera.Size = new System.Drawing.Size(159, 66);
+            this.BtnPapelera.TabIndex = 47;
+            this.BtnPapelera.Text = "Papelera";
+            this.BtnPapelera.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.BtnPapelera.UseVisualStyleBackColor = false;
+            this.BtnPapelera.Click += new System.EventHandler(this.BtnPapelera_Click);
+            // 
             // BtnImprimir
             // 
-            this.BtnImprimir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.BtnImprimir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(156)))), ((int)(((byte)(191)))), ((int)(((byte)(227)))));
             this.BtnImprimir.FlatAppearance.BorderSize = 0;
             this.BtnImprimir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnImprimir.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -235,64 +285,28 @@
             this.BtnImprimir.IconColor = System.Drawing.Color.White;
             this.BtnImprimir.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.BtnImprimir.IconSize = 30;
-            this.BtnImprimir.Location = new System.Drawing.Point(18, 458);
+            this.BtnImprimir.Location = new System.Drawing.Point(18, 543);
             this.BtnImprimir.Name = "BtnImprimir";
             this.BtnImprimir.Size = new System.Drawing.Size(115, 38);
             this.BtnImprimir.TabIndex = 47;
             this.BtnImprimir.Text = "&Imprimir";
             this.BtnImprimir.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.BtnImprimir.UseVisualStyleBackColor = false;
-            this.BtnImprimir.Click += new System.EventHandler(this.BtnImprimir_Click_1);
             // 
             // BtnSalir
             // 
-            this.BtnSalir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.BtnSalir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(156)))), ((int)(((byte)(191)))), ((int)(((byte)(227)))));
             this.BtnSalir.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.BtnSalir.IconChar = FontAwesome.Sharp.IconChar.X;
             this.BtnSalir.IconColor = System.Drawing.Color.White;
             this.BtnSalir.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.BtnSalir.IconSize = 30;
-            this.BtnSalir.Location = new System.Drawing.Point(109, 405);
+            this.BtnSalir.Location = new System.Drawing.Point(109, 490);
             this.BtnSalir.Name = "BtnSalir";
             this.BtnSalir.Size = new System.Drawing.Size(38, 33);
             this.BtnSalir.TabIndex = 49;
             this.BtnSalir.UseVisualStyleBackColor = false;
             this.BtnSalir.Click += new System.EventHandler(this.BtnSalir_Click);
-            // 
-            // BtnActualizar
-            // 
-            this.BtnActualizar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.BtnActualizar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.BtnActualizar.IconChar = FontAwesome.Sharp.IconChar.ArrowsSpin;
-            this.BtnActualizar.IconColor = System.Drawing.Color.White;
-            this.BtnActualizar.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.BtnActualizar.IconSize = 34;
-            this.BtnActualizar.Location = new System.Drawing.Point(18, 405);
-            this.BtnActualizar.Name = "BtnActualizar";
-            this.BtnActualizar.Size = new System.Drawing.Size(38, 33);
-            this.BtnActualizar.TabIndex = 48;
-            this.BtnActualizar.UseVisualStyleBackColor = false;
-            this.BtnActualizar.Click += new System.EventHandler(this.BtnActualizar_Click);
-            // 
-            // BtnPapelera
-            // 
-            this.BtnPapelera.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.BtnPapelera.FlatAppearance.BorderSize = 0;
-            this.BtnPapelera.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnPapelera.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnPapelera.ForeColor = System.Drawing.Color.White;
-            this.BtnPapelera.IconChar = FontAwesome.Sharp.IconChar.TrashRestore;
-            this.BtnPapelera.IconColor = System.Drawing.Color.White;
-            this.BtnPapelera.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.BtnPapelera.IconSize = 42;
-            this.BtnPapelera.Location = new System.Drawing.Point(3, 320);
-            this.BtnPapelera.Name = "BtnPapelera";
-            this.BtnPapelera.Size = new System.Drawing.Size(159, 66);
-            this.BtnPapelera.TabIndex = 47;
-            this.BtnPapelera.Text = "Papelera";
-            this.BtnPapelera.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.BtnPapelera.UseVisualStyleBackColor = false;
-            this.BtnPapelera.Click += new System.EventHandler(this.BtnPapelera_Click);
             // 
             // label1
             // 
@@ -309,7 +323,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label2.Location = new System.Drawing.Point(3, 113);
             this.label2.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label2.Name = "label2";
@@ -321,7 +335,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.White;
+            this.label3.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label3.Location = new System.Drawing.Point(3, 174);
             this.label3.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label3.Name = "label3";
@@ -333,8 +347,8 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(6, 431);
+            this.label4.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label4.Location = new System.Drawing.Point(4, 427);
             this.label4.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(64, 19);
@@ -345,7 +359,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.White;
+            this.label5.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label5.Location = new System.Drawing.Point(1, 239);
             this.label5.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label5.Name = "label5";
@@ -357,8 +371,8 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(3, 486);
+            this.label6.ForeColor = System.Drawing.Color.Black;
+            this.label6.Location = new System.Drawing.Point(3, 484);
             this.label6.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(59, 19);
@@ -372,6 +386,7 @@
             this.TxtDescripcion.Name = "TxtDescripcion";
             this.TxtDescripcion.Size = new System.Drawing.Size(205, 26);
             this.TxtDescripcion.TabIndex = 7;
+            this.TxtDescripcion.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtDescripcion_KeyPress);
             // 
             // TxtDetalle
             // 
@@ -380,22 +395,25 @@
             this.TxtDetalle.Name = "TxtDetalle";
             this.TxtDetalle.Size = new System.Drawing.Size(205, 26);
             this.TxtDetalle.TabIndex = 8;
+            this.TxtDetalle.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtDetalle_KeyPress);
             // 
             // TxtStock
             // 
             this.TxtStock.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.TxtStock.Location = new System.Drawing.Point(5, 524);
+            this.TxtStock.Location = new System.Drawing.Point(5, 510);
             this.TxtStock.Name = "TxtStock";
             this.TxtStock.Size = new System.Drawing.Size(205, 26);
             this.TxtStock.TabIndex = 9;
+            this.TxtStock.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtStock_KeyPress);
             // 
             // TxtPrecio
             // 
             this.TxtPrecio.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.TxtPrecio.Location = new System.Drawing.Point(5, 457);
+            this.TxtPrecio.Location = new System.Drawing.Point(5, 454);
             this.TxtPrecio.Name = "TxtPrecio";
             this.TxtPrecio.Size = new System.Drawing.Size(205, 26);
             this.TxtPrecio.TabIndex = 11;
+            this.TxtPrecio.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtPrecio_KeyPress);
             // 
             // CboIdCat
             // 
@@ -405,6 +423,7 @@
             this.CboIdCat.Name = "CboIdCat";
             this.CboIdCat.Size = new System.Drawing.Size(169, 27);
             this.CboIdCat.TabIndex = 12;
+            this.CboIdCat.SelectionChangeCommitted += new System.EventHandler(this.CboIdCat_SelectionChangeCommitted);
             // 
             // LblIdProducto
             // 
@@ -419,13 +438,13 @@
             // 
             // BtnCat
             // 
-            this.BtnCat.BackColor = System.Drawing.Color.White;
+            this.BtnCat.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(156)))), ((int)(((byte)(191)))), ((int)(((byte)(227)))));
             this.BtnCat.FlatAppearance.BorderSize = 0;
             this.BtnCat.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnCat.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnCat.ForeColor = System.Drawing.Color.White;
             this.BtnCat.IconChar = FontAwesome.Sharp.IconChar.MagnifyingGlassPlus;
-            this.BtnCat.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.BtnCat.IconColor = System.Drawing.Color.White;
             this.BtnCat.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.BtnCat.IconSize = 20;
             this.BtnCat.Location = new System.Drawing.Point(180, 261);
@@ -438,7 +457,7 @@
             // 
             // PanelDatos
             // 
-            this.PanelDatos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.PanelDatos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(234)))), ((int)(((byte)(233)))));
             this.PanelDatos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.PanelDatos.Controls.Add(this.btnCol);
             this.PanelDatos.Controls.Add(this.CboIdMar);
@@ -467,13 +486,13 @@
             // 
             // btnCol
             // 
-            this.btnCol.BackColor = System.Drawing.Color.White;
+            this.btnCol.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(156)))), ((int)(((byte)(191)))), ((int)(((byte)(227)))));
             this.btnCol.FlatAppearance.BorderSize = 0;
             this.btnCol.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCol.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCol.ForeColor = System.Drawing.Color.White;
             this.btnCol.IconChar = FontAwesome.Sharp.IconChar.MagnifyingGlassPlus;
-            this.btnCol.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.btnCol.IconColor = System.Drawing.Color.White;
             this.btnCol.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnCol.IconSize = 20;
             this.btnCol.Location = new System.Drawing.Point(180, 388);
@@ -492,12 +511,13 @@
             this.CboIdMar.Name = "CboIdMar";
             this.CboIdMar.Size = new System.Drawing.Size(169, 27);
             this.CboIdMar.TabIndex = 32;
+            this.CboIdMar.SelectionChangeCommitted += new System.EventHandler(this.CboIdMar_SelectionChangeCommitted);
             // 
             // label11
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.ForeColor = System.Drawing.Color.White;
+            this.label11.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label11.Location = new System.Drawing.Point(3, 366);
             this.label11.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label11.Name = "label11";
@@ -507,13 +527,13 @@
             // 
             // BtnMar
             // 
-            this.BtnMar.BackColor = System.Drawing.Color.White;
+            this.BtnMar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(156)))), ((int)(((byte)(191)))), ((int)(((byte)(227)))));
             this.BtnMar.FlatAppearance.BorderSize = 0;
             this.BtnMar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnMar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnMar.ForeColor = System.Drawing.Color.White;
             this.BtnMar.IconChar = FontAwesome.Sharp.IconChar.MagnifyingGlassPlus;
-            this.BtnMar.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.BtnMar.IconColor = System.Drawing.Color.White;
             this.BtnMar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.BtnMar.IconSize = 20;
             this.BtnMar.Location = new System.Drawing.Point(180, 328);
@@ -532,12 +552,13 @@
             this.CboIdCol.Name = "CboIdCol";
             this.CboIdCol.Size = new System.Drawing.Size(169, 27);
             this.CboIdCol.TabIndex = 26;
+            this.CboIdCol.SelectionChangeCommitted += new System.EventHandler(this.CboIdCol_SelectionChangeCommitted);
             // 
             // label9
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.ForeColor = System.Drawing.Color.White;
+            this.label9.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label9.Location = new System.Drawing.Point(-1, 306);
             this.label9.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label9.Name = "label9";
@@ -547,7 +568,8 @@
             // 
             // panel3
             // 
-            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(234)))), ((int)(((byte)(233)))));
+            this.panel3.Controls.Add(this.iconButton1);
             this.panel3.Controls.Add(this.label7);
             this.panel3.Controls.Add(this.label8);
             this.panel3.Controls.Add(this.TxtBuscar);
@@ -557,11 +579,29 @@
             this.panel3.Size = new System.Drawing.Size(886, 81);
             this.panel3.TabIndex = 46;
             // 
+            // iconButton1
+            // 
+            this.iconButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(156)))), ((int)(((byte)(191)))), ((int)(((byte)(227)))));
+            this.iconButton1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.iconButton1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(156)))), ((int)(((byte)(191)))), ((int)(((byte)(227)))));
+            this.iconButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.iconButton1.IconChar = FontAwesome.Sharp.IconChar.TrashAlt;
+            this.iconButton1.IconColor = System.Drawing.Color.White;
+            this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconButton1.IconSize = 30;
+            this.iconButton1.Location = new System.Drawing.Point(825, 40);
+            this.iconButton1.Margin = new System.Windows.Forms.Padding(0);
+            this.iconButton1.Name = "iconButton1";
+            this.iconButton1.Size = new System.Drawing.Size(29, 26);
+            this.iconButton1.TabIndex = 50;
+            this.iconButton1.UseVisualStyleBackColor = false;
+            this.iconButton1.Click += new System.EventHandler(this.iconButton1_Click);
+            // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ForeColor = System.Drawing.Color.White;
+            this.label7.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label7.Location = new System.Drawing.Point(17, 11);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(145, 19);
@@ -576,8 +616,8 @@
             this.ClientSize = new System.Drawing.Size(1264, 613);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
-            this.Controls.Add(this.Grilla);
             this.Controls.Add(this.PanelDatos);
+            this.Controls.Add(this.Grilla);
             this.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.Color.Black;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -606,8 +646,6 @@
         private FontAwesome.Sharp.IconButton BtnCancelar;
         private System.Windows.Forms.Panel panel2;
         private FontAwesome.Sharp.IconButton BtnPapelera;
-        private FontAwesome.Sharp.IconButton BtnSalir;
-        private FontAwesome.Sharp.IconButton BtnActualizar;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
@@ -624,7 +662,6 @@
         private System.Windows.Forms.Panel PanelDatos;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label label7;
-        private FontAwesome.Sharp.IconButton BtnImprimir;
         private System.Drawing.Printing.PrintDocument Imprimir;
         private FontAwesome.Sharp.IconButton btnCol;
         private System.Windows.Forms.ComboBox CboIdMar;
@@ -632,5 +669,9 @@
         private FontAwesome.Sharp.IconButton BtnMar;
         private System.Windows.Forms.ComboBox CboIdCol;
         private System.Windows.Forms.Label label9;
+        private FontAwesome.Sharp.IconButton BtnImprimir;
+        private FontAwesome.Sharp.IconButton BtnSalir;
+        private FontAwesome.Sharp.IconButton iconButton1;
+        private FontAwesome.Sharp.IconButton iconButton2;
     }
 }

@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace CapaNegocios
 {
-    public class Pedido
+    public class Venta
     {
-        public int IdPedido { get; set; }
+        public int IdVenta { get; set; }
         public int IdCliente { get; set; }
         public int IdMetodo { get; set; }
         public int IdEntrega { get; set; }

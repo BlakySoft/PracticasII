@@ -18,218 +18,211 @@ namespace CapaDatos
             return cadenaconexion;
         }
         #endregion
+
+        // ----------------- Agregar Cliente -----------------
         public void AgregarCliente(Cliente Cli)
         {
-            OleDbConnection con = new OleDbConnection();
-            OleDbCommand cm = new OleDbCommand();
+            using (OleDbConnection con = new OleDbConnection(ConectarDB()))
+            using (OleDbCommand cm = new OleDbCommand())
+            {
+                cm.Connection = con;
+                cm.CommandType = System.Data.CommandType.Text;
+                cm.CommandText = "INSERT INTO Clientes(Apellido, Nombre, Documento, Telefono, Domicilio, Estado) " +
+                                 "VALUES (@Apellido, @Nombre, @Documento, @Telefono, @Domicilio, true)";
 
-            con.ConnectionString = ConectarDB();
-            cm.CommandType = System.Data.CommandType.Text;
+                cm.Parameters.AddWithValue("@Apellido", Cli.Apellido);
+                cm.Parameters.AddWithValue("@Nombre", Cli.Nombre);
+                cm.Parameters.AddWithValue("@Documento", Cli.Documento);
+                cm.Parameters.AddWithValue("@Telefono", Cli.Telefono);
+                cm.Parameters.AddWithValue("@Domicilio", Cli.Domicilio);
 
-            cm.CommandText = "insert into Clientes(Nombre, Documento, Telefono, Domicilio, Estado) values (@Nombre, @Documento, @Telefono, @Domicilio, true)";
-            cm.Connection = con;
-
-            cm.Parameters.AddWithValue("Nombre", Cli.Nombre);
-            cm.Parameters.AddWithValue("Documento", Cli.Documento);
-            cm.Parameters.AddWithValue("Telefono", Cli.Telefono);
-            cm.Parameters.AddWithValue("Domicilio", Cli.Domicilio);
-            //cm.Parameters.AddWithValue("IdBarrio", Cli.IdBarrio); No se encuentra en uso
-
-            con.Open();
-            cm.ExecuteNonQuery();
-            con.Close();
+                con.Open();
+                cm.ExecuteNonQuery();
+            }
         }
+
+        // ----------------- Actualizar Cliente -----------------
         public void ActualizarCliente(Cliente Cli)
         {
-            OleDbConnection con = new OleDbConnection();
-            OleDbCommand cm = new OleDbCommand();
+            using (OleDbConnection con = new OleDbConnection(ConectarDB()))
+            using (OleDbCommand cm = new OleDbCommand())
+            {
+                cm.Connection = con;
+                cm.CommandType = System.Data.CommandType.Text;
+                cm.CommandText = "UPDATE Clientes SET Apellido=@Apellido, Nombre=@Nombre, Documento=@Documento, " +
+                                 "Telefono=@Telefono, Domicilio=@Domicilio WHERE IdCliente=@IdCliente";
 
-            con.ConnectionString = ConectarDB();
-            cm.CommandType = System.Data.CommandType.Text;
+                cm.Parameters.AddWithValue("@Apellido", Cli.Apellido);
+                cm.Parameters.AddWithValue("@Nombre", Cli.Nombre);
+                cm.Parameters.AddWithValue("@Documento", Cli.Documento);
+                cm.Parameters.AddWithValue("@Telefono", Cli.Telefono);
+                cm.Parameters.AddWithValue("@Domicilio", Cli.Domicilio);
+                cm.Parameters.AddWithValue("@IdCliente", Cli.IdCliente);
 
-
-            cm.CommandText = $"update Clientes set Nombre=@Nombre, Documento=@Documento, Telefono=@Telefono, Domicilio=@Domicilio where IdCliente = {Cli.IdCliente}";
-            cm.Connection = con;
-
-
-            cm.Parameters.AddWithValue("Nombre", Cli.Nombre);
-            cm.Parameters.AddWithValue("Documento", Cli.Documento);
-            cm.Parameters.AddWithValue("Telefono", Cli.Telefono);
-            cm.Parameters.AddWithValue("Domicilio", Cli.Domicilio);
-            //cm.Parameters.AddWithValue("IdBarrio", Cli.IdBarrio); No se encuentra en uso
-
-            con.Open();
-            cm.ExecuteNonQuery();
-            con.Close();
+                con.Open();
+                cm.ExecuteNonQuery();
+            }
         }
+
+        // ----------------- Borrar Cliente -----------------
         public void BorrarCliente(Cliente Cli)
         {
-            OleDbConnection cone = new OleDbConnection();
-            OleDbCommand cm = new OleDbCommand();
+            using (OleDbConnection con = new OleDbConnection(ConectarDB()))
+            using (OleDbCommand cm = new OleDbCommand())
+            {
+                cm.Connection = con;
+                cm.CommandType = System.Data.CommandType.Text;
+                cm.CommandText = "UPDATE Clientes SET Estado=false WHERE IdCliente=@IdCliente";
+                cm.Parameters.AddWithValue("@IdCliente", Cli.IdCliente);
 
-            cone.ConnectionString = ConectarDB();
-            cm.CommandType = System.Data.CommandType.Text;
-
-
-            cm.CommandText = $"update Clientes set Estado = false where IdCliente = {Cli.IdCliente}";
-            cm.Connection = cone;
-
-            cone.Open();
-            cm.ExecuteNonQuery();
-            cone.Close();
+                con.Open();
+                cm.ExecuteNonQuery();
+            }
         }
+
+        // ----------------- Recuperar Cliente -----------------
         public void RecuperarCliente(Cliente Cli)
         {
-            OleDbConnection cone = new OleDbConnection();
-            OleDbCommand cm = new OleDbCommand();
-
-            cone.ConnectionString = ConectarDB();
-            cm.CommandType = System.Data.CommandType.Text;
-
-
-            cm.CommandText = $"update Clientes set Estado = true where IdCliente = {Cli.IdCliente}";
-            cm.Connection = cone;
-
-            cone.Open();
-            cm.ExecuteNonQuery();
-            cone.Close();
-        }
-        public List<Cliente> ListarClientePapelera()
-        {
-            List<Cliente> list = new List<Cliente>();
-            OleDbConnection con = new OleDbConnection();
-            OleDbCommand cm = new OleDbCommand();
-
-            OleDbDataReader reader;
-
-            con.ConnectionString = ConectarDB();
-            cm.CommandType = System.Data.CommandType.Text;
-            cm.CommandText = "SELECT * FROM Clientes WHERE Estado = false";
-            cm.Connection = con;
-
-            con.Open();
-            reader = cm.ExecuteReader();
-            while (reader.Read())
+            using (OleDbConnection con = new OleDbConnection(ConectarDB()))
+            using (OleDbCommand cm = new OleDbCommand())
             {
-                Cliente Cli = new Cliente();
+                cm.Connection = con;
+                cm.CommandType = System.Data.CommandType.Text;
+                cm.CommandText = "UPDATE Clientes SET Estado=true WHERE IdCliente=@IdCliente";
+                cm.Parameters.AddWithValue("@IdCliente", Cli.IdCliente);
 
-                Cli.IdCliente = reader.GetInt32(0);
-                Cli.Nombre = reader.GetString(1);
-                Cli.Documento = reader.GetString(2);
-                Cli.Telefono = reader.GetString(3);
-                Cli.Domicilio = reader.GetString(4);
-                //Cli.IdBarrio = reader.GetInt32(5); No se encuentra en uso
-
-
-                list.Add(Cli);
+                con.Open();
+                cm.ExecuteNonQuery();
             }
-            con.Close();
-
-            return list;
         }
+
+        // ----------------- Listar Clientes -----------------
         public List<Cliente> ListarCliente()
         {
             List<Cliente> list = new List<Cliente>();
-            OleDbConnection con = new OleDbConnection();
-            OleDbCommand cm = new OleDbCommand();
-
-            OleDbDataReader reader;
-
-            con.ConnectionString = ConectarDB();
-            cm.CommandType = System.Data.CommandType.Text;
-            cm.CommandText = "SELECT * FROM Clientes WHERE Estado = true";
-            cm.Connection = con;
-
-            con.Open();
-            reader = cm.ExecuteReader();
-            while (reader.Read())
+            using (OleDbConnection con = new OleDbConnection(ConectarDB()))
+            using (OleDbCommand cm = new OleDbCommand("SELECT * FROM Clientes WHERE Estado=true", con))
             {
-                Cliente Cli = new Cliente();
-
-                Cli.IdCliente = reader.GetInt32(0);
-                Cli.Nombre = reader.GetString(1);
-                Cli.Documento = reader.GetString(2);
-                Cli.Telefono = reader.GetString(3);
-                Cli.Domicilio = reader.GetString(4);
-                //Cli.IdBarrio = reader.GetInt32(5); No se encuentra en uso
-
-
-                list.Add(Cli);
+                con.Open();
+                using (OleDbDataReader reader = cm.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        Cliente Cli = new Cliente
+                        {
+                            IdCliente = Convert.ToInt32(reader["IdCliente"]),
+                            Apellido = reader["Apellido"].ToString(),
+                            Nombre = reader["Nombre"].ToString(),
+                            Documento = reader["Documento"].ToString(),
+                            Telefono = reader["Telefono"].ToString(),
+                            Domicilio = reader["Domicilio"].ToString(),
+                            Estado = Convert.ToBoolean(reader["Estado"])
+                        };
+                        list.Add(Cli);
+                    }
+                }
             }
-            con.Close();
-
             return list;
         }
-        public List<Cliente> BuscarCliente(string Nombre)
+
+        // ----------------- Listar Clientes Papelera -----------------
+        public List<Cliente> ListarClientePapelera()
         {
             List<Cliente> list = new List<Cliente>();
-            OleDbConnection con = new OleDbConnection();
-            OleDbCommand cm = new OleDbCommand();
-            OleDbDataReader reader;
-
-            con.ConnectionString = ConectarDB();
-            cm.CommandType = System.Data.CommandType.Text;
-
-            cm.CommandText = $"Select IdCliente, Nombre, Documento, Telefono, Domicilio, IdBarrio from Clientes where Nombre like ('%{Nombre}%') order by IdCliente, Nombre, Documento, Telefono, Domicilio";
-            cm.Connection = con;
-            con.Open();
-
-            reader = cm.ExecuteReader();
-
-            while (reader.Read())
+            using (OleDbConnection con = new OleDbConnection(ConectarDB()))
+            using (OleDbCommand cm = new OleDbCommand("SELECT * FROM Clientes WHERE Estado=false", con))
             {
-                Cliente Cli = new Cliente();
-
-
-                Cli.IdCliente = reader.GetInt32(0);
-                Cli.Nombre = reader.GetString(1);
-                Cli.Documento = reader.GetString(2);
-                Cli.Telefono = reader.GetString(3);
-                Cli.Domicilio = reader.GetString(4);
-                //Cli.IdBarrio = reader.GetInt32(5); No se encuentra en uso
-
-
-                list.Add(Cli);
+                con.Open();
+                using (OleDbDataReader reader = cm.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        Cliente Cli = new Cliente
+                        {
+                            IdCliente = Convert.ToInt32(reader["IdCliente"]),
+                            Apellido = reader["Apellido"].ToString(),
+                            Nombre = reader["Nombre"].ToString(),
+                            Documento = reader["Documento"].ToString(),
+                            Telefono = reader["Telefono"].ToString(),
+                            Domicilio = reader["Domicilio"].ToString(),
+                            Estado = Convert.ToBoolean(reader["Estado"])
+                        };
+                        list.Add(Cli);
+                    }
+                }
             }
-
-            con.Close();
             return list;
         }
-        public List<Cliente> BuscarPapelera(string Nombre)
+
+        // ----------------- Buscar Cliente -----------------
+        public List<Cliente> BuscarCliente(string letra)
         {
             List<Cliente> list = new List<Cliente>();
-            OleDbConnection con = new OleDbConnection();
-            OleDbCommand cm = new OleDbCommand();
-            OleDbDataReader reader;
-
-            con.ConnectionString = ConectarDB();
-            cm.CommandType = System.Data.CommandType.Text;
-
-            cm.CommandText = $"Select IdCliente, Nombre, Documento, Telefono, Domicilio, IdBarrio from Clientes where Nombre like ('%{Nombre}%') AND Estado = false";
-            cm.Connection = con;
-            con.Open();
-
-            reader = cm.ExecuteReader();
-
-            while (reader.Read())
+            using (OleDbConnection con = new OleDbConnection(ConectarDB()))
+            using (OleDbCommand cm = new OleDbCommand(
+                "SELECT IdCliente, Apellido, Nombre, Documento, Telefono, Domicilio, Estado " +
+                "FROM Clientes " +
+                "WHERE Apellido LIKE @letra + '%' AND Estado = true " +
+                "ORDER BY Apellido, Nombre", con))
             {
-                Cliente Cli = new Cliente();
+                cm.Parameters.AddWithValue("@letra", letra);
 
-
-                Cli.IdCliente = reader.GetInt32(0);
-                Cli.Nombre = reader.GetString(1);
-                Cli.Documento = reader.GetString(2);
-                Cli.Telefono = reader.GetString(3);
-                Cli.Domicilio = reader.GetString(4);
-                //Cli.IdBarrio = reader.GetInt32(5); No se encuentra en uso
-
-
-                list.Add(Cli);
+                con.Open();
+                using (OleDbDataReader reader = cm.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        Cliente Cli = new Cliente
+                        {
+                            IdCliente = Convert.ToInt32(reader["IdCliente"]),
+                            Apellido = reader["Apellido"].ToString(),
+                            Nombre = reader["Nombre"].ToString(),
+                            Documento = reader["Documento"].ToString(),
+                            Telefono = reader["Telefono"].ToString(),
+                            Domicilio = reader["Domicilio"].ToString(),
+                            Estado = Convert.ToBoolean(reader["Estado"])
+                        };
+                        list.Add(Cli);
+                    }
+                }
             }
-
-            con.Close();
             return list;
         }
 
+        // ----------------- Buscar Cliente Papelera -----------------
+        public List<Cliente> BuscarPapelera(string letra)
+        {
+            List<Cliente> list = new List<Cliente>();
+            using (OleDbConnection con = new OleDbConnection(ConectarDB()))
+            using (OleDbCommand cm = new OleDbCommand(
+                "SELECT IdCliente, Apellido, Nombre, Documento, Telefono, Domicilio, Estado " +
+                "FROM Clientes " +
+                "WHERE Apellido LIKE @letra + '%' AND Estado = False " +
+                "ORDER BY Apellido, Nombre", con))
+            {
+                cm.Parameters.AddWithValue("@letra", letra);
+
+                con.Open();
+                using (OleDbDataReader reader = cm.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        Cliente Cli = new Cliente
+                        {
+                            IdCliente = Convert.ToInt32(reader["IdCliente"]),
+                            Apellido = reader["Apellido"].ToString(),
+                            Nombre = reader["Nombre"].ToString(),
+                            Documento = reader["Documento"].ToString(),
+                            Telefono = reader["Telefono"].ToString(),
+                            Domicilio = reader["Domicilio"].ToString(),
+                            Estado = Convert.ToBoolean(reader["Estado"])
+                        };
+                        list.Add(Cli);
+                    }
+                }
+            }
+            return list;
+
+        }
     }
 }

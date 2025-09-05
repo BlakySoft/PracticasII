@@ -9,10 +9,10 @@ using System.Threading.Tasks;
 
 namespace CapaDatos
 {
-    public class ConePedidos
+    public class ConeVentas
     {
         
-        public void AgregarPedido(Pedido pedido)
+        public void AgregarPedido(Venta pedido)
         {
             OleDbConnection cone = new OleDbConnection();
             OleDbCommand cm = new OleDbCommand();
@@ -37,12 +37,12 @@ namespace CapaDatos
             return "Provider=Microsoft.Jet.OLEDB.4.0; Data Source=|DataDirectory|DB.mdb;";
 
         }
-        public List<Pedido> ListarPedidoPendiente()
+        public List<Venta> ListarPedidoPendiente()
         {
-            List<Pedido> pedidos = new List<Pedido>();
+            List<Venta> pedidos = new List<Venta>();
             OleDbConnection con = new OleDbConnection(ConectarDB());  
 
-            string query = "SELECT p.IdPedido, p.IdCliente, p.IdMetodo, p.IdEntrega, p.Total, p.Fecha, c.Nombre AS ClienteNombre, m.Descripcion AS MetodoDescripcion, e.Descripcion AS EntregaDescripcion " +
+            string query = "SELECT p.IdVenta, p.IdCliente, p.IdMetodo, p.IdEntrega, p.Total, p.Fecha, c.Nombre AS ClienteNombre, m.Descripcion AS MetodoDescripcion, e.Descripcion AS EntregaDescripcion " +
                            "FROM ((Pedidos AS p " +
                            "INNER JOIN Clientes AS c ON p.IdCliente = c.IdCliente) " +
                            "INNER JOIN Metodos AS m ON p.IdMetodo = m.IdMetodo) " +
@@ -58,9 +58,9 @@ namespace CapaDatos
 
                 while (reader.Read())
                 {
-                    Pedido pedido = new Pedido()
+                    Venta pedido = new Venta()
                     {
-                        IdPedido = reader.GetInt32(0),
+                        IdVenta = reader.GetInt32(0),
                         IdCliente = reader.GetInt32(1),
                         IdMetodo = reader.GetInt32(2),
                         IdEntrega = reader.GetInt32(3),
@@ -88,12 +88,12 @@ namespace CapaDatos
 
             return pedidos;
         }
-        public List<Pedido> ListarPedidoEntregado()
+        public List<Venta> ListarPedidoEntregado()
         {
-            List<Pedido> pedidos = new List<Pedido>();
+            List<Venta> pedidos = new List<Venta>();
             OleDbConnection con = new OleDbConnection(ConectarDB()); 
 
-            string query = "SELECT p.IdPedido, p.IdCliente, p.IdMetodo, p.IdEntrega, p.Total, p.Fecha, c.Nombre AS ClienteNombre, m.Descripcion AS MetodoDescripcion, e.Descripcion AS EntregaDescripcion " +
+            string query = "SELECT p.IdVenta, p.IdCliente, p.IdMetodo, p.IdEntrega, p.Total, p.Fecha, c.Nombre AS ClienteNombre, m.Descripcion AS MetodoDescripcion, e.Descripcion AS EntregaDescripcion " +
                            "FROM ((Pedidos AS p " +
                            "INNER JOIN Clientes AS c ON p.IdCliente = c.IdCliente) " +
                            "INNER JOIN Metodos AS m ON p.IdMetodo = m.IdMetodo) " +
@@ -109,9 +109,9 @@ namespace CapaDatos
 
                 while (reader.Read())
                 {
-                    Pedido pedido = new Pedido()
+                    Venta pedido = new Venta()
                     {
-                        IdPedido = reader.GetInt32(0),
+                        IdVenta = reader.GetInt32(0),
                         IdCliente = reader.GetInt32(1),
                         IdMetodo = reader.GetInt32(2),
                         IdEntrega = reader.GetInt32(3),
@@ -137,13 +137,13 @@ namespace CapaDatos
 
             return pedidos;
         }
-        public List<Pedido> ListarPedidoCancelado()
+        public List<Venta> ListarPedidoCancelado()
         {
-            List<Pedido> pedidos = new List<Pedido>();
+            List<Venta> pedidos = new List<Venta>();
 
             OleDbConnection con = new OleDbConnection(ConectarDB());  
 
-            string query = "SELECT p.IdPedido, p.IdCliente, p.IdMetodo, p.IdEntrega, p.Total, p.Fecha, c.Nombre AS ClienteNombre, m.Descripcion AS MetodoDescripcion, e.Descripcion AS EntregaDescripcion " +
+            string query = "SELECT p.IdVenta, p.IdCliente, p.IdMetodo, p.IdEntrega, p.Total, p.Fecha, c.Nombre AS ClienteNombre, m.Descripcion AS MetodoDescripcion, e.Descripcion AS EntregaDescripcion " +
                            "FROM ((Pedidos AS p " +
                            "INNER JOIN Clientes AS c ON p.IdCliente = c.IdCliente) " +
                            "INNER JOIN Metodos AS m ON p.IdMetodo = m.IdMetodo) " +
@@ -159,9 +159,9 @@ namespace CapaDatos
 
                 while (reader.Read())
                 {
-                    Pedido pedido = new Pedido()
+                    Venta pedido = new Venta()
                     {
-                        IdPedido = reader.GetInt32(0),
+                        IdVenta = reader.GetInt32(0),
                         IdCliente = reader.GetInt32(1),
                         IdMetodo = reader.GetInt32(2),
                         IdEntrega = reader.GetInt32(3),
@@ -189,27 +189,27 @@ namespace CapaDatos
 
             return pedidos;
         }
-        public void EntregarPedido(int idPedido)
+        public void EntregarPedido(int IdVenta)
         {
             OleDbConnection con = new OleDbConnection(ConectarDB());
 
-            string query = "UPDATE Pedidos SET IdEntrega = 2 WHERE IdPedido = @IdPedido";
+            string query = "UPDATE Pedidos SET IdEntrega = 2 WHERE IdVenta = @IdVenta";
             OleDbCommand cmd = new OleDbCommand(query, con);
-            cmd.Parameters.AddWithValue("@IdPedido", idPedido);
+            cmd.Parameters.AddWithValue("@IdVenta", IdVenta);
 
             con.Open();
             cmd.ExecuteNonQuery();
 
             con.Close();
         }
-        public void CancelarPedido(int idPedido)
+        public void CancelarPedido(int IdVenta)
         {
             OleDbConnection con = new OleDbConnection(ConectarDB());
 
-            string query = "UPDATE Pedidos SET IdEntrega = 3 WHERE IdPedido = @IdPedido";
+            string query = "UPDATE Pedidos SET IdEntrega = 3 WHERE IdVenta = @IdVenta";
 
             OleDbCommand cmd = new OleDbCommand(query, con);
-            cmd.Parameters.AddWithValue("@IdPedido", idPedido);
+            cmd.Parameters.AddWithValue("@IdVenta", IdVenta);
 
             con.Open();
             cmd.ExecuteNonQuery();

@@ -26,58 +26,36 @@ namespace CapaPresentacion
         public FormABMProductos()
         {
             InitializeComponent();
+
             BtnModificar.Enabled = false;
             PanelDatos.Enabled = false;
             BtnGrabar.Enabled = false;
             BtnCancelar.Enabled = false;
             BtnEliminar.Enabled = false;
             TxtBuscar.Enabled = true;
-
             CargarCbo();
             CargarCbo1();
             CargarCbo2();
             LimpiarTextos();
             ListarProducto();
+
         }
         public void ListarProducto()
         {
             ConeProductos listar = new ConeProductos();
-            Grilla.DataSource = listar.Listar();
-            Grilla.Columns[0].HeaderText = "Codigo";
-            Grilla.Columns[0].Width = 70;
+            Grilla.DataSource = listar.ListarINNERJOIN();
+            Grilla.Columns[0].HeaderText = "Código";
+            Grilla.Columns[3].Visible = false;
+            Grilla.Columns[4].Visible = false;
+            Grilla.Columns[5].Visible = false;
+            Grilla.Columns[11].Visible = false;
+
+            Grilla.Columns[0].Width = 83;
             Grilla.Columns[1].Width = 140;
-            Grilla.Columns[2].Width = 100;
-            Grilla.Columns[3].Width = 100;
-            Grilla.Columns[4].Width = 70;
-            Grilla.Columns[5].Width = 70;
-            Grilla.Columns[6].Width = 70;
-            Grilla.Columns[7].Width = 70;
-            Grilla.Columns[1].HeaderText = "Descripcion";
-            Grilla.Columns[2].HeaderText = "Detalle";
-            Grilla.Columns[3].HeaderText = "Categoria";
-            Grilla.Columns[4].HeaderText = "Marca";
-            Grilla.Columns[5].HeaderText = "Color";
-            Grilla.Columns[6].HeaderText = "Precio";
-            Grilla.Columns[7].HeaderText = "Stock";
-            Grilla.Columns[8].Visible = false;
-
-        }
-        private void CargarCbo()
-        {
-            ConeCategoria cone = new ConeCategoria();
-
-            CboIdCat.ValueMember = "IdCat";
-            CboIdCat.DisplayMember = "Descripcion";
-            CboIdCat.DataSource = cone.ListarCat();
-        }
-        private void CargarCbo1()
-        {
-            ConeMarca cone = new ConeMarca();
-
-            CboIdMar.ValueMember = "IdMarca";
-            CboIdMar.DisplayMember = "Descripcion";
-            CboIdMar.DataSource = cone.ListarMarca();
-
+            Grilla.Columns[2].Width = 110;
+            Grilla.Columns[6].Width = 110;
+            Grilla.Columns[7].Width = 110;
+            Grilla.Columns[8].Width = 130;
         }
         private void CargarCbo2()
         {
@@ -86,7 +64,22 @@ namespace CapaPresentacion
             CboIdCol.ValueMember = "IdColor";
             CboIdCol.DisplayMember = "Descripcion";
             CboIdCol.DataSource = cone.ListarColor();
+        }
+        private void CargarCbo1()
+        {
+            ConeMarca cone = new ConeMarca();
 
+            CboIdMar.ValueMember = "IdMarca";
+            CboIdMar.DisplayMember = "Descripcion";
+            CboIdMar.DataSource = cone.ListarMarca();
+        }
+        private void CargarCbo()
+        {
+            ConeCategoria cone = new ConeCategoria ();
+
+            CboIdCat.ValueMember = "IdCat";
+            CboIdCat.DisplayMember = "Descripcion";
+            CboIdCat.DataSource = cone.ListarCat();
         }
         private void LimpiarTextos()
         {
@@ -115,118 +108,119 @@ namespace CapaPresentacion
             BtnNuevo.Enabled = false;
             BtnPapelera.Enabled = false;
             #endregion
-
-            CargarCbo();
-            CargarCbo1();
-            CargarCbo2();
+            CboIdCat.SelectedIndex = -1;
+            CboIdMar.SelectedIndex = -1;
+            CboIdCol.SelectedIndex = -1;
             LimpiarTextos();
             TxtDescripcion.Focus();
         }
         private void BtnGrabar_Click(object sender, EventArgs e)
-        {
+        { 
             try
             {
-                if (TxtDescripcion.Text == "")
+                // Validar campos obligatorios
+                if (string.IsNullOrWhiteSpace(TxtDescripcion.Text))
                 {
                     MessageBox.Show("Ingrese la Descripción.", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     TxtDescripcion.Focus();
+                    return;
                 }
-                else if (TxtDetalle.Text == "")
+                if (string.IsNullOrWhiteSpace(TxtDetalle.Text))
                 {
                     MessageBox.Show("Ingrese el detalle del producto.", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     TxtDetalle.Focus();
+                    return;
                 }
-                else if (TxtStock.Text == "")
+                if (string.IsNullOrWhiteSpace(TxtStock.Text))
                 {
                     MessageBox.Show("Ingrese el Stock.", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     TxtStock.Focus();
+                    return;
                 }
-                else if (TxtPrecio.Text == "")
+                if (string.IsNullOrWhiteSpace(TxtPrecio.Text))
                 {
                     MessageBox.Show("Ingrese el Precio.", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     TxtPrecio.Focus();
+                    return;
                 }
-                else if (nuevo == true)
+
+                // Tomar valores actuales de los combos
+                if (CboIdCat.SelectedValue == null || !int.TryParse(CboIdCat.SelectedValue.ToString(), out VarCat) || VarCat <= 0)
                 {
+                    MessageBox.Show("Seleccione una Categoría.", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
+                if (CboIdMar.SelectedValue == null || !int.TryParse(CboIdMar.SelectedValue.ToString(), out VarMar) || VarMar <= 0)
+                {
+                    MessageBox.Show("Seleccione una Marca.", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
+                if (CboIdCol.SelectedValue == null || !int.TryParse(CboIdCol.SelectedValue.ToString(), out VarCol) || VarCol <= 0)
+                {
+                    MessageBox.Show("Seleccione un Color.", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
 
-                    ConeProductos cone = new ConeProductos();
-                    Productos Agregar = new Productos
+                // Crear objeto producto
+                Productos producto = new Productos
+                {
+                    Descripcion = TxtDescripcion.Text.Trim(),
+                    Detalle = TxtDetalle.Text.Trim(),
+                    IdCat = VarCat,
+                    IdMarca = VarMar,
+                    IdColor = VarCol,
+                    Stock = int.Parse(TxtStock.Text),
+                    Precio = Convert.ToDecimal(TxtPrecio.Text)
+                };
+
+                ConeProductos cone = new ConeProductos();
+
+                if (nuevo)
+                {
+                    // Confirmación
+                    if (MessageBox.Show("¿Está seguro de agregar este producto?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
-                        Descripcion = TxtDescripcion.Text,
-                        Detalle = TxtDetalle.Text,
-                        IdCat = VarCat,
-                        IdMarca = VarMar,
-                        IdColor = VarCol,
-                        Precio = Convert.ToDecimal(TxtPrecio.Text),
-                        Stock = int.Parse(TxtStock.Text),
-                    };
-
-                    cone.Agregar(Agregar);
-
-                    #region Enabled yes/no
-                    //true
-                    Grilla.Enabled = true;
-                    BtnNuevo.Enabled = true;
-                    //false
-                    BtnGrabar.Enabled = false;
-                    BtnCancelar.Enabled = false;
-                    PanelDatos.Enabled = false;
-                    #endregion
-
-                    LimpiarTextos();
-                    ListarProducto();
-                    BtnNuevo.Focus();
+                        cone.Agregar(producto);
+                        MessageBox.Show("Producto agregado con éxito.", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else return;
                 }
                 else
                 {
-                    ConeProductos cone = new ConeProductos();
-                    Productos Actualizar = new Productos
+                    // Actualizar producto existente
+                    producto.IdProducto = int.Parse(LblIdProducto.Text);
+
+                    if (MessageBox.Show("¿Está seguro de actualizar este producto?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
-                        IdProducto = int.Parse(LblIdProducto.Text),
-                        Descripcion = TxtDescripcion.Text,
-                        Detalle = TxtDetalle.Text,
-                        IdCat = VarCat,
-                        IdMarca = VarMar,
-                        IdColor = VarCol,
-                        Stock = int.Parse(TxtStock.Text),
-                        Precio = Convert.ToDecimal(TxtPrecio.Text)
-                    };
-
-                    cone.Actualizar(Actualizar);
-
-                    #region Enabled yes/no
-                    //true 
-                    Grilla.Enabled = true;
-                    BtnNuevo.Enabled = true;
-                    //false
-                    PanelDatos.Enabled = false;
-                    BtnGrabar.Enabled = false;
-                    BtnCancelar.Enabled = false;
-                    #endregion
-
-                    LimpiarTextos();
-                    ListarProducto();
-                    BtnNuevo.Focus();
+                        cone.Actualizar(producto);
+                        MessageBox.Show("Producto actualizado con éxito.", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else return;
                 }
-            }
-            finally
-            {
-                //#region Enabled yes/no
-                ////true 
-                //TxtBuscar.Enabled = true;
-                //Grilla.Enabled = true;
-                //BtnNuevo.Enabled = true;
-                ////false
-                //PanelDatos.Enabled = false;
-                //BtnGrabar.Enabled = false;
-                //BtnCancelar.Enabled = false;
-                //BtnEliminar.Enabled = false;
-                //#endregion
 
-                //LimpiarTextos();
-                //ListarProducto();
-                //BtnNuevo.Focus();
+                // Refrescar grilla y limpiar formulario
+                ListarProducto();
+                LimpiarTextos();
+                CboIdCat.SelectedIndex = -1;
+                CboIdMar.SelectedIndex = -1;
+                CboIdCol.SelectedIndex = -1;
+                VarCat = 0; VarMar = 0; VarCol = 0;
+
+                // Habilitar/deshabilitar botones
+                PanelDatos.Enabled = false;
+                BtnGrabar.Enabled = false;
+                BtnCancelar.Enabled = false;
+                BtnNuevo.Enabled = true;
+                Grilla.Enabled = true;
+                BtnEliminar.Enabled = false;
+                TxtBuscar.Enabled = true;
+                BtnNuevo.Focus();
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ocurrió un error al procesar el producto.\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
         }
         private void BtnEliminar_Click(object sender, EventArgs e)
         {
@@ -278,9 +272,7 @@ namespace CapaPresentacion
             BtnEliminar.Enabled = false;
             BtnModificar.Enabled = false;
             #endregion
-            CargarCbo();
 
-            CboIdCat.SelectedValue = VarCat;
         }
         private void BtnCancelar_Click(object sender, EventArgs e)
         {
@@ -296,10 +288,13 @@ namespace CapaPresentacion
             BtnCancelar.Enabled = false;
             BtnEliminar.Enabled = false;
             #endregion
+
             LimpiarTextos();
+
             CargarCbo();
             CargarCbo1();
             CargarCbo2();
+
             ListarProducto();
             BtnNuevo.Focus();
         }
@@ -316,18 +311,12 @@ namespace CapaPresentacion
             };
          
         }
-        private void BtnActualizar_Click(object sender, EventArgs e)
-        {
-            ListarProducto();
-            CargarCbo();
-            CargarCbo1();
-            CargarCbo2();
-        }
         private void BtnCat_Click(object sender, EventArgs e)
         {
             FormABMCategoria form = new FormABMCategoria();
             form.ShowDialog();
             CargarCbo();
+
         }
         private void BtnSalir_Click(object sender, EventArgs e)
         {
@@ -337,19 +326,28 @@ namespace CapaPresentacion
         {
             FormABMMarca form = new FormABMMarca();
             form.ShowDialog();
-            CargarCbo();
+            CargarCbo1();
+
+
         }
         private void btnCol_Click(object sender, EventArgs e)
         {
 
             FormABMColor form = new FormABMColor();
-            form.ShowDialog();
-            CargarCbo();
+            form.ShowDialog();;
+            CargarCbo2();
 
+
+
+        }
+        private void iconButton1_Click(object sender, EventArgs e)
+        {
+            TxtBuscar.Clear();
         }
         #endregion
 
         #region Interaccion con Formulario
+
         private void TxtBuscar_TextChanged(object sender, EventArgs e)
         {
             if (TxtBuscar.Text != "")
@@ -370,48 +368,41 @@ namespace CapaPresentacion
         }
         private void Grilla_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+
             LblIdProducto.Text = Grilla.Rows[e.RowIndex].Cells[0].Value.ToString();
             TxtDescripcion.Text = Grilla.Rows[e.RowIndex].Cells[1].Value.ToString();
             TxtDetalle.Text = Grilla.Rows[e.RowIndex].Cells[2].Value.ToString();
-            VarCat = Convert.ToInt32(Grilla.Rows[e.RowIndex].Cells[3].Value.ToString());
-            TxtPrecio.Text = Grilla.Rows[e.RowIndex].Cells[4].Value.ToString();
-            TxtStock.Text = Grilla.Rows[e.RowIndex].Cells[5].Value.ToString();
+            VarCat = Convert.ToInt32(Grilla.Rows[e.RowIndex].Cells[3].Value);
+            VarMar = Convert.ToInt32(Grilla.Rows[e.RowIndex].Cells[4].Value);
+            VarCol = Convert.ToInt32(Grilla.Rows[e.RowIndex].Cells[5].Value);
+            TxtPrecio.Text = Grilla.Rows[e.RowIndex].Cells[9].Value.ToString();
+            TxtStock.Text = Grilla.Rows[e.RowIndex].Cells[10].Value.ToString();
 
-            ConeCategoria cone = new ConeCategoria();
+            // **Asignar valores a combos sin recargar DataSource**
+            CboIdCat.SelectedValue = VarCat;
+            CboIdMar.SelectedValue = VarMar;
+            CboIdCol.SelectedValue = VarCol;
 
-            _ = new Categoria
-            {
-                IdCat = VarCat
-            };
-
-            CboIdCat.ValueMember = "IdCat";
-            CboIdCat.DisplayMember = "Descripcion";
-            CboIdCat.DataSource = cone.BuscarIdCat(VarCat);
-
-                #region Enabled yes/no
-
+            // Habilitar botones
             BtnCancelar.Enabled = true;
             BtnEliminar.Enabled = true;
             BtnModificar.Enabled = true;
-            #endregion
         }
         private void Grilla_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+
             try
             {
-                // Datos básicos
                 LblIdProducto.Text = Grilla.Rows[e.RowIndex].Cells[0].Value.ToString();
                 TxtDescripcion.Text = Grilla.Rows[e.RowIndex].Cells[1].Value.ToString();
                 TxtDetalle.Text = Grilla.Rows[e.RowIndex].Cells[2].Value.ToString();
-
-                // IDs relacionados
-                VarCat = Convert.ToInt32(Grilla.Rows[e.RowIndex].Cells[3].Value.ToString());
-                VarMar = Convert.ToInt32(Grilla.Rows[e.RowIndex].Cells[4].Value.ToString());
-                VarCol = Convert.ToInt32(Grilla.Rows[e.RowIndex].Cells[5].Value.ToString());
-
-                // Datos numéricos
                 TxtPrecio.Text = Grilla.Rows[e.RowIndex].Cells[6].Value.ToString();
                 TxtStock.Text = Grilla.Rows[e.RowIndex].Cells[7].Value.ToString();
+
+                // IDs
+                VarCat = Convert.ToInt32(Grilla.Rows[e.RowIndex].Cells[3].Value);
+                VarMar = Convert.ToInt32(Grilla.Rows[e.RowIndex].Cells[4].Value);
+                VarCol = Convert.ToInt32(Grilla.Rows[e.RowIndex].Cells[5].Value);
 
                 nuevo = false;
 
@@ -448,86 +439,66 @@ namespace CapaPresentacion
         {
             VarCol = int.Parse(CboIdCol.SelectedValue.ToString());
         }
+        private void TxtDescripcion_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                TxtDetalle.Focus();
+            }
+        }
+        private void TxtDetalle_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                TxtDetalle.Focus();
+            }
+        }
+        private void TxtPrecio_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                TxtPrecio.Focus();
+            }
+        }
+        private void TxtStock_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != '.')
+            {
+                e.Handled = true;
+            }
+
+            if (e.KeyChar == '.' && TxtPrecio.Text.Contains("."))
+            {
+                e.Handled = true; 
+            }
+
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                BtnGrabar.Focus(); 
+            }
+        }
         #endregion
-
-        #region Informe
-        public void BtnImprimir_Click(object sender, EventArgs e)
-        {
-            PrintDocument printDoc = new PrintDocument();
-            printDoc.DefaultPageSettings.Landscape = false;
-            printDoc.PrintPage += new PrintPageEventHandler(Imprimir_PrintPage);
-            printDoc.Print();
-        }
-        private void Imprimir_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
-        {
-            Font fuenteTitulo = new Font("Arial", 12, FontStyle.Bold);
-            Font fuenteDetalle = new Font("Arial", 10);
-
-            int margenIzquierdo = 40;
-            int margenSuperior = 40;
-            int espacioEntreLineas = 20;
-
-            e.Graphics.DrawString("Informe de Productos", fuenteTitulo, Brushes.Black, margenIzquierdo, margenSuperior);
-            int lineaY = margenSuperior + 30;
-            e.Graphics.DrawLine(Pens.Black, margenIzquierdo, lineaY, 770, lineaY);
-
-
-            e.Graphics.DrawString("Código", fuenteTitulo, Brushes.Black, margenIzquierdo, lineaY + espacioEntreLineas);
-            e.Graphics.DrawString("Descripción", fuenteTitulo, Brushes.Black, margenIzquierdo + 80, lineaY + espacioEntreLineas);
-            e.Graphics.DrawString("Precio", fuenteTitulo, Brushes.Black, margenIzquierdo + 300, lineaY + espacioEntreLineas);
-            e.Graphics.DrawString("Stock", fuenteTitulo, Brushes.Black, margenIzquierdo + 450, lineaY + espacioEntreLineas);
-            e.Graphics.DrawString("Stock Valorizado", fuenteTitulo, Brushes.Black, margenIzquierdo + 540, lineaY + espacioEntreLineas);
-
-
-            lineaY += espacioEntreLineas + 20;
-
-
-            ConeProductos listar = new ConeProductos();
-            //List<Productos> productos = listar.Listar();
-            
-            DataTable table = listar.Listar();
-
-            decimal stockValorizadoTotal = 0;
-
-      
-            foreach (var prod in productos)
-            {
-                e.Graphics.DrawString(prod.IdProducto.ToString(), fuenteDetalle, Brushes.Black, margenIzquierdo, lineaY);
-                e.Graphics.DrawString(prod.Descripcion, fuenteDetalle, Brushes.Black, margenIzquierdo + 80, lineaY);
-                e.Graphics.DrawString(prod.Precio.ToString("C"), fuenteDetalle, Brushes.Black, margenIzquierdo + 300, lineaY); // Formateamos el precio como moneda
-                e.Graphics.DrawString(prod.Stock.ToString(), fuenteDetalle, Brushes.Black, margenIzquierdo + 450, lineaY);
-                e.Graphics.DrawString((prod.Precio * prod.Stock).ToString("C", CultureInfo.CreateSpecificCulture("en-US")), fuenteDetalle, Brushes.Black, margenIzquierdo + 540, lineaY); // Stock valorizado
-
-                stockValorizadoTotal += prod.Precio * prod.Stock;
-
-                lineaY += espacioEntreLineas;
-            }
-            e.Graphics.DrawLine(Pens.Black, margenIzquierdo, lineaY, 770, lineaY);
-            lineaY += 10;
-            e.Graphics.DrawString("Stock Valorizado Total:", fuenteTitulo, Brushes.Black, margenIzquierdo, lineaY);
-            e.Graphics.DrawString(stockValorizadoTotal.ToString("C", CultureInfo.CreateSpecificCulture("en-US")), fuenteTitulo, Brushes.Black, margenIzquierdo + 540, lineaY);
-
-
-            lineaY += espacioEntreLineas;
-
-            if (lineaY > e.MarginBounds.Height)
-            {
-                e.HasMorePages = true;
-            }
-            else
-            {
-                e.HasMorePages = false;
-            }
-        }
-
-        private void BtnImprimir_Click_1(object sender, EventArgs e)
-        {
-
-        }
+  
     }
 }
 
 
-#endregion
+
 
 

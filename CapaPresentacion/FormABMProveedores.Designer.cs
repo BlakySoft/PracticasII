@@ -86,13 +86,13 @@
             // 
             this.Grilla.AllowUserToAddRows = false;
             this.Grilla.AllowUserToDeleteRows = false;
-            this.Grilla.BackgroundColor = System.Drawing.Color.Linen;
+            this.Grilla.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(216)))), ((int)(((byte)(228)))));
             this.Grilla.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.Grilla.Location = new System.Drawing.Point(225, 87);
             this.Grilla.Name = "Grilla";
             this.Grilla.ReadOnly = true;
             this.Grilla.RowHeadersVisible = false;
-            this.Grilla.Size = new System.Drawing.Size(910, 613);
+            this.Grilla.Size = new System.Drawing.Size(875, 613);
             this.Grilla.TabIndex = 10;
             this.Grilla.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Grilla_CellClick);
             this.Grilla.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Grilla_CellDoubleClick);
@@ -218,7 +218,7 @@
             // 
             // BtnSalir
             // 
-            this.BtnSalir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.BtnSalir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(156)))), ((int)(((byte)(191)))), ((int)(((byte)(227)))));
             this.BtnSalir.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.BtnSalir.IconChar = FontAwesome.Sharp.IconChar.X;
             this.BtnSalir.IconColor = System.Drawing.Color.White;
@@ -392,7 +392,7 @@
             // 
             // BtnLocalidad
             // 
-            this.BtnLocalidad.BackColor = System.Drawing.Color.White;
+            this.BtnLocalidad.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(156)))), ((int)(((byte)(191)))), ((int)(((byte)(227)))));
             this.BtnLocalidad.FlatAppearance.BorderSize = 0;
             this.BtnLocalidad.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnLocalidad.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));

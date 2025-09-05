@@ -17,7 +17,7 @@ namespace CapaPresentacion
         #region Metodos y declaraciones
 
         Boolean nuevo;
-        int VarBarrio;
+  
         public FormAgregarCliente()
         {
             InitializeComponent();

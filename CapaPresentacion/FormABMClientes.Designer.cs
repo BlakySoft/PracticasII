@@ -28,18 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label8 = new System.Windows.Forms.Label();
             this.TxtBuscar = new System.Windows.Forms.TextBox();
             this.Grilla = new System.Windows.Forms.DataGridView();
             this.panel2 = new System.Windows.Forms.Panel();
             this.BtnImprimir = new FontAwesome.Sharp.IconButton();
             this.BtnSalir = new FontAwesome.Sharp.IconButton();
-            this.BtnActualizar = new FontAwesome.Sharp.IconButton();
-            this.BtnPapelera = new FontAwesome.Sharp.IconButton();
             this.BtnCancelar = new FontAwesome.Sharp.IconButton();
             this.BtnModificar = new FontAwesome.Sharp.IconButton();
+            this.BtnPapelera = new FontAwesome.Sharp.IconButton();
             this.BtnEliminar = new FontAwesome.Sharp.IconButton();
             this.BtnGrabar = new FontAwesome.Sharp.IconButton();
             this.BtnNuevo = new FontAwesome.Sharp.IconButton();
@@ -48,16 +47,16 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
             this.TxtNombre = new System.Windows.Forms.TextBox();
             this.TxtDocumento = new System.Windows.Forms.TextBox();
             this.TxtTelefono = new System.Windows.Forms.TextBox();
             this.TxtDomicilio = new System.Windows.Forms.TextBox();
-            this.CboIdBarrio = new System.Windows.Forms.ComboBox();
             this.LblIdCliente = new System.Windows.Forms.Label();
             this.PanelDatos = new System.Windows.Forms.Panel();
-            this.BtnMarca = new FontAwesome.Sharp.IconButton();
+            this.TxtApellido = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.iconButton1 = new FontAwesome.Sharp.IconButton();
             this.label7 = new System.Windows.Forms.Label();
             this.Imprimir = new System.Drawing.Printing.PrintDocument();
             ((System.ComponentModel.ISupportInitialize)(this.Grilla)).BeginInit();
@@ -83,7 +82,7 @@
             this.TxtBuscar.Location = new System.Drawing.Point(95, 42);
             this.TxtBuscar.Name = "TxtBuscar";
             this.TxtBuscar.Size = new System.Drawing.Size(703, 26);
-            this.TxtBuscar.TabIndex = 9;
+            this.TxtBuscar.TabIndex = 0;
             this.TxtBuscar.TextChanged += new System.EventHandler(this.TxtBuscar_TextChanged);
             // 
             // Grilla
@@ -95,12 +94,12 @@
             this.Grilla.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(216)))), ((int)(((byte)(228)))));
             this.Grilla.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.Grilla.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(216)))), ((int)(((byte)(228)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(216)))), ((int)(((byte)(228)))));
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.Grilla.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(216)))), ((int)(((byte)(228)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(216)))), ((int)(((byte)(228)))));
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.Grilla.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.Grilla.ColumnHeadersHeight = 50;
             this.Grilla.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.Grilla.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -110,10 +109,10 @@
             this.Grilla.MultiSelect = false;
             this.Grilla.Name = "Grilla";
             this.Grilla.ReadOnly = true;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.Grilla.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.Grilla.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.Grilla.RowHeadersVisible = false;
             this.Grilla.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.Grilla.Size = new System.Drawing.Size(886, 532);
@@ -126,10 +125,9 @@
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(234)))), ((int)(((byte)(233)))));
             this.panel2.Controls.Add(this.BtnImprimir);
             this.panel2.Controls.Add(this.BtnSalir);
-            this.panel2.Controls.Add(this.BtnActualizar);
-            this.panel2.Controls.Add(this.BtnPapelera);
             this.panel2.Controls.Add(this.BtnCancelar);
             this.panel2.Controls.Add(this.BtnModificar);
+            this.panel2.Controls.Add(this.BtnPapelera);
             this.panel2.Controls.Add(this.BtnEliminar);
             this.panel2.Controls.Add(this.BtnGrabar);
             this.panel2.Controls.Add(this.BtnNuevo);
@@ -178,45 +176,6 @@
             this.BtnSalir.UseVisualStyleBackColor = false;
             this.BtnSalir.Click += new System.EventHandler(this.BtnSalir_Click);
             // 
-            // BtnActualizar
-            // 
-            this.BtnActualizar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(156)))), ((int)(((byte)(191)))), ((int)(((byte)(227)))));
-            this.BtnActualizar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BtnActualizar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(156)))), ((int)(((byte)(191)))), ((int)(((byte)(227)))));
-            this.BtnActualizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnActualizar.IconChar = FontAwesome.Sharp.IconChar.ArrowsSpin;
-            this.BtnActualizar.IconColor = System.Drawing.Color.White;
-            this.BtnActualizar.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.BtnActualizar.IconSize = 34;
-            this.BtnActualizar.Location = new System.Drawing.Point(22, 493);
-            this.BtnActualizar.Margin = new System.Windows.Forms.Padding(0);
-            this.BtnActualizar.Name = "BtnActualizar";
-            this.BtnActualizar.Size = new System.Drawing.Size(38, 33);
-            this.BtnActualizar.TabIndex = 48;
-            this.BtnActualizar.UseVisualStyleBackColor = false;
-            this.BtnActualizar.Click += new System.EventHandler(this.BtnActualizar_Click);
-            // 
-            // BtnPapelera
-            // 
-            this.BtnPapelera.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(234)))), ((int)(((byte)(233)))));
-            this.BtnPapelera.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BtnPapelera.FlatAppearance.BorderSize = 0;
-            this.BtnPapelera.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnPapelera.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnPapelera.ForeColor = System.Drawing.Color.Black;
-            this.BtnPapelera.IconChar = FontAwesome.Sharp.IconChar.TrashRestore;
-            this.BtnPapelera.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(156)))), ((int)(((byte)(191)))), ((int)(((byte)(227)))));
-            this.BtnPapelera.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.BtnPapelera.IconSize = 42;
-            this.BtnPapelera.Location = new System.Drawing.Point(0, 411);
-            this.BtnPapelera.Name = "BtnPapelera";
-            this.BtnPapelera.Size = new System.Drawing.Size(159, 66);
-            this.BtnPapelera.TabIndex = 47;
-            this.BtnPapelera.Text = "Papelera";
-            this.BtnPapelera.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.BtnPapelera.UseVisualStyleBackColor = false;
-            this.BtnPapelera.Click += new System.EventHandler(this.BtnPapelera_Click);
-            // 
             // BtnCancelar
             // 
             this.BtnCancelar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(234)))), ((int)(((byte)(233)))));
@@ -228,7 +187,7 @@
             this.BtnCancelar.IconChar = FontAwesome.Sharp.IconChar.FileCircleXmark;
             this.BtnCancelar.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(156)))), ((int)(((byte)(191)))), ((int)(((byte)(227)))));
             this.BtnCancelar.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.BtnCancelar.Location = new System.Drawing.Point(0, 345);
+            this.BtnCancelar.Location = new System.Drawing.Point(-1, 208);
             this.BtnCancelar.Name = "BtnCancelar";
             this.BtnCancelar.Size = new System.Drawing.Size(159, 66);
             this.BtnCancelar.TabIndex = 39;
@@ -249,7 +208,7 @@
             this.BtnModificar.IconChar = FontAwesome.Sharp.IconChar.Archive;
             this.BtnModificar.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(156)))), ((int)(((byte)(191)))), ((int)(((byte)(227)))));
             this.BtnModificar.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.BtnModificar.Location = new System.Drawing.Point(0, 279);
+            this.BtnModificar.Location = new System.Drawing.Point(-1, 147);
             this.BtnModificar.Name = "BtnModificar";
             this.BtnModificar.Size = new System.Drawing.Size(159, 66);
             this.BtnModificar.TabIndex = 38;
@@ -257,6 +216,27 @@
             this.BtnModificar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.BtnModificar.UseVisualStyleBackColor = false;
             this.BtnModificar.Click += new System.EventHandler(this.BtnModificar_Click);
+            // 
+            // BtnPapelera
+            // 
+            this.BtnPapelera.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(234)))), ((int)(((byte)(233)))));
+            this.BtnPapelera.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnPapelera.FlatAppearance.BorderSize = 0;
+            this.BtnPapelera.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnPapelera.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnPapelera.ForeColor = System.Drawing.Color.Black;
+            this.BtnPapelera.IconChar = FontAwesome.Sharp.IconChar.TrashRestore;
+            this.BtnPapelera.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(156)))), ((int)(((byte)(191)))), ((int)(((byte)(227)))));
+            this.BtnPapelera.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.BtnPapelera.IconSize = 42;
+            this.BtnPapelera.Location = new System.Drawing.Point(-1, 394);
+            this.BtnPapelera.Name = "BtnPapelera";
+            this.BtnPapelera.Size = new System.Drawing.Size(159, 66);
+            this.BtnPapelera.TabIndex = 47;
+            this.BtnPapelera.Text = "Papelera";
+            this.BtnPapelera.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.BtnPapelera.UseVisualStyleBackColor = false;
+            this.BtnPapelera.Click += new System.EventHandler(this.BtnPapelera_Click);
             // 
             // BtnEliminar
             // 
@@ -269,7 +249,7 @@
             this.BtnEliminar.IconChar = FontAwesome.Sharp.IconChar.TrashRestoreAlt;
             this.BtnEliminar.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(156)))), ((int)(((byte)(191)))), ((int)(((byte)(227)))));
             this.BtnEliminar.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.BtnEliminar.Location = new System.Drawing.Point(0, 213);
+            this.BtnEliminar.Location = new System.Drawing.Point(-1, 332);
             this.BtnEliminar.Name = "BtnEliminar";
             this.BtnEliminar.Size = new System.Drawing.Size(159, 66);
             this.BtnEliminar.TabIndex = 37;
@@ -289,10 +269,10 @@
             this.BtnGrabar.IconChar = FontAwesome.Sharp.IconChar.FileCirclePlus;
             this.BtnGrabar.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(156)))), ((int)(((byte)(191)))), ((int)(((byte)(227)))));
             this.BtnGrabar.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.BtnGrabar.Location = new System.Drawing.Point(0, 147);
+            this.BtnGrabar.Location = new System.Drawing.Point(-1, 273);
             this.BtnGrabar.Name = "BtnGrabar";
             this.BtnGrabar.Size = new System.Drawing.Size(159, 66);
-            this.BtnGrabar.TabIndex = 36;
+            this.BtnGrabar.TabIndex = 1;
             this.BtnGrabar.Text = "Grabar";
             this.BtnGrabar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.BtnGrabar.UseVisualStyleBackColor = false;
@@ -309,10 +289,10 @@
             this.BtnNuevo.IconChar = FontAwesome.Sharp.IconChar.SquareCheck;
             this.BtnNuevo.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(156)))), ((int)(((byte)(191)))), ((int)(((byte)(227)))));
             this.BtnNuevo.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.BtnNuevo.Location = new System.Drawing.Point(0, 81);
+            this.BtnNuevo.Location = new System.Drawing.Point(-1, 81);
             this.BtnNuevo.Name = "BtnNuevo";
             this.BtnNuevo.Size = new System.Drawing.Size(159, 66);
-            this.BtnNuevo.TabIndex = 35;
+            this.BtnNuevo.TabIndex = 0;
             this.BtnNuevo.Text = "Nuevo";
             this.BtnNuevo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.BtnNuevo.UseVisualStyleBackColor = false;
@@ -334,19 +314,19 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(7, 104);
+            this.label2.Location = new System.Drawing.Point(7, 154);
             this.label2.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(154, 19);
+            this.label2.Size = new System.Drawing.Size(76, 19);
             this.label2.TabIndex = 1;
-            this.label2.Text = "Nombre y Apellido:";
+            this.label2.Text = "Nombre:";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(7, 165);
+            this.label3.Location = new System.Drawing.Point(7, 215);
             this.label3.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(104, 19);
@@ -358,7 +338,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.Black;
-            this.label4.Location = new System.Drawing.Point(7, 288);
+            this.label4.Location = new System.Drawing.Point(7, 338);
             this.label4.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(86, 19);
@@ -370,68 +350,48 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.Black;
-            this.label5.Location = new System.Drawing.Point(7, 226);
+            this.label5.Location = new System.Drawing.Point(7, 276);
             this.label5.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(81, 19);
             this.label5.TabIndex = 4;
             this.label5.Text = "Teléfono:";
             // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.Black;
-            this.label6.Location = new System.Drawing.Point(7, 349);
-            this.label6.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(62, 19);
-            this.label6.TabIndex = 5;
-            this.label6.Text = "Barrio:";
-            this.label6.Visible = false;
-            // 
             // TxtNombre
             // 
             this.TxtNombre.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.TxtNombre.Location = new System.Drawing.Point(7, 126);
+            this.TxtNombre.Location = new System.Drawing.Point(7, 176);
             this.TxtNombre.Name = "TxtNombre";
             this.TxtNombre.Size = new System.Drawing.Size(205, 26);
-            this.TxtNombre.TabIndex = 7;
+            this.TxtNombre.TabIndex = 1;
+            this.TxtNombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtNombre_KeyPress);
             // 
             // TxtDocumento
             // 
             this.TxtDocumento.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.TxtDocumento.Location = new System.Drawing.Point(7, 187);
+            this.TxtDocumento.Location = new System.Drawing.Point(7, 237);
             this.TxtDocumento.Name = "TxtDocumento";
             this.TxtDocumento.Size = new System.Drawing.Size(205, 26);
-            this.TxtDocumento.TabIndex = 8;
+            this.TxtDocumento.TabIndex = 2;
+            this.TxtDocumento.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtDocumento_KeyPress);
             // 
             // TxtTelefono
             // 
             this.TxtTelefono.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.TxtTelefono.Location = new System.Drawing.Point(7, 248);
+            this.TxtTelefono.Location = new System.Drawing.Point(7, 298);
             this.TxtTelefono.Name = "TxtTelefono";
             this.TxtTelefono.Size = new System.Drawing.Size(205, 26);
-            this.TxtTelefono.TabIndex = 9;
+            this.TxtTelefono.TabIndex = 3;
+            this.TxtTelefono.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtTelefono_KeyPress);
             // 
             // TxtDomicilio
             // 
             this.TxtDomicilio.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.TxtDomicilio.Location = new System.Drawing.Point(7, 310);
+            this.TxtDomicilio.Location = new System.Drawing.Point(7, 360);
             this.TxtDomicilio.Name = "TxtDomicilio";
             this.TxtDomicilio.Size = new System.Drawing.Size(205, 26);
-            this.TxtDomicilio.TabIndex = 11;
-            // 
-            // CboIdBarrio
-            // 
-            this.CboIdBarrio.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.CboIdBarrio.FormattingEnabled = true;
-            this.CboIdBarrio.Location = new System.Drawing.Point(7, 371);
-            this.CboIdBarrio.Name = "CboIdBarrio";
-            this.CboIdBarrio.Size = new System.Drawing.Size(169, 27);
-            this.CboIdBarrio.TabIndex = 12;
-            this.CboIdBarrio.Visible = false;
-            this.CboIdBarrio.SelectionChangeCommitted += new System.EventHandler(this.CboIdBarrio_SelectionChangeCommitted);
+            this.TxtDomicilio.TabIndex = 4;
+            this.TxtDomicilio.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtDomicilio_KeyPress);
             // 
             // LblIdCliente
             // 
@@ -447,14 +407,13 @@
             // PanelDatos
             // 
             this.PanelDatos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(234)))), ((int)(((byte)(233)))));
-            this.PanelDatos.Controls.Add(this.BtnMarca);
+            this.PanelDatos.Controls.Add(this.TxtApellido);
+            this.PanelDatos.Controls.Add(this.label9);
             this.PanelDatos.Controls.Add(this.LblIdCliente);
-            this.PanelDatos.Controls.Add(this.CboIdBarrio);
             this.PanelDatos.Controls.Add(this.TxtDomicilio);
             this.PanelDatos.Controls.Add(this.TxtTelefono);
             this.PanelDatos.Controls.Add(this.TxtDocumento);
             this.PanelDatos.Controls.Add(this.TxtNombre);
-            this.PanelDatos.Controls.Add(this.label6);
             this.PanelDatos.Controls.Add(this.label5);
             this.PanelDatos.Controls.Add(this.label4);
             this.PanelDatos.Controls.Add(this.label3);
@@ -466,28 +425,31 @@
             this.PanelDatos.Size = new System.Drawing.Size(219, 613);
             this.PanelDatos.TabIndex = 8;
             // 
-            // BtnMarca
+            // TxtApellido
             // 
-            this.BtnMarca.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(156)))), ((int)(((byte)(191)))), ((int)(((byte)(227)))));
-            this.BtnMarca.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(156)))), ((int)(((byte)(191)))), ((int)(((byte)(227)))));
-            this.BtnMarca.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnMarca.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnMarca.ForeColor = System.Drawing.Color.White;
-            this.BtnMarca.IconChar = FontAwesome.Sharp.IconChar.MagnifyingGlassPlus;
-            this.BtnMarca.IconColor = System.Drawing.Color.White;
-            this.BtnMarca.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.BtnMarca.IconSize = 20;
-            this.BtnMarca.Location = new System.Drawing.Point(182, 371);
-            this.BtnMarca.Name = "BtnMarca";
-            this.BtnMarca.Size = new System.Drawing.Size(30, 27);
-            this.BtnMarca.TabIndex = 24;
-            this.BtnMarca.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.BtnMarca.UseVisualStyleBackColor = false;
-            this.BtnMarca.Visible = false;
+            this.TxtApellido.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TxtApellido.Location = new System.Drawing.Point(5, 123);
+            this.TxtApellido.Name = "TxtApellido";
+            this.TxtApellido.Size = new System.Drawing.Size(205, 26);
+            this.TxtApellido.TabIndex = 0;
+            this.TxtApellido.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.ForeColor = System.Drawing.Color.Black;
+            this.label9.Location = new System.Drawing.Point(5, 101);
+            this.label9.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(77, 19);
+            this.label9.TabIndex = 25;
+            this.label9.Text = "Apellido:";
             // 
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(234)))), ((int)(((byte)(233)))));
+            this.panel3.Controls.Add(this.iconButton1);
             this.panel3.Controls.Add(this.label7);
             this.panel3.Controls.Add(this.label8);
             this.panel3.Controls.Add(this.TxtBuscar);
@@ -496,6 +458,24 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(886, 81);
             this.panel3.TabIndex = 44;
+            // 
+            // iconButton1
+            // 
+            this.iconButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(156)))), ((int)(((byte)(191)))), ((int)(((byte)(227)))));
+            this.iconButton1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.iconButton1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(156)))), ((int)(((byte)(191)))), ((int)(((byte)(227)))));
+            this.iconButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.iconButton1.IconChar = FontAwesome.Sharp.IconChar.TrashAlt;
+            this.iconButton1.IconColor = System.Drawing.Color.White;
+            this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconButton1.IconSize = 30;
+            this.iconButton1.Location = new System.Drawing.Point(814, 41);
+            this.iconButton1.Margin = new System.Windows.Forms.Padding(0);
+            this.iconButton1.Name = "iconButton1";
+            this.iconButton1.Size = new System.Drawing.Size(29, 26);
+            this.iconButton1.TabIndex = 49;
+            this.iconButton1.UseVisualStyleBackColor = false;
+            this.iconButton1.Click += new System.EventHandler(this.iconButton1_Click);
             // 
             // label7
             // 
@@ -549,25 +529,24 @@
         private System.Windows.Forms.Panel panel2;
         private FontAwesome.Sharp.IconButton BtnPapelera;
         private FontAwesome.Sharp.IconButton BtnSalir;
-        private FontAwesome.Sharp.IconButton BtnActualizar;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox TxtNombre;
         private System.Windows.Forms.TextBox TxtDocumento;
         private System.Windows.Forms.TextBox TxtTelefono;
         private System.Windows.Forms.TextBox TxtDomicilio;
-        private System.Windows.Forms.ComboBox CboIdBarrio;
         private System.Windows.Forms.Label LblIdCliente;
-        private FontAwesome.Sharp.IconButton BtnMarca;
         private System.Windows.Forms.Panel PanelDatos;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label label7;
         private FontAwesome.Sharp.IconButton BtnImprimir;
         private System.Drawing.Printing.PrintDocument Imprimir;
+        private System.Windows.Forms.TextBox TxtApellido;
+        private System.Windows.Forms.Label label9;
+        private FontAwesome.Sharp.IconButton iconButton1;
     }
 }
 

@@ -91,8 +91,7 @@ namespace CapaPresentacion
         //}
         private void cLIENTESToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FormVENTAS form = new FormVENTAS();
-            form.ShowDialog();
+            AbrirFrmHijo(new FormVENTAS());
         }
         //private void pRODUCTOSToolStripMenuItem_Click(object sender, EventArgs e)
         //{

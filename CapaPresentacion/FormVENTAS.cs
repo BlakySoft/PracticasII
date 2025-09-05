@@ -95,8 +95,8 @@ namespace CapaPresentacion
                     decimal Suma = Grilla.Rows.OfType<DataGridViewRow>().Sum(x => Convert.ToInt32(x.Cells[4].Value));
                     TxtTotal.Text = Suma.ToString("0,0");
 
-                    ConePedidos cone = new ConePedidos();
-                    Pedido Agregar = new Pedido
+                    ConeVentas cone = new ConeVentas();
+                    Venta Agregar = new Venta
                     {
                         IdCliente = IdCliente,
                         IdMetodo = VarMetodo,
@@ -109,15 +109,15 @@ namespace CapaPresentacion
                     OleDbCommand comando = new OleDbCommand();
                     OleDbDataReader reader;
 
-                    comando.CommandText = "Select max(IdPedido) as IdPedido from Pedidos";
+                    comando.CommandText = "Select max(IdVenta) as IdVenta from Ventas";
                     comando.Connection = con;
                     con.Open();
                     reader = comando.ExecuteReader();
                     if (reader.Read())
                     {
-                        Pedido pedido = new Pedido();
-                        pedido.IdPedido = reader.GetInt32(0);
-                        TxtPedido.Text = pedido.IdPedido.ToString();
+                        Venta pedido = new Venta();
+                        pedido.IdVenta = reader.GetInt32(0);
+                        TxtPedido.Text = pedido.IdVenta.ToString();
                     }
 
                     con.Close();
@@ -128,13 +128,13 @@ namespace CapaPresentacion
                         {
                             OleDbCommand cm = new OleDbCommand();
                             cm.CommandType = CommandType.Text;
-                            cm.CommandText = "insert into DetallePedidos (IdPedido, IdProducto, PrecioPedido, Cantidad, Subtotal) values (@IdPedido, @IdProducto, @PrecioPedido, @Cantidad, @Subtotal)";
+                            cm.CommandText = "insert into DetalleVentas (IdVenta, IdProducto, PrecioVenta, Cantidad, Subtotal) values (@IdVenta, @IdProducto, @PrecioVenta, @Cantidad, @Subtotal)";
                             cm.Connection = con;
 
 
-                            cm.Parameters.AddWithValue("@IdPedido", Convert.ToString(TxtPedido.Text));
+                            cm.Parameters.AddWithValue("@IdVenta", Convert.ToString(TxtPedido.Text));
                             cm.Parameters.AddWithValue("@IdProducto", Convert.ToInt32(row.Cells["Column1"].Value));
-                            cm.Parameters.AddWithValue("@PrecioPedido", Convert.ToDecimal(row.Cells["Column3"].Value));
+                            cm.Parameters.AddWithValue("@PrecioVenta", Convert.ToDecimal(row.Cells["Column3"].Value));
                             cm.Parameters.AddWithValue("@Cantidad", Convert.ToDecimal(row.Cells["Column4"].Value));
                             cm.Parameters.AddWithValue("@Subtotal", Convert.ToDecimal(row.Cells["Column5"].Value));
 

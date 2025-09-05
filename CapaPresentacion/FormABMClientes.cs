@@ -19,13 +19,13 @@ namespace CapaPresentacion
         #region Metodos y declaraciones
 
         Boolean nuevo;
-        int VarBarrio;
+
         public FormABMClientes()
         {
             InitializeComponent();
             LimpiarTextos();
             ListarClientes();
-            CargarCbo();
+
             BtnModificar.Enabled = false;
             PanelDatos.Enabled = false;
             BtnGrabar.Enabled = false;
@@ -33,22 +33,17 @@ namespace CapaPresentacion
             BtnEliminar.Enabled = false;
             TxtBuscar.Enabled = true;
         }
-        private void CargarCbo()
-        {
-            ConeBarrios cone = new ConeBarrios();
 
-            CboIdBarrio.ValueMember = "IdBarrio";
-            CboIdBarrio.DisplayMember = "Descripcion";
-            CboIdBarrio.DataSource = cone.ListarBarrio();
-        }
         private void LimpiarTextos()
         {
             LblIdCliente.Text = "";
+            TxtApellido.Clear(); // NUEVO
             TxtNombre.Clear();
             TxtDocumento.Clear();
             TxtTelefono.Clear();
             TxtDomicilio.Clear();
         }
+
         private void ListarClientes()
         {
             ConeClientes cone = new ConeClientes();
@@ -56,17 +51,17 @@ namespace CapaPresentacion
 
             Grilla.Columns[0].HeaderText = "Codigo";
             Grilla.Columns[0].Width = 85;
-            Grilla.Columns[1].Width = 240;
-            Grilla.Columns[2].Width = 130;
+            Grilla.Columns[1].Width = 120; // Apellido
+            Grilla.Columns[2].Width = 120; // Nombre
             Grilla.Columns[3].Width = 130;
-            Grilla.Columns[4].Width = 300;
-            //Grilla.Columns[5].Width = 200;
-            Grilla.Columns[1].HeaderText = "Nombre y apellido";
-            Grilla.Columns[2].HeaderText = "Documento";
-            Grilla.Columns[3].HeaderText = "Teléfono";
-            Grilla.Columns[4].HeaderText = "Domicilio";
-            //Grilla.Columns[5].HeaderText = "Barrio";
-            Grilla.Columns[5].Visible = false;
+            Grilla.Columns[4].Width = 130;
+            Grilla.Columns[5].Width = 300;
+
+            Grilla.Columns[1].HeaderText = "Apellido"; // NUEVO
+            Grilla.Columns[2].HeaderText = "Nombre";
+            Grilla.Columns[3].HeaderText = "Documento";
+            Grilla.Columns[4].HeaderText = "Teléfono";
+            Grilla.Columns[5].HeaderText = "Domicilio";
         }
 
         #endregion
@@ -85,8 +80,6 @@ namespace CapaPresentacion
         private void BtnModificar_Click(object sender, EventArgs e)
         {
             nuevo = false;
-            CargarCbo();
-            CboIdBarrio.SelectedValue = VarBarrio;
             #region Enabled yes/no
             //true
             PanelDatos.Enabled = true;
@@ -107,12 +100,14 @@ namespace CapaPresentacion
             TxtBuscar.Enabled = true;
             Grilla.Enabled = true;
             BtnNuevo.Enabled = true;
+            BtnPapelera.Enabled = true;
             //false
             BtnModificar.Enabled = false;
             BtnGrabar.Enabled = false;
             BtnCancelar.Enabled = false;
             BtnEliminar.Enabled = false;
             PanelDatos.Enabled = false;
+
             #endregion
 
             LimpiarTextos();
@@ -120,43 +115,50 @@ namespace CapaPresentacion
         }
         private void BtnEliminar_Click(object sender, EventArgs e)
         {
-            ConeClientes cone = new ConeClientes();
-            Cliente Borrar = new Cliente
-            {
-                IdCliente = int.Parse(LblIdCliente.Text)
-            };
+            // Pregunta de confirmación
+            DialogResult result = MessageBox.Show(
+                "¿Está seguro de eliminar este cliente?",
+                "Confirmación",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+            );
 
-            cone.BorrarCliente(Borrar);
-
-            try
+            if (result == DialogResult.Yes)
             {
-                MessageBox.Show("El Cliente se eliminó correctamente!!!", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                LimpiarTextos();
-                ListarClientes();
+                ConeClientes cone = new ConeClientes();
+                Cliente Borrar = new Cliente
+                {
+                    IdCliente = int.Parse(LblIdCliente.Text)
+                };
+
+                try
+                {
+                    cone.BorrarCliente(Borrar);
+
+                    MessageBox.Show("El Cliente se eliminó correctamente!!!", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    LimpiarTextos();
+                    ListarClientes();
+
+                    #region Enabled yes/no 
+                    BtnNuevo.Enabled = true;
+                    BtnGrabar.Enabled = false;
+                    BtnCancelar.Enabled = false;
+                    BtnEliminar.Enabled = false;
+                    #endregion
+
+                    BtnNuevo.Focus();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show($"Error: {ex.ToString()}");
-                throw;
+                // Si el usuario cancela, no hace nada
+                return;
             }
-
-            #region Enabled yes/no 
-            //true 
-            BtnNuevo.Enabled = true;
-            //false
-            BtnGrabar.Enabled = false;
-            BtnCancelar.Enabled = false;
-            BtnEliminar.Enabled = false;
-            #endregion
-
-            BtnNuevo.Focus();
         }
-        //private void BtnBarrio_Click(object sender, EventArgs e)
-        //{
-        //    unuFormABMBarrios form = new unuFormABMBarrios();
-        //    form.ShowDialog();
-        //    CargarCbo();
-        //}
         private void BtnNuevo_Click(object sender, EventArgs e)
         {
             nuevo = true;
@@ -174,22 +176,27 @@ namespace CapaPresentacion
             BtnPapelera.Enabled = false;
             #endregion
 
-            CargarCbo();
+
             LimpiarTextos();
-            TxtNombre.Focus();
+            TxtApellido.Focus();
         }
         private void BtnGrabar_Click(object sender, EventArgs e)
         {
             try
             {
-                if (TxtNombre.Text == "")
+                if (TxtApellido.Text == "")
+                {
+                    MessageBox.Show("Ingrese el Apellido", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    TxtApellido.Focus();
+                }
+                else if (TxtNombre.Text == "")
                 {
                     MessageBox.Show("Ingrese el Nombre", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     TxtNombre.Focus();
                 }
                 else if (TxtDocumento.Text == "")
                 {
-                    MessageBox.Show("Ingrese el Numero de documento ", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageBox.Show("Ingrese el Numero de documento", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     TxtDocumento.Focus();
                 }
                 else if (TxtTelefono.Text == "")
@@ -202,64 +209,67 @@ namespace CapaPresentacion
                     MessageBox.Show("Ingrese la Domicilio", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     TxtDomicilio.Focus();
                 }
-                else if (nuevo == true)
-                {
-                    ConeClientes cone = new ConeClientes();
-                    Cliente Agregar = new Cliente
-                    {
-                        Nombre = TxtNombre.Text,
-                        Documento = TxtDocumento.Text,
-                        Telefono = TxtTelefono.Text,
-                        Domicilio = TxtDomicilio.Text,
-                        //IdBarrio = VarBarrio No se encuentra en uso
-                    };
-
-                    cone.AgregarCliente(Agregar);
-
-                    #region Enabled yes/no
-                    //true
-                    Grilla.Enabled = true;
-                    BtnNuevo.Enabled = true;
-                    BtnPapelera.Enabled = true;
-                    //false
-                    BtnGrabar.Enabled = false;
-                    BtnCancelar.Enabled = false;
-                    PanelDatos.Enabled = false;
-                    #endregion
-
-                    LimpiarTextos();
-                    ListarClientes();
-                    BtnNuevo.Focus();
-                }
                 else
                 {
-                    ConeClientes cone = new ConeClientes();
-                    Cliente Actualizar = new Cliente
+                    // Pregunta de confirmación antes de guardar o actualizar
+                    DialogResult result = MessageBox.Show(
+                        nuevo ? "¿Está seguro de agregar este cliente?" : "¿Está seguro de actualizar este cliente?",
+                        "Confirmación",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Question
+                    );
+
+                    if (result == DialogResult.Yes)
                     {
-                        IdCliente = int.Parse(LblIdCliente.Text),
-                        Nombre = TxtNombre.Text,
-                        Documento = TxtDocumento.Text,
-                        Telefono = TxtTelefono.Text,
-                        Domicilio = TxtDomicilio.Text,
-                        //IdBarrio = VarBarrio No se encuentra en uso
-                    };
+                        ConeClientes cone = new ConeClientes();
 
-                    cone.ActualizarCliente(Actualizar);
+                        if (nuevo)
+                        {
+                            Cliente Agregar = new Cliente
+                            {
+                                Apellido = TxtApellido.Text,
+                                Nombre = TxtNombre.Text,
+                                Documento = TxtDocumento.Text,
+                                Telefono = TxtTelefono.Text,
+                                Domicilio = TxtDomicilio.Text
+                            };
 
-                    #region Enabled yes/no
-                    //true
-                    Grilla.Enabled = true;
-                    BtnNuevo.Enabled = true;
-                    BtnPapelera.Enabled = true;
-                    //false
-                    BtnGrabar.Enabled = false;
-                    BtnCancelar.Enabled = false;
-                    PanelDatos.Enabled = false;
-                    #endregion
+                            cone.AgregarCliente(Agregar);
+                            MessageBox.Show("Cliente agregado con éxito.", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else
+                        {
+                            Cliente Actualizar = new Cliente
+                            {
+                                IdCliente = int.Parse(LblIdCliente.Text),
+                                Apellido = TxtApellido.Text,
+                                Nombre = TxtNombre.Text,
+                                Documento = TxtDocumento.Text,
+                                Telefono = TxtTelefono.Text,
+                                Domicilio = TxtDomicilio.Text
+                            };
 
-                    LimpiarTextos();
-                    ListarClientes();
-                    BtnNuevo.Focus();
+                            cone.ActualizarCliente(Actualizar);
+                            MessageBox.Show("Cliente actualizado con éxito.", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+
+                        #region Enabled yes/no
+                        Grilla.Enabled = true;
+                        BtnNuevo.Enabled = true;
+                        BtnPapelera.Enabled = true;
+                        BtnGrabar.Enabled = false;
+                        BtnCancelar.Enabled = false;
+                        PanelDatos.Enabled = false;
+                        #endregion
+
+                        LimpiarTextos();
+                        ListarClientes();
+                        BtnNuevo.Focus();
+                    }
+                    else
+                    {
+                        return; // Cancelar la operación
+                    }
                 }
             }
             catch
@@ -268,26 +278,18 @@ namespace CapaPresentacion
             }
             finally
             {
+                TxtBuscar.Enabled = true;
+                Grilla.Enabled = true;
+                BtnNuevo.Enabled = true;
+                BtnGrabar.Enabled = false;
+                BtnCancelar.Enabled = false;
+                BtnEliminar.Enabled = false;
+                PanelDatos.Enabled = false;
 
-                //#region Enabled yes/no
-                ////true
-                //TxtBuscar.Enabled = true;
-                //Grilla.Enabled = true;
-                //BtnNuevo.Enabled = true;
-                ////false
-                //BtnGrabar.Enabled = false;
-                //BtnCancelar.Enabled = false;
-                //BtnEliminar.Enabled = false;
-                //PanelDatos.Enabled = false;
-                //#endregion
-
-                //ListarClientes();
-                //LimpiarTextos();
-
-
-                //BtnNuevo.Focus();
+                ListarClientes();
+                LimpiarTextos();
+                BtnNuevo.Focus();
             }
-
 
         }
         private void BtnSalir_Click(object sender, EventArgs e)
@@ -297,7 +299,11 @@ namespace CapaPresentacion
         private void BtnActualizar_Click(object sender, EventArgs e)
         {
             ListarClientes();
-            CargarCbo();
+
+        }
+        private void iconButton1_Click(object sender, EventArgs e)
+        {
+            TxtBuscar.Clear();
         }
         #endregion
 
@@ -324,18 +330,15 @@ namespace CapaPresentacion
             try
             {
                 LblIdCliente.Text = Grilla.Rows[e.RowIndex].Cells[0].Value.ToString();
-                TxtNombre.Text = Grilla.Rows[e.RowIndex].Cells[1].Value.ToString();
-                TxtDocumento.Text = Grilla.Rows[e.RowIndex].Cells[2].Value.ToString();
-                TxtTelefono.Text = Grilla.Rows[e.RowIndex].Cells[3].Value.ToString();
-                TxtDomicilio.Text = Grilla.Rows[e.RowIndex].Cells[4].Value.ToString();
-     
+                TxtApellido.Text = Grilla.Rows[e.RowIndex].Cells[1].Value.ToString(); // NUEVO
+                TxtNombre.Text = Grilla.Rows[e.RowIndex].Cells[2].Value.ToString();
+                TxtDocumento.Text = Grilla.Rows[e.RowIndex].Cells[3].Value.ToString();
+                TxtTelefono.Text = Grilla.Rows[e.RowIndex].Cells[4].Value.ToString();
+                TxtDomicilio.Text = Grilla.Rows[e.RowIndex].Cells[5].Value.ToString();
 
-            #region Enabled yes/no
-
-            BtnCancelar.Enabled = true;
-            BtnEliminar.Enabled = true;
-            BtnModificar.Enabled = true;
-                #endregion
+                BtnCancelar.Enabled = true;
+                BtnEliminar.Enabled = true;
+                BtnModificar.Enabled = true;
             }
             catch (Exception)
             {
@@ -347,36 +350,135 @@ namespace CapaPresentacion
             try
             {
                 LblIdCliente.Text = Grilla.Rows[e.RowIndex].Cells[0].Value.ToString();
-                TxtNombre.Text = Grilla.Rows[e.RowIndex].Cells[1].Value.ToString();
-                TxtDocumento.Text = Grilla.Rows[e.RowIndex].Cells[2].Value.ToString();
-                TxtTelefono.Text = Grilla.Rows[e.RowIndex].Cells[3].Value.ToString();
-                TxtDomicilio.Text = Grilla.Rows[e.RowIndex].Cells[4].Value.ToString();
-                VarBarrio = Convert.ToInt32(Grilla.Rows[e.RowIndex].Cells[5].Value.ToString());
+                TxtApellido.Text = Grilla.Rows[e.RowIndex].Cells[1].Value.ToString(); // NUEVO
+                TxtNombre.Text = Grilla.Rows[e.RowIndex].Cells[2].Value.ToString();
+                TxtDocumento.Text = Grilla.Rows[e.RowIndex].Cells[3].Value.ToString();
+                TxtTelefono.Text = Grilla.Rows[e.RowIndex].Cells[4].Value.ToString();
+                TxtDomicilio.Text = Grilla.Rows[e.RowIndex].Cells[5].Value.ToString();
 
                 nuevo = false;
 
-                #region Enables yes/no
-                //true
                 BtnGrabar.Enabled = true;
                 BtnCancelar.Enabled = true;
                 PanelDatos.Enabled = true;
-                //false
                 BtnEliminar.Enabled = false;
                 Grilla.Enabled = false;
                 BtnNuevo.Enabled = false;
-                #endregion 
 
-                CargarCbo();
-                TxtNombre.Focus();
+                TxtApellido.Focus(); // NUEVO
             }
             catch (Exception)
             {
                 MessageBox.Show("Imposible seleccionar desde la cabecera.", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
-        private void CboIdBarrio_SelectionChangeCommitted(object sender, EventArgs e)
+        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
-            VarBarrio = int.Parse(CboIdBarrio.SelectedValue.ToString());
+
+            // 1️⃣ Validar que solo sean letras, espacios y teclas de control
+            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != ' ')
+            {
+                e.Handled = true; // Cancela la tecla
+                MessageBox.Show("Solo se permiten letras en el apellido.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            // 2️⃣ Si el usuario presiona Enter, mover al siguiente TextBox
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                e.Handled = true; // Evita el sonido de "ding"
+                this.SelectNextControl((Control)sender, true, true, true, true);
+            }
+        }
+        private void TxtNombre_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Permitir letras, espacios y teclas de control
+            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != ' ')
+            {
+                e.Handled = true;
+                MessageBox.Show("Solo se permiten letras en el Nombre.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            // Mover al siguiente control con Enter
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                e.Handled = true;
+                this.SelectNextControl((Control)sender, true, true, true, true);
+            }
+        }
+        private void TxtDocumento_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Solo números
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+                MessageBox.Show("Solo se permiten números en Documento.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            // Limitar a 8 caracteres
+            TextBox txt = sender as TextBox;
+            if (txt.Text.Length >= 8 && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+
+            // Enter → siguiente control
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                e.Handled = true;
+                this.SelectNextControl((Control)sender, true, true, true, true);
+            }
+        }
+        private void TxtTelefono_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Solo números
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+                MessageBox.Show("Solo se permiten números en Teléfono.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            // Limitar a 15 caracteres
+            TextBox txt = sender as TextBox;
+            if (txt.Text.Length >= 15 && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+
+            // Enter → siguiente control
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                e.Handled = true;
+                this.SelectNextControl((Control)sender, true, true, true, true);
+            }
+        }
+        private void TxtDomicilio_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Permitir letras, números, espacios y algunos símbolos básicos
+            if (!char.IsLetterOrDigit(e.KeyChar) && !char.IsControl(e.KeyChar)
+                && e.KeyChar != ' ' && e.KeyChar != '-' && e.KeyChar != '.' && e.KeyChar != '/')
+            {
+                e.Handled = true;
+                MessageBox.Show("Caracter no válido en Dirección.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            // Limitar a 50 caracteres
+            TextBox txt = sender as TextBox;
+            if (txt.Text.Length >= 50 && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+
+            // Enter → siguiente control
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                e.Handled = true;
+                this.SelectNextControl((Control)sender, true, true, true, true);
+            }
         }
         #endregion
 
@@ -435,8 +537,10 @@ namespace CapaPresentacion
             }
         }
 
+
         #endregion
 
+      
     }
 }
 
