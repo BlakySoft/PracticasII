@@ -206,7 +206,7 @@ namespace CapaPresentacion
                 }
                 else if (TxtDomicilio.Text == "")
                 {
-                    MessageBox.Show("Ingrese la Domicilio", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageBox.Show("Ingrese el Domicilio", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     TxtDomicilio.Focus();
                 }
                 else
@@ -538,9 +538,10 @@ namespace CapaPresentacion
         }
 
 
+
         #endregion
 
-      
+        
     }
 }
 

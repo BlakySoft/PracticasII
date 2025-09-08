@@ -25,16 +25,17 @@ namespace CapaPresentacion
         {
 
             ConeProveedores cone = new ConeProveedores();
-            Grilla.DataSource = cone.ListarProveedor();
-            
+            Grilla.DataSource = cone.ListarProveedorINNERJOIN();
+
             Grilla.Columns[0].HeaderText = "Código";
             Grilla.Columns[0].Width = 100;
             Grilla.Columns[1].HeaderText = "Razón Social";
             Grilla.Columns[2].HeaderText = "CUIT";
             Grilla.Columns[3].HeaderText = "Teléfono";
             Grilla.Columns[4].HeaderText = "Direccion";
-            Grilla.Columns[5].HeaderText = "Localidad";
-            Grilla.Columns[6].Visible = false;
+            Grilla.Columns[5].Visible = false; //IdLocalidad
+            Grilla.Columns[6].HeaderText = "Localidad";
+            Grilla.Columns[7].Visible = false; //Estado
 
         }
         #endregion
@@ -85,6 +86,12 @@ namespace CapaPresentacion
         {
             Close();
         }
+
+        private void iconButton2_Click(object sender, EventArgs e)
+        {
+            TxtBuscar.Clear();
+        }
+
         private void Grilla_CellClick(object sender, DataGridViewCellEventArgs e)
         {
 

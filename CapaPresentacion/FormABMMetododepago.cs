@@ -41,9 +41,9 @@ namespace CapaPresentacion
         #endregion
 
         #region Botones
-        private void BtnActualizar_Click(object sender, EventArgs e)
+        private void iconButton2_Click(object sender, EventArgs e)
         {
-            Listar();
+            TxtBuscar.Clear();
         }
         private void BtnNuevo_Click(object sender, EventArgs e)
         {
@@ -201,8 +201,13 @@ namespace CapaPresentacion
         }
         private void iconButton1_Click(object sender, EventArgs e)
         {
-            FormPAPELERAMetodosdepago form = new FormPAPELERAMetodosdepago();
-            form.ShowDialog();
+            using (FormPAPELERAMetodosdepago form = new FormPAPELERAMetodosdepago())
+            {
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    Listar();
+                }
+            }
         }
         private void BtnVolver_Click(object sender, EventArgs e)
         {
@@ -248,8 +253,9 @@ namespace CapaPresentacion
             #endregion
             TxtDescripcion.Focus();
         }
+
         #endregion
 
-       
+     
     }
 }

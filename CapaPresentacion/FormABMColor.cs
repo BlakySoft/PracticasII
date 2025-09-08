@@ -46,9 +46,19 @@ namespace CapaPresentacion
         #endregion
 
         #region Botones
-        private void BtnActualizar_Click(object sender, EventArgs e)
+        private void BtnPapelera_Click(object sender, EventArgs e)
         {
-            Listar();
+            using (FormPAPELERAColor form = new FormPAPELERAColor())
+            {
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    Listar();
+                }
+            }
+        }
+        private void iconButton1_Click(object sender, EventArgs e)
+        {
+            TxtBuscar.Clear();
         }
         private void BtnNuevo_Click(object sender, EventArgs e)
         {
@@ -250,11 +260,6 @@ namespace CapaPresentacion
         }
         #endregion
 
-        private void BtnPapelera_Click(object sender, EventArgs e)
-        {
-            FormPAPELERAColor form = new FormPAPELERAColor();
-            form.ShowDialog();
-        }
     }
 }
 

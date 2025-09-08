@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.PanelDatos = new System.Windows.Forms.Panel();
+            this.TxtApellido = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.LblIdCliente = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.TxtDomicilio = new System.Windows.Forms.TextBox();
@@ -51,6 +53,8 @@
             // PanelDatos
             // 
             this.PanelDatos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(156)))), ((int)(((byte)(191)))), ((int)(((byte)(227)))));
+            this.PanelDatos.Controls.Add(this.TxtApellido);
+            this.PanelDatos.Controls.Add(this.label1);
             this.PanelDatos.Controls.Add(this.LblIdCliente);
             this.PanelDatos.Controls.Add(this.panel1);
             this.PanelDatos.Controls.Add(this.TxtDomicilio);
@@ -64,8 +68,31 @@
             this.PanelDatos.Dock = System.Windows.Forms.DockStyle.Left;
             this.PanelDatos.Location = new System.Drawing.Point(0, 0);
             this.PanelDatos.Name = "PanelDatos";
-            this.PanelDatos.Size = new System.Drawing.Size(243, 248);
+            this.PanelDatos.Size = new System.Drawing.Size(243, 291);
             this.PanelDatos.TabIndex = 40;
+            // 
+            // TxtApellido
+            // 
+            this.TxtApellido.BackColor = System.Drawing.Color.White;
+            this.TxtApellido.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TxtApellido.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtApellido.ForeColor = System.Drawing.Color.Black;
+            this.TxtApellido.Location = new System.Drawing.Point(8, 34);
+            this.TxtApellido.Name = "TxtApellido";
+            this.TxtApellido.Size = new System.Drawing.Size(205, 25);
+            this.TxtApellido.TabIndex = 4;
+            this.TxtApellido.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtApellido_KeyPress);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(4, 13);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(77, 19);
+            this.label1.TabIndex = 48;
+            this.label1.Text = "Apellido:";
             // 
             // LblIdCliente
             // 
@@ -83,7 +110,7 @@
             this.panel1.Location = new System.Drawing.Point(249, 4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(162, 281);
-            this.panel1.TabIndex = 14;
+            this.panel1.TabIndex = 9;
             // 
             // TxtDomicilio
             // 
@@ -91,19 +118,20 @@
             this.TxtDomicilio.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.TxtDomicilio.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtDomicilio.ForeColor = System.Drawing.Color.Black;
-            this.TxtDomicilio.Location = new System.Drawing.Point(7, 189);
+            this.TxtDomicilio.Location = new System.Drawing.Point(7, 248);
             this.TxtDomicilio.Name = "TxtDomicilio";
             this.TxtDomicilio.Size = new System.Drawing.Size(205, 25);
-            this.TxtDomicilio.TabIndex = 13;
+            this.TxtDomicilio.TabIndex = 8;
+            this.TxtDomicilio.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtDomicilio_KeyPress);
             // 
             // LblDireccion
             // 
             this.LblDireccion.AutoSize = true;
-            this.LblDireccion.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblDireccion.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LblDireccion.ForeColor = System.Drawing.Color.White;
-            this.LblDireccion.Location = new System.Drawing.Point(4, 167);
+            this.LblDireccion.Location = new System.Drawing.Point(4, 226);
             this.LblDireccion.Name = "LblDireccion";
-            this.LblDireccion.Size = new System.Drawing.Size(77, 18);
+            this.LblDireccion.Size = new System.Drawing.Size(86, 19);
             this.LblDireccion.TabIndex = 12;
             this.LblDireccion.Text = "Domicilio:";
             // 
@@ -113,19 +141,20 @@
             this.TxtTelefono.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.TxtTelefono.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtTelefono.ForeColor = System.Drawing.Color.Black;
-            this.TxtTelefono.Location = new System.Drawing.Point(8, 139);
+            this.TxtTelefono.Location = new System.Drawing.Point(8, 198);
             this.TxtTelefono.Name = "TxtTelefono";
             this.TxtTelefono.Size = new System.Drawing.Size(205, 25);
             this.TxtTelefono.TabIndex = 7;
+            this.TxtTelefono.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtTelefono_KeyPress);
             // 
             // LblTelefono
             // 
             this.LblTelefono.AutoSize = true;
-            this.LblTelefono.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblTelefono.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LblTelefono.ForeColor = System.Drawing.Color.White;
-            this.LblTelefono.Location = new System.Drawing.Point(4, 113);
+            this.LblTelefono.Location = new System.Drawing.Point(4, 172);
             this.LblTelefono.Name = "LblTelefono";
-            this.LblTelefono.Size = new System.Drawing.Size(71, 18);
+            this.LblTelefono.Size = new System.Drawing.Size(75, 19);
             this.LblTelefono.TabIndex = 6;
             this.LblTelefono.Text = "Teléfono";
             // 
@@ -135,19 +164,20 @@
             this.TxtDocumento.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.TxtDocumento.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtDocumento.ForeColor = System.Drawing.Color.Black;
-            this.TxtDocumento.Location = new System.Drawing.Point(7, 81);
+            this.TxtDocumento.Location = new System.Drawing.Point(7, 140);
             this.TxtDocumento.Name = "TxtDocumento";
             this.TxtDocumento.Size = new System.Drawing.Size(205, 25);
-            this.TxtDocumento.TabIndex = 5;
+            this.TxtDocumento.TabIndex = 6;
+            this.TxtDocumento.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtDocumento_KeyPress);
             // 
             // LblApellido
             // 
             this.LblApellido.AutoSize = true;
-            this.LblApellido.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblApellido.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LblApellido.ForeColor = System.Drawing.Color.White;
-            this.LblApellido.Location = new System.Drawing.Point(3, 56);
+            this.LblApellido.Location = new System.Drawing.Point(3, 115);
             this.LblApellido.Name = "LblApellido";
-            this.LblApellido.Size = new System.Drawing.Size(89, 18);
+            this.LblApellido.Size = new System.Drawing.Size(98, 19);
             this.LblApellido.TabIndex = 4;
             this.LblApellido.Text = "Documento";
             // 
@@ -157,25 +187,26 @@
             this.TxtNombre.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.TxtNombre.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtNombre.ForeColor = System.Drawing.Color.Black;
-            this.TxtNombre.Location = new System.Drawing.Point(8, 28);
+            this.TxtNombre.Location = new System.Drawing.Point(8, 87);
             this.TxtNombre.Name = "TxtNombre";
             this.TxtNombre.Size = new System.Drawing.Size(205, 25);
-            this.TxtNombre.TabIndex = 3;
+            this.TxtNombre.TabIndex = 5;
+            this.TxtNombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtNombre_KeyPress);
             // 
             // LblNombre
             // 
             this.LblNombre.AutoSize = true;
-            this.LblNombre.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblNombre.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LblNombre.ForeColor = System.Drawing.Color.White;
-            this.LblNombre.Location = new System.Drawing.Point(4, 7);
+            this.LblNombre.Location = new System.Drawing.Point(4, 66);
             this.LblNombre.Name = "LblNombre";
-            this.LblNombre.Size = new System.Drawing.Size(139, 18);
+            this.LblNombre.Size = new System.Drawing.Size(76, 19);
             this.LblNombre.TabIndex = 2;
-            this.LblNombre.Text = "Nombre y Apellido:";
+            this.LblNombre.Text = "Nombre:";
             // 
             // PanelBotones
             // 
-            this.PanelBotones.BackColor = System.Drawing.Color.Linen;
+            this.PanelBotones.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(234)))), ((int)(((byte)(233)))));
             this.PanelBotones.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.PanelBotones.Controls.Add(this.BtnVolver);
             this.PanelBotones.Controls.Add(this.BtnCancelar);
@@ -184,7 +215,7 @@
             this.PanelBotones.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PanelBotones.Location = new System.Drawing.Point(0, 0);
             this.PanelBotones.Name = "PanelBotones";
-            this.PanelBotones.Size = new System.Drawing.Size(391, 248);
+            this.PanelBotones.Size = new System.Drawing.Size(391, 291);
             this.PanelBotones.TabIndex = 41;
             // 
             // BtnVolver
@@ -198,7 +229,7 @@
             this.BtnVolver.IconColor = System.Drawing.Color.White;
             this.BtnVolver.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.BtnVolver.IconSize = 30;
-            this.BtnVolver.Location = new System.Drawing.Point(291, 178);
+            this.BtnVolver.Location = new System.Drawing.Point(327, 237);
             this.BtnVolver.Name = "BtnVolver";
             this.BtnVolver.Size = new System.Drawing.Size(51, 41);
             this.BtnVolver.TabIndex = 46;
@@ -271,7 +302,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(156)))), ((int)(((byte)(191)))), ((int)(((byte)(227)))));
-            this.ClientSize = new System.Drawing.Size(391, 248);
+            this.ClientSize = new System.Drawing.Size(391, 291);
             this.Controls.Add(this.PanelDatos);
             this.Controls.Add(this.PanelBotones);
             this.Name = "FormAgregarCliente";
@@ -301,5 +332,7 @@
         private FontAwesome.Sharp.IconButton BtnNuevo;
         private FontAwesome.Sharp.IconButton BtnVolver;
         private System.Windows.Forms.Label LblIdCliente;
+        private System.Windows.Forms.TextBox TxtApellido;
+        private System.Windows.Forms.Label label1;
     }
 }

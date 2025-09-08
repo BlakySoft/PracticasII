@@ -38,29 +38,44 @@ namespace CapaPresentacion
         #endregion
 
         #region Botones
+        private void iconButton1_Click_1(object sender, EventArgs e)
+        {
+            TxtBuscar.Clear();
+        }
         private void BtnRecuperar_Click(object sender, EventArgs e)
         {
             ConeLocalidades cone = new ConeLocalidades();
-            Localidad Recuperar = new Localidad
+            Localidad recuperar = new Localidad
             {
                 IdLocalidad = int.Parse(LblIdLocalidad.Text)
             };
 
-            cone.RecuperarLocalidad(Recuperar);
+            DialogResult resultado = MessageBox.Show(
+                "¿Está seguro que desea recuperar esta localidad?",
+                "Confirmar recuperación",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+            );
 
-            try
+            if (resultado == DialogResult.Yes)
             {
-                MessageBox.Show("La Localidad se recuperó correctamente!!!", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                LimpiarTextos();
-                ListarLocalidadPapelera();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error: {ex.ToString()}");
-                throw;
-            }
+                cone.RecuperarLocalidad(recuperar);
 
-            BtnVolver.Focus();
+                try
+                {
+                    MessageBox.Show("La localidad se recuperó correctamente!!!", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    LimpiarTextos();
+                    ListarLocalidadPapelera(); 
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error: {ex}");
+                    throw;
+                }
+
+                BtnVolver.Focus();
+            }
         }
 
         private void iconButton1_Click(object sender, EventArgs e)
@@ -94,5 +109,7 @@ namespace CapaPresentacion
             }
         }
         #endregion
+
+     
     }
 }

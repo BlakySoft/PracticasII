@@ -14,6 +14,7 @@ namespace CapaNegocios
         public string Telefono { get; set; }
         public string Domicilio { get; set; }
         public int IdLocalidad { get; set; }
+        public string Localidad { get; set; }
         public bool Estado { get; set; }
     }
 }

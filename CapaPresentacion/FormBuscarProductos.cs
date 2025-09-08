@@ -18,58 +18,73 @@ namespace CapaPresentacion
         int IdProducto, Stock;
         string Descripcion, Detalle;
         decimal Precio;
+
         public FormBuscarProducto()
         {
             InitializeComponent();
             Listar();
         }
+
         public void Listar()
         {
-            ConeProductos listar = new ConeProductos();
-            Grilla.DataSource = listar.Listar();
-            Grilla.Columns[0].HeaderText = "Codigo";
-            Grilla.Columns[0].Width = 70;
-            Grilla.Columns[1].Width = 140;
-            Grilla.Columns[2].Width = 100;
-            Grilla.Columns[3].Width = 60;
-            Grilla.Columns[4].Width = 60;
-            Grilla.Columns[5].Width = 60;
-            Grilla.Columns[1].HeaderText = "Descripcion";
-            Grilla.Columns[2].HeaderText = "Detalle";
-            Grilla.Columns[3].HeaderText = "Categoria";
-            Grilla.Columns[4].HeaderText = "Precio";
-            Grilla.Columns[5].HeaderText = "Stock";
-            Grilla.Columns[6].Visible = false;
 
+            ConeProductos listar = new ConeProductos();
+            Grilla.DataSource = listar.ListarINNERJOIN();
+            Grilla.Columns[0].HeaderText = "Código";
+            Grilla.Columns[3].Visible = false;
+            Grilla.Columns[4].Visible = false;
+            Grilla.Columns[5].Visible = false;
+            Grilla.Columns[11].Visible = false;
+
+            Grilla.Columns[0].Width = 83;
+            Grilla.Columns[1].Width = 140;
+            Grilla.Columns[2].Width = 110;
+            Grilla.Columns[6].Width = 110;
+            Grilla.Columns[7].Width = 110;
+            Grilla.Columns[8].Width = 130;
         }
         #endregion
 
         #region Interaccion con formulario
         private void Grilla_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            try
+
+            // Validar que el clic no sea en la cabecera ni fuera de filas válidas
+            if (e.RowIndex >= 0)
             {
-                if (IdProducto != 0)
+                // Obtener la fila seleccionada
+                DataGridViewRow fila = Grilla.Rows[e.RowIndex];
+
+                // Extraer valores de la fila directamente, usando los nombres de columnas que cargaste
+                int idProducto = Convert.ToInt32(fila.Cells["IdProducto"].Value);
+                string descripcion = fila.Cells["Descripcion"].Value?.ToString() ?? "";
+                string detalle = fila.Cells["Detalle"].Value?.ToString() ?? "";
+                decimal precio = Convert.ToDecimal(fila.Cells["PrecioVenta"].Value);
+                int stock = Convert.ToInt32(fila.Cells["Stock"].Value);
+
+                // Asumiendo que FormVENTAS es el formulario padre y tiene esos controles públicos
+                FormVENTAS ventas = Owner as FormVENTAS;
+
+                if (ventas != null)
                 {
-                    FormVENTAS pedidos = Owner as FormVENTAS;
-                    pedidos.TxtIdProducto.Text = IdProducto.ToString();
-                    pedidos.TxtDescripcion.Text = Descripcion;
-                    pedidos.TxtDetalle.Text = Detalle;
-                    pedidos.TxtPrecio.Text = Precio.ToString();
-                    pedidos.TxtStock.Text = Stock.ToString();
+                    ventas.TxtIdProducto.Text = idProducto.ToString();
+                    ventas.TxtDescripcion.Text = descripcion;
+                    ventas.TxtDetalle.Text = detalle;
+                    ventas.TxtPrecio.Text = precio.ToString("0.00");
+                    ventas.TxtStock.Text = stock.ToString();
 
-                    pedidos.Precio = Precio;
+                    ventas.Precio = precio;
 
-                    Close();
+                    this.Close();
                 }
                 else
                 {
-                    MessageBox.Show("Seleccione un producto.", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageBox.Show("No se encontró el formulario padre.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            catch (Exception)
+            else
             {
-                MessageBox.Show("No se puede seleccionar desde la cabecera.", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Seleccione un producto válido.", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
@@ -92,15 +107,23 @@ namespace CapaPresentacion
             }
         }
 
+        private void iconButton2_Click(object sender, EventArgs e)
+        {
+            TxtBuscar.Clear();
+        }
+
         private void Grilla_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
-                IdProducto = int.Parse(Grilla.Rows[e.RowIndex].Cells[0].Value.ToString());
-                Descripcion = Grilla.Rows[e.RowIndex].Cells[1].Value.ToString();
-                Detalle = Grilla.Rows[e.RowIndex].Cells[2].Value.ToString();
-                Precio = decimal.Parse(Grilla.Rows[e.RowIndex].Cells[4].Value.ToString());
-                Stock = int.Parse(Grilla.Rows[e.RowIndex].Cells[5].Value.ToString());
+                if (e.RowIndex >= 0) // Evitar cabeceras o filas inválidas
+                {
+                    IdProducto = int.Parse(Grilla.Rows[e.RowIndex].Cells[0].Value.ToString());
+                    Descripcion = Grilla.Rows[e.RowIndex].Cells[1].Value.ToString();
+                    Detalle = Grilla.Rows[e.RowIndex].Cells[2].Value.ToString();
+                    Precio = decimal.Parse(Grilla.Rows[e.RowIndex].Cells[9].Value.ToString()); // Corrige índice
+                    Stock = int.Parse(Grilla.Rows[e.RowIndex].Cells[10].Value.ToString());     // Corrige índice
+                }
             }
             catch (Exception)
             {

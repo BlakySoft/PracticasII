@@ -28,15 +28,16 @@ namespace CapaDatos
                     cm.Connection = con;
                     cm.CommandType = System.Data.CommandType.Text;
                     cm.CommandText = @"INSERT INTO Productos
-                               (Descripcion, Detalle, IdCat, IdMarca, IdColor, Precio, Stock, Estado)
-                               VALUES (@Descripcion, @Detalle, @IdCat, @IdMarca, @IdColor, @Precio, @Stock, true)";
+                               (Descripcion, Detalle, IdCat, IdMarca, IdColor, PrecioCompra, PrecioVenta, Stock, Estado)
+                               VALUES (@Descripcion, @Detalle, @IdCat, @IdMarca, @IdColor, @PrecioCompra, @PrecioVenta, @Stock, true)";
 
                     cm.Parameters.AddWithValue("Descripcion", Prod.Descripcion);
                     cm.Parameters.AddWithValue("Detalle", Prod.Detalle);
                     cm.Parameters.AddWithValue("IdCat", Prod.IdCat);
                     cm.Parameters.AddWithValue("IdMarca", Prod.IdMarca);
                     cm.Parameters.AddWithValue("IdColor", Prod.IdColor);
-                    cm.Parameters.AddWithValue("Precio", Prod.Precio);
+                    cm.Parameters.AddWithValue("PrecioCompra", Prod.PrecioCompra);
+                    cm.Parameters.AddWithValue("PrecioVenta", Prod.PrecioVenta);
                     cm.Parameters.AddWithValue("Stock", Prod.Stock);
 
                     con.Open();
@@ -53,14 +54,14 @@ namespace CapaDatos
                     cm.Connection = con;
                     cm.CommandType = System.Data.CommandType.Text;
 
-                    // Actualizamos todas las columnas relacionadas con relaciones
                     cm.CommandText = @"UPDATE Productos
                                SET Descripcion=@Descripcion,
                                    Detalle=@Detalle,
                                    IdCat=@IdCat,
                                    IdMarca=@IdMarca,
                                    IdColor=@IdColor,
-                                   Precio=@Precio,
+                                   PrecioCompra=@PrecioCompra,
+                                   PrecioVenta=@PrecioVenta,
                                    Stock=@Stock
                                WHERE IdProducto=@IdProducto";
 
@@ -69,8 +70,10 @@ namespace CapaDatos
                     cm.Parameters.AddWithValue("IdCat", Prod.IdCat);
                     cm.Parameters.AddWithValue("IdMarca", Prod.IdMarca);
                     cm.Parameters.AddWithValue("IdColor", Prod.IdColor);
-                    cm.Parameters.AddWithValue("Precio", Prod.Precio);
+                    cm.Parameters.AddWithValue("PrecioCompra", Prod.PrecioCompra);
+                    cm.Parameters.AddWithValue("PrecioVenta", Prod.PrecioVenta);
                     cm.Parameters.AddWithValue("Stock", Prod.Stock);
+
                     cm.Parameters.AddWithValue("IdProducto", Prod.IdProducto);
 
                     con.Open();
@@ -135,8 +138,9 @@ namespace CapaDatos
                 Prod.IdCat = reader.GetInt32(3);
                 Prod.IdMarca = reader.GetInt32(4);
                 Prod.IdColor = reader.GetInt32(5);
-                Prod.Precio = reader.GetDecimal(6);
-                Prod.Stock = reader.GetInt32(7);
+                Prod.PrecioCompra = reader.GetDecimal(6);
+                Prod.PrecioVenta = reader.GetDecimal(7);
+                Prod.Stock = reader.GetInt32(8);
 
 
                 list.Add(Prod);
@@ -144,23 +148,6 @@ namespace CapaDatos
             con.Close();
 
             return list;
-        }
-        public DataTable Listar()
-        {
-            DataTable dt = new DataTable();
-
-            using (OleDbConnection con = new OleDbConnection(ConectarDB())) //Es un nuevo enfoque al conectar con la base de datos
-            {
-                string query = "Select IdProducto, Descripcion, Detalle, IdCat, IdMarca, IdColor, Precio, Stock, Estado from Productos Where Estado = true;";
-                OleDbCommand cm = new OleDbCommand(query, con);
-
-                con.Open();
-
-                OleDbDataAdapter da = new OleDbDataAdapter(cm);
-                da.Fill(dt);
-            }
-
-            return dt;
         }
         public List<Productos> Buscar(string Descripcion)
         {
@@ -174,7 +161,7 @@ namespace CapaDatos
                    c.IdCat, c.Descripcion AS Categoria,
                    m.IdMarca, m.Descripcion AS Marca,
                    col.IdColor, col.Descripcion AS Color,
-                   p.Precio, p.Stock, p.Estado
+                   p.PrecioCompra, p.PrecioVenta, p.Stock, p.Estado
             FROM ((Productos p
             INNER JOIN Categoria c ON p.IdCat = c.IdCat)
             INNER JOIN Marcas m ON p.IdMarca = m.IdMarca)
@@ -202,7 +189,8 @@ namespace CapaDatos
                             Marca = reader["Marca"] != DBNull.Value ? reader["Marca"].ToString() : string.Empty,
                             IdColor = reader["IdColor"] != DBNull.Value ? Convert.ToInt32(reader["IdColor"]) : 0,
                             Color = reader["Color"] != DBNull.Value ? reader["Color"].ToString() : string.Empty,
-                            Precio = reader["Precio"] != DBNull.Value ? Convert.ToDecimal(reader["Precio"]) : 0m,
+                            PrecioCompra = reader["PrecioCompra"] != DBNull.Value ? Convert.ToDecimal(reader["PrecioCompra"]) : 0m,
+                            PrecioVenta = reader["PrecioVenta"] != DBNull.Value ? Convert.ToDecimal(reader["PrecioVenta"]) : 0m,
                             Stock = reader["Stock"] != DBNull.Value ? Convert.ToInt32(reader["Stock"]) : 0,
                             Estado = reader["Estado"] != DBNull.Value ? Convert.ToBoolean(reader["Estado"]) : false
                         };
@@ -226,7 +214,7 @@ namespace CapaDatos
                    c.IdCat, c.Descripcion AS Categoria,
                    m.IdMarca, m.Descripcion AS Marca,
                    col.IdColor, col.Descripcion AS Color,
-                   p.Precio, p.Stock, p.Estado
+                   p.PrecioCompra, p.PrecioVenta, p.Stock, p.Estado
             FROM ((Productos p
             INNER JOIN Categoria c ON p.IdCat = c.IdCat)
             INNER JOIN Marcas m ON p.IdMarca = m.IdMarca)
@@ -253,7 +241,8 @@ namespace CapaDatos
                             Marca = reader["Marca"] != DBNull.Value ? reader["Marca"].ToString() : string.Empty,
                             IdColor = reader["IdColor"] != DBNull.Value ? Convert.ToInt32(reader["IdColor"]) : 0,
                             Color = reader["Color"] != DBNull.Value ? reader["Color"].ToString() : string.Empty,
-                            Precio = reader["Precio"] != DBNull.Value ? Convert.ToDecimal(reader["Precio"]) : 0m,
+                            PrecioCompra = reader["PrecioCompra"] != DBNull.Value ? Convert.ToDecimal(reader["PrecioCompra"]) : 0m,
+                            PrecioVenta = reader["PrecioVenta"] != DBNull.Value ? Convert.ToDecimal(reader["PrecioVenta"]) : 0m,
                             Stock = reader["Stock"] != DBNull.Value ? Convert.ToInt32(reader["Stock"]) : 0,
                             Estado = reader["Estado"] != DBNull.Value ? Convert.ToBoolean(reader["Estado"]) : false
                         };
@@ -284,7 +273,7 @@ namespace CapaDatos
                        c.IdCat, c.Descripcion AS Categoria,
                        m.IdMarca, m.Descripcion AS Marca,
                        col.IdColor, col.Descripcion AS Color,
-                       p.Precio, p.Stock, p.Estado
+                       p.PrecioCompra, p.PrecioVenta, p.Stock, p.Estado
                 FROM ((Productos p
                 INNER JOIN Categoria c ON p.IdCat = c.IdCat)
                 INNER JOIN Marcas m ON p.IdMarca = m.IdMarca)
@@ -311,7 +300,8 @@ namespace CapaDatos
                             IdColor = reader["IdColor"] != DBNull.Value ? Convert.ToInt32(reader["IdColor"]) : 0,
                             Color = ColumnExists(reader, "Color") ? reader["Color"].ToString() :
                                             (ColumnExists(reader, "Color") ? reader["Color"].ToString() : string.Empty),
-                            Precio = reader["Precio"] != DBNull.Value ? Convert.ToDecimal(reader["Precio"]) : 0m,
+                            PrecioCompra = reader["PrecioCompra"] != DBNull.Value ? Convert.ToDecimal(reader["PrecioCompra"]) : 0m,
+                            PrecioVenta = reader["PrecioVenta"] != DBNull.Value ? Convert.ToDecimal(reader["PrecioVenta"]) : 0m,
                             Stock = reader["Stock"] != DBNull.Value ? Convert.ToInt32(reader["Stock"]) : 0,
                             Estado = reader["Estado"] != DBNull.Value ? Convert.ToBoolean(reader["Estado"]) : false
                         };

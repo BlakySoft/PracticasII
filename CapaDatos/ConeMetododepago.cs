@@ -139,65 +139,58 @@ namespace CapaDatos
 
             return list;
         }
-
-        public List<Metododepago> BuscarPapelera(string Descripcion)
+        public List<Metododepago> BuscarPapelera(string letra)
         {
             List<Metododepago> list = new List<Metododepago>();
-            OleDbConnection cone = new OleDbConnection();
-            OleDbCommand cm = new OleDbCommand();
-            OleDbDataReader reader;
-
-            cone.ConnectionString = ConectarDB();
-            cm.CommandType = System.Data.CommandType.Text;
-
-            cm.CommandText = $"Select IdMetodo, Descripcion from Metodos where Descripcion like ('%{Descripcion}%') AND Estado = false";
-            cm.Connection = cone;
-            cone.Open();
-
-            reader = cm.ExecuteReader();
-
-            while (reader.Read())
+            using (OleDbConnection cone = new OleDbConnection(ConectarDB()))
+            using (OleDbCommand cm = cone.CreateCommand())
             {
-                Metododepago Metodo = new Metododepago();
+                cm.CommandType = System.Data.CommandType.Text;
 
-                Metodo.IdMetodo = reader.GetInt32(0);
-                Metodo.Descripcion = reader.GetString(1);
+                // Buscar métodos activos que comiencen con la letra indicada
+                cm.CommandText = $"SELECT IdMetodo, Descripcion FROM Metodos WHERE Descripcion LIKE '{letra}%' AND Estado = false";
+                cone.Open();
 
-
-                list.Add(Metodo);
+                using (OleDbDataReader reader = cm.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        Metododepago metodo = new Metododepago
+                        {
+                            IdMetodo = reader.GetInt32(0),
+                            Descripcion = reader.GetString(1)
+                        };
+                        list.Add(metodo);
+                    }
+                }
             }
-
-            cone.Close();
             return list;
         }
-        public List<Metododepago> Buscar(string Descripcion)
+        public List<Metododepago> Buscar(string letra)
         {
             List<Metododepago> list = new List<Metododepago>();
-            OleDbConnection cone = new OleDbConnection();
-            OleDbCommand cm = new OleDbCommand();
-            OleDbDataReader reader;
-
-            cone.ConnectionString = ConectarDB();
-            cm.CommandType = System.Data.CommandType.Text;
-
-            cm.CommandText = $"Select IdMetodo, Descripcion from Metodos where Descripcion like ('%{Descripcion}%')";
-            cm.Connection = cone;
-            cone.Open();
-
-            reader = cm.ExecuteReader();
-
-            while (reader.Read())
+            using (OleDbConnection cone = new OleDbConnection(ConectarDB()))
+            using (OleDbCommand cm = cone.CreateCommand())
             {
-                Metododepago Metodo = new Metododepago();
+                cm.CommandType = System.Data.CommandType.Text;
 
-                Metodo.IdMetodo = reader.GetInt32(0);
-                Metodo.Descripcion = reader.GetString(1);
+                // Buscar métodos activos que comiencen con la letra indicada
+                cm.CommandText = $"SELECT IdMetodo, Descripcion FROM Metodos WHERE Descripcion LIKE '{letra}%' AND Estado = true";
+                cone.Open();
 
-
-                list.Add(Metodo);
+                using (OleDbDataReader reader = cm.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        Metododepago metodo = new Metododepago
+                        {
+                            IdMetodo = reader.GetInt32(0),
+                            Descripcion = reader.GetString(1)
+                        };
+                        list.Add(metodo);
+                    }
+                }
             }
-
-            cone.Close();
             return list;
         }
     }

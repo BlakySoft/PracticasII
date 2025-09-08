@@ -38,6 +38,10 @@ namespace CapaPresentacion
         #endregion
 
         #region Botones
+        private void iconButton1_Click_1(object sender, EventArgs e)
+        {
+            TxtBuscar.Clear();
+        }
         private void BtnRecuperar_Click(object sender, EventArgs e)
         {
             ConeCategoria cone = new ConeCategoria();
@@ -46,21 +50,32 @@ namespace CapaPresentacion
                 IdCat = int.Parse(LblIdCat.Text)
             };
 
-            cone.RecuperarCat(Recuperar);
+            DialogResult resultado = MessageBox.Show(
+                "¿Está seguro que desea recuperar esta categoría?",
+                "Confirmar recuperación",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+            );
 
-            try
+            if (resultado == DialogResult.Yes)
             {
-                MessageBox.Show("El Categoria se recuperó correctamente!!!", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                LimpiarTextos();
-                Listar();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error: {ex.ToString()}");
-                throw;
+                cone.RecuperarCat(Recuperar);
+
+                try
+                {
+                    MessageBox.Show("La Categoría se recuperó correctamente!!!", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    LimpiarTextos();
+                    Listar();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error: {ex.ToString()}");
+                    throw;
+                }
+
+                BtnVolver.Focus();
             }
 
-            BtnVolver.Focus();
         }
         private void iconButton1_Click(object sender, EventArgs e)
         {
@@ -92,5 +107,7 @@ namespace CapaPresentacion
             }
         }
         #endregion
+
+      
     }
 }

@@ -76,16 +76,16 @@
             // 
             // BtnLocalidad
             // 
-            this.BtnLocalidad.BackColor = System.Drawing.Color.Linen;
+            this.BtnLocalidad.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(234)))), ((int)(((byte)(233)))));
             this.BtnLocalidad.FlatAppearance.BorderSize = 0;
             this.BtnLocalidad.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnLocalidad.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnLocalidad.ForeColor = System.Drawing.Color.White;
             this.BtnLocalidad.IconChar = FontAwesome.Sharp.IconChar.MagnifyingGlassPlus;
-            this.BtnLocalidad.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.BtnLocalidad.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(156)))), ((int)(((byte)(191)))), ((int)(((byte)(227)))));
             this.BtnLocalidad.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.BtnLocalidad.IconSize = 20;
-            this.BtnLocalidad.Location = new System.Drawing.Point(170, 238);
+            this.BtnLocalidad.Location = new System.Drawing.Point(189, 238);
             this.BtnLocalidad.Name = "BtnLocalidad";
             this.BtnLocalidad.Size = new System.Drawing.Size(30, 27);
             this.BtnLocalidad.TabIndex = 58;
@@ -101,8 +101,9 @@
             this.CboIdLocalidad.Location = new System.Drawing.Point(9, 238);
             this.CboIdLocalidad.Name = "CboIdLocalidad";
             this.CboIdLocalidad.Size = new System.Drawing.Size(155, 27);
-            this.CboIdLocalidad.TabIndex = 57;
+            this.CboIdLocalidad.TabIndex = 5;
             this.CboIdLocalidad.SelectionChangeCommitted += new System.EventHandler(this.CboIdLocalidad_SelectionChangeCommitted);
+            this.CboIdLocalidad.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CboIdLocalidad_KeyPress);
             // 
             // TxtDomicilio
             // 
@@ -111,7 +112,8 @@
             this.TxtDomicilio.Location = new System.Drawing.Point(9, 184);
             this.TxtDomicilio.Name = "TxtDomicilio";
             this.TxtDomicilio.Size = new System.Drawing.Size(191, 26);
-            this.TxtDomicilio.TabIndex = 56;
+            this.TxtDomicilio.TabIndex = 4;
+            this.TxtDomicilio.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtDomicilio_KeyPress);
             // 
             // TxtTelefono
             // 
@@ -120,7 +122,8 @@
             this.TxtTelefono.Location = new System.Drawing.Point(9, 133);
             this.TxtTelefono.Name = "TxtTelefono";
             this.TxtTelefono.Size = new System.Drawing.Size(191, 26);
-            this.TxtTelefono.TabIndex = 55;
+            this.TxtTelefono.TabIndex = 3;
+            this.TxtTelefono.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtTelefono_KeyPress);
             // 
             // TxtDocumento
             // 
@@ -129,7 +132,8 @@
             this.TxtDocumento.Location = new System.Drawing.Point(9, 82);
             this.TxtDocumento.Name = "TxtDocumento";
             this.TxtDocumento.Size = new System.Drawing.Size(191, 26);
-            this.TxtDocumento.TabIndex = 54;
+            this.TxtDocumento.TabIndex = 2;
+            this.TxtDocumento.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtDocumento_KeyPress);
             // 
             // TxtRazon
             // 
@@ -138,7 +142,8 @@
             this.TxtRazon.Location = new System.Drawing.Point(9, 31);
             this.TxtRazon.Name = "TxtRazon";
             this.TxtRazon.Size = new System.Drawing.Size(191, 26);
-            this.TxtRazon.TabIndex = 53;
+            this.TxtRazon.TabIndex = 1;
+            this.TxtRazon.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtRazon_KeyPress);
             // 
             // label6
             // 
@@ -216,11 +221,11 @@
             this.panel1.Location = new System.Drawing.Point(249, 4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(162, 281);
-            this.panel1.TabIndex = 14;
+            this.panel1.TabIndex = 7;
             // 
             // PanelBotones
             // 
-            this.PanelBotones.BackColor = System.Drawing.Color.Linen;
+            this.PanelBotones.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(234)))), ((int)(((byte)(233)))));
             this.PanelBotones.Controls.Add(this.BtnVolver);
             this.PanelBotones.Controls.Add(this.BtnCancelar);
             this.PanelBotones.Controls.Add(this.BtnGrabar);

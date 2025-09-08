@@ -44,18 +44,34 @@ namespace CapaPresentacion
         {
             ConeProductos listar = new ConeProductos();
             Grilla.DataSource = listar.ListarINNERJOIN();
-            Grilla.Columns[0].HeaderText = "Código";
+            Grilla.Columns[0].HeaderText = "ID";
+            Grilla.Columns[1].HeaderText = "Descripcion";
+            Grilla.Columns[2].HeaderText = "Talle";
+            Grilla.Columns[6].HeaderText = "Categoria";
+            Grilla.Columns[7].HeaderText = "Marca";
+            Grilla.Columns[8].HeaderText = "Color";
+            Grilla.Columns[9].HeaderText = "Precio Compra";
+            Grilla.Columns[10].HeaderText = "Precio Venta";
+            Grilla.Columns[11].HeaderText = "Stock";
+
             Grilla.Columns[3].Visible = false;
             Grilla.Columns[4].Visible = false;
             Grilla.Columns[5].Visible = false;
-            Grilla.Columns[11].Visible = false;
+            Grilla.Columns[12].Visible = false;
 
-            Grilla.Columns[0].Width = 83;
+            Grilla.Columns[0].Width = 30;
             Grilla.Columns[1].Width = 140;
-            Grilla.Columns[2].Width = 110;
-            Grilla.Columns[6].Width = 110;
-            Grilla.Columns[7].Width = 110;
-            Grilla.Columns[8].Width = 130;
+            Grilla.Columns[2].Width = 90;
+            Grilla.Columns[3].Width = 0;
+            Grilla.Columns[4].Width = 0;
+            Grilla.Columns[5].Width = 0;
+            Grilla.Columns[6].Width = 120;
+            Grilla.Columns[7].Width = 100;
+            Grilla.Columns[8].Width = 120;
+            Grilla.Columns[9].Width = 100;
+            Grilla.Columns[10].Width = 100;
+            Grilla.Columns[11].Width = 90;
+            Grilla.Columns[12].Width = 0;
         }
         private void CargarCbo2()
         {
@@ -86,7 +102,8 @@ namespace CapaPresentacion
             LblIdProducto.Text = "";
             TxtDescripcion.Clear();
             TxtStock.Clear();
-            TxtPrecio.Clear();
+            TxtPrecioCompra.Clear();
+            TxtPrecioVenta.Clear();
             TxtDetalle.Clear();
         }
         #endregion
@@ -115,10 +132,10 @@ namespace CapaPresentacion
             TxtDescripcion.Focus();
         }
         private void BtnGrabar_Click(object sender, EventArgs e)
-        { 
+        {
             try
             {
-                // Validar campos obligatorios
+             
                 if (string.IsNullOrWhiteSpace(TxtDescripcion.Text))
                 {
                     MessageBox.Show("Ingrese la Descripción.", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -137,15 +154,19 @@ namespace CapaPresentacion
                     TxtStock.Focus();
                     return;
                 }
-                if (string.IsNullOrWhiteSpace(TxtPrecio.Text))
+                if (string.IsNullOrWhiteSpace(TxtPrecioCompra.Text))
                 {
-                    MessageBox.Show("Ingrese el Precio.", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    TxtPrecio.Focus();
+                    MessageBox.Show("Ingrese el Precio de Compra.", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    TxtPrecioCompra.Focus();
                     return;
                 }
-
-                // Tomar valores actuales de los combos
-                if (CboIdCat.SelectedValue == null || !int.TryParse(CboIdCat.SelectedValue.ToString(), out VarCat) || VarCat <= 0)
+                if (string.IsNullOrWhiteSpace(TxtPrecioVenta.Text))
+                {
+                    MessageBox.Show("Ingrese el Precio de Venta.", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    TxtPrecioVenta.Focus();
+                    return;
+                }
+               if (CboIdCat.SelectedValue == null || !int.TryParse(CboIdCat.SelectedValue.ToString(), out VarCat) || VarCat <= 0)
                 {
                     MessageBox.Show("Seleccione una Categoría.", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     return;
@@ -161,7 +182,16 @@ namespace CapaPresentacion
                     return;
                 }
 
-                // Crear objeto producto
+                decimal precioCompra = Convert.ToDecimal(TxtPrecioCompra.Text);
+                decimal precioVenta = Convert.ToDecimal(TxtPrecioVenta.Text);
+
+                if (precioCompra > precioVenta)
+                {
+                    MessageBox.Show("El Precio de Compra no puede ser mayor que el Precio de Venta.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    TxtPrecioVenta.Focus();
+                    return;
+                }
+
                 Productos producto = new Productos
                 {
                     Descripcion = TxtDescripcion.Text.Trim(),
@@ -169,15 +199,15 @@ namespace CapaPresentacion
                     IdCat = VarCat,
                     IdMarca = VarMar,
                     IdColor = VarCol,
+                    PrecioCompra = precioCompra,
+                    PrecioVenta = precioVenta,
                     Stock = int.Parse(TxtStock.Text),
-                    Precio = Convert.ToDecimal(TxtPrecio.Text)
                 };
 
                 ConeProductos cone = new ConeProductos();
 
                 if (nuevo)
                 {
-                    // Confirmación
                     if (MessageBox.Show("¿Está seguro de agregar este producto?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
                         cone.Agregar(producto);
@@ -187,7 +217,6 @@ namespace CapaPresentacion
                 }
                 else
                 {
-                    // Actualizar producto existente
                     producto.IdProducto = int.Parse(LblIdProducto.Text);
 
                     if (MessageBox.Show("¿Está seguro de actualizar este producto?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
@@ -198,7 +227,6 @@ namespace CapaPresentacion
                     else return;
                 }
 
-                // Refrescar grilla y limpiar formulario
                 ListarProducto();
                 LimpiarTextos();
                 CboIdCat.SelectedIndex = -1;
@@ -206,7 +234,7 @@ namespace CapaPresentacion
                 CboIdCol.SelectedIndex = -1;
                 VarCat = 0; VarMar = 0; VarCol = 0;
 
-                // Habilitar/deshabilitar botones
+ 
                 PanelDatos.Enabled = false;
                 BtnGrabar.Enabled = false;
                 BtnCancelar.Enabled = false;
@@ -347,7 +375,6 @@ namespace CapaPresentacion
         #endregion
 
         #region Interaccion con Formulario
-
         private void TxtBuscar_TextChanged(object sender, EventArgs e)
         {
             if (TxtBuscar.Text != "")
@@ -375,8 +402,9 @@ namespace CapaPresentacion
             VarCat = Convert.ToInt32(Grilla.Rows[e.RowIndex].Cells[3].Value);
             VarMar = Convert.ToInt32(Grilla.Rows[e.RowIndex].Cells[4].Value);
             VarCol = Convert.ToInt32(Grilla.Rows[e.RowIndex].Cells[5].Value);
-            TxtPrecio.Text = Grilla.Rows[e.RowIndex].Cells[9].Value.ToString();
-            TxtStock.Text = Grilla.Rows[e.RowIndex].Cells[10].Value.ToString();
+            TxtPrecioCompra.Text = Grilla.Rows[e.RowIndex].Cells[9].Value.ToString();
+            TxtPrecioVenta.Text = Grilla.Rows[e.RowIndex].Cells[10].Value.ToString();
+            TxtStock.Text = Grilla.Rows[e.RowIndex].Cells[11].Value.ToString();
 
             // **Asignar valores a combos sin recargar DataSource**
             CboIdCat.SelectedValue = VarCat;
@@ -396,8 +424,9 @@ namespace CapaPresentacion
                 LblIdProducto.Text = Grilla.Rows[e.RowIndex].Cells[0].Value.ToString();
                 TxtDescripcion.Text = Grilla.Rows[e.RowIndex].Cells[1].Value.ToString();
                 TxtDetalle.Text = Grilla.Rows[e.RowIndex].Cells[2].Value.ToString();
-                TxtPrecio.Text = Grilla.Rows[e.RowIndex].Cells[6].Value.ToString();
-                TxtStock.Text = Grilla.Rows[e.RowIndex].Cells[7].Value.ToString();
+                TxtPrecioCompra.Text = Grilla.Rows[e.RowIndex].Cells[6].Value.ToString();
+                TxtPrecioVenta.Text = Grilla.Rows[e.RowIndex].Cells[7].Value.ToString();
+                TxtStock.Text = Grilla.Rows[e.RowIndex].Cells[8].Value.ToString();
 
                 // IDs
                 VarCat = Convert.ToInt32(Grilla.Rows[e.RowIndex].Cells[3].Value);
@@ -439,6 +468,9 @@ namespace CapaPresentacion
         {
             VarCol = int.Parse(CboIdCol.SelectedValue.ToString());
         }
+        #endregion
+
+        #region Validadores
         private void TxtDescripcion_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
@@ -460,8 +492,57 @@ namespace CapaPresentacion
 
             if (e.KeyChar == (char)Keys.Enter)
             {
-                TxtDetalle.Focus();
+                CboIdCat.Focus();
             }
+        }
+        private void CboIdCat_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                e.Handled = true; // evita el sonido de Windows
+
+                if (CboIdCat.SelectedIndex < 0)
+                {
+                    MessageBox.Show("Debe seleccionar una Categoría.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    CboIdCat.Focus();
+                    return;
+                }
+
+                SelectNextControl((Control)sender, true, true, true, true);
+            }
+        }
+        private void CboIdMar_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                e.Handled = true;
+
+                if (CboIdMar.SelectedIndex < 0)
+                {
+                    MessageBox.Show("Debe seleccionar una Marca.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    CboIdMar.Focus();
+                    return;
+                }
+
+                SelectNextControl((Control)sender, true, true, true, true);
+            }
+        }
+        private void CboIdCol_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                e.Handled = true;
+
+                if (CboIdCol.SelectedIndex < 0)
+                {
+                    MessageBox.Show("Debe seleccionar un Color.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    CboIdCol.Focus();
+                    return;
+                }
+
+                SelectNextControl((Control)sender, true, true, true, true);
+            }
+
         }
         private void TxtPrecio_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -472,7 +553,19 @@ namespace CapaPresentacion
 
             if (e.KeyChar == (char)Keys.Enter)
             {
-                TxtPrecio.Focus();
+                TxtPrecioVenta.Focus();
+            }
+        }
+        private void TxtPrecioVenta_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                TxtStock.Focus();
             }
         }
         private void TxtStock_KeyPress(object sender, KeyPressEventArgs e)
@@ -483,7 +576,7 @@ namespace CapaPresentacion
                 e.Handled = true;
             }
 
-            if (e.KeyChar == '.' && TxtPrecio.Text.Contains("."))
+            if (e.KeyChar == '.' && TxtPrecioCompra.Text.Contains("."))
             {
                 e.Handled = true; 
             }
@@ -493,8 +586,10 @@ namespace CapaPresentacion
                 BtnGrabar.Focus(); 
             }
         }
+
         #endregion
-  
+
+     
     }
 }
 

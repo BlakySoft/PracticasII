@@ -140,64 +140,58 @@ namespace CapaDatos
 
             return list;
         }
-        public List<Localidad> BuscarPapelera(string Descripcion)
+        public List<Localidad> BuscarPapelera(string letra)
         {
             List<Localidad> list = new List<Localidad>();
-            OleDbConnection cone = new OleDbConnection();
-            OleDbCommand cm = new OleDbCommand();
-            OleDbDataReader reader;
-
-            cone.ConnectionString = ConectarDB();
-            cm.CommandType = System.Data.CommandType.Text;
-
-            cm.CommandText = $"Select IdLocalidad, Descripcion from Localidades where Descripcion like ('%{Descripcion}%') AND Estado = False";
-            cm.Connection = cone;
-            cone.Open();
-
-            reader = cm.ExecuteReader();
-
-            while (reader.Read())
+            using (OleDbConnection cone = new OleDbConnection(ConectarDB()))
+            using (OleDbCommand cm = cone.CreateCommand())
             {
-                Localidad Localidades = new Localidad();
+                cm.CommandType = System.Data.CommandType.Text;
 
-                Localidades.IdLocalidad = reader.GetInt32(0);
-                Localidades.Descripcion = reader.GetString(1);
+                // Buscar localidades por primera letra
+                cm.CommandText = $"SELECT IdLocalidad, Descripcion FROM Localidades WHERE Descripcion LIKE '{letra}%' AND Estado = false";
+                cone.Open();
 
-
-                list.Add(Localidades);
+                using (OleDbDataReader reader = cm.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        Localidad loc = new Localidad
+                        {
+                            IdLocalidad = reader.GetInt32(0),
+                            Descripcion = reader.GetString(1)
+                        };
+                        list.Add(loc);
+                    }
+                }
             }
-
-            cone.Close();
             return list;
         }
-        public List<Localidad> BuscarLocalidad(string Descripcion)
+        public List<Localidad> BuscarLocalidad(string letra)
         {
             List<Localidad> list = new List<Localidad>();
-            OleDbConnection cone = new OleDbConnection();
-            OleDbCommand cm = new OleDbCommand();
-            OleDbDataReader reader;
-
-            cone.ConnectionString = ConectarDB();
-            cm.CommandType = System.Data.CommandType.Text;
-
-            cm.CommandText = $"Select IdLocalidad, Descripcion from Localidades where Descripcion like ('%{Descripcion}%')";
-            cm.Connection = cone;
-            cone.Open();
-
-            reader = cm.ExecuteReader();
-
-            while (reader.Read())
+            using (OleDbConnection cone = new OleDbConnection(ConectarDB()))
+            using (OleDbCommand cm = cone.CreateCommand())
             {
-                Localidad Localidades = new Localidad();
+                cm.CommandType = System.Data.CommandType.Text;
 
-                Localidades.IdLocalidad = reader.GetInt32(0);
-                Localidades.Descripcion = reader.GetString(1);
+                // Buscar localidades por primera letra
+                cm.CommandText = $"SELECT IdLocalidad, Descripcion FROM Localidades WHERE Descripcion LIKE '{letra}%'AND Estado = true";
+                cone.Open();
 
-
-                list.Add(Localidades);
+                using (OleDbDataReader reader = cm.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        Localidad loc = new Localidad
+                        {
+                            IdLocalidad = reader.GetInt32(0),
+                            Descripcion = reader.GetString(1)
+                        };
+                        list.Add(loc);
+                    }
+                }
             }
-
-            cone.Close();
             return list;
         }
         public List<Localidad> BuscarIdLocalidad(int IdLocalidad)

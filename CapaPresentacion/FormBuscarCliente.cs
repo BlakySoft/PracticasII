@@ -25,19 +25,7 @@ namespace CapaPresentacion
         {
             ConeClientes cone = new ConeClientes();
             Grilla.DataSource = cone.ListarCliente();
-
-            Grilla.Columns[0].HeaderText = "Codigo";
-            Grilla.Columns[0].Width = 70;
-            Grilla.Columns[1].Width = 140;
-            Grilla.Columns[2].Width = 100;
-            Grilla.Columns[3].Width = 100;
-            Grilla.Columns[4].Width = 110;
-            Grilla.Columns[5].Width = 60;
-            Grilla.Columns[1].HeaderText = "Nombre y apellido";
-            Grilla.Columns[2].HeaderText = "Documento";
-            Grilla.Columns[3].HeaderText = "Teléfono";
-            Grilla.Columns[4].HeaderText = "Domicilio";
-            Grilla.Columns[5].Visible = false;
+            Grilla.Columns[6].Visible = false;
         }
         #endregion
 

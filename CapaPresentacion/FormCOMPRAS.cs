@@ -60,6 +60,15 @@ namespace CapaPresentacion
             Grilla.Rows.Clear();
             Total = 0;
             BtnNuevo.Focus();
+
+            // Cambiar fuente de los encabezados de columna
+            Grilla.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 14, FontStyle.Bold);
+
+            // Cambiar fuente de las filas
+            Grilla.RowsDefaultCellStyle.Font = new Font("Calibri", 11, FontStyle.Bold);
+
+            Grilla.Columns[0].Width = 80;
+            Grilla.Columns[1].Width = 200;
         }
         private void CargarCbo()
         {
@@ -290,6 +299,9 @@ namespace CapaPresentacion
         {
             Close();
         }
+
+     
+
         private void CboIdBarrio_Click(object sender, EventArgs e)
         {
             CargarCbo();

@@ -46,6 +46,10 @@ namespace CapaPresentacion
         #endregion
 
         #region Botones
+        private void iconButton1_Click(object sender, EventArgs e)
+        {
+            TxtBuscar.Clear();
+        }
         private void BtnNuevo_Click(object sender, EventArgs e)
         {
             #region Enabled yes/no
@@ -196,16 +200,18 @@ namespace CapaPresentacion
         }
         private void BtnPapelera_Click(object sender, EventArgs e)
         {
-            FormPAPELERAMarca form = new FormPAPELERAMarca();
-            form.ShowDialog();
+            using (FormPAPELERAMarca form = new FormPAPELERAMarca())
+            {
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    Listar();
+                }
+            }
+
         }
         private void BtnVolver_Click(object sender, EventArgs e)
         {
             Close();
-        }
-        private void BtnActualizar_Click(object sender, EventArgs e)
-        {
-            Listar();
         }
         #endregion
 
@@ -246,6 +252,7 @@ namespace CapaPresentacion
 
             }
         }
+
 
         #endregion
 

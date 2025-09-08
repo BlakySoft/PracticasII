@@ -18,7 +18,6 @@ namespace CapaDatos
             string cadenaconexion = ("Provider =Microsoft.Jet.OLEDB.4.0; Data Source =|DataDirectory|DB.mdb;");
             return cadenaconexion;
         }
-
         public void Agregar(Marca Marcas)
         {
             OleDbConnection cone = new OleDbConnection();
@@ -142,97 +141,57 @@ namespace CapaDatos
 
             return list;
         }
-        public List<Marca> BuscarIdMarca(int IdMarca)
+        public List<Marca> BuscarMarca(string letra)
         {
             List<Marca> list = new List<Marca>();
-            OleDbConnection cone = new OleDbConnection();
-            OleDbCommand cm = new OleDbCommand();
-            OleDbDataReader reader;
-
-            cone.ConnectionString = ConectarDB();
-            cm.CommandType = System.Data.CommandType.Text;
-
-            cm.CommandText = $"Select IdMarca, Descripcion from Marcas where IdMarca like ('%{IdMarca}%')";
-            cm.Connection = cone;
-            cone.Open();
-
-            reader = cm.ExecuteReader();
-
-            while (reader.Read())
+            using (OleDbConnection cone = new OleDbConnection(ConectarDB()))
+            using (OleDbCommand cm = cone.CreateCommand())
             {
+                cm.CommandType = System.Data.CommandType.Text;
 
-                Marca marca = new Marca();
+                // Buscar marcas por primera letra y activas
+                cm.CommandText = $"SELECT IdMarca, Descripcion FROM Marcas WHERE Descripcion LIKE '{letra}%' AND Estado = true";
+                cone.Open();
 
-                marca.IdMarca = reader.GetInt32(0);
-                marca.Descripcion = reader.GetString(1);
-
-
-                list.Add(marca);
+                using (OleDbDataReader reader = cm.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        Marca mar = new Marca
+                        {
+                            IdMarca = reader.GetInt32(0),
+                            Descripcion = reader.GetString(1)
+                        };
+                        list.Add(mar);
+                    }
+                }
             }
-
-            cone.Close();
             return list;
         }
-        public List<Marca> BuscarMarca(string Descripcion)
+        public List<Marca> BuscarPapelera(string letra)
         {
             List<Marca> list = new List<Marca>();
-            OleDbConnection cone = new OleDbConnection();
-            OleDbCommand cm = new OleDbCommand();
-            OleDbDataReader reader;
-
-            cone.ConnectionString = ConectarDB();
-            cm.CommandType = System.Data.CommandType.Text;
-
-            cm.CommandText = $"Select IdMarca, Descripcion from Marcas where Descripcion like ('%{Descripcion}%')";
-            cm.Connection = cone;
-            cone.Open();
-
-            reader = cm.ExecuteReader();
-
-            while (reader.Read())
+            using (OleDbConnection cone = new OleDbConnection(ConectarDB()))
+            using (OleDbCommand cm = cone.CreateCommand())
             {
+                cm.CommandType = System.Data.CommandType.Text;
 
-                Marca marca = new Marca();
+                cm.CommandText = $"SELECT IdMarca, Descripcion FROM Marcas WHERE Descripcion LIKE '{letra}%' AND Estado = false";
+                cone.Open();
 
-                marca.IdMarca = reader.GetInt32(0);
-                marca.Descripcion = reader.GetString(1);
-             
-
-                list.Add(marca);
+                using (OleDbDataReader reader = cm.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        Marca mar = new Marca
+                        {
+                            IdMarca = reader.GetInt32(0),
+                            Descripcion = reader.GetString(1)
+                        };
+                        list.Add(mar);
+                    }
+                }
             }
-
-            cone.Close();
-            return list;
-        }
-        public List<Marca> BuscarPapelera(string Descripcion)
-        {
-            List<Marca> list = new List<Marca>();
-            OleDbConnection cone = new OleDbConnection();
-            OleDbCommand cm = new OleDbCommand();
-            OleDbDataReader reader;
-
-            cone.ConnectionString = ConectarDB();
-            cm.CommandType = System.Data.CommandType.Text;
-
-            cm.CommandText = $"Select IdMarca, Descripcion from Marcas where Descripcion like ('%{Descripcion}%') AND Estado = false";
-            cm.Connection = cone;
-            cone.Open();
-
-            reader = cm.ExecuteReader();
-
-            while (reader.Read())
-            {
-
-                Marca marca = new Marca();
-
-                marca.IdMarca = reader.GetInt32(0);
-                marca.Descripcion = reader.GetString(1);
-
-
-                list.Add(marca);
-            }
-
-            cone.Close();
             return list;
         }
     }

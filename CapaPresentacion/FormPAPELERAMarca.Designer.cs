@@ -39,6 +39,7 @@
             this.TxtBuscar = new System.Windows.Forms.TextBox();
             this.LblBuscar = new System.Windows.Forms.Label();
             this.LblIdMarca = new System.Windows.Forms.Label();
+            this.iconButton1 = new FontAwesome.Sharp.IconButton();
             this.PnlBarraLateral.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Grilla)).BeginInit();
             this.SuspendLayout();
@@ -51,7 +52,7 @@
             this.PnlBarraLateral.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.PnlBarraLateral.Location = new System.Drawing.Point(0, 231);
             this.PnlBarraLateral.Name = "PnlBarraLateral";
-            this.PnlBarraLateral.Size = new System.Drawing.Size(318, 66);
+            this.PnlBarraLateral.Size = new System.Drawing.Size(357, 66);
             this.PnlBarraLateral.TabIndex = 2;
             // 
             // BtnVolver
@@ -141,7 +142,7 @@
             dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.White;
             this.Grilla.RowsDefaultCellStyle = dataGridViewCellStyle8;
             this.Grilla.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.Grilla.Size = new System.Drawing.Size(296, 177);
+            this.Grilla.Size = new System.Drawing.Size(337, 177);
             this.Grilla.TabIndex = 37;
             this.Grilla.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Grilla_CellClick);
             // 
@@ -181,12 +182,31 @@
             this.LblIdMarca.TabIndex = 1;
             this.LblIdMarca.Text = "0";
             // 
+            // iconButton1
+            // 
+            this.iconButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(156)))), ((int)(((byte)(191)))), ((int)(((byte)(227)))));
+            this.iconButton1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.iconButton1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(156)))), ((int)(((byte)(191)))), ((int)(((byte)(227)))));
+            this.iconButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.iconButton1.IconChar = FontAwesome.Sharp.IconChar.TrashAlt;
+            this.iconButton1.IconColor = System.Drawing.Color.White;
+            this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconButton1.IconSize = 30;
+            this.iconButton1.Location = new System.Drawing.Point(319, 2);
+            this.iconButton1.Margin = new System.Windows.Forms.Padding(0);
+            this.iconButton1.Name = "iconButton1";
+            this.iconButton1.Size = new System.Drawing.Size(29, 26);
+            this.iconButton1.TabIndex = 50;
+            this.iconButton1.UseVisualStyleBackColor = false;
+            this.iconButton1.Click += new System.EventHandler(this.iconButton1_Click);
+            // 
             // FormPAPELERAMarca
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(156)))), ((int)(((byte)(191)))), ((int)(((byte)(227)))));
-            this.ClientSize = new System.Drawing.Size(318, 297);
+            this.ClientSize = new System.Drawing.Size(357, 297);
+            this.Controls.Add(this.iconButton1);
             this.Controls.Add(this.LblIdMarca);
             this.Controls.Add(this.Grilla);
             this.Controls.Add(this.TxtBuscar);
@@ -211,5 +231,6 @@
         private FontAwesome.Sharp.IconButton BtnRecuperar;
         private FontAwesome.Sharp.IconButton BtnVolver;
         private System.Windows.Forms.Label LblIdMarca;
+        private FontAwesome.Sharp.IconButton iconButton1;
     }
 }

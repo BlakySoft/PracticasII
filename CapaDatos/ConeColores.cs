@@ -139,97 +139,58 @@ namespace CapaDatos
 
             return list;
         }
-        public List<Colores> BuscarIdColor(int IdColor)
+        public List<Colores> BuscarColor(string letra)
         {
             List<Colores> list = new List<Colores>();
-            OleDbConnection cone = new OleDbConnection();
-            OleDbCommand cm = new OleDbCommand();
-            OleDbDataReader reader;
-
-            cone.ConnectionString = ConectarDB();
-            cm.CommandType = System.Data.CommandType.Text;
-
-            cm.CommandText = $"Select IdColor, Descripcion from Color where IdColor like ('%{IdColor}%')";
-            cm.Connection = cone;
-            cone.Open();
-
-            reader = cm.ExecuteReader();
-
-            while (reader.Read())
+            using (OleDbConnection cone = new OleDbConnection(ConectarDB()))
+            using (OleDbCommand cm = cone.CreateCommand())
             {
+                cm.CommandType = System.Data.CommandType.Text;
 
-                Colores color = new Colores();
+                // Buscar colores por primera letra
+                cm.CommandText = $"SELECT IdColor, Descripcion FROM Color WHERE Descripcion LIKE '{letra}%' AND Estado = true";
+                cone.Open();
 
-                color.IdColor = reader.GetInt32(0);
-                color.Descripcion = reader.GetString(1);
-
-
-                list.Add(color);
+                using (OleDbDataReader reader = cm.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        Colores color = new Colores
+                        {
+                            IdColor = reader.GetInt32(0),
+                            Descripcion = reader.GetString(1)
+                        };
+                        list.Add(color);
+                    }
+                }
             }
-
-            cone.Close();
             return list;
         }
-        public List<Colores> BuscarColor(string Descripcion)
+        public List<Colores> BuscarPapelera(string letra)
         {
             List<Colores> list = new List<Colores>();
-            OleDbConnection cone = new OleDbConnection();
-            OleDbCommand cm = new OleDbCommand();
-            OleDbDataReader reader;
-
-            cone.ConnectionString = ConectarDB();
-            cm.CommandType = System.Data.CommandType.Text;
-
-            cm.CommandText = $"Select IdColor, Descripcion from Color where Descripcion like ('%{Descripcion}%')";
-            cm.Connection = cone;
-            cone.Open();
-
-            reader = cm.ExecuteReader();
-
-            while (reader.Read())
+            using (OleDbConnection cone = new OleDbConnection(ConectarDB()))
+            using (OleDbCommand cm = cone.CreateCommand())
             {
+                cm.CommandType = System.Data.CommandType.Text;
 
-                Colores color = new Colores();
+                // Buscar colores por primera letra
+                cm.CommandText = $"SELECT IdColor, Descripcion FROM Color WHERE Descripcion LIKE '{letra}%' AND Estado = false";
+                cone.Open();
 
-                color.IdColor = reader.GetInt32(0);
-                color.Descripcion = reader.GetString(1);
-
-
-                list.Add(color);
+                using (OleDbDataReader reader = cm.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        Colores color = new Colores
+                        {
+                            IdColor = reader.GetInt32(0),
+                            Descripcion = reader.GetString(1)
+                        };
+                        list.Add(color);
+                    }
+                }
             }
-
-            cone.Close();
-            return list;
-        }
-        public List<Colores> BuscarPapelera(string Descripcion)
-        {
-            List<Colores> list = new List<Colores>();
-            OleDbConnection cone = new OleDbConnection();
-            OleDbCommand cm = new OleDbCommand();
-            OleDbDataReader reader;
-
-            cone.ConnectionString = ConectarDB();
-            cm.CommandType = System.Data.CommandType.Text;
-
-            cm.CommandText = $"Select IdColor, Descripcion from Color where Descripcion like ('%{Descripcion}%') AND Estado = false";
-            cm.Connection = cone;
-            cone.Open();
-
-            reader = cm.ExecuteReader();
-
-            while (reader.Read())
-            {
-
-                Colores color = new Colores();
-
-                color.IdColor = reader.GetInt32(0);
-                color.Descripcion = reader.GetString(1);
-
-
-                list.Add(color);
-            }
-
-            cone.Close();
             return list;
         }
     }

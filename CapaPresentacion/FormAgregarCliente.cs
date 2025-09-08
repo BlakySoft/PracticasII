@@ -28,6 +28,7 @@ namespace CapaPresentacion
         private void LimpiarTextos()
         {
             LblIdCliente.Text = "";
+            TxtApellido.Clear();
             TxtNombre.Clear();
             TxtDocumento.Clear();
             TxtTelefono.Clear();
@@ -36,11 +37,6 @@ namespace CapaPresentacion
         #endregion
 
         #region Botones
-        //private void BtnBarrios_Click(object sender, EventArgs e)
-        //{
-        //    unuFormABMBarrios form = new unuFormABMBarrios();
-        //    form.ShowDialog();
-        //}
         private void BtnNuevo_Click(object sender, EventArgs e)
         {
             nuevo = true;
@@ -61,49 +57,88 @@ namespace CapaPresentacion
         {
             try
             {
-                if (TxtNombre.Text == "")
+                if (TxtApellido.Text == "")
                 {
-                    MessageBox.Show("Ingrese el Nombre y Apellido", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageBox.Show("Ingrese el Apellido", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    TxtApellido.Focus();
+                }
+                else if (TxtNombre.Text == "")
+                {
+                    MessageBox.Show("Ingrese el Nombre", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    TxtNombre.Focus();
                 }
                 else if (TxtDocumento.Text == "")
                 {
-                    MessageBox.Show("Ingrese el Numero de documento ", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageBox.Show("Ingrese el Numero de documento", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    TxtDocumento.Focus();
                 }
                 else if (TxtTelefono.Text == "")
                 {
                     MessageBox.Show("Ingrese el Teléfono", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    TxtTelefono.Focus();
                 }
                 else if (TxtDomicilio.Text == "")
                 {
-                    MessageBox.Show("Ingrese la Domicilio", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageBox.Show("Ingrese el Domicilio", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    TxtDomicilio.Focus();
                 }
-                else if (nuevo == true)
+                else
                 {
-                    ConeClientes cone = new ConeClientes();
-                    Cliente Agregar = new Cliente
+                    DialogResult result = MessageBox.Show(
+                        nuevo ? "¿Está seguro de agregar este cliente?" : "¿Está seguro de actualizar este cliente?",
+                        "Confirmación",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Question
+                    );
+
+                    if (result == DialogResult.Yes)
                     {
-                        Nombre = TxtNombre.Text,
-                        Documento = TxtDocumento.Text,
-                        Telefono = TxtTelefono.Text,
-                        Domicilio = TxtDomicilio.Text,
-                        //IdBarrio = VarBarrio No se encuentra en uso
-                    };
+                        ConeClientes cone = new ConeClientes();
 
-                    cone.AgregarCliente(Agregar);
+                        if (nuevo)
+                        {
+                            Cliente Agregar = new Cliente
+                            {
+                                Apellido = TxtApellido.Text,
+                                Nombre = TxtNombre.Text,
+                                Documento = TxtDocumento.Text,
+                                Telefono = TxtTelefono.Text,
+                                Domicilio = TxtDomicilio.Text
+                            };
 
-                    #region Enabled yes/no
-                    //true
+                            cone.AgregarCliente(Agregar);
+                            MessageBox.Show("Cliente agregado con éxito.", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else
+                        {
+                            Cliente Actualizar = new Cliente
+                            {
+                                IdCliente = int.Parse(LblIdCliente.Text),
+                                Apellido = TxtApellido.Text,
+                                Nombre = TxtNombre.Text,
+                                Documento = TxtDocumento.Text,
+                                Telefono = TxtTelefono.Text,
+                                Domicilio = TxtDomicilio.Text
+                            };
 
-                    BtnNuevo.Enabled = true;
-                    //false
-                    BtnGrabar.Enabled = false;
-                    BtnCancelar.Enabled = false;
-                    PanelDatos.Enabled = false;
-                    #endregion
+                            cone.ActualizarCliente(Actualizar);
+                            MessageBox.Show("Cliente actualizado con éxito.", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
 
-                    LimpiarTextos();
+                        #region Enabled yes/no
+                        BtnNuevo.Enabled = true;
+                        BtnGrabar.Enabled = false;
+                        BtnCancelar.Enabled = false;
+                        PanelDatos.Enabled = false;
+                        #endregion
 
-                    BtnNuevo.Focus();
+                        LimpiarTextos();
+                        BtnNuevo.Focus();
+                    }
+                    else
+                    {
+                        return; 
+                    }
                 }
             }
             catch
@@ -112,21 +147,14 @@ namespace CapaPresentacion
             }
             finally
             {
-
-                #region Enabled yes/no
-                //true
-
                 BtnNuevo.Enabled = true;
-                //false
                 BtnGrabar.Enabled = false;
                 BtnCancelar.Enabled = false;
-
                 PanelDatos.Enabled = false;
-                #endregion
-
                 LimpiarTextos();
                 BtnNuevo.Focus();
             }
+         
         }
         private void BtnCancelar_Click(object sender, EventArgs e)
         {
@@ -146,8 +174,117 @@ namespace CapaPresentacion
             Close();       
         }
 
+
         #endregion
 
+        #region Validaciones
+        private void TxtApellido_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // 1️⃣ Validar que solo sean letras, espacios y teclas de control
+            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != ' ')
+            {
+                e.Handled = true; // Cancela la tecla
+                MessageBox.Show("Solo se permiten letras en el apellido.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
 
+            // 2️⃣ Si el usuario presiona Enter, mover al siguiente TextBox
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                e.Handled = true; // Evita el sonido de "ding"
+                this.SelectNextControl((Control)sender, true, true, true, true);
+            }
+        }
+        private void TxtNombre_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Permitir letras, espacios y teclas de control
+            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != ' ')
+            {
+                e.Handled = true;
+                MessageBox.Show("Solo se permiten letras en el Nombre.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            // Mover al siguiente control con Enter
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                e.Handled = true;
+                this.SelectNextControl((Control)sender, true, true, true, true);
+            }
+        }
+        private void TxtDocumento_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Solo números
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+                MessageBox.Show("Solo se permiten números en Documento.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            // Limitar a 8 caracteres
+            TextBox txt = sender as TextBox;
+            if (txt.Text.Length >= 8 && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+
+            // Enter → siguiente control
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                e.Handled = true;
+                this.SelectNextControl((Control)sender, true, true, true, true);
+            }
+        }
+        private void TxtTelefono_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Solo números
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+                MessageBox.Show("Solo se permiten números en Teléfono.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            // Limitar a 15 caracteres
+            TextBox txt = sender as TextBox;
+            if (txt.Text.Length >= 15 && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+
+            // Enter → siguiente control
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                e.Handled = true;
+                this.SelectNextControl((Control)sender, true, true, true, true);
+            }
+        }
+        private void TxtDomicilio_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Permitir letras, números, espacios y algunos símbolos básicos
+            if (!char.IsLetterOrDigit(e.KeyChar) && !char.IsControl(e.KeyChar)
+                && e.KeyChar != ' ' && e.KeyChar != '-' && e.KeyChar != '.' && e.KeyChar != '/')
+            {
+                e.Handled = true;
+                MessageBox.Show("Caracter no válido en Dirección.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            // Limitar a 50 caracteres
+            TextBox txt = sender as TextBox;
+            if (txt.Text.Length >= 50 && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+
+            // Enter → siguiente control
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                e.Handled = true;
+                this.SelectNextControl((Control)sender, true, true, true, true);
+            }
+        }
+        #endregion
     }
 }

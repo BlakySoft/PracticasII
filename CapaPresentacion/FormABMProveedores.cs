@@ -51,7 +51,7 @@ namespace CapaPresentacion
         private void ListarProveedores()
         {
             ConeProveedores cone = new ConeProveedores();
-            Grilla.DataSource = cone.ListarProveedor();
+            Grilla.DataSource = cone.ListarProveedorINNERJOIN();
 
             Grilla.Columns[0].HeaderText = "Código";
             Grilla.Columns[0].Width = 100;
@@ -61,14 +61,19 @@ namespace CapaPresentacion
             Grilla.Columns[3].HeaderText = "Teléfono";
             Grilla.Columns[4].HeaderText = "Direccion";
             Grilla.Columns[4].Width = 200;
-            Grilla.Columns[5].HeaderText = "Localidad";
-            Grilla.Columns[6].Visible = false; //Estado
+            Grilla.Columns[5].Visible = false; //IdLocalidad
+            Grilla.Columns[6].HeaderText = "Localidad";
+            Grilla.Columns[7].Visible = false; //Estado
         }
 
 
         #endregion
 
         #region Botones
+        private void iconButton1_Click(object sender, EventArgs e)
+        {
+            TxtBuscar.Clear();
+        }
         private void BtnLocalidad_Click(object sender, EventArgs e)
         {
             FormABMLocalidades form = new FormABMLocalidades();
@@ -297,6 +302,23 @@ namespace CapaPresentacion
         #endregion
 
         #region Interaccion con el formulario
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            if (textBox1.Text == "")
+            {
+                ListarProveedores();
+            }
+            else
+            {
+                ConeProveedores cone = new ConeProveedores();
+                Proveedores Buscar = new Proveedores
+                {
+                    RazonSocial = textBox1.Text
+                };
+
+                Grilla.DataSource = cone.Buscar(Buscar.RazonSocial);
+            }
+        }
         private void Grilla_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             try
@@ -371,22 +393,111 @@ namespace CapaPresentacion
 
         #endregion
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        #region Validadores
+        private void TxtRazon_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (textBox1.Text == "")
+            // Letras, números, control y espacio
+            if (!char.IsLetterOrDigit(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
             {
-                ListarProveedores();
+                e.Handled = true;
             }
-            else
-            {
-                ConeProveedores cone = new ConeProveedores();
-                Proveedores Buscar = new Proveedores
-                {
-                    RazonSocial = textBox1.Text
-                };
 
-                Grilla.DataSource = cone.Buscar(Buscar.RazonSocial);
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                e.Handled = true;
+                SelectNextControl((Control)sender, true, true, true, true);
             }
         }
+        private void TxtDocumento_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+                MessageBox.Show("Solo se permiten números en el Cuit.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            // Limitar a 8 caracteres
+            TextBox txt = sender as TextBox;
+            if (txt.Text.Length >= 11 && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+
+            // Enter → siguiente control
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                e.Handled = true;
+                this.SelectNextControl((Control)sender, true, true, true, true);
+            }
+        }
+        private void TxtTelefono_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Solo números
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+                MessageBox.Show("Solo se permiten números en Teléfono.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            // Limitar a 15 caracteres
+            TextBox txt = sender as TextBox;
+            if (txt.Text.Length >= 15 && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+
+            // Enter → siguiente control
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                e.Handled = true;
+                this.SelectNextControl((Control)sender, true, true, true, true);
+            }
+        }
+        private void TxtDomicilio_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Permitir letras, números, espacios y algunos símbolos básicos
+            if (!char.IsLetterOrDigit(e.KeyChar) && !char.IsControl(e.KeyChar)
+                && e.KeyChar != ' ' && e.KeyChar != '-' && e.KeyChar != '.' && e.KeyChar != '/')
+            {
+                e.Handled = true;
+                MessageBox.Show("Caracter no válido en Dirección.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            // Limitar a 50 caracteres
+            TextBox txt = sender as TextBox;
+            if (txt.Text.Length >= 50 && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+
+            // Enter → siguiente control
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                e.Handled = true;
+                this.SelectNextControl((Control)sender, true, true, true, true);
+            }
+        }
+        private void CboIdLocalidad_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                e.Handled = true;
+
+                if (CboIdLocalidad.SelectedIndex < 0)
+                {
+                    MessageBox.Show("Debe seleccionar una Localidad.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    CboIdLocalidad.Focus();
+                    return;
+                }
+
+                SelectNextControl((Control)sender, true, true, true, true);
+            }
+        }
+        #endregion
+
+      
     }
 }

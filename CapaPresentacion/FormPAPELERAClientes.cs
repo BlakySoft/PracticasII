@@ -43,6 +43,10 @@ namespace CapaPresentacion
         #endregion
 
         #region Botones
+        private void iconButton1_Click(object sender, EventArgs e)
+        {
+            TxtBuscar.Clear();
+        }
         private void BtnRecuperar_Click(object sender, EventArgs e)
         {
             ConeClientes cone = new ConeClientes();
@@ -51,21 +55,35 @@ namespace CapaPresentacion
                 IdCliente = int.Parse(LblIdClientes.Text)
             };
 
-            cone.RecuperarCliente(Recuperar);
+            DialogResult resultado = MessageBox.Show(
+                "¿Está seguro que desea recuperar este cliente?",
+                "Confirmar recuperación",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+            );
 
-            try
+            if (resultado == DialogResult.Yes)
             {
-                MessageBox.Show("El Cliente se recuperó correctamente!!!", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                LimpiarTextos();
-                ListarClientesPapelera();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error: {ex.ToString()}");
-                throw;
-            }
+                cone.RecuperarCliente(Recuperar);
 
-            BtnVolver.Focus();
+                try
+                {
+                    MessageBox.Show("El Cliente se recuperó correctamente!!!", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    LimpiarTextos();
+                    ListarClientesPapelera();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error: {ex.ToString()}");
+                    throw;
+                }
+
+                BtnVolver.Focus();
+            }
+            else
+            {
+                MessageBox.Show("Recuperación cancelada.", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
         private void BtnVolver_Click(object sender, EventArgs e)
         {
@@ -98,5 +116,7 @@ namespace CapaPresentacion
             }
         }
         #endregion
+
+      
     }
 }

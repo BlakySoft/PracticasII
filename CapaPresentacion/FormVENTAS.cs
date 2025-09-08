@@ -303,6 +303,18 @@ namespace CapaPresentacion
             FormAgregarProducto form = new FormAgregarProducto();
             form.ShowDialog();
         }
+
+        private void FormVENTAS_Load(object sender, EventArgs e)
+        {
+            // Cambiar fuente de los encabezados de columna
+            Grilla.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 14, FontStyle.Bold);
+
+            // Cambiar fuente de las filas
+            Grilla.RowsDefaultCellStyle.Font = new Font("Calibri", 11, FontStyle.Bold);
+
+            Grilla.Columns[1].Width = 200;
+        }
+
         private void BtnAgregarProveedor_Click(object sender, EventArgs e)
         {
             FormAgregarCliente form = new FormAgregarCliente();
@@ -437,7 +449,7 @@ namespace CapaPresentacion
                 }
                 else
                 {
-                    OleDbCommand cm = new OleDbCommand($"SELECT Descripcion, Stock, Precio FROM Productos WHERE IdProducto = {TxtIdProducto.Text};", con);
+                    OleDbCommand cm = new OleDbCommand($"SELECT Descripcion, Stock, PrecioVenta FROM Productos WHERE IdProducto = {TxtIdProducto.Text};", con);
                     con.Open();
                     OleDbDataReader dr = cm.ExecuteReader();
 

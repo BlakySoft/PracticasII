@@ -140,7 +140,7 @@ namespace CapaDatos
 
             return list;
         }
-        public List<Categoria> BuscarIdCat(int IdCat)
+        public List<Categoria> BuscarCat(string letra)
         {
             List<Categoria> list = new List<Categoria>();
             OleDbConnection cone = new OleDbConnection();
@@ -150,7 +150,8 @@ namespace CapaDatos
             cone.ConnectionString = ConectarDB();
             cm.CommandType = System.Data.CommandType.Text;
 
-            cm.CommandText = $"Select IdCat, Descripcion from Categoria where IdCat like ('%{IdCat}%')";
+            // Buscar por primera letra
+            cm.CommandText = $"SELECT IdCat, Descripcion FROM Categoria WHERE Descripcion LIKE '{letra}%' AND Estado = true";
             cm.Connection = cone;
             cone.Open();
 
@@ -158,20 +159,16 @@ namespace CapaDatos
 
             while (reader.Read())
             {
-
                 Categoria cat = new Categoria();
-
                 cat.IdCat = reader.GetInt32(0);
                 cat.Descripcion = reader.GetString(1);
-
-
                 list.Add(cat);
             }
 
             cone.Close();
             return list;
         }
-        public List<Categoria> BuscarCat(string Descripcion)
+        public List<Categoria> BuscarPapelera(string letra)
         {
             List<Categoria> list = new List<Categoria>();
             OleDbConnection cone = new OleDbConnection();
@@ -181,7 +178,8 @@ namespace CapaDatos
             cone.ConnectionString = ConectarDB();
             cm.CommandType = System.Data.CommandType.Text;
 
-            cm.CommandText = $"Select IdCat, Descripcion from Categoria where Descripcion like ('%{Descripcion}%')";
+            // Buscar por primera letra
+            cm.CommandText = $"SELECT IdCat, Descripcion FROM Categoria WHERE Descripcion LIKE '{letra}%' AND Estado = false";
             cm.Connection = cone;
             cone.Open();
 
@@ -189,44 +187,9 @@ namespace CapaDatos
 
             while (reader.Read())
             {
-
                 Categoria cat = new Categoria();
-
                 cat.IdCat = reader.GetInt32(0);
                 cat.Descripcion = reader.GetString(1);
-
-
-                list.Add(cat);
-            }
-
-            cone.Close();
-            return list;
-        }
-        public List<Categoria> BuscarPapelera(string Descripcion)
-        {
-            List<Categoria> list = new List<Categoria>();
-            OleDbConnection cone = new OleDbConnection();
-            OleDbCommand cm = new OleDbCommand();
-            OleDbDataReader reader;
-
-            cone.ConnectionString = ConectarDB();
-            cm.CommandType = System.Data.CommandType.Text;
-
-            cm.CommandText = $"Select IdCat, Descripcion from Categoria where Descripcion like ('%{Descripcion}%') AND Estado = false";
-            cm.Connection = cone;
-            cone.Open();
-
-            reader = cm.ExecuteReader();
-
-            while (reader.Read())
-            {
-
-                Categoria cat = new Categoria();
-
-                cat.IdCat = reader.GetInt32(0);
-                cat.Descripcion = reader.GetString(1);
-
-
                 list.Add(cat);
             }
 

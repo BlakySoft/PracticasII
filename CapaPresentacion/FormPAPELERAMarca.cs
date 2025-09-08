@@ -39,6 +39,10 @@ namespace CapaPresentacion
         #endregion
 
         #region Botones
+        private void iconButton1_Click(object sender, EventArgs e)
+        {
+            TxtBuscar.Clear();
+        }
         private void BtnRecuperar_Click(object sender, EventArgs e)
         {
             ConeMarca cone = new ConeMarca();
@@ -47,21 +51,32 @@ namespace CapaPresentacion
                 IdMarca = int.Parse(LblIdMarca.Text)
             };
 
-            cone.Recuperar(Recuperar);
+            DialogResult resultado = MessageBox.Show(
+                "¿Está seguro que desea recuperar esta marca?",
+                "Confirmar recuperación",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+            );
 
-            try
+            if (resultado == DialogResult.Yes)
             {
-                MessageBox.Show("La Marca se recuperó correctamente!!!", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                LimpiarTextos();
-                Listar();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error: {ex.ToString()}");
-                throw;
+                cone.Recuperar(Recuperar);
+
+                try
+                {
+                    MessageBox.Show("La Marca se recuperó correctamente!!!", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    LimpiarTextos();
+                    Listar();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error: {ex.ToString()}");
+                    throw;
+                }
+
+                BtnVolver.Focus();
             }
 
-            BtnVolver.Focus();
         }
         private void BtnVolver_Click(object sender, EventArgs e)
         {
@@ -92,6 +107,8 @@ namespace CapaPresentacion
             }
         }
         #endregion
+
+      
     }
 }
 

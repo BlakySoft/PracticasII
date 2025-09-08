@@ -1,6 +1,7 @@
 ﻿using CapaNegocios;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.OleDb;
 using System.Linq;
 using System.Text;
@@ -96,139 +97,174 @@ namespace CapaDatos
         }
         public List<Proveedores> ListarProveedorPapelera()
         {
-            List<Proveedores> list = new List<Proveedores>();
-            OleDbConnection con = new OleDbConnection();
-            OleDbCommand cm = new OleDbCommand();
+            List<Proveedores> lista = new List<Proveedores>();
 
-            OleDbDataReader reader;
-
-            con.ConnectionString = ConectarDB();
-            cm.CommandType = System.Data.CommandType.Text;
-            cm.CommandText = "SELECT * FROM Proveedores WHERE Estado = false";
-            cm.Connection = con;
-
-            con.Open();
-            reader = cm.ExecuteReader();
-            while (reader.Read())
+            using (OleDbConnection con = new OleDbConnection(ConectarDB()))
+            using (OleDbCommand cm = con.CreateCommand())
             {
-                Proveedores Pro = new Proveedores();
+                cm.CommandType = CommandType.Text;
 
-                Pro.IdProveedor = reader.GetInt32(0);
-                Pro.RazonSocial = reader.GetString(1);
-                Pro.Documento = reader.GetString(2);
-                Pro.Telefono = reader.GetString(3);
-                Pro.Domicilio = reader.GetString(4);
-                Pro.IdLocalidad = reader.GetInt32(5);
+                cm.CommandText = @"
+            SELECT p.IdProveedor, p.RazonSocial, p.Documento, p.Telefono, p.Domicilio,
+                   p.IdLocalidad, l.Descripcion AS Localidad
+            FROM Proveedores p
+            INNER JOIN Localidades l ON p.IdLocalidad = l.IdLocalidad
+            WHERE p.Estado = false
+            ORDER BY p.RazonSocial";
 
+                con.Open();
 
-                list.Add(Pro);
+                using (OleDbDataReader reader = cm.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        Proveedores Pro = new Proveedores
+                        {
+                            IdProveedor = reader["IdProveedor"] != DBNull.Value ? Convert.ToInt32(reader["IdProveedor"]) : 0,
+                            RazonSocial = reader["RazonSocial"] != DBNull.Value ? reader["RazonSocial"].ToString() : string.Empty,
+                            Documento = reader["Documento"] != DBNull.Value ? reader["Documento"].ToString() : string.Empty,
+                            Telefono = reader["Telefono"] != DBNull.Value ? reader["Telefono"].ToString() : string.Empty,
+                            Domicilio = reader["Domicilio"] != DBNull.Value ? reader["Domicilio"].ToString() : string.Empty,
+                            IdLocalidad = reader["IdLocalidad"] != DBNull.Value ? Convert.ToInt32(reader["IdLocalidad"]) : 0,
+                            Localidad = reader["Localidad"] != DBNull.Value ? reader["Localidad"].ToString() : string.Empty
+                        };
+
+                        lista.Add(Pro);
+                    }
+                }
             }
-            con.Close();
 
-            return list;
+            return lista;
         }
-        public List<Proveedores> ListarProveedor()
+        public List<Proveedores> ListarProveedorINNERJOIN()
         {
-            List<Proveedores> list = new List<Proveedores>();
-            OleDbConnection con = new OleDbConnection();
-            OleDbCommand cm = new OleDbCommand();
+            List<Proveedores> lista = new List<Proveedores>();
 
-            OleDbDataReader reader;
-
-            con.ConnectionString = ConectarDB();
-            cm.CommandType = System.Data.CommandType.Text;
-            cm.CommandText = "SELECT * FROM Proveedores WHERE Estado = true";
-            cm.Connection = con;
-
-            con.Open();
-            reader = cm.ExecuteReader();
-            while (reader.Read())
+            using (OleDbConnection con = new OleDbConnection(ConectarDB()))
+            using (OleDbCommand cm = con.CreateCommand())
             {
-                Proveedores Pro = new Proveedores();
+                cm.CommandType = CommandType.Text;
 
-                Pro.IdProveedor = reader.GetInt32(0);
-                Pro.RazonSocial = reader.GetString(1);
-                Pro.Documento = reader.GetString(2);
-                Pro.Telefono = reader.GetString(3);
-                Pro.Domicilio = reader.GetString(4);
-                Pro.IdLocalidad = reader.GetInt32(5);
+                cm.CommandText = @"
+            SELECT p.IdProveedor, p.RazonSocial, p.Documento, p.Telefono, p.Domicilio,
+                   p.IdLocalidad, l.Descripcion AS Localidad
+            FROM Proveedores p
+            INNER JOIN Localidades l ON p.IdLocalidad = l.IdLocalidad
+            WHERE p.Estado = True
+            ORDER BY p.RazonSocial";
 
+                con.Open();
 
-                list.Add(Pro);
+                using (OleDbDataReader reader = cm.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        Proveedores Pro = new Proveedores
+                        {
+                            IdProveedor = reader["IdProveedor"] != DBNull.Value ? Convert.ToInt32(reader["IdProveedor"]) : 0,
+                            RazonSocial = reader["RazonSocial"] != DBNull.Value ? reader["RazonSocial"].ToString() : string.Empty,
+                            Documento = reader["Documento"] != DBNull.Value ? reader["Documento"].ToString() : string.Empty,
+                            Telefono = reader["Telefono"] != DBNull.Value ? reader["Telefono"].ToString() : string.Empty,
+                            Domicilio = reader["Domicilio"] != DBNull.Value ? reader["Domicilio"].ToString() : string.Empty,
+                            IdLocalidad = reader["IdLocalidad"] != DBNull.Value ? Convert.ToInt32(reader["IdLocalidad"]) : 0,
+                            Localidad = reader["Localidad"] != DBNull.Value ? reader["Localidad"].ToString() : string.Empty
+                        };
+
+                        lista.Add(Pro);
+                    }
+                }
             }
-            con.Close();
 
-            return list;
+            return lista;
         }
-        public List<Proveedores> Buscar(string RazonSocial)
+        public List<Proveedores> Buscar(string letra)
         {
-            List<Proveedores> list = new List<Proveedores>();
-            OleDbConnection con = new OleDbConnection();
-            OleDbCommand cm = new OleDbCommand();
-            OleDbDataReader reader;
+            List<Proveedores> lista = new List<Proveedores>();
 
-            con.ConnectionString = ConectarDB();
-            cm.CommandType = System.Data.CommandType.Text;
-
-            cm.CommandText = $"Select IdProveedor, RazonSocial, Documento, Telefono, Domicilio, IdLocalidad from Proveedores where RazonSocial like ('%{RazonSocial}%')";
-            cm.Connection = con;
-            con.Open();
-
-            reader = cm.ExecuteReader();
-
-            while (reader.Read())
+            using (OleDbConnection con = new OleDbConnection(ConectarDB()))
+            using (OleDbCommand cm = con.CreateCommand())
             {
-                Proveedores Pro = new Proveedores();
+                cm.CommandType = CommandType.Text;
 
+                cm.CommandText = @"
+            SELECT p.IdProveedor, p.RazonSocial, p.Documento, p.Telefono, p.Domicilio,
+                   p.IdLocalidad, l.Descripcion AS Localidad
+            FROM Proveedores p
+            INNER JOIN Localidades l ON p.IdLocalidad = l.IdLocalidad
+            WHERE p.Estado = True
+              AND p.RazonSocial LIKE @razon
+            ORDER BY p.RazonSocial";
 
-                Pro.IdProveedor = reader.GetInt32(0);
-                Pro.RazonSocial = reader.GetString(1);
-                Pro.Documento = reader.GetString(2);
-                Pro.Telefono = reader.GetString(3);
-                Pro.Domicilio = reader.GetString(4);
-                Pro.IdLocalidad = reader.GetInt32(5);
+                cm.Parameters.AddWithValue("@razon", letra + "%");
 
+                con.Open();
 
-                list.Add(Pro);
+                using (OleDbDataReader reader = cm.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        Proveedores Pro = new Proveedores
+                        {
+                            IdProveedor = reader["IdProveedor"] != DBNull.Value ? Convert.ToInt32(reader["IdProveedor"]) : 0,
+                            RazonSocial = reader["RazonSocial"] != DBNull.Value ? reader["RazonSocial"].ToString() : string.Empty,
+                            Documento = reader["Documento"] != DBNull.Value ? reader["Documento"].ToString() : string.Empty,
+                            Telefono = reader["Telefono"] != DBNull.Value ? reader["Telefono"].ToString() : string.Empty,
+                            Domicilio = reader["Domicilio"] != DBNull.Value ? reader["Domicilio"].ToString() : string.Empty,
+                            IdLocalidad = reader["IdLocalidad"] != DBNull.Value ? Convert.ToInt32(reader["IdLocalidad"]) : 0,
+                            Localidad = reader["Localidad"] != DBNull.Value ? reader["Localidad"].ToString() : string.Empty
+                        };
+
+                        lista.Add(Pro);
+                    }
+                }
             }
 
-            con.Close();
-            return list;
+            return lista;
         }
-        public List<Proveedores> BuscarPapelera(string RazonSocial)
+        public List<Proveedores> BuscarPapelera(string letra)
         {
-            List<Proveedores> list = new List<Proveedores>();
-            OleDbConnection con = new OleDbConnection();
-            OleDbCommand cm = new OleDbCommand();
-            OleDbDataReader reader;
+            List<Proveedores> lista = new List<Proveedores>();
 
-            con.ConnectionString = ConectarDB();
-            cm.CommandType = System.Data.CommandType.Text;
-
-            cm.CommandText = $"Select IdProveedor, RazonSocial, Documento, Telefono, Domicilio, IdLocalidad from Proveedores where RazonSocial like ('%{RazonSocial}%') AND Estado = false";
-            cm.Connection = con;
-            con.Open();
-
-            reader = cm.ExecuteReader();
-
-            while (reader.Read())
+            using (OleDbConnection con = new OleDbConnection(ConectarDB()))
+            using (OleDbCommand cm = con.CreateCommand())
             {
-                Proveedores Pro = new Proveedores();
+                cm.CommandType = CommandType.Text;
 
+                // Parámetro @razon para buscar coincidencias que comiencen con la letra ingresada
+                cm.CommandText = @"
+            SELECT p.IdProveedor, p.RazonSocial, p.Documento, p.Telefono, p.Domicilio,
+                   p.IdLocalidad, l.Descripcion AS Localidad
+            FROM Proveedores p
+            INNER JOIN Localidades l ON p.IdLocalidad = l.IdLocalidad
+            WHERE p.Estado = false
+              AND p.RazonSocial LIKE @razon
+            ORDER BY p.RazonSocial";
 
-                Pro.IdProveedor = reader.GetInt32(0);
-                Pro.RazonSocial = reader.GetString(1);
-                Pro.Documento = reader.GetString(2);
-                Pro.Telefono = reader.GetString(3);
-                Pro.Domicilio = reader.GetString(4);
-                Pro.IdLocalidad = reader.GetInt32(5);
+                cm.Parameters.AddWithValue("@razon", letra + "%");
 
+                con.Open();
 
-                list.Add(Pro);
+                using (OleDbDataReader reader = cm.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        Proveedores Pro = new Proveedores
+                        {
+                            IdProveedor = reader["IdProveedor"] != DBNull.Value ? Convert.ToInt32(reader["IdProveedor"]) : 0,
+                            RazonSocial = reader["RazonSocial"] != DBNull.Value ? reader["RazonSocial"].ToString() : string.Empty,
+                            Documento = reader["Documento"] != DBNull.Value ? reader["Documento"].ToString() : string.Empty,
+                            Telefono = reader["Telefono"] != DBNull.Value ? reader["Telefono"].ToString() : string.Empty,
+                            Domicilio = reader["Domicilio"] != DBNull.Value ? reader["Domicilio"].ToString() : string.Empty,
+                            IdLocalidad = reader["IdLocalidad"] != DBNull.Value ? Convert.ToInt32(reader["IdLocalidad"]) : 0,
+                            Localidad = reader["Localidad"] != DBNull.Value ? reader["Localidad"].ToString() : string.Empty
+                        };
+
+                        lista.Add(Pro);
+                    }
+                }
             }
 
-            con.Close();
-            return list;
+            return lista;
         }
     }
 }
