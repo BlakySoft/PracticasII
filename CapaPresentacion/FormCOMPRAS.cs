@@ -29,6 +29,7 @@ namespace CapaPresentacion
         {
             InitializeComponent();
             CargarCbo();
+            Fecha.Text = DateTime.Now.ToString("dd/MM/yyyy");
             #region EnabledNO
             //false
             BtnMetodo.Enabled = false;
@@ -166,6 +167,21 @@ namespace CapaPresentacion
                 {
                     foreach (DataGridViewRow row in Grilla.Rows)
                     {
+                        if (row.IsNewRow) continue; // Ignorar la fila vacía al final
+
+                        // Obtener valores de forma segura
+                        object valIdProducto = row.Cells["Column1"].Value;
+                        object valCantidad = row.Cells["Column3"].Value;
+
+                        if (valIdProducto == null || valCantidad == null) continue; // Saltar si hay null
+
+                        int idProducto = 0;
+                        int cantidadComprada = 0;
+
+                        if (!int.TryParse(valIdProducto.ToString(), out idProducto)) continue;
+                        if (!int.TryParse(valCantidad.ToString(), out cantidadComprada)) continue;
+
+                        // Insertar detalle (ya lo tenés)
                         OleDbCommand comando1 = new OleDbCommand
                         {
                             CommandType = CommandType.Text,
@@ -173,18 +189,26 @@ namespace CapaPresentacion
                             Connection = conecta
                         };
 
-                        comando1.Parameters.AddWithValue("@IdCompra", Convert.ToString(TxtCompras.Text));
-                        comando1.Parameters.AddWithValue("@IdProducto", Convert.ToInt32(row.Cells["Column1"].Value));
-                        comando1.Parameters.AddWithValue("@Descripcion", Convert.ToString(row.Cells["Column2"].Value));
-                        comando1.Parameters.AddWithValue("@Cantidad", Convert.ToDecimal(row.Cells["Column3"].Value));
-                        comando1.Parameters.AddWithValue("@PrecioCompra", Convert.ToDecimal(row.Cells["Column4"].Value)); // Corregido
+                        comando1.Parameters.AddWithValue("@IdCompra", TxtCompras.Text);
+                        comando1.Parameters.AddWithValue("@IdProducto", idProducto);
+                        comando1.Parameters.AddWithValue("@Descripcion", row.Cells["Column2"].Value?.ToString() ?? "");
+                        comando1.Parameters.AddWithValue("@Cantidad", cantidadComprada);
+                        comando1.Parameters.AddWithValue("@PrecioCompra", Convert.ToDecimal(row.Cells["Column4"].Value));
                         comando1.Parameters.AddWithValue("@Subtotal", Convert.ToDecimal(row.Cells["Column5"].Value));
-
-                        int IdArti = Convert.ToInt32(row.Cells["Column1"].Value); // Esta línea puedes dejarla comentada
-                        Cantidad = Convert.ToInt32(row.Cells["Column3"].Value);
 
                         conecta.Open();
                         comando1.ExecuteNonQuery();
+
+                        // Actualizar stock de forma segura
+                        OleDbCommand actualizarStock = new OleDbCommand
+                        {
+                            Connection = conecta,
+                            CommandText = "UPDATE Productos SET Stock = Stock + @Cantidad WHERE IdProducto = @IdProducto"
+                        };
+                        actualizarStock.Parameters.AddWithValue("@Cantidad", cantidadComprada);
+                        actualizarStock.Parameters.AddWithValue("@IdProducto", idProducto);
+                        actualizarStock.ExecuteNonQuery();
+
                         conecta.Close();
                     }
                 }

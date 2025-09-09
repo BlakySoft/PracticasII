@@ -39,6 +39,7 @@ namespace CapaPresentacion
             Grilla.DataSource = cone.ListarCat();
             Grilla.Columns[0].HeaderText = "Código";
             Grilla.Columns[0].Width = 100;
+            Grilla.Columns[1].Width = 300;
             Grilla.Columns[1].HeaderText = "Categoria";
             Grilla.Columns[2].Visible = false;
 
@@ -72,25 +73,51 @@ namespace CapaPresentacion
         {
             try
             {
-                if (TxtDescripcion.Text == "")
+                if (string.IsNullOrWhiteSpace(TxtDescripcion.Text))
                 {
-                    MessageBox.Show("Ingrese el Categoria", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageBox.Show("Ingrese la categoría", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
                 }
-                else if (nuevo == true)
+
+                // Preguntar al usuario antes de guardar o actualizar
+                string mensaje = nuevo
+                    ? "¿Está seguro de que desea guardar esta categoría?"
+                    : "¿Está seguro de que desea actualizar esta categoría?";
+
+                DialogResult resultado = MessageBox.Show(
+                    mensaje,
+                    "Confirmar acción",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question
+                );
+
+                if (resultado == DialogResult.Yes)
                 {
                     ConeCategoria cone = new ConeCategoria();
-                    Categoria Agregar = new Categoria
-                    {
-                        Descripcion = TxtDescripcion.Text
-                    };
 
-                    cone.AgregarCat(Agregar);
+                    if (nuevo)
+                    {
+                        Categoria agregar = new Categoria
+                        {
+                            Descripcion = TxtDescripcion.Text
+                        };
+
+                        cone.AgregarCat(agregar);
+                    }
+                    else
+                    {
+                        Categoria actualizar = new Categoria
+                        {
+                            IdCat = int.Parse(LblIdCat.Text),
+                            Descripcion = TxtDescripcion.Text
+                        };
+
+                        cone.ActualizarCat(actualizar);
+                    }
 
                     #region Enabled yes/no 
-                    //true
-                    BtnNuevo.Enabled = true;
-                    //false
                     TxtDescripcion.Enabled = false;
+                    BtnNuevo.Enabled = true;
                     BtnGrabar.Enabled = false;
                     BtnCancelar.Enabled = false;
                     #endregion
@@ -99,38 +126,17 @@ namespace CapaPresentacion
                     Listar();
                     BtnNuevo.Focus();
                 }
-                else
-                {
-                    ConeCategoria cone = new ConeCategoria();
-                    Categoria Actualizar = new Categoria
-                    {
-                        IdCat = int.Parse(LblIdCat.Text),
-                        Descripcion = TxtDescripcion.Text
-                    };
-
-                    cone.ActualizarCat(Actualizar);
-
-                    TxtDescripcion.Enabled = false;
-                    BtnNuevo.Enabled = true;
-                    BtnGrabar.Enabled = false;
-                    BtnCancelar.Enabled = false;
-
-                    LimpiarTextos();
-                    Listar();
-                    BtnNuevo.Focus();
-                }
+                // Si el usuario elige "No", no hace nada
             }
-            catch
+            catch (Exception ex)
             {
-                MessageBox.Show("Error!", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Error: " + ex.Message, "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
             finally
             {
                 #region Enabled yes/no
-                //true
                 TxtBuscar.Enabled = true;
                 BtnNuevo.Enabled = true;
-                //false
                 BtnGrabar.Enabled = false;
                 BtnCancelar.Enabled = false;
                 BtnEliminar.Enabled = false;
@@ -141,23 +147,35 @@ namespace CapaPresentacion
                 Listar();
                 BtnNuevo.Focus();
             }
+
         }
         private void BtnCancelar_Click(object sender, EventArgs e)
         {
-            #region Enabled yes/no
-            //true
-            TxtBuscar.Enabled = true;
-            BtnNuevo.Enabled = true;
-            //false
-            BtnModificar.Enabled = false;
-            BtnGrabar.Enabled = false;
-            BtnCancelar.Enabled = false;
-            BtnEliminar.Enabled = false;
-            TxtDescripcion.Enabled = false;
-            #endregion
+            DialogResult resultado = MessageBox.Show(
+         "¿Está seguro de que desea cancelar la carga de la categoría?",
+         "Confirmar cancelación",
+         MessageBoxButtons.YesNo,
+         MessageBoxIcon.Question
+     );
 
-            Listar();
-            BtnNuevo.Focus();
+            if (resultado == DialogResult.Yes)
+            {
+                #region Enabled yes/no 
+                //true
+                TxtBuscar.Enabled = true;
+                BtnNuevo.Enabled = true;
+                //false
+                BtnModificar.Enabled = false;
+                BtnGrabar.Enabled = false;
+                BtnCancelar.Enabled = false;
+                BtnEliminar.Enabled = false;
+                TxtDescripcion.Enabled = false;
+                #endregion
+
+                Listar(); // Volver a listar categorías
+                BtnNuevo.Focus();
+                LimpiarTextos();
+            }
         }
         private void BtnModificar_Click(object sender, EventArgs e)
         {
@@ -165,6 +183,8 @@ namespace CapaPresentacion
             //true
             PnlBarraLateral.Enabled = true;
             BtnGrabar.Enabled = true;
+            TxtDescripcion.Enabled = true;
+
             //false
             Grilla.Enabled = false;
             BtnNuevo.Enabled = false;
@@ -175,37 +195,46 @@ namespace CapaPresentacion
         }
         private void BtnEliminar_Click(object sender, EventArgs e)
         {
+            DialogResult resultado = MessageBox.Show(
+                "¿Está seguro de que desea eliminar esta categoría?",
+                "Confirmar eliminación",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+            );
 
-            ConeCategoria cone = new ConeCategoria();
-            Categoria Eliminar = new Categoria
+            if (resultado == DialogResult.Yes)
             {
-                IdCat = int.Parse(LblIdCat.Text)
-            };
+                try
+                {
+                    ConeCategoria cone = new ConeCategoria();
+                    Categoria eliminar = new Categoria
+                    {
+                        IdCat = int.Parse(LblIdCat.Text)
+                    };
 
-            cone.BorrarCat(Eliminar);
+                    cone.BorrarCat(eliminar);
 
-            try
-            {
-                MessageBox.Show("La Categoria se eliminó correctamente!!!", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                LimpiarTextos();
-                Listar();
+                    MessageBox.Show("La categoría se eliminó correctamente.", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    LimpiarTextos();
+                    Listar();
+
+                    #region Enabled yes/no
+                    //true
+                    BtnNuevo.Enabled = true;
+                    //false
+                    BtnGrabar.Enabled = false;
+                    BtnCancelar.Enabled = false;
+                    BtnEliminar.Enabled = false;
+
+                    BtnNuevo.Focus();
+                    #endregion
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error al eliminar la categoría: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error: {ex.ToString()}");
-                throw;
-            }
-
-            #region Enabled yes/no
-            //true
-            BtnNuevo.Enabled = true;
-            //false
-            BtnGrabar.Enabled = false;
-            BtnCancelar.Enabled = false;
-            BtnEliminar.Enabled = false;
-
-            BtnNuevo.Focus();
-            #endregion
         }
         private void BtnPapelera_Click(object sender, EventArgs e)
         {
@@ -219,6 +248,7 @@ namespace CapaPresentacion
         }
         private void BtnVolver_Click(object sender, EventArgs e)
         {
+          
             Close();
         }
         #endregion
@@ -226,22 +256,31 @@ namespace CapaPresentacion
         #region Interacciones con formulario
         private void Grilla_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            LblIdCat.Text = Grilla.Rows[e.RowIndex].Cells[0].Value.ToString();
-            TxtDescripcion.Text = Grilla.Rows[e.RowIndex].Cells[1].Value.ToString();
+            try
+            {
+                if (e.RowIndex < 0) return; 
+                LblIdCat.Text = Grilla.Rows[e.RowIndex].Cells[0].Value?.ToString() ?? "";
+                TxtDescripcion.Text = Grilla.Rows[e.RowIndex].Cells[1].Value?.ToString() ?? "";
 
-            #region Enabled yes/no
-            //false
-            nuevo = false;
-            BtnNuevo.Enabled = false;
-            //true
-            TxtDescripcion.Enabled = true;
-            BtnGrabar.Enabled = true;
-            BtnCancelar.Enabled = true;
-            BtnEliminar.Enabled = true;
-            BtnModificar.Enabled = true;
-            #endregion
+                #region Enabled yes/no
+                //false
+                nuevo = false;
+                BtnNuevo.Enabled = false;
+                TxtDescripcion.Enabled = false;
+                //true
 
-            TxtDescripcion.Focus();
+                BtnGrabar.Enabled = true;
+                BtnCancelar.Enabled = true;
+                BtnEliminar.Enabled = true;
+                BtnModificar.Enabled = true;
+                #endregion
+
+                TxtDescripcion.Focus();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al seleccionar la fila: " + ex.Message, "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
         private void TxtBuscar_TextChanged(object sender, EventArgs e)
         {

@@ -31,7 +31,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.PnlBarraLateral = new System.Windows.Forms.Panel();
             this.BtnPapelera = new FontAwesome.Sharp.IconButton();
             this.BtnVolver = new FontAwesome.Sharp.IconButton();
@@ -65,7 +64,7 @@
             this.PnlBarraLateral.Controls.Add(this.BtnGrabar);
             this.PnlBarraLateral.Controls.Add(this.BtnNuevo);
             this.PnlBarraLateral.Dock = System.Windows.Forms.DockStyle.Right;
-            this.PnlBarraLateral.Location = new System.Drawing.Point(304, 0);
+            this.PnlBarraLateral.Location = new System.Drawing.Point(290, 0);
             this.PnlBarraLateral.Name = "PnlBarraLateral";
             this.PnlBarraLateral.Size = new System.Drawing.Size(146, 382);
             this.PnlBarraLateral.TabIndex = 2;
@@ -81,9 +80,9 @@
             this.BtnPapelera.IconColor = System.Drawing.Color.White;
             this.BtnPapelera.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.BtnPapelera.IconSize = 30;
-            this.BtnPapelera.Location = new System.Drawing.Point(7, 269);
+            this.BtnPapelera.Location = new System.Drawing.Point(9, 269);
             this.BtnPapelera.Name = "BtnPapelera";
-            this.BtnPapelera.Size = new System.Drawing.Size(129, 41);
+            this.BtnPapelera.Size = new System.Drawing.Size(126, 41);
             this.BtnPapelera.TabIndex = 46;
             this.BtnPapelera.Text = "Papelera";
             this.BtnPapelera.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -121,9 +120,9 @@
             this.BtnModificar.IconColor = System.Drawing.Color.White;
             this.BtnModificar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.BtnModificar.IconSize = 30;
-            this.BtnModificar.Location = new System.Drawing.Point(7, 81);
+            this.BtnModificar.Location = new System.Drawing.Point(9, 81);
             this.BtnModificar.Name = "BtnModificar";
-            this.BtnModificar.Size = new System.Drawing.Size(129, 41);
+            this.BtnModificar.Size = new System.Drawing.Size(126, 41);
             this.BtnModificar.TabIndex = 35;
             this.BtnModificar.Text = "Modificar";
             this.BtnModificar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -141,9 +140,9 @@
             this.BtnCancelar.IconColor = System.Drawing.Color.White;
             this.BtnCancelar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.BtnCancelar.IconSize = 30;
-            this.BtnCancelar.Location = new System.Drawing.Point(7, 128);
+            this.BtnCancelar.Location = new System.Drawing.Point(9, 128);
             this.BtnCancelar.Name = "BtnCancelar";
-            this.BtnCancelar.Size = new System.Drawing.Size(129, 41);
+            this.BtnCancelar.Size = new System.Drawing.Size(126, 41);
             this.BtnCancelar.TabIndex = 32;
             this.BtnCancelar.Text = "Cancelar";
             this.BtnCancelar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -161,9 +160,9 @@
             this.BtnEliminar.IconColor = System.Drawing.Color.White;
             this.BtnEliminar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.BtnEliminar.IconSize = 30;
-            this.BtnEliminar.Location = new System.Drawing.Point(7, 222);
+            this.BtnEliminar.Location = new System.Drawing.Point(9, 222);
             this.BtnEliminar.Name = "BtnEliminar";
-            this.BtnEliminar.Size = new System.Drawing.Size(129, 41);
+            this.BtnEliminar.Size = new System.Drawing.Size(126, 41);
             this.BtnEliminar.TabIndex = 33;
             this.BtnEliminar.Text = "Eliminar";
             this.BtnEliminar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -181,9 +180,9 @@
             this.BtnGrabar.IconColor = System.Drawing.Color.White;
             this.BtnGrabar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.BtnGrabar.IconSize = 30;
-            this.BtnGrabar.Location = new System.Drawing.Point(7, 175);
+            this.BtnGrabar.Location = new System.Drawing.Point(9, 175);
             this.BtnGrabar.Name = "BtnGrabar";
-            this.BtnGrabar.Size = new System.Drawing.Size(129, 41);
+            this.BtnGrabar.Size = new System.Drawing.Size(126, 41);
             this.BtnGrabar.TabIndex = 31;
             this.BtnGrabar.Text = "Grabar";
             this.BtnGrabar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -201,9 +200,9 @@
             this.BtnNuevo.IconColor = System.Drawing.Color.White;
             this.BtnNuevo.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.BtnNuevo.IconSize = 30;
-            this.BtnNuevo.Location = new System.Drawing.Point(7, 34);
+            this.BtnNuevo.Location = new System.Drawing.Point(9, 34);
             this.BtnNuevo.Name = "BtnNuevo";
-            this.BtnNuevo.Size = new System.Drawing.Size(129, 41);
+            this.BtnNuevo.Size = new System.Drawing.Size(126, 41);
             this.BtnNuevo.TabIndex = 30;
             this.BtnNuevo.Text = "Nuevo";
             this.BtnNuevo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -227,7 +226,7 @@
             this.TxtDescripcion.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.TxtDescripcion.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtDescripcion.ForeColor = System.Drawing.Color.Black;
-            this.TxtDescripcion.Location = new System.Drawing.Point(129, 6);
+            this.TxtDescripcion.Location = new System.Drawing.Point(106, 6);
             this.TxtDescripcion.Name = "TxtDescripcion";
             this.TxtDescripcion.Size = new System.Drawing.Size(167, 26);
             this.TxtDescripcion.TabIndex = 3;
@@ -237,7 +236,7 @@
             this.LblDescripcion.AutoSize = true;
             this.LblDescripcion.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LblDescripcion.ForeColor = System.Drawing.Color.Transparent;
-            this.LblDescripcion.Location = new System.Drawing.Point(22, 7);
+            this.LblDescripcion.Location = new System.Drawing.Point(3, 9);
             this.LblDescripcion.Name = "LblDescripcion";
             this.LblDescripcion.Size = new System.Drawing.Size(101, 19);
             this.LblDescripcion.TabIndex = 2;
@@ -253,47 +252,40 @@
             this.Grilla.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.Grilla.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.Grilla.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(216)))), ((int)(((byte)(228)))));
-            this.Grilla.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.Grilla.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
             this.Grilla.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.BurlyWood;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(216)))), ((int)(((byte)(228)))));
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Tan;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(216)))), ((int)(((byte)(228)))));
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.Grilla.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.Grilla.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.BurlyWood;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Tan;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.ActiveCaption;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.Grilla.DefaultCellStyle = dataGridViewCellStyle2;
             this.Grilla.EnableHeadersVisualStyles = false;
-            this.Grilla.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.Grilla.Location = new System.Drawing.Point(3, 81);
+            this.Grilla.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(216)))), ((int)(((byte)(228)))));
+            this.Grilla.Location = new System.Drawing.Point(15, 88);
             this.Grilla.Name = "Grilla";
             this.Grilla.ReadOnly = true;
             this.Grilla.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.BurlyWood;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Tan;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.Empty;
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Empty;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Empty;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Empty;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.Grilla.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.Tan;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
-            this.Grilla.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.Grilla.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.Grilla.Size = new System.Drawing.Size(296, 301);
+            this.Grilla.Size = new System.Drawing.Size(261, 281);
             this.Grilla.TabIndex = 37;
             this.Grilla.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Grilla_CellClick);
             // 
@@ -303,7 +295,7 @@
             this.TxtBuscar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.TxtBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtBuscar.ForeColor = System.Drawing.Color.Black;
-            this.TxtBuscar.Location = new System.Drawing.Point(84, 46);
+            this.TxtBuscar.Location = new System.Drawing.Point(65, 42);
             this.TxtBuscar.Name = "TxtBuscar";
             this.TxtBuscar.Size = new System.Drawing.Size(183, 26);
             this.TxtBuscar.TabIndex = 35;
@@ -314,7 +306,7 @@
             this.LblBuscar.AutoSize = true;
             this.LblBuscar.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LblBuscar.ForeColor = System.Drawing.Color.Transparent;
-            this.LblBuscar.Location = new System.Drawing.Point(8, 49);
+            this.LblBuscar.Location = new System.Drawing.Point(-2, 45);
             this.LblBuscar.Name = "LblBuscar";
             this.LblBuscar.Size = new System.Drawing.Size(70, 19);
             this.LblBuscar.TabIndex = 34;
@@ -322,15 +314,15 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.LblDescripcion);
             this.panel1.Controls.Add(this.iconButton1);
             this.panel1.Controls.Add(this.TxtDescripcion);
             this.panel1.Controls.Add(this.LblIdColor);
-            this.panel1.Controls.Add(this.LblDescripcion);
             this.panel1.Controls.Add(this.TxtBuscar);
             this.panel1.Controls.Add(this.LblBuscar);
             this.panel1.Location = new System.Drawing.Point(0, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(304, 79);
+            this.panel1.Size = new System.Drawing.Size(284, 79);
             this.panel1.TabIndex = 38;
             // 
             // iconButton1
@@ -343,7 +335,7 @@
             this.iconButton1.IconColor = System.Drawing.Color.White;
             this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconButton1.IconSize = 30;
-            this.iconButton1.Location = new System.Drawing.Point(272, 46);
+            this.iconButton1.Location = new System.Drawing.Point(255, 40);
             this.iconButton1.Margin = new System.Windows.Forms.Padding(0);
             this.iconButton1.Name = "iconButton1";
             this.iconButton1.Size = new System.Drawing.Size(29, 26);
@@ -356,7 +348,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(156)))), ((int)(((byte)(191)))), ((int)(((byte)(227)))));
-            this.ClientSize = new System.Drawing.Size(450, 382);
+            this.ClientSize = new System.Drawing.Size(436, 382);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.Grilla);
             this.Controls.Add(this.PnlBarraLateral);

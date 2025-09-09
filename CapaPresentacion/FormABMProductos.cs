@@ -26,7 +26,7 @@ namespace CapaPresentacion
         public FormABMProductos()
         {
             InitializeComponent();
-
+            ConfigurarGrilla();
             BtnModificar.Enabled = false;
             PanelDatos.Enabled = false;
             BtnGrabar.Enabled = false;
@@ -46,7 +46,7 @@ namespace CapaPresentacion
             Grilla.DataSource = listar.ListarINNERJOIN();
             Grilla.Columns[0].HeaderText = "ID";
             Grilla.Columns[1].HeaderText = "Descripcion";
-            Grilla.Columns[2].HeaderText = "Talle";
+            Grilla.Columns[2].HeaderText = "Detalle";
             Grilla.Columns[6].HeaderText = "Categoria";
             Grilla.Columns[7].HeaderText = "Marca";
             Grilla.Columns[8].HeaderText = "Color";
@@ -54,24 +54,41 @@ namespace CapaPresentacion
             Grilla.Columns[10].HeaderText = "Precio Venta";
             Grilla.Columns[11].HeaderText = "Stock";
 
+            Grilla.Columns[0].Visible = false;
             Grilla.Columns[3].Visible = false;
             Grilla.Columns[4].Visible = false;
             Grilla.Columns[5].Visible = false;
             Grilla.Columns[12].Visible = false;
-
-            Grilla.Columns[0].Width = 30;
-            Grilla.Columns[1].Width = 140;
-            Grilla.Columns[2].Width = 90;
+            Grilla.Columns[1].Width = 175;
+            Grilla.Columns[2].Width = 190;
             Grilla.Columns[3].Width = 0;
             Grilla.Columns[4].Width = 0;
             Grilla.Columns[5].Width = 0;
-            Grilla.Columns[6].Width = 120;
+            Grilla.Columns[6].Width = 110;
             Grilla.Columns[7].Width = 100;
-            Grilla.Columns[8].Width = 120;
-            Grilla.Columns[9].Width = 100;
-            Grilla.Columns[10].Width = 100;
-            Grilla.Columns[11].Width = 90;
+            Grilla.Columns[8].Width = 80;
+            Grilla.Columns[9].Width = 85;
+            Grilla.Columns[10].Width = 85;
+            Grilla.Columns[11].Width = 65;
             Grilla.Columns[12].Width = 0;
+        }
+        private void ConfigurarGrilla()
+        {
+            // Centrar los títulos de las columnas
+            Grilla.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            // Opcional: centrar también el contenido de cada celda
+            foreach (DataGridViewColumn col in Grilla.Columns)
+            {
+                col.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+                // Bloquear el redimensionamiento de columnas individualmente
+                col.Resizable = DataGridViewTriState.False;
+            }
+
+            // Bloquear redimensionamiento general
+            Grilla.AllowUserToResizeColumns = false;
+            Grilla.AllowUserToResizeRows = false;
         }
         private void CargarCbo2()
         {
@@ -395,26 +412,35 @@ namespace CapaPresentacion
         }
         private void Grilla_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            try
+            {
+                if (e.RowIndex < 0) return; // Evita tocar la cabecera
 
-            LblIdProducto.Text = Grilla.Rows[e.RowIndex].Cells[0].Value.ToString();
-            TxtDescripcion.Text = Grilla.Rows[e.RowIndex].Cells[1].Value.ToString();
-            TxtDetalle.Text = Grilla.Rows[e.RowIndex].Cells[2].Value.ToString();
-            VarCat = Convert.ToInt32(Grilla.Rows[e.RowIndex].Cells[3].Value);
-            VarMar = Convert.ToInt32(Grilla.Rows[e.RowIndex].Cells[4].Value);
-            VarCol = Convert.ToInt32(Grilla.Rows[e.RowIndex].Cells[5].Value);
-            TxtPrecioCompra.Text = Grilla.Rows[e.RowIndex].Cells[9].Value.ToString();
-            TxtPrecioVenta.Text = Grilla.Rows[e.RowIndex].Cells[10].Value.ToString();
-            TxtStock.Text = Grilla.Rows[e.RowIndex].Cells[11].Value.ToString();
+                LblIdProducto.Text = Grilla.Rows[e.RowIndex].Cells[0].Value?.ToString() ?? "";
+                TxtDescripcion.Text = Grilla.Rows[e.RowIndex].Cells[1].Value?.ToString() ?? "";
+                TxtDetalle.Text = Grilla.Rows[e.RowIndex].Cells[2].Value?.ToString() ?? "";
+                VarCat = Convert.ToInt32(Grilla.Rows[e.RowIndex].Cells[3].Value);
+                VarMar = Convert.ToInt32(Grilla.Rows[e.RowIndex].Cells[4].Value);
+                VarCol = Convert.ToInt32(Grilla.Rows[e.RowIndex].Cells[5].Value);
+                TxtPrecioCompra.Text = Grilla.Rows[e.RowIndex].Cells[9].Value?.ToString() ?? "";
+                TxtPrecioVenta.Text = Grilla.Rows[e.RowIndex].Cells[10].Value?.ToString() ?? "";
+                TxtStock.Text = Grilla.Rows[e.RowIndex].Cells[11].Value?.ToString() ?? "";
 
-            // **Asignar valores a combos sin recargar DataSource**
-            CboIdCat.SelectedValue = VarCat;
-            CboIdMar.SelectedValue = VarMar;
-            CboIdCol.SelectedValue = VarCol;
+                // Asignar valores a combos sin recargar DataSource
+                CboIdCat.SelectedValue = VarCat;
+                CboIdMar.SelectedValue = VarMar;
+                CboIdCol.SelectedValue = VarCol;
 
-            // Habilitar botones
-            BtnCancelar.Enabled = true;
-            BtnEliminar.Enabled = true;
-            BtnModificar.Enabled = true;
+                // Habilitar botones
+                BtnCancelar.Enabled = true;
+                BtnEliminar.Enabled = true;
+                BtnModificar.Enabled = true;
+            }
+            catch (Exception ex)
+            {
+                // Mostrar mensaje o ignorar según lo que necesites
+                MessageBox.Show("Error al seleccionar la fila: " + ex.Message, "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
         private void Grilla_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {

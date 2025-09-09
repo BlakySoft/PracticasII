@@ -62,6 +62,7 @@ namespace CapaPresentacion
             Grilla.Columns[3].HeaderText = "Documento";
             Grilla.Columns[4].HeaderText = "Teléfono";
             Grilla.Columns[5].HeaderText = "Domicilio";
+            Grilla.Columns[6].Visible = false;
         }
 
         #endregion
@@ -296,11 +297,6 @@ namespace CapaPresentacion
         {
             Close();
         }
-        private void BtnActualizar_Click(object sender, EventArgs e)
-        {
-            ListarClientes();
-
-        }
         private void iconButton1_Click(object sender, EventArgs e)
         {
             TxtBuscar.Clear();
@@ -329,6 +325,8 @@ namespace CapaPresentacion
         {
             try
             {
+                if (e.RowIndex < 0) return; // Evita tocar la cabecera
+
                 LblIdCliente.Text = Grilla.Rows[e.RowIndex].Cells[0].Value.ToString();
                 TxtApellido.Text = Grilla.Rows[e.RowIndex].Cells[1].Value.ToString(); // NUEVO
                 TxtNombre.Text = Grilla.Rows[e.RowIndex].Cells[2].Value.ToString();
@@ -340,9 +338,10 @@ namespace CapaPresentacion
                 BtnEliminar.Enabled = true;
                 BtnModificar.Enabled = true;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                MessageBox.Show("Imposible seleccionar desde aquí.", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                // Mostrar mensaje o ignorar según lo que necesites
+                MessageBox.Show("Error al seleccionar la fila: " + ex.Message, "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
         private void Grilla_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
