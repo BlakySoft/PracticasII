@@ -48,21 +48,16 @@ namespace CapaPresentacion
         #region Interaccion con formulario
         private void Grilla_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-
-            // Validar que el clic no sea en la cabecera ni fuera de filas válidas
             if (e.RowIndex >= 0)
             {
-                // Obtener la fila seleccionada
                 DataGridViewRow fila = Grilla.Rows[e.RowIndex];
 
-                // Extraer valores de la fila directamente, usando los nombres de columnas que cargaste
                 int idProducto = Convert.ToInt32(fila.Cells["IdProducto"].Value);
                 string descripcion = fila.Cells["Descripcion"].Value?.ToString() ?? "";
                 string detalle = fila.Cells["Detalle"].Value?.ToString() ?? "";
                 decimal precio = Convert.ToDecimal(fila.Cells["PrecioVenta"].Value);
                 int stock = Convert.ToInt32(fila.Cells["Stock"].Value);
 
-                // Asumiendo que FormVENTAS es el formulario padre y tiene esos controles públicos
                 FormVENTAS ventas = Owner as FormVENTAS;
 
                 if (ventas != null)
@@ -87,7 +82,6 @@ namespace CapaPresentacion
                 MessageBox.Show("Seleccione un producto válido.", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
-
         private void TxtBuscar_TextChanged(object sender, EventArgs e)
         {
             if (TxtBuscar.Text != "")
@@ -106,17 +100,15 @@ namespace CapaPresentacion
                 Listar();
             }
         }
-
         private void iconButton2_Click(object sender, EventArgs e)
         {
             TxtBuscar.Clear();
         }
-
         private void Grilla_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
-                if (e.RowIndex >= 0) // Evitar cabeceras o filas inválidas
+                if (e.RowIndex >= 0) 
                 {
                     IdProducto = int.Parse(Grilla.Rows[e.RowIndex].Cells[0].Value.ToString());
                     Descripcion = Grilla.Rows[e.RowIndex].Cells[1].Value.ToString();
@@ -130,7 +122,6 @@ namespace CapaPresentacion
                 MessageBox.Show("No se puede seleccionar desde la cabecera.", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
-
         private void iconButton1_Click(object sender, EventArgs e)
         {
             Close();

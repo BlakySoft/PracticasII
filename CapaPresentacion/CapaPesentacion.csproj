@@ -83,6 +83,12 @@
     <Compile Include="FormABMColor.Designer.cs">
       <DependentUpon>FormABMColor.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormBuscarProductosCOMPRAS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormBuscarProductosCOMPRAS.Designer.cs">
+      <DependentUpon>FormBuscarProductosCOMPRAS.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormPAPELERAColor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -101,11 +107,11 @@
     <Compile Include="FormBuscarCliente.Designer.cs">
       <DependentUpon>FormBuscarCliente.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormBuscarProductos.cs">
+    <Compile Include="FormBuscarProductosVENTAS.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormBuscarProductos.Designer.cs">
-      <DependentUpon>FormBuscarProductos.cs</DependentUpon>
+    <Compile Include="FormBuscarProductosVENTAS.Designer.cs">
+      <DependentUpon>FormBuscarProductosVENTAS.cs</DependentUpon>
     </Compile>
     <Compile Include="FormBuscarProveedor.cs">
       <SubType>Form</SubType>
@@ -220,6 +226,9 @@
     <EmbeddedResource Include="FormABMColor.resx">
       <DependentUpon>FormABMColor.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormBuscarProductosCOMPRAS.resx">
+      <DependentUpon>FormBuscarProductosCOMPRAS.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormPAPELERAColor.resx">
       <DependentUpon>FormPAPELERAColor.cs</DependentUpon>
     </EmbeddedResource>
@@ -230,8 +239,8 @@
     <EmbeddedResource Include="FormBuscarCliente.resx">
       <DependentUpon>FormBuscarCliente.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormBuscarProductos.resx">
-      <DependentUpon>FormBuscarProductos.cs</DependentUpon>
+    <EmbeddedResource Include="FormBuscarProductosVENTAS.resx">
+      <DependentUpon>FormBuscarProductosVENTAS.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormBuscarProveedor.resx">
       <DependentUpon>FormBuscarProveedor.cs</DependentUpon>

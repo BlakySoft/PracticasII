@@ -33,7 +33,7 @@ namespace CapaPresentacion
             //false
             BtnMetodo.Enabled = false;
             CboIdMetodo.Enabled = false;
-            FechaActual.Enabled = false;
+            Fecha.Enabled = false;
             BtnGrabar.Enabled = false;
             BtnCancelar.Enabled = false;
             BtnAgregarProveedor.Enabled = false;
@@ -52,24 +52,16 @@ namespace CapaPresentacion
             TxtDetalle.Text = "";
             TxtPrecio.Text = "";
             TxtStock.Text = "";
-            TxtSubTotal.Text = "";
-            TxtTotal.Text = "";
+            TxtSubtotall.Text = "";
+            TxtTotall.Text = "";
             TxtCantidad.Text = "1";
             #endregion
 
             Grilla.Rows.Clear();
             Total = 0;
             BtnNuevo.Focus();
-
-            // Cambiar fuente de los encabezados de columna
-            Grilla.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 14, FontStyle.Bold);
-
-            // Cambiar fuente de las filas
-            Grilla.RowsDefaultCellStyle.Font = new Font("Calibri", 11, FontStyle.Bold);
-
-            Grilla.Columns[0].Width = 80;
-            Grilla.Columns[1].Width = 200;
         }
+
         private void CargarCbo()
         {
             ConeMetododepago cone = new ConeMetododepago();
@@ -98,7 +90,7 @@ namespace CapaPresentacion
             //true
             BtnMetodo.Enabled = true;
             CboIdMetodo.Enabled = true;
-            FechaActual.Enabled = true;
+            Fecha.Enabled = true;
             BtnGrabar.Enabled = true;
             BtnCancelar.Enabled = true;
             Grilla.Visible = true;
@@ -115,8 +107,8 @@ namespace CapaPresentacion
             TxtDetalle.Text = "";
             TxtPrecio.Text = "";
             TxtStock.Text = "";
-            TxtSubTotal.Text = "";
-            TxtTotal.Text = "";
+            TxtSubtotall.Text = "";
+            TxtTotall.Text = "";
             TxtCantidad.Text = "1";
             #endregion
 
@@ -165,7 +157,7 @@ namespace CapaPresentacion
                     {
                         IdCompra = lector.GetInt32(0)
                     };
-                    TxtCompra.Text = compra.IdCompra.ToString();
+                    TxtCompras.Text = compra.IdCompra.ToString();
                 }
 
                 conecta.Close();
@@ -177,31 +169,30 @@ namespace CapaPresentacion
                         OleDbCommand comando1 = new OleDbCommand
                         {
                             CommandType = CommandType.Text,
-                            CommandText = "insert into DetalleCompras (IdCompra, Descripcion, Cantidad, PrecioCompra, Subtotal) values (@IdCompra, @Descripcion, @Cantidad, @PrecioCompra, @Subtotal)",
+                            CommandText = "insert into DetalleCompras (IdCompra, IdProducto, Descripcion, Cantidad, PrecioCompra, Subtotal) values (@IdCompra, @IdProducto, @Descripcion, @Cantidad, @PrecioCompra, @Subtotal)",
                             Connection = conecta
                         };
 
-                        comando1.Parameters.AddWithValue("@IdCompra", Convert.ToString(TxtCompra.Text));
+                        comando1.Parameters.AddWithValue("@IdCompra", Convert.ToString(TxtCompras.Text));
+                        comando1.Parameters.AddWithValue("@IdProducto", Convert.ToInt32(row.Cells["Column1"].Value));
                         comando1.Parameters.AddWithValue("@Descripcion", Convert.ToString(row.Cells["Column2"].Value));
                         comando1.Parameters.AddWithValue("@Cantidad", Convert.ToDecimal(row.Cells["Column3"].Value));
-                        comando1.Parameters.AddWithValue("@Precio", Convert.ToDecimal(row.Cells["Column4"].Value));
+                        comando1.Parameters.AddWithValue("@PrecioCompra", Convert.ToDecimal(row.Cells["Column4"].Value)); // Corregido
                         comando1.Parameters.AddWithValue("@Subtotal", Convert.ToDecimal(row.Cells["Column5"].Value));
 
-
-                        int IdArti = Convert.ToInt32(row.Cells["Column1"].Value);
+                        int IdArti = Convert.ToInt32(row.Cells["Column1"].Value); // Esta línea puedes dejarla comentada
                         Cantidad = Convert.ToInt32(row.Cells["Column3"].Value);
 
                         conecta.Open();
                         comando1.ExecuteNonQuery();
                         conecta.Close();
-
-
                     }
                 }
+
                 MessageBox.Show("Compra realizada con éxito.", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 #region EnabledNO
                 //false
-                FechaActual.Enabled = false;
+                Fecha.Enabled = false;
                 BtnGrabar.Enabled = false;
                 BtnCancelar.Enabled = false;
                 BtnAgregarProveedor.Enabled = false;
@@ -220,8 +211,8 @@ namespace CapaPresentacion
                 TxtDetalle.Text = "";
                 TxtPrecio.Text = "";
                 TxtStock.Text = "";
-                TxtSubTotal.Text = "";
-                TxtTotal.Text = "";
+                TxtSubtotall.Text = "";
+                TxtTotall.Text = "";
                 TxtCantidad.Text = "1";
                 #endregion
 
@@ -229,42 +220,51 @@ namespace CapaPresentacion
                 Total = 0;
                 BtnNuevo.Focus();
             }
-        }
-        
+
+        }       
         private void BtnCancelar_Click(object sender, EventArgs e)
         {
-            #region EnabledNO
-            //false
-            CboIdMetodo.Enabled = false;
-            BtnMetodo.Enabled = false;
-            FechaActual.Enabled = false;
-            BtnGrabar.Enabled = false;
-            BtnCancelar.Enabled = false;
-            BtnAgregarProveedor.Enabled = false;
-            BtnBuscarProveedor.Enabled = false;
-            BtnAgregarProducto.Enabled = false;
-            BtnBuscarProducto.Enabled = false;
-            TxtCantidad.Enabled = false;
-            //true
-            BtnNuevo.Enabled = true;
-            Grilla.Visible = true;
-            #endregion
+                      DialogResult resultado = MessageBox.Show(
+                 "¿Está seguro de que desea cancelar la compra?",
+                 "Confirmar cancelación",
+                      MessageBoxButtons.YesNo,
+                     MessageBoxIcon.Question
+         );
 
-            #region Limpiar
-            TxtRazon.Text = "";
-            TxtDescripcion.Text = "";
-            TxtDetalle.Text = "";
-            TxtPrecio.Text = "";
-            TxtStock.Text = "";
-            TxtSubTotal.Text = "";
-            TxtTotal.Text = "";
-            TxtCantidad.Text = "1";
-            #endregion
+            if (resultado == DialogResult.Yes)
+            {
+                #region EnabledNO
+                //false
+                CboIdMetodo.Enabled = false;
+                BtnMetodo.Enabled = false;
+                Fecha.Enabled = false;
+                BtnGrabar.Enabled = false;
+                BtnCancelar.Enabled = false;
+                BtnAgregarProveedor.Enabled = false;
+                BtnBuscarProveedor.Enabled = false;
+                BtnAgregarProducto.Enabled = false;
+                BtnBuscarProducto.Enabled = false;
+                TxtCantidad.Enabled = false;
+                //true
+                BtnNuevo.Enabled = true;
+                Grilla.Visible = true;
+                #endregion
 
-            Grilla.Rows.Clear();
-            Total = 0;
-            BtnNuevo.Focus();
-            Grilla.Rows.Clear();
+                #region Limpiar
+                TxtRazon.Text = "";
+                TxtDescripcion.Text = "";
+                TxtDetalle.Text = "";
+                TxtPrecio.Text = "";
+                TxtStock.Text = "";
+                TxtSubtotall.Text = "";
+                TxtTotall.Text = "";
+                TxtCantidad.Text = "1";
+                #endregion
+
+                Grilla.Rows.Clear();
+                Total = 0;
+                BtnNuevo.Focus();
+            }
         }
         private void BtnBuscarProveedor_Click(object sender, EventArgs e)
         {
@@ -276,12 +276,14 @@ namespace CapaPresentacion
         {
             FormAgregarProveedor form = new FormAgregarProveedor();
             form.ShowDialog();
+            TxtCantidad.Focus();
         }
         private void BtnBuscarProducto_Click(object sender, EventArgs e)
         {
-            FormBuscarProducto form = new FormBuscarProducto();
+            FormBuscarProductosCOMPRAS form = new FormBuscarProductosCOMPRAS();
             AddOwnedForm(form);
             form.ShowDialog();
+
             TxtCantidad.Enabled = true;
             TxtCantidad.Focus();
         }
@@ -294,18 +296,23 @@ namespace CapaPresentacion
         {
             FormABMMetododepago form = new FormABMMetododepago();
             form.ShowDialog();
-        }    
+        }
+        private void FormCOMPRAS_Load(object sender, EventArgs e)
+        {
+            // Cambiar fuente de los encabezados de columna
+            Grilla.ColumnHeadersDefaultCellStyle.Font = new Font("Arial", 16, FontStyle.Italic);
+
+            // Cambiar fuente de las filas
+            Grilla.RowsDefaultCellStyle.Font = new Font("Arial", 14, FontStyle.Italic);
+
+            Grilla.Columns[1].Width = 200;
+        }
         private void iconButton1_Click(object sender, EventArgs e)
         {
             Close();
         }
 
-     
 
-        private void CboIdBarrio_Click(object sender, EventArgs e)
-        {
-            CargarCbo();
-        }
         #endregion
 
         #region Interaccion con Formulario
@@ -352,21 +359,23 @@ namespace CapaPresentacion
                 {
                     Cantidad = int.Parse(TxtCantidad.Text);
                     Subtotal = Cantidad * Precio;
-                    TxtSubTotal.Text = Subtotal.ToString("0,0");
+                    TxtSubtotall.Text = Subtotal.ToString("0,0");
 
-                    bool Existe = Grilla.Rows.Cast<DataGridViewRow>().Any(x => x.Cells["Column1"].Value.ToString() == TxtIdMateria.Text);
+                    bool Existe = Grilla.Rows.Cast<DataGridViewRow>().Any(x => x.Cells["Column1"].Value.ToString() == TxtIdProducto
+                    .Text);
 
                     if (!Existe)
                     {
                         if (Grilla.Rows.Count > 15)
                         {
-                            MessageBox.Show("Ha superado el número de materia prima.", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show("Ha superado el número del Producto.", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             BtnGrabar.Focus();
                             return;
                         }
                         else
                         {
-                            Grilla.Rows.Add(TxtDescripcion.Text, TxtCantidad.Text, TxtPrecio.Text, TxtSubTotal.Text);
+                            Grilla.Rows.Add(TxtIdProducto.Text, TxtDescripcion.Text, TxtCantidad.Text, TxtPrecio.Text, TxtSubtotall.Text);
+                          
 
                             Total += Subtotal;
                             TxtTotal.Text = Total.ToString("0,0");
@@ -418,7 +427,7 @@ namespace CapaPresentacion
             {
                 TxtTotal.Text = "0";
                 BtnGrabar.Enabled = false;
-                TxtIdMateria.Focus();
+                TxtIdProducto.Focus();
             }
 
             decimal Suma = Grilla.Rows.OfType<DataGridViewRow>().Sum(x => Convert.ToDecimal(x.Cells[4].Value));

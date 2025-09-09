@@ -100,7 +100,7 @@ namespace CapaPresentacion
                     {
                         IdCliente = IdCliente,
                         IdMetodo = VarMetodo,
-                        IdEntrega = 1,
+                        IdVenta = 1,
                         Total = Suma
                     };
 
@@ -214,38 +214,47 @@ namespace CapaPresentacion
         }
         private void BtnCancelar_Click(object sender, EventArgs e)
         {
-            #region Enabled no
-            //false
-            BtnMetodo.Enabled = false;
-            BtnGrabar.Enabled = false;
-            BtnCancelar.Enabled = false;
-            BtnAgregarCliente.Enabled = false;
-            BtnBuscarCliente.Enabled = false;
-            BtnAgregarProducto.Enabled = false;
-            BtnBuscarProducto.Enabled = false;
-            TxtCantidad.Enabled = false;
-            TxtIdProducto.Enabled = false;
-            //true
-            BtnNuevo.Enabled = true;
-            Grilla.Visible = true;
-            #endregion
+            DialogResult resultado = MessageBox.Show(
+        "¿Está seguro de que desea cancelar la venta?",
+        "Confirmar cancelación",
+        MessageBoxButtons.YesNo,
+        MessageBoxIcon.Question
+    );
 
-            #region Limpiar
-            TxtCliente.Text = "";
-            TxtDescripcion.Text = "";
-            TxtDetalle.Text = "";
-            TxtPrecio.Text = "";
-            TxtStock.Text = "";
-            TxtSubTotal.Text = "";
-            TxtTotal.Text = "";
-            TxtCantidad.Text = "1";
-            TxtIdProducto.Text = "";
-            #endregion
+            if (resultado == DialogResult.Yes)
+            {
+                #region EnabledNO
+                //false
+                CboIdMetodo.Enabled = false;
+                BtnMetodo.Enabled = false;
+                Fecha.Enabled = false;
+                BtnGrabar.Enabled = false;
+                BtnCancelar.Enabled = false;
+                BtnAgregarProducto.Enabled = false;
+                BtnBuscarProducto.Enabled = false;
+                BtnAgregarProducto.Enabled = false;
+                BtnBuscarProducto.Enabled = false;
+                TxtCantidad.Enabled = false;
+                //true
+                BtnNuevo.Enabled = true;
+                Grilla.Visible = true;
+                #endregion
 
-            Grilla.Rows.Clear();
-            Total = 0;
-            BtnNuevo.Focus();
-            Grilla.Rows.Clear();
+                #region Limpiar
+                TxtCliente.Text = "";
+                TxtDescripcion.Text = "";
+                TxtDetalle.Text = "";
+                TxtPrecio.Text = "";
+                TxtStock.Text = "";
+                TxtSubTotal.Text = "";
+                TxtTotal.Text = "";
+                TxtCantidad.Text = "1";
+                #endregion
+
+                Grilla.Rows.Clear();
+                Total = 0;
+                BtnNuevo.Focus();
+            }
         }
         private void BtnNuevo_Click(object sender, EventArgs e)
         {
