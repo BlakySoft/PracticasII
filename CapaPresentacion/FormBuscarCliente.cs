@@ -30,19 +30,35 @@ namespace CapaPresentacion
         #endregion
 
         #region Interacciones
-        private void Grilla_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void TxtBuscar_TextChanged(object sender, EventArgs e)
         {
-            try
+            if (TxtBuscar.Text != "")
             {
-                IdCliente = Grilla.Rows[e.RowIndex].Cells[0].Value.ToString();
-                Nombre = Grilla.Rows[e.RowIndex].Cells[1].Value.ToString();
+                ConeClientes cone = new ConeClientes();
+                Cliente Buscar = new Cliente
+                {
+                    Nombre = TxtBuscar.Text
+                };
+
+                Grilla.DataSource = cone.BuscarCliente(Buscar.Nombre);
             }
-            catch (Exception)
+            else
             {
-                MessageBox.Show("No se puede seleccionar desde la cabecera.", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                ListarClientes();
             }
         }
-        private void Grilla_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void Grilla_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0)
+            {
+                MessageBox.Show("No se puede seleccionar desde la cabecera.", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            IdCliente = Grilla.Rows[e.RowIndex].Cells[0].Value?.ToString() ?? "";
+            Nombre = Grilla.Rows[e.RowIndex].Cells[1].Value?.ToString() ?? "";
+        }
+        private void Grilla_CellDoubleClick_1(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
@@ -61,23 +77,6 @@ namespace CapaPresentacion
             catch (Exception)
             {
                 MessageBox.Show("No se puede seleccionar desde la cabecera.", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
-        }
-        private void TxtBuscar_TextChanged(object sender, EventArgs e)
-        {
-            if (TxtBuscar.Text != "")
-            {
-                ConeClientes cone = new ConeClientes();
-                Cliente Buscar = new Cliente
-                {
-                    Nombre = TxtBuscar.Text
-                };
-
-                Grilla.DataSource = cone.BuscarCliente(Buscar.Nombre);
-            }
-            else
-            {
-                ListarClientes();
             }
         }
         private void iconButton1_Click(object sender, EventArgs e)

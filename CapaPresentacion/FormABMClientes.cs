@@ -33,7 +33,6 @@ namespace CapaPresentacion
             BtnEliminar.Enabled = false;
             TxtBuscar.Enabled = true;
         }
-
         private void LimpiarTextos()
         {
             LblIdCliente.Text = "";
@@ -43,7 +42,6 @@ namespace CapaPresentacion
             TxtTelefono.Clear();
             TxtDomicilio.Clear();
         }
-
         private void ListarClientes()
         {
             ConeClientes cone = new ConeClientes();
@@ -64,7 +62,6 @@ namespace CapaPresentacion
             Grilla.Columns[5].HeaderText = "Domicilio";
             Grilla.Columns[6].Visible = false;
         }
-
         #endregion
 
         #region Botones

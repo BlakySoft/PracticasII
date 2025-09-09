@@ -66,7 +66,6 @@ namespace CapaPresentacion
             Grilla.Columns[7].Visible = false; //Estado
         }
 
-
         #endregion
 
         #region Botones
@@ -209,24 +208,29 @@ namespace CapaPresentacion
         }
         private void BtnEliminar_Click(object sender, EventArgs e)
         {
-            ConeProveedores cone = new ConeProveedores();
-            Proveedores Borrar = new Proveedores
+            if (!int.TryParse(LblIdProveedor.Text, out int idProveedor))
             {
-                IdProveedor = int.Parse(LblIdProveedor.Text)
-            };
+                MessageBox.Show("Seleccione un proveedor válido primero.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
-            cone.BorrarProveedor(Borrar);
+            if (MessageBox.Show("¿Está seguro que desea eliminar este proveedor?",
+                                "Confirmar eliminación",
+                                MessageBoxButtons.YesNo,
+                                MessageBoxIcon.Question) != DialogResult.Yes)
+                return;
 
             try
             {
-                MessageBox.Show("El Proveedor se eliminó correctamente!!!", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                new ConeProveedores().BorrarProveedor(new Proveedores { IdProveedor = idProveedor });
+                MessageBox.Show("El proveedor se eliminó correctamente!!!", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                 LimpiarTextos();
                 ListarProveedores();
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error: {ex.ToString()}");
-                throw;
+                MessageBox.Show("Error: " + ex.Message, "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             #region Enabled yes/no 
@@ -290,11 +294,6 @@ namespace CapaPresentacion
             }
             
         }
-        private void BtnActualizar_Click(object sender, EventArgs e)
-        {
-            ListarProveedores();
-            CargarCbo();
-        }
         private void BtnSalir_Click(object sender, EventArgs e)
         {
             Close();
@@ -319,7 +318,7 @@ namespace CapaPresentacion
                 Grilla.DataSource = cone.Buscar(Buscar.RazonSocial);
             }
         }
-        private void Grilla_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void Grilla_CellClick_1(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
@@ -353,7 +352,7 @@ namespace CapaPresentacion
                 MessageBox.Show("Imposible seleccionar desde aquí.", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
-        private void Grilla_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void Grilla_CellDoubleClick_1(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
@@ -389,8 +388,6 @@ namespace CapaPresentacion
         {
             VarLocalidad = int.Parse(CboIdLocalidad.SelectedValue.ToString());
         }
-
-
         #endregion
 
         #region Validadores
@@ -496,8 +493,8 @@ namespace CapaPresentacion
                 SelectNextControl((Control)sender, true, true, true, true);
             }
         }
+
         #endregion
 
-      
     }
 }

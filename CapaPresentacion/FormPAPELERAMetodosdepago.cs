@@ -85,15 +85,13 @@ namespace CapaPresentacion
         }
         private void iconButton1_Click(object sender, EventArgs e)
         {
+            this.DialogResult = DialogResult.OK;
             Close();
         }
         #endregion
 
         #region Interacciones con formulario
-        private void Grilla_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            LblIdMetodos.Text = Grilla.Rows[e.RowIndex].Cells[0].Value.ToString();
-        }
+    
         private void TxtBuscar_TextChanged(object sender, EventArgs e)
         {
             if (TxtBuscar.Text == "")
@@ -112,8 +110,15 @@ namespace CapaPresentacion
                 Listar();
             }
         }
+        private void Grilla_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+
+            LblIdMetodos.Text = Grilla.Rows[e.RowIndex].Cells[0].Value?.ToString() ?? "";
+        }
+
         #endregion
 
-    
+
     }
 }

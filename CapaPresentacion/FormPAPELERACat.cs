@@ -87,16 +87,8 @@ namespace CapaPresentacion
         #region Interacciones con Formulario
         private void Grilla_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            try
-            {
-                if (e.RowIndex < 0) return;
+            if (e.RowIndex < 0) return; 
 
-                LblIdCat.Text = Grilla.Rows[e.RowIndex].Cells[0].Value.ToString();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al seleccionar la fila: " + ex.Message, "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
             LblIdCat.Text = Grilla.Rows[e.RowIndex].Cells[0].Value.ToString();
         }
         private void TxtBuscar_TextChanged(object sender, EventArgs e)

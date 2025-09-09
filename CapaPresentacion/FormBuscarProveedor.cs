@@ -41,27 +41,6 @@ namespace CapaPresentacion
         #endregion
 
         #region Interaccion
-        private void Grilla_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            try
-            {
-                if (IdProveedor != "")
-                {
-                    FormCOMPRAS compras = Owner as FormCOMPRAS;
-                    compras.TxtRazon.Text = $"{RazonSocial}";
-                    compras.IdProveedorCompra = IdProveedor;
-                    Close();
-                }
-                else
-                {
-                    MessageBox.Show("Seleccione un proveedor.", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                }
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("No se puede seleccionar desde la cabecera.", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
-        }
         private void TxtBuscar_TextChanged(object sender, EventArgs e)
         {
 
@@ -86,19 +65,37 @@ namespace CapaPresentacion
         {
             Close();
         }
-
         private void iconButton2_Click(object sender, EventArgs e)
         {
             TxtBuscar.Clear();
         }
-
-        private void Grilla_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void Grilla_CellClick_1(object sender, DataGridViewCellEventArgs e)
         {
-
             try
             {
                 IdProveedor = Grilla.Rows[e.RowIndex].Cells[0].Value.ToString();
                 RazonSocial = Grilla.Rows[e.RowIndex].Cells[1].Value.ToString();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("No se puede seleccionar desde la cabecera.", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+        private void Grilla_CellDoubleClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (IdProveedor != "")
+                {
+                    FormCOMPRAS compras = Owner as FormCOMPRAS;
+                    compras.TxtRazon.Text = $"{RazonSocial}";
+                    compras.IdProveedorCompra = IdProveedor;
+                    Close();
+                }
+                else
+                {
+                    MessageBox.Show("Seleccione un proveedor.", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
             }
             catch (Exception)
             {

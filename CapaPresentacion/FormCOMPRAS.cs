@@ -62,7 +62,6 @@ namespace CapaPresentacion
             Total = 0;
             BtnNuevo.Focus();
         }
-
         private void CargarCbo()
         {
             ConeMetododepago cone = new ConeMetododepago();

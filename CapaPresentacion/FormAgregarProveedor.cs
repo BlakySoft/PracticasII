@@ -64,54 +64,52 @@ namespace CapaPresentacion
         }
         private void BtnGrabar_Click(object sender, EventArgs e)
         {
-            try
+            // Validaciones básicas
+            if (string.IsNullOrWhiteSpace(TxtRazon.Text))
             {
-                if (TxtRazon.Text == "")
-                {
-                    MessageBox.Show("Ingrese la Razon Social", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                }
-                else if (TxtDocumento.Text == "")
-                {
-                    MessageBox.Show("Ingrese el Numero de documento ", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                }
-                else if (TxtTelefono.Text == "")
-                {
-                    MessageBox.Show("Ingrese el Teléfono", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                }
-                else if (TxtDomicilio.Text == "")
-                {
-                    MessageBox.Show("Ingrese la Direccion", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                }
-                else if (nuevo == true)
-                {
-                    ConeProveedores cone = new ConeProveedores();
-                    Proveedores Agregar = new Proveedores
-                    {
-                        RazonSocial = TxtRazon.Text,
-                        Documento = TxtDocumento.Text,
-                        Telefono = TxtTelefono.Text,
-                        Domicilio = TxtDomicilio.Text,
-                        IdLocalidad = VarLocalidad
-                    };
-
-                    cone.AgregarProveedor(Agregar);
-
-                    #region Enabled yes/no
-                    //true
-                    BtnNuevo.Enabled = true;
-                    //false
-                    BtnGrabar.Enabled = false;
-                    BtnCancelar.Enabled = false;
-                    PanelDatos.Enabled = false;
-                    #endregion
-
-                    LimpiarTextos();
-                    BtnNuevo.Focus();
-                }
+                MessageBox.Show("Ingrese la Razon Social", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
             }
-            finally
+            if (string.IsNullOrWhiteSpace(TxtDocumento.Text))
             {
+                MessageBox.Show("Ingrese el Numero de documento", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(TxtTelefono.Text))
+            {
+                MessageBox.Show("Ingrese el Teléfono", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(TxtDomicilio.Text))
+            {
+                MessageBox.Show("Ingrese la Dirección", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
 
+            if (nuevo)
+            {
+                // Preguntar antes de agregar
+                var resultado = MessageBox.Show(
+                    "¿Está seguro que desea agregar este proveedor?",
+                    "Confirmar",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question
+                );
+
+                if (resultado != DialogResult.Yes) return;
+
+                // Crear y agregar proveedor
+                var cone = new ConeProveedores();
+                var proveedor = new Proveedores
+                {
+                    RazonSocial = TxtRazon.Text,
+                    Documento = TxtDocumento.Text,
+                    Telefono = TxtTelefono.Text,
+                    Domicilio = TxtDomicilio.Text,
+                    IdLocalidad = VarLocalidad
+                };
+                cone.AgregarProveedor(proveedor);
+           
                 #region Enabled yes/no
                 //true
                 BtnNuevo.Enabled = true;

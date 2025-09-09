@@ -28,7 +28,6 @@ namespace CapaPresentacion
             LimpiarTextos();
             ListarLocalidades();
         }
-
         private void LimpiarTextos()
         {
             LblIdLocalidad.Text = "";
@@ -70,59 +69,45 @@ namespace CapaPresentacion
         }
         private void BtnGrabar_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(TxtDescripcion.Text))
+            {
+                MessageBox.Show("Ingrese la Descripción", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            ConeLocalidades cone = new ConeLocalidades();
+            Localidad loc = new Localidad
+            {
+                Descripcion = TxtDescripcion.Text
+            };
+
+            string mensaje = nuevo
+                ? "¿Está seguro que desea agregar esta localidad?"
+                : "¿Está seguro que desea actualizar esta localidad?";
+
+            if (MessageBox.Show(mensaje, "Confirmar acción", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+                return;
+
             try
             {
-                if (TxtDescripcion.Text == "")
+                if (nuevo)
                 {
-                    MessageBox.Show("Ingrese la Descripción", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                }
-                else if (nuevo == true)
-                {
-                    ConeLocalidades cone = new ConeLocalidades();
-                    Localidad Agregar = new Localidad
-                    {
-                        Descripcion = TxtDescripcion.Text
-                    };
-
-                    cone.AgregarLocalidad(Agregar);
-
-                    #region Enabled yes/no 
-                    //true
-                    BtnNuevo.Enabled = true;
-                    //false
-                    TxtDescripcion.Enabled = false;
-                    BtnGrabar.Enabled = false;
-                    BtnCancelar.Enabled = false;
-                    #endregion
-
-                    LimpiarTextos();
-                    ListarLocalidades();
-                    BtnNuevo.Focus();
+                    cone.AgregarLocalidad(loc);
+                    MessageBox.Show("Localidad agregada correctamente!", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
-                    ConeLocalidades cone = new ConeLocalidades();
-                    Localidad Actualizar = new Localidad
-                    {
-                        IdLocalidad = int.Parse(LblIdLocalidad.Text),
-                        Descripcion = TxtDescripcion.Text
-                    };
-
-                    cone.ActualizarLocalidad(Actualizar);
-
-                    TxtDescripcion.Enabled = false;
-                    BtnNuevo.Enabled = true;
-                    BtnGrabar.Enabled = false;
-                    BtnCancelar.Enabled = false;
-
-                    LimpiarTextos();
-                    ListarLocalidades();
-                    BtnNuevo.Focus();
+                    loc.IdLocalidad = int.Parse(LblIdLocalidad.Text);
+                    cone.ActualizarLocalidad(loc);
+                    MessageBox.Show("Localidad actualizada correctamente!", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
+
+                LimpiarTextos();
+                ListarLocalidades();
             }
-            catch
+            catch (Exception ex)
             {
-                MessageBox.Show("Error!", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Error: " + ex.Message, "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
@@ -174,24 +159,27 @@ namespace CapaPresentacion
         }
         private void BtnEliminar_Click(object sender, EventArgs e)
         {
-            ConeLocalidades cone = new ConeLocalidades();
-            Localidad Eliminar = new Localidad
+            if (!int.TryParse(LblIdLocalidad.Text, out int idLocalidad))
             {
-                IdLocalidad = int.Parse(LblIdLocalidad.Text)
-            };
+                MessageBox.Show("Seleccione una localidad válida primero.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
-            cone.BorrarLocalidades(Eliminar);
+            if (MessageBox.Show("¿Está seguro que desea eliminar esta localidad?",
+                                "Confirmar eliminación",
+                                MessageBoxButtons.YesNo,
+                                MessageBoxIcon.Question) != DialogResult.Yes) return;
 
             try
             {
-                MessageBox.Show("La localidad se eliminó correctamente!!!", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                new ConeLocalidades().BorrarLocalidades(new Localidad { IdLocalidad = idLocalidad });
+                MessageBox.Show("La localidad se eliminó correctamente!!!", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 LimpiarTextos();
                 ListarLocalidades();
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error: {ex.ToString()}");
-                throw;
+                MessageBox.Show("Error: " + ex.Message, "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             #region Enabled yes/no
@@ -243,27 +231,31 @@ namespace CapaPresentacion
         }
         private void Grilla_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            LblIdLocalidad.Text = Grilla.Rows[e.RowIndex].Cells[0].Value.ToString();
-            TxtDescripcion.Text = Grilla.Rows[e.RowIndex].Cells[1].Value.ToString();
+            if (e.RowIndex < 0) return;
 
-            #region Enabled yes/no
-            //false
-            nuevo = false;
-            BtnNuevo.Enabled = false;
-            //true
-            TxtDescripcion.Enabled = true;
-            BtnGrabar.Enabled = true;
-            BtnCancelar.Enabled = true;
-            BtnEliminar.Enabled = true;
-            BtnModificar.Enabled = true;
-            #endregion
+            try
+            {
+                LblIdLocalidad.Text = Grilla.Rows[e.RowIndex].Cells[0].Value?.ToString() ?? "";
+                TxtDescripcion.Text = Grilla.Rows[e.RowIndex].Cells[1].Value?.ToString() ?? "";
 
-            TxtDescripcion.Focus();
+                nuevo = false;
+                BtnNuevo.Enabled = false;
+
+                TxtDescripcion.Enabled = true;
+                BtnGrabar.Enabled = true;
+                BtnCancelar.Enabled = true;
+                BtnEliminar.Enabled = true;
+                BtnModificar.Enabled = true;
+
+                TxtDescripcion.Focus();
+            }
+            catch
+            {
+            }
         }
-
 
         #endregion
 
-    
+
     }
 }

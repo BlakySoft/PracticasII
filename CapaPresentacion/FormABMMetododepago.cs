@@ -64,59 +64,27 @@ namespace CapaPresentacion
         }
         private void BtnGrabar_Click(object sender, EventArgs e)
         {
+            if (!int.TryParse(LblIdMetodo.Text, out int idMetodo))
+            {
+                MessageBox.Show("Seleccione un método de pago válido primero.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (MessageBox.Show("¿Está seguro que desea eliminar este método de pago?",
+                                "Confirmar eliminación",
+                                MessageBoxButtons.YesNo,
+                                MessageBoxIcon.Question) != DialogResult.Yes) return;
+
             try
             {
-                if (TxtDescripcion.Text == "")
-                {
-                    MessageBox.Show("Ingrese el Metodo de pago", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                }
-                else if (nuevo == true)
-                {
-                    ConeMetododepago cone = new ConeMetododepago();
-                    Metododepago Agregar = new Metododepago
-                    {
-                        Descripcion = TxtDescripcion.Text
-                    };
-
-                    cone.Agregar(Agregar);
-
-                    #region Enabled yes/no 
-                    //true
-                    BtnNuevo.Enabled = true;
-                    //false
-                    TxtDescripcion.Enabled = false;
-                    BtnGrabar.Enabled = false;
-                    BtnCancelar.Enabled = false;
-                    #endregion
-
-                    LimpiarTextos();
-                    Listar();
-                    BtnNuevo.Focus();
-                }
-                else
-                {
-                    ConeMetododepago cone = new ConeMetododepago();
-                    Metododepago Actualizar = new Metododepago
-                    {
-                        IdMetodo = int.Parse(LblIdMetodo.Text),
-                        Descripcion = TxtDescripcion.Text
-                    };
-
-                    cone.Actualizar(Actualizar);
-
-                    TxtDescripcion.Enabled = false;
-                    BtnNuevo.Enabled = true;
-                    BtnGrabar.Enabled = false;
-                    BtnCancelar.Enabled = false;
-
-                    LimpiarTextos();
-                    Listar();
-                    BtnNuevo.Focus();
-                }
+                new ConeMetododepago().Borrar(new Metododepago { IdMetodo = idMetodo });
+                MessageBox.Show("El método de pago se eliminó correctamente!!!", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                LimpiarTextos();
+                Listar();
             }
-            catch
+            catch (Exception ex)
             {
-                MessageBox.Show("Error!", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Error: " + ex.Message, "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
@@ -168,24 +136,29 @@ namespace CapaPresentacion
         }
         private void BtnEliminar_Click(object sender, EventArgs e)
         {
-            ConeMetododepago cone = new ConeMetododepago();
-            Metododepago Eliminar = new Metododepago
+            if (!int.TryParse(LblIdMetodo.Text, out int idMetodo))
             {
-                IdMetodo = int.Parse(LblIdMetodo.Text)
-            };
+                MessageBox.Show("Seleccione un método de pago válido primero.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
-            cone.Borrar(Eliminar);
+            if (MessageBox.Show("¿Está seguro que desea eliminar este método de pago?",
+                                "Confirmar eliminación",
+                                MessageBoxButtons.YesNo,
+                                MessageBoxIcon.Question) != DialogResult.Yes)
+                return;
 
             try
             {
-                MessageBox.Show("El Metodo de pago se eliminó correctamente!!!", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                new ConeMetododepago().Borrar(new Metododepago { IdMetodo = idMetodo });
+                MessageBox.Show("El método de pago se eliminó correctamente!!!", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                 LimpiarTextos();
                 Listar();
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error: {ex.ToString()}");
-                throw;
+                MessageBox.Show("Error: " + ex.Message, "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             #region Enabled yes/no
@@ -237,25 +210,25 @@ namespace CapaPresentacion
         }
         private void Grilla_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            LblIdMetodo.Text = Grilla.Rows[e.RowIndex].Cells[0].Value.ToString();
-            TxtDescripcion.Text = Grilla.Rows[e.RowIndex].Cells[1].Value.ToString();
 
-            #region Enabled yes/no
-            //false
+            if (e.RowIndex < 0) return;
+
+            LblIdMetodo.Text = Grilla.Rows[e.RowIndex].Cells[0].Value?.ToString() ?? "";
+            TxtDescripcion.Text = Grilla.Rows[e.RowIndex].Cells[1].Value?.ToString() ?? "";
             nuevo = false;
             BtnNuevo.Enabled = false;
-            //true
+
             TxtDescripcion.Enabled = true;
             BtnGrabar.Enabled = true;
             BtnCancelar.Enabled = true;
             BtnEliminar.Enabled = true;
             BtnModificar.Enabled = true;
-            #endregion
+
             TxtDescripcion.Focus();
         }
 
         #endregion
 
-     
+
     }
 }

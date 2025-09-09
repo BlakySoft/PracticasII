@@ -109,8 +109,9 @@ namespace CapaPresentacion
 
             }
         }
-        private void Grilla_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void Grilla_CellClick_1(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex < 0) return;
             LblIdProducto.Text = Grilla.Rows[e.RowIndex].Cells[0].Value.ToString();
         }
         #endregion

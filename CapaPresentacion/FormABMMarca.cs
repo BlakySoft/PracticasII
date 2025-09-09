@@ -68,75 +68,79 @@ namespace CapaPresentacion
         }
         private void BtnGrabar_Click(object sender, EventArgs e)
         {
-            try
+            if (string.IsNullOrWhiteSpace(TxtDescripcion.Text))
             {
-                if (TxtDescripcion.Text == "")
+                MessageBox.Show("Debe ingresar una descripción para la marca.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            ConeMarca cone = new ConeMarca();
+            Marca marca = new Marca
+            {
+                Descripcion = TxtDescripcion.Text
+            };
+
+            if (nuevo) 
+            {
+                DialogResult resultado = MessageBox.Show(
+                    "¿Está seguro de que desea agregar esta marca?",
+                    "Confirmar alta",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question
+                );
+
+                if (resultado != DialogResult.Yes) return;
+
+                try
                 {
-                    MessageBox.Show("Ingrese la Marca", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    cone.Agregar(marca);
+                    MessageBox.Show("La marca se agregó correctamente!!!", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-                else if (nuevo == true)
+                catch (Exception ex)
                 {
-                    ConeMarca cone = new ConeMarca();
-                    Marca Agregar = new Marca
-                    {
-                        Descripcion = TxtDescripcion.Text
-                    };
-
-                    cone.Agregar(Agregar);
-
-                    #region Enabled yes/no 
-                    BtnNuevo.Enabled = true;
-                    TxtDescripcion.Enabled = false;
-                    BtnGrabar.Enabled = false;
-                    BtnCancelar.Enabled = false;
-                    #endregion
-
-                    LimpiarTextos();
-                    Listar();
-                    BtnNuevo.Focus();
-                }
-                else
-                {
-                    ConeMarca cone = new ConeMarca();
-                    Marca Actualizar = new Marca
-                    {
-                        IdMarca = int.Parse(LblIdMarca.Text),
-                        Descripcion = TxtDescripcion.Text
-                    };
-
-                    cone.Actualizar(Actualizar);
-
-                    #region Enabled yes/no
-                    TxtDescripcion.Enabled = false;
-                    BtnNuevo.Enabled = true;
-                    BtnGrabar.Enabled = false;
-                    BtnCancelar.Enabled = false;
-                    #endregion
-
-                    LimpiarTextos();
-                    Listar();
-                    BtnNuevo.Focus();
+                    MessageBox.Show($"Error al agregar: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            catch
+            else 
             {
-                MessageBox.Show("Error!", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
-            finally
-            {
-                #region Enabled yes/no
-                TxtBuscar.Enabled = true;
-                BtnNuevo.Enabled = true;
-                BtnGrabar.Enabled = false;
-                BtnCancelar.Enabled = false;
-                BtnEliminar.Enabled = false;
-                TxtDescripcion.Enabled = false;
-                #endregion
+                if (string.IsNullOrEmpty(LblIdMarca.Text))
+                {
+                    MessageBox.Show("Debe seleccionar una marca para actualizar.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
 
-                LimpiarTextos();
-                Listar();
-                BtnNuevo.Focus();
+                DialogResult resultado = MessageBox.Show(
+                    "¿Está seguro de que desea actualizar esta marca?",
+                    "Confirmar actualización",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question
+                );
+
+                if (resultado != DialogResult.Yes) return;
+
+                try
+                {
+                    marca.IdMarca = int.Parse(LblIdMarca.Text);
+                    cone.Actualizar(marca);
+                    MessageBox.Show("La marca se actualizó correctamente!!!", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error al actualizar: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
+
+            LimpiarTextos();
+            Listar();
+
+            #region Enabled yes/no
+            BtnNuevo.Enabled = true;
+            BtnGrabar.Enabled = false;
+            BtnCancelar.Enabled = false;
+            BtnEliminar.Enabled = false;
+            BtnModificar.Enabled = false;
+            BtnNuevo.Focus();
+            #endregion
         }
         private void BtnCancelar_Click(object sender, EventArgs e)
         {
@@ -167,36 +171,48 @@ namespace CapaPresentacion
         }
         private void BtnEliminar_Click(object sender, EventArgs e)
         {
-            ConeMarca cone = new ConeMarca();
-            Marca Eliminar = new Marca
+            if (string.IsNullOrEmpty(LblIdMarca.Text))
             {
-                IdMarca = int.Parse(LblIdMarca.Text)
-            };
-
-            cone.Borrar(Eliminar);
-
-            try
-            {
-                MessageBox.Show("La Marca se eliminó correctamente!!!", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                LimpiarTextos();
-                Listar();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error: {ex.ToString()}");
-                throw;
+                MessageBox.Show("Debe seleccionar una marca antes de eliminar.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
 
-            #region Enabled yes/no
-            //true
-            BtnNuevo.Enabled = true;
-            //false
-            BtnGrabar.Enabled = false;
-            BtnCancelar.Enabled = false;
-            BtnEliminar.Enabled = false;
+            DialogResult resultado = MessageBox.Show(
+                "¿Está seguro de que desea eliminar esta marca?",
+                "Confirmar eliminación",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+            );
 
-            BtnNuevo.Focus();
-            #endregion
+            if (resultado == DialogResult.Yes)
+            {
+                ConeMarca cone = new ConeMarca();
+                Marca Eliminar = new Marca
+                {
+                    IdMarca = int.Parse(LblIdMarca.Text)
+                };
+
+                try
+                {
+                    cone.Borrar(Eliminar);
+
+                    MessageBox.Show("La Marca se eliminó correctamente!!!", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    LimpiarTextos();
+                    Listar();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+                #region Enabled yes/no
+                BtnNuevo.Enabled = true;
+                BtnGrabar.Enabled = false;
+                BtnCancelar.Enabled = false;
+                BtnEliminar.Enabled = false;
+                BtnNuevo.Focus();
+                #endregion
+            }
         }
         private void BtnPapelera_Click(object sender, EventArgs e)
         {
@@ -218,8 +234,11 @@ namespace CapaPresentacion
         #region Interacciones con el formulario
         private void Grilla_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            LblIdMarca.Text = Grilla.Rows[e.RowIndex].Cells[0].Value.ToString();
-            TxtDescripcion.Text = Grilla.Rows[e.RowIndex].Cells[1].Value.ToString();
+
+            if (e.RowIndex < 0) return;
+
+            LblIdMarca.Text = Grilla.Rows[e.RowIndex].Cells[0].Value?.ToString() ?? "";
+            TxtDescripcion.Text = Grilla.Rows[e.RowIndex].Cells[1].Value?.ToString() ?? "";
 
             #region Enabled yes/no
             nuevo = false;
@@ -231,7 +250,8 @@ namespace CapaPresentacion
             BtnModificar.Enabled = true;
             #endregion
 
-            TxtDescripcion.Focus();
+         
+            TxtDescripcion.Enabled = false;
         }
         private void TxtBuscar_TextChanged(object sender, EventArgs e)
         {
@@ -252,7 +272,6 @@ namespace CapaPresentacion
 
             }
         }
-
 
         #endregion
 

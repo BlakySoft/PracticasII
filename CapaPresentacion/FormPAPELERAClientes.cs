@@ -100,6 +100,7 @@ namespace CapaPresentacion
         #region Interacciones con formulario
         private void Grilla_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex < 0) return;
             LblIdClientes.Text = Grilla.Rows[e.RowIndex].Cells[0].Value.ToString();
         }
         private void TxtBuscar_TextChanged(object sender, EventArgs e)

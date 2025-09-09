@@ -486,6 +486,7 @@ namespace CapaPresentacion
         }
         private void Grilla_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
         {
+
             Resultado = 0;
 
             if (Grilla.RowCount == 0)

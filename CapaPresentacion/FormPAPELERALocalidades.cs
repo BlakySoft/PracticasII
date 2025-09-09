@@ -77,9 +77,9 @@ namespace CapaPresentacion
                 BtnVolver.Focus();
             }
         }
-
         private void iconButton1_Click(object sender, EventArgs e)
         {
+            this.DialogResult = DialogResult.OK;
             Close();
         }
 
@@ -88,6 +88,7 @@ namespace CapaPresentacion
         #region Interacciones con Formulario
         private void Grilla_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex < 0) return;
             LblIdLocalidad.Text = Grilla.Rows[e.RowIndex].Cells[0].Value.ToString();
         }
         private void TxtBuscar_TextChanged(object sender, EventArgs e)

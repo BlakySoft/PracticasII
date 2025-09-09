@@ -79,59 +79,44 @@ namespace CapaPresentacion
         }
         private void BtnGrabar_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(TxtDescripcion.Text))
+            {
+                MessageBox.Show("Ingrese el Color", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            ConeColores cone = new ConeColores();
+            Colores color = new Colores
+            {
+                Descripcion = TxtDescripcion.Text
+            };
+
+            string mensaje = nuevo
+                ? "¿Está seguro que desea agregar este color?"
+                : "¿Está seguro que desea actualizar este color?";
+
+            if (MessageBox.Show(mensaje, "Confirmar acción", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+                return;
             try
             {
-                if (TxtDescripcion.Text == "")
+                if (nuevo)
                 {
-                    MessageBox.Show("Ingrese el Color", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                }
-                else if (nuevo == true)
-                {
-                    ConeColores cone = new ConeColores();
-                    Colores Agregar = new Colores
-                    {
-                        Descripcion = TxtDescripcion.Text
-                    };
-
-                    cone.Agregar(Agregar);
-
-                    #region Enabled yes/no 
-                    //true
-                    BtnNuevo.Enabled = true;
-                    //false
-                    TxtDescripcion.Enabled = false;
-                    BtnGrabar.Enabled = false;
-                    BtnCancelar.Enabled = false;
-                    #endregion
-
-                    LimpiarTextos();
-                    Listar();
-                    BtnNuevo.Focus();
+                    cone.Agregar(color);
+                    MessageBox.Show("Color agregado correctamente!", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
-                    ConeColores cone = new ConeColores();
-                    Colores Actualizar = new Colores
-                    {
-                        IdColor = int.Parse(LblIdColor.Text),
-                        Descripcion = TxtDescripcion.Text
-                    };
-
-                    cone.Actualizar(Actualizar);
-
-                    TxtDescripcion.Enabled = false;
-                    BtnNuevo.Enabled = true;
-                    BtnGrabar.Enabled = false;
-                    BtnCancelar.Enabled = false;
-
-                    LimpiarTextos();
-                    Listar();
-                    BtnNuevo.Focus();
+                    color.IdColor = int.Parse(LblIdColor.Text);
+                    cone.Actualizar(color);
+                    MessageBox.Show("Color actualizado correctamente!", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
+
+                LimpiarTextos();
+                Listar();
             }
-            catch
+            catch (Exception ex)
             {
-                MessageBox.Show("Error!", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Error: " + ex.Message, "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
@@ -183,26 +168,28 @@ namespace CapaPresentacion
         }
         private void BtnEliminar_Click(object sender, EventArgs e)
         {
-            ConeColores cone = new ConeColores();
-            Colores Eliminar = new Colores
+            if (!int.TryParse(LblIdColor.Text, out int idColor))
             {
-                IdColor = int.Parse(LblIdColor.Text)
-            };
+                MessageBox.Show("Seleccione un color válido primero.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
-            cone.Borrar(Eliminar);
+            if (MessageBox.Show("¿Está seguro que desea eliminar este color?",
+                                "Confirmar eliminación",
+                                MessageBoxButtons.YesNo,
+                                MessageBoxIcon.Question) != DialogResult.Yes) return;
 
             try
             {
-                MessageBox.Show("El Color se eliminó correctamente!!!", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                new ConeColores().Borrar(new Colores { IdColor = idColor });
+                MessageBox.Show("El Color se eliminó correctamente!!!", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 LimpiarTextos();
                 Listar();
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error: {ex.ToString()}");
-                throw;
+                MessageBox.Show("Error: " + ex.Message, "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
             #region Enabled yes/no
             //true
             BtnNuevo.Enabled = true;

@@ -28,6 +28,8 @@
         private void InitializeComponent()
         {
             this.PanelDatos = new System.Windows.Forms.Panel();
+            this.TxtPrecioVenta = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.iconButton2 = new FontAwesome.Sharp.IconButton();
@@ -52,8 +54,6 @@
             this.BtnCancelar = new FontAwesome.Sharp.IconButton();
             this.BtnGrabar = new FontAwesome.Sharp.IconButton();
             this.BtnNuevo = new FontAwesome.Sharp.IconButton();
-            this.TxtPrecioVenta = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
             this.PanelDatos.SuspendLayout();
             this.PanelBotones.SuspendLayout();
             this.SuspendLayout();
@@ -88,6 +88,28 @@
             this.PanelDatos.Name = "PanelDatos";
             this.PanelDatos.Size = new System.Drawing.Size(218, 470);
             this.PanelDatos.TabIndex = 40;
+            // 
+            // TxtPrecioVenta
+            // 
+            this.TxtPrecioVenta.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TxtPrecioVenta.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtPrecioVenta.Location = new System.Drawing.Point(13, 372);
+            this.TxtPrecioVenta.Name = "TxtPrecioVenta";
+            this.TxtPrecioVenta.Size = new System.Drawing.Size(191, 26);
+            this.TxtPrecioVenta.TabIndex = 66;
+            this.TxtPrecioVenta.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtPrecioVenta_KeyPress);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ForeColor = System.Drawing.Color.White;
+            this.label8.Location = new System.Drawing.Point(9, 350);
+            this.label8.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(111, 19);
+            this.label8.TabIndex = 65;
+            this.label8.Text = "Precio Venta:";
             // 
             // label7
             // 
@@ -130,6 +152,7 @@
             this.iconButton2.TabIndex = 62;
             this.iconButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.iconButton2.UseVisualStyleBackColor = false;
+            this.iconButton2.Click += new System.EventHandler(this.iconButton2_Click);
             // 
             // iconButton1
             // 
@@ -148,6 +171,7 @@
             this.iconButton1.TabIndex = 61;
             this.iconButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.iconButton1.UseVisualStyleBackColor = false;
+            this.iconButton1.Click += new System.EventHandler(this.iconButton1_Click);
             // 
             // CboIdCol
             // 
@@ -158,6 +182,7 @@
             this.CboIdCol.Name = "CboIdCol";
             this.CboIdCol.Size = new System.Drawing.Size(155, 27);
             this.CboIdCol.TabIndex = 60;
+            this.CboIdCol.SelectionChangeCommitted += new System.EventHandler(this.CboIdCol_SelectionChangeCommitted);
             this.CboIdCol.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CboIdCol_KeyPress);
             // 
             // CboIdMar
@@ -169,6 +194,7 @@
             this.CboIdMar.Name = "CboIdMar";
             this.CboIdMar.Size = new System.Drawing.Size(155, 27);
             this.CboIdMar.TabIndex = 59;
+            this.CboIdMar.SelectionChangeCommitted += new System.EventHandler(this.CboIdMar_SelectionChangeCommitted);
             this.CboIdMar.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CboIdMar_KeyPress);
             // 
             // BtnCat
@@ -412,28 +438,6 @@
             this.BtnNuevo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.BtnNuevo.UseVisualStyleBackColor = false;
             this.BtnNuevo.Click += new System.EventHandler(this.BtnNuevo_Click);
-            // 
-            // TxtPrecioVenta
-            // 
-            this.TxtPrecioVenta.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.TxtPrecioVenta.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtPrecioVenta.Location = new System.Drawing.Point(13, 372);
-            this.TxtPrecioVenta.Name = "TxtPrecioVenta";
-            this.TxtPrecioVenta.Size = new System.Drawing.Size(191, 26);
-            this.TxtPrecioVenta.TabIndex = 66;
-            this.TxtPrecioVenta.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtPrecioVenta_KeyPress);
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.ForeColor = System.Drawing.Color.White;
-            this.label8.Location = new System.Drawing.Point(9, 350);
-            this.label8.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(111, 19);
-            this.label8.TabIndex = 65;
-            this.label8.Text = "Precio Venta:";
             // 
             // FormAgregarProducto
             // 

@@ -24,7 +24,6 @@ namespace CapaPresentacion
             InitializeComponent();
             Listar();
         }
-
         public void Listar()
         {
 
@@ -34,7 +33,8 @@ namespace CapaPresentacion
             Grilla.Columns[3].Visible = false;
             Grilla.Columns[4].Visible = false;
             Grilla.Columns[5].Visible = false;
-            Grilla.Columns[11].Visible = false;
+            Grilla.Columns[9].Visible = false;
+            Grilla.Columns[12].Visible = false;
 
             Grilla.Columns[0].Width = 83;
             Grilla.Columns[1].Width = 140;
@@ -46,7 +46,49 @@ namespace CapaPresentacion
         #endregion
 
         #region Interaccion con formulario
-        private void Grilla_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+
+        private void TxtBuscar_TextChanged(object sender, EventArgs e)
+        {
+            if (TxtBuscar.Text != "")
+            {
+                ConeProductos cone = new ConeProductos();
+                Productos Buscar = new Productos
+                {
+                    Descripcion = TxtBuscar.Text
+                };
+
+                Grilla.DataSource = cone.Buscar(Buscar.Descripcion);
+
+            }
+            else
+            {
+                Listar();
+            }
+        }
+        private void iconButton2_Click(object sender, EventArgs e)
+        {
+            TxtBuscar.Clear();
+        }
+        private void Grilla_CellClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+
+            try
+            {
+                if (e.RowIndex >= 0)
+                {
+                    IdProducto = int.Parse(Grilla.Rows[e.RowIndex].Cells[0].Value.ToString());
+                    Descripcion = Grilla.Rows[e.RowIndex].Cells[1].Value.ToString();
+                    Detalle = Grilla.Rows[e.RowIndex].Cells[2].Value.ToString();
+                    Precio = decimal.Parse(Grilla.Rows[e.RowIndex].Cells[9].Value.ToString()); // Corrige índice
+                    Stock = int.Parse(Grilla.Rows[e.RowIndex].Cells[10].Value.ToString());     // Corrige índice
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("No se puede seleccionar desde la cabecera.", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+        private void Grilla_CellDoubleClick_1(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
             {
@@ -80,46 +122,6 @@ namespace CapaPresentacion
             else
             {
                 MessageBox.Show("Seleccione un producto válido.", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
-        }
-        private void TxtBuscar_TextChanged(object sender, EventArgs e)
-        {
-            if (TxtBuscar.Text != "")
-            {
-                ConeProductos cone = new ConeProductos();
-                Productos Buscar = new Productos
-                {
-                    Descripcion = TxtBuscar.Text
-                };
-
-                Grilla.DataSource = cone.Buscar(Buscar.Descripcion);
-
-            }
-            else
-            {
-                Listar();
-            }
-        }
-        private void iconButton2_Click(object sender, EventArgs e)
-        {
-            TxtBuscar.Clear();
-        }
-        private void Grilla_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            try
-            {
-                if (e.RowIndex >= 0) 
-                {
-                    IdProducto = int.Parse(Grilla.Rows[e.RowIndex].Cells[0].Value.ToString());
-                    Descripcion = Grilla.Rows[e.RowIndex].Cells[1].Value.ToString();
-                    Detalle = Grilla.Rows[e.RowIndex].Cells[2].Value.ToString();
-                    Precio = decimal.Parse(Grilla.Rows[e.RowIndex].Cells[9].Value.ToString()); // Corrige índice
-                    Stock = int.Parse(Grilla.Rows[e.RowIndex].Cells[10].Value.ToString());     // Corrige índice
-                }
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("No se puede seleccionar desde la cabecera.", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
         private void iconButton1_Click(object sender, EventArgs e)

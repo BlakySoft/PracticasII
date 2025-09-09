@@ -28,7 +28,25 @@ namespace CapaPresentacion
             BtnCancelar.Enabled = false;
 
             CargarCbo();
+            CargarCbo1();
+            CargarCbo2();
             LimpiarTextos();
+        }
+        private void CargarCbo2()
+        {
+            ConeColores cone = new ConeColores();
+
+            CboIdCol.ValueMember = "IdColor";
+            CboIdCol.DisplayMember = "Descripcion";
+            CboIdCol.DataSource = cone.ListarColor();
+        }
+        private void CargarCbo1()
+        {
+            ConeMarca cone = new ConeMarca();
+
+            CboIdMar.ValueMember = "IdMarca";
+            CboIdMar.DisplayMember = "Descripcion";
+            CboIdMar.DataSource = cone.ListarMarca();
         }
         private void CargarCbo()
         {
@@ -196,6 +214,20 @@ namespace CapaPresentacion
             form.ShowDialog();
             CargarCbo();
         }
+        private void iconButton1_Click(object sender, EventArgs e)
+        {
+
+            FormABMMarca form = new FormABMMarca();
+            form.ShowDialog();
+            CargarCbo1();
+        }
+        private void iconButton2_Click(object sender, EventArgs e)
+        {
+
+            FormABMColor form = new FormABMColor();
+            form.ShowDialog();
+            CargarCbo2();
+        }
         private void CboIdCat_SelectionChangeCommitted(object sender, EventArgs e)
         {
             VarCat = int.Parse(CboIdCat.SelectedValue.ToString());
@@ -320,6 +352,16 @@ namespace CapaPresentacion
                 BtnGrabar.Focus();
             }
         }
+        private void CboIdMar_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            VarMar = int.Parse(CboIdMar.SelectedValue.ToString());
+        }
+        private void CboIdCol_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            VarCol = int.Parse(CboIdCol.SelectedValue.ToString());
+        }
         #endregion
+
+
     }
 }
