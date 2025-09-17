@@ -209,6 +209,12 @@
     <Compile Include="FormVENTAS.Designer.cs">
       <DependentUpon>FormVENTAS.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormLogin.Designer.cs">
+      <DependentUpon>FormLogin.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormABMMarca.resx">
@@ -289,6 +295,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormVENTAS.resx">
       <DependentUpon>FormVENTAS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormLogin.resx">
+      <DependentUpon>FormLogin.cs</DependentUpon>
     </EmbeddedResource>
     <!-- Properties -->
     <EmbeddedResource Include="Properties\Resources.resx">

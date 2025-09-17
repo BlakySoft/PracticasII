@@ -50,6 +50,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Usuario.cs" />
     <Compile Include="Cliente.cs" />
     <Compile Include="Colores.cs" />
     <Compile Include="Compra.cs" />
