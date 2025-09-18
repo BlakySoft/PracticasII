@@ -74,6 +74,7 @@ namespace CapaPresentacion
         }
         private void LimpiarTextos()
         {
+            TxtDetalle.Text = "";
             TxtCantidad.Text = "1";
             TxtDescripcion.Text = "";
             TxtStock.Text = "";

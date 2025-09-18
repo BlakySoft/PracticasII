@@ -209,7 +209,7 @@ namespace CapaPresentacion
                 }
                 else
                 {
-                    // Pregunta de confirmación antes de guardar o actualizar
+
                     DialogResult result = MessageBox.Show(
                         nuevo ? "¿Está seguro de agregar este cliente?" : "¿Está seguro de actualizar este cliente?",
                         "Confirmación",
@@ -266,7 +266,7 @@ namespace CapaPresentacion
                     }
                     else
                     {
-                        return; // Cancelar la operación
+                        return;
                     }
                 }
             }
@@ -276,17 +276,7 @@ namespace CapaPresentacion
             }
             finally
             {
-                TxtBuscar.Enabled = true;
-                Grilla.Enabled = true;
-                BtnNuevo.Enabled = true;
-                BtnGrabar.Enabled = false;
-                BtnCancelar.Enabled = false;
-                BtnEliminar.Enabled = false;
-                PanelDatos.Enabled = false;
-
-                ListarClientes();
-                LimpiarTextos();
-                BtnNuevo.Focus();
+               
             }
 
         }
@@ -375,7 +365,7 @@ namespace CapaPresentacion
             if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != ' ')
             {
                 e.Handled = true; // Cancela la tecla
-                MessageBox.Show("Solo se permiten letras en el apellido.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            //    MessageBox.Show("Solo se permiten letras en el apellido.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
@@ -392,7 +382,7 @@ namespace CapaPresentacion
             if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != ' ')
             {
                 e.Handled = true;
-                MessageBox.Show("Solo se permiten letras en el Nombre.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+               // MessageBox.Show("Solo se permiten letras en el Nombre.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
@@ -409,7 +399,7 @@ namespace CapaPresentacion
             if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
             {
                 e.Handled = true;
-                MessageBox.Show("Solo se permiten números en Documento.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+               // MessageBox.Show("Solo se permiten números en Documento.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
@@ -433,7 +423,7 @@ namespace CapaPresentacion
             if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
             {
                 e.Handled = true;
-                MessageBox.Show("Solo se permiten números en Teléfono.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+               // MessageBox.Show("Solo se permiten números en Teléfono.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
@@ -458,7 +448,7 @@ namespace CapaPresentacion
                 && e.KeyChar != ' ' && e.KeyChar != '-' && e.KeyChar != '.' && e.KeyChar != '/')
             {
                 e.Handled = true;
-                MessageBox.Show("Caracter no válido en Dirección.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+              //  MessageBox.Show("Caracter no válido en Dirección.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 

@@ -81,6 +81,7 @@
             this.BtnAgregarProveedor = new FontAwesome.Sharp.IconButton();
             this.BtnBuscarProveedor = new FontAwesome.Sharp.IconButton();
             this.LblRazon = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.PanelBotones.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Grilla)).BeginInit();
             this.panel1.SuspendLayout();
@@ -90,7 +91,7 @@
             // PanelBotones
             // 
             this.PanelBotones.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(234)))), ((int)(((byte)(233)))));
-            this.PanelBotones.Controls.Add(this.Fecha);
+            this.PanelBotones.Controls.Add(this.label4);
             this.PanelBotones.Controls.Add(this.TxtTotall);
             this.PanelBotones.Controls.Add(this.label5);
             this.PanelBotones.Controls.Add(this.TxtSubtotall);
@@ -125,7 +126,7 @@
             this.Fecha.AutoSize = true;
             this.Fecha.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Fecha.ForeColor = System.Drawing.Color.Black;
-            this.Fecha.Location = new System.Drawing.Point(12, 30);
+            this.Fecha.Location = new System.Drawing.Point(57, 18);
             this.Fecha.Name = "Fecha";
             this.Fecha.Size = new System.Drawing.Size(86, 19);
             this.Fecha.TabIndex = 55;
@@ -595,6 +596,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(234)))), ((int)(((byte)(233)))));
+            this.panel1.Controls.Add(this.Fecha);
             this.panel1.Controls.Add(this.iconButton1);
             this.panel1.Controls.Add(this.BtnCancelar);
             this.panel1.Controls.Add(this.BtnNuevo);
@@ -771,6 +773,17 @@
             this.LblRazon.TabIndex = 35;
             this.LblRazon.Text = "0";
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.Black;
+            this.label4.Location = new System.Drawing.Point(7, 18);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(97, 19);
+            this.label4.TabIndex = 55;
+            this.label4.Text = "COMPRAS:";
+            // 
             // FormCOMPRAS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -796,6 +809,7 @@
             this.PanelBotones.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Grilla)).EndInit();
             this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.ResumeLayout(false);
@@ -854,5 +868,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
+        private System.Windows.Forms.Label label4;
     }
 }

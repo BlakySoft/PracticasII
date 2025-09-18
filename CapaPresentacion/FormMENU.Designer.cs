@@ -84,8 +84,8 @@
             this.iconMenuItem1.IconColor = System.Drawing.Color.Black;
             this.iconMenuItem1.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconMenuItem1.Name = "iconMenuItem1";
-            this.iconMenuItem1.Size = new System.Drawing.Size(73, 23);
-            this.iconMenuItem1.Text = "ABM";
+            this.iconMenuItem1.Size = new System.Drawing.Size(132, 23);
+            this.iconMenuItem1.Text = "REGISTROS";
             // 
             // cLIENTESToolStripMenuItem1
             // 

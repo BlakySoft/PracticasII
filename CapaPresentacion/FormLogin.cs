@@ -71,5 +71,63 @@ namespace LoginTry
 
             }
         }
+
+        private void txtUsuario_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                e.Handled = true; 
+                txtContraseña.Focus(); 
+            }
+        }
+
+        private void txtUsuario_Enter(object sender, EventArgs e)
+        {
+            if (txtUsuario.Text == "USUARIO")
+            {
+                txtUsuario.Text = "";
+                txtUsuario.ForeColor = Color.Black ;
+            }
+        }
+
+        private void txtUsuario_Leave(object sender, EventArgs e)
+        {
+          if (txtUsuario.Text == "")
+            {
+                txtUsuario.Text = "USUARIO";
+                txtUsuario.ForeColor = Color.IndianRed;
+            }
+        }
+
+        private void txtContraseña_Enter(object sender, EventArgs e)
+        {
+            if (txtContraseña.Text == "CONTRASEÑA")
+            {
+                txtContraseña.Text = "";
+                txtContraseña.ForeColor = Color.Black;
+                txtContraseña.UseSystemPasswordChar = true;
+            }
+        }
+
+        private void txtContraseña_Leave(object sender, EventArgs e)
+        {
+            if (txtContraseña.Text == "")
+            {
+                txtContraseña.Text = "CONTRASEÑA";
+                txtContraseña.ForeColor = Color.IndianRed;
+                txtContraseña.UseSystemPasswordChar = false;
+            }
+        }
+
+        private void btnCerrar_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+        private void btnMin_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+
+
     }
 }
