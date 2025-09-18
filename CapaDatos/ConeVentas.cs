@@ -37,68 +37,17 @@ namespace CapaDatos
             return "Provider=Microsoft.Jet.OLEDB.4.0; Data Source=|DataDirectory|DB.mdb;";
 
         }
-        public List<Venta> ListarPedidoPendiente()
+    
+        public List<Venta> ListarVentas()
         {
-            List<Venta> pedidos = new List<Venta>();
-            OleDbConnection con = new OleDbConnection(ConectarDB());  
+            List<Venta> ventas = new List<Venta>();
+            OleDbConnection con = new OleDbConnection(ConectarDB());
 
-            string query = "SELECT p.IdVenta, p.IdCliente, p.IdMetodo, p.IdEntrega, p.Total, p.Fecha, c.Nombre AS ClienteNombre, m.Descripcion AS MetodoDescripcion, e.Descripcion AS EntregaDescripcion " +
-                           "FROM ((Pedidos AS p " +
-                           "INNER JOIN Clientes AS c ON p.IdCliente = c.IdCliente) " +
-                           "INNER JOIN Metodos AS m ON p.IdMetodo = m.IdMetodo) " +
-                           "INNER JOIN Entregas AS e ON p.IdEntrega = e.IdEntrega " +
-                           "WHERE p.IdEntrega = 1;";
-
-            OleDbCommand cmd = new OleDbCommand(query, con);
-
-            try
-            {
-                con.Open();  
-                OleDbDataReader reader = cmd.ExecuteReader();
-
-                while (reader.Read())
-                {
-                    Venta pedido = new Venta()
-                    {
-                        IdVenta = reader.GetInt32(0),
-                        IdCliente = reader.GetInt32(1),
-                        IdMetodo = reader.GetInt32(2),
-                        IdEntrega = reader.GetInt32(3),
-                        Total = reader.GetDecimal(4),
-                        Fecha = reader.GetDateTime(5)
-                    };
-
-                
-                    pedido.ClienteNombre = reader.GetString(6);
-                    pedido.MetodoDescripcion = reader.GetString(7);
-                    pedido.EntregaDescripcion = reader.GetString(8); 
-
-                    pedidos.Add(pedido);
-                }
-            }
-            catch (Exception ex)
-            {
-                // Muestra el error en la consola o en el lugar apropiado
-                Console.WriteLine("Error al listar pedidos: " + ex.Message);
-            }
-            finally
-            {
-                con.Close();  // Cierra la conexión
-            }
-
-            return pedidos;
-        }
-        public List<Venta> ListarPedidoEntregado()
-        {
-            List<Venta> pedidos = new List<Venta>();
-            OleDbConnection con = new OleDbConnection(ConectarDB()); 
-
-            string query = "SELECT p.IdVenta, p.IdCliente, p.IdMetodo, p.IdEntrega, p.Total, p.Fecha, c.Nombre AS ClienteNombre, m.Descripcion AS MetodoDescripcion, e.Descripcion AS EntregaDescripcion " +
-                           "FROM ((Pedidos AS p " +
-                           "INNER JOIN Clientes AS c ON p.IdCliente = c.IdCliente) " +
-                           "INNER JOIN Metodos AS m ON p.IdMetodo = m.IdMetodo) " +
-                           "INNER JOIN Entregas AS e ON p.IdEntrega = e.IdEntrega " +
-                           "WHERE p.IdEntrega = 2;";
+            string query = "SELECT v.IdVenta, v.IdCliente, v.IdMetodo, v.Total, v.Fecha, " +
+                           "c.Nombre AS ClienteNombre, m.Descripcion AS MetodoDescripcion " +
+                           "FROM (Ventas AS v " +
+                           "INNER JOIN Clientes AS c ON v.IdCliente = c.IdCliente) " +
+                           "INNER JOIN Metodos AS m ON v.IdMetodo = m.IdMetodo;";
 
             OleDbCommand cmd = new OleDbCommand(query, con);
 
@@ -109,112 +58,82 @@ namespace CapaDatos
 
                 while (reader.Read())
                 {
-                    Venta pedido = new Venta()
+                    Venta venta = new Venta()
                     {
                         IdVenta = reader.GetInt32(0),
                         IdCliente = reader.GetInt32(1),
                         IdMetodo = reader.GetInt32(2),
-                        IdEntrega = reader.GetInt32(3),
-                        Total = reader.GetDecimal(4),
-                        Fecha = reader.GetDateTime(5)
+                        Total = reader.GetDecimal(3),
+                        Fecha = reader.GetDateTime(4)
                     };
 
-                    pedido.ClienteNombre = reader.GetString(6);
-                    pedido.MetodoDescripcion = reader.GetString(7);
-                    pedido.EntregaDescripcion = reader.GetString(8); 
+                    venta.ClienteNombre = reader.GetString(5);
+                    venta.MetodoDescripcion = reader.GetString(6);
 
-                    pedidos.Add(pedido);
+                    ventas.Add(venta);
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error al listar pedidos: " + ex.Message);
+                Console.WriteLine("Error al listar ventas: " + ex.Message);
             }
             finally
             {
-                con.Close(); 
+                con.Close();
             }
 
-            return pedidos;
+            return ventas;
         }
-        public List<Venta> ListarPedidoCancelado()
+
+        public List<Venta> ListarVentasPorFecha(DateTime fechaInicio, DateTime fechaFin)
         {
-            List<Venta> pedidos = new List<Venta>();
+            List<Venta> ventas = new List<Venta>();
+            OleDbConnection con = new OleDbConnection(ConectarDB());
 
-            OleDbConnection con = new OleDbConnection(ConectarDB());  
-
-            string query = "SELECT p.IdVenta, p.IdCliente, p.IdMetodo, p.IdEntrega, p.Total, p.Fecha, c.Nombre AS ClienteNombre, m.Descripcion AS MetodoDescripcion, e.Descripcion AS EntregaDescripcion " +
-                           "FROM ((Pedidos AS p " +
-                           "INNER JOIN Clientes AS c ON p.IdCliente = c.IdCliente) " +
-                           "INNER JOIN Metodos AS m ON p.IdMetodo = m.IdMetodo) " +
-                           "INNER JOIN Entregas AS e ON p.IdEntrega = e.IdEntrega " +
-                           "WHERE p.IdEntrega = 3;";
+            string query = "SELECT v.IdVenta, v.IdCliente, v.IdMetodo, v.Total, v.Fecha, " +
+                           "c.Nombre AS ClienteNombre, m.Descripcion AS MetodoDescripcion " +
+                           "FROM (Ventas AS v " +
+                           "INNER JOIN Clientes AS c ON v.IdCliente = c.IdCliente) " +
+                           "INNER JOIN Metodos AS m ON v.IdMetodo = m.IdMetodo " +
+                           "WHERE v.Fecha BETWEEN ? AND ?;";
 
             OleDbCommand cmd = new OleDbCommand(query, con);
+            cmd.Parameters.AddWithValue("?", fechaInicio.Date);
+            cmd.Parameters.AddWithValue("?", fechaFin.Date);
 
             try
             {
-                con.Open();  // Abre la conexión
+                con.Open();
                 OleDbDataReader reader = cmd.ExecuteReader();
 
                 while (reader.Read())
                 {
-                    Venta pedido = new Venta()
+                    Venta venta = new Venta()
                     {
                         IdVenta = reader.GetInt32(0),
                         IdCliente = reader.GetInt32(1),
                         IdMetodo = reader.GetInt32(2),
-                        IdEntrega = reader.GetInt32(3),
-                        Total = reader.GetDecimal(4),
-                        Fecha = reader.GetDateTime(5)
+                        Total = reader.GetDecimal(3),
+                        Fecha = reader.GetDateTime(4)
                     };
 
-                    // Asignamos las propiedades adicionales obtenidas en el JOIN
-                    pedido.ClienteNombre = reader.GetString(6);
-                    pedido.MetodoDescripcion = reader.GetString(7);
-                    pedido.EntregaDescripcion = reader.GetString(8); // Descripción de la entrega
+                    venta.ClienteNombre = reader.GetString(5);
+                    venta.MetodoDescripcion = reader.GetString(6);
 
-                    pedidos.Add(pedido);
+                    ventas.Add(venta);
                 }
             }
             catch (Exception ex)
             {
-                // Muestra el error en la consola o en el lugar apropiado
-                Console.WriteLine("Error al listar pedidos: " + ex.Message);
+                Console.WriteLine("Error al listar ventas por fecha: " + ex.Message);
             }
             finally
             {
-                con.Close();  // Cierra la conexión
+                con.Close();
             }
 
-            return pedidos;
+            return ventas;
         }
-        public void EntregarPedido(int IdVenta)
-        {
-            OleDbConnection con = new OleDbConnection(ConectarDB());
 
-            string query = "UPDATE Pedidos SET IdEntrega = 2 WHERE IdVenta = @IdVenta";
-            OleDbCommand cmd = new OleDbCommand(query, con);
-            cmd.Parameters.AddWithValue("@IdVenta", IdVenta);
-
-            con.Open();
-            cmd.ExecuteNonQuery();
-
-            con.Close();
-        }
-        public void CancelarPedido(int IdVenta)
-        {
-            OleDbConnection con = new OleDbConnection(ConectarDB());
-
-            string query = "UPDATE Pedidos SET IdEntrega = 3 WHERE IdVenta = @IdVenta";
-
-            OleDbCommand cmd = new OleDbCommand(query, con);
-            cmd.Parameters.AddWithValue("@IdVenta", IdVenta);
-
-            con.Open();
-            cmd.ExecuteNonQuery();
-
-            con.Close();
-        }
     }
 }

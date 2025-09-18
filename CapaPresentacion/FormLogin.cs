@@ -22,53 +22,42 @@ namespace LoginTry
         {
             try
             {
-                if (txtUsuario.Text == "")
+                if (string.IsNullOrWhiteSpace(txtUsuario.Text))
                 {
                     MessageBox.Show("Ingrese un usuario");
                     txtUsuario.Focus();
                 }
-                else if (txtContraseña.Text == "")
+                else if (string.IsNullOrWhiteSpace(txtContraseña.Text))
                 {
                     MessageBox.Show("Ingrese una contraseña");
                     txtContraseña.Focus();
-                } else
+                }
+                else
                 {
                     CapaDatos.ConeUsuario verif = new CapaDatos.ConeUsuario();
                     CapaNegocio.Usuario user = new CapaNegocio.Usuario();
 
-                    //Comparar datos 
-
+                    // Comparar datos
                     user.Nombre = txtUsuario.Text;
                     user.Pass = txtContraseña.Text;
                     bool existe = verif.VerificarUsuario(user);
 
-                    if (existe == false)
+                    if (!existe)
                     {
                         lblAlerta.Text = "Usuario o contraseña incorrecta";
                         lblAlerta.Visible = true;
                         lblAlerta.ForeColor = Color.Red;
-                    } else
-                    {
-                        using (FormMENU menu = new FormMENU())
-                        {
-                            this.Hide();
-                            menu.ShowDialog();
-                            this.Show();
-                        }
-
                     }
-
-
-
+                    else
+                    {
+                        this.DialogResult = DialogResult.OK;
+                        this.Close();
+                    }
                 }
-
-
-
             }
             catch (Exception ex)
             {
-                MessageBox.Show("A ocurrido un error: " + ex.Message);
-
+                MessageBox.Show("Ha ocurrido un error: " + ex.Message);
             }
         }
 

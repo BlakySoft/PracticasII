@@ -48,6 +48,7 @@ namespace CapaPresentacion
         private void BtnNuevo_Click(object sender, EventArgs e)
         {
 
+            nuevo = true;
             #region Enabled yes/no
             //true
             nuevo = true;

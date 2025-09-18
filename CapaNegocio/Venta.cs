@@ -18,6 +18,5 @@ namespace CapaNegocios
         // Propiedades adicionales para los detalles del JOIN
         public string ClienteNombre { get; set; }
         public string MetodoDescripcion { get; set; }
-        public string EntregaDescripcion { get; set; } // Descripción de la entrega
     }
 }

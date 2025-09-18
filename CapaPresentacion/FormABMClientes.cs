@@ -469,14 +469,6 @@ namespace CapaPresentacion
         #endregion
 
         #region Informes
-        private void BtnImprimir_Click(object sender, EventArgs e)
-        {
-            BtnImprimir.Enabled = false; //Evitar varios clicks
-            PrintDocument printDoc = new PrintDocument();
-            printDoc.DefaultPageSettings.Landscape = false;
-            printDoc.PrintPage += new PrintPageEventHandler(Imprimir_PrintPage);
-            printDoc.Print();
-        }
 
         private void Imprimir_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {

@@ -278,10 +278,6 @@
             this.Grilla.ReadOnly = true;
             this.Grilla.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.Empty;
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Empty;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Empty;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Empty;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.Grilla.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.Grilla.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -352,6 +348,7 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.Grilla);
             this.Controls.Add(this.PnlBarraLateral);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "FormABMColor";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Color";
