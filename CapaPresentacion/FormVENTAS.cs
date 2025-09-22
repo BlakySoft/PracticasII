@@ -20,7 +20,7 @@ namespace CapaPresentacion
         public int IdCliente, VarMetodo;
 
         OleDbConnection con = new OleDbConnection("Provider = Microsoft.Jet.OLEDB.4.0; Data Source =|DataDirectory|DB.mdb;");
-        #endregion
+        #endregion 
 
         #region Metodo
         public FormVENTAS()

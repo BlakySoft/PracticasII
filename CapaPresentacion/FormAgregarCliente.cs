@@ -180,32 +180,30 @@ namespace CapaPresentacion
         #region Validaciones
         private void TxtApellido_KeyPress(object sender, KeyPressEventArgs e)
         {
-            // 1️⃣ Validar que solo sean letras, espacios y teclas de control
+
             if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != ' ')
             {
                 e.Handled = true; // Cancela la tecla
-                MessageBox.Show("Solo se permiten letras en el apellido.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+               // MessageBox.Show("Solo se permiten letras en el apellido.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
-            // 2️⃣ Si el usuario presiona Enter, mover al siguiente TextBox
             if (e.KeyChar == (char)Keys.Enter)
             {
-                e.Handled = true; // Evita el sonido de "ding"
+                e.Handled = true; 
                 this.SelectNextControl((Control)sender, true, true, true, true);
             }
         }
         private void TxtNombre_KeyPress(object sender, KeyPressEventArgs e)
         {
-            // Permitir letras, espacios y teclas de control
+
             if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != ' ')
             {
                 e.Handled = true;
-                MessageBox.Show("Solo se permiten letras en el Nombre.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+               // MessageBox.Show("Solo se permiten letras en el Nombre.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
-            // Mover al siguiente control con Enter
             if (e.KeyChar == (char)Keys.Enter)
             {
                 e.Handled = true;
@@ -218,7 +216,7 @@ namespace CapaPresentacion
             if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
             {
                 e.Handled = true;
-                MessageBox.Show("Solo se permiten números en Documento.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+               // MessageBox.Show("Solo se permiten números en Documento.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
@@ -242,7 +240,7 @@ namespace CapaPresentacion
             if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
             {
                 e.Handled = true;
-                MessageBox.Show("Solo se permiten números en Teléfono.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+              //  MessageBox.Show("Solo se permiten números en Teléfono.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
@@ -262,16 +260,15 @@ namespace CapaPresentacion
         }
         private void TxtDomicilio_KeyPress(object sender, KeyPressEventArgs e)
         {
-            // Permitir letras, números, espacios y algunos símbolos básicos
+
             if (!char.IsLetterOrDigit(e.KeyChar) && !char.IsControl(e.KeyChar)
                 && e.KeyChar != ' ' && e.KeyChar != '-' && e.KeyChar != '.' && e.KeyChar != '/')
             {
                 e.Handled = true;
-                MessageBox.Show("Caracter no válido en Dirección.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+              //  MessageBox.Show("Caracter no válido en Dirección.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
-            // Limitar a 50 caracteres
             TextBox txt = sender as TextBox;
             if (txt.Text.Length >= 50 && !char.IsControl(e.KeyChar))
             {

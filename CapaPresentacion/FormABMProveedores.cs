@@ -409,11 +409,11 @@ namespace CapaPresentacion
             if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
             {
                 e.Handled = true;
-                MessageBox.Show("Solo se permiten números en el Cuit.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+              //  MessageBox.Show("Solo se permiten números en el Cuit.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
-            // Limitar a 8 caracteres
+
             TextBox txt = sender as TextBox;
             if (txt.Text.Length >= 11 && !char.IsControl(e.KeyChar))
             {
@@ -433,7 +433,7 @@ namespace CapaPresentacion
             if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
             {
                 e.Handled = true;
-                MessageBox.Show("Solo se permiten números en Teléfono.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+              //  MessageBox.Show("Solo se permiten números en Teléfono.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
@@ -453,23 +453,19 @@ namespace CapaPresentacion
         }
         private void TxtDomicilio_KeyPress(object sender, KeyPressEventArgs e)
         {
-            // Permitir letras, números, espacios y algunos símbolos básicos
             if (!char.IsLetterOrDigit(e.KeyChar) && !char.IsControl(e.KeyChar)
                 && e.KeyChar != ' ' && e.KeyChar != '-' && e.KeyChar != '.' && e.KeyChar != '/')
             {
                 e.Handled = true;
-                MessageBox.Show("Caracter no válido en Dirección.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+              //  MessageBox.Show("Caracter no válido en Dirección.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
-
-            // Limitar a 50 caracteres
             TextBox txt = sender as TextBox;
             if (txt.Text.Length >= 50 && !char.IsControl(e.KeyChar))
             {
                 e.Handled = true;
             }
 
-            // Enter → siguiente control
             if (e.KeyChar == (char)Keys.Enter)
             {
                 e.Handled = true;

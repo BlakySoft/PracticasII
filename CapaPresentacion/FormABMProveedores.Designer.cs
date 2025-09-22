@@ -59,7 +59,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.Grilla = new System.Windows.Forms.DataGridView();
-            this.TxtBuscar = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             this.PanelDatos.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -376,6 +376,7 @@
             // 
             this.PanelDatos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(234)))), ((int)(((byte)(233)))));
             this.PanelDatos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.PanelDatos.Controls.Add(this.label10);
             this.PanelDatos.Controls.Add(this.BtnLocalidad);
             this.PanelDatos.Controls.Add(this.LblIdProveedor);
             this.PanelDatos.Controls.Add(this.CboIdLocalidad);
@@ -494,14 +495,16 @@
             this.Grilla.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Grilla_CellClick_1);
             this.Grilla.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Grilla_CellDoubleClick_1);
             // 
-            // TxtBuscar
+            // label10
             // 
-            this.TxtBuscar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.TxtBuscar.Location = new System.Drawing.Point(99, 42);
-            this.TxtBuscar.Name = "TxtBuscar";
-            this.TxtBuscar.Size = new System.Drawing.Size(682, 26);
-            this.TxtBuscar.TabIndex = 9;
-            this.TxtBuscar.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.ForeColor = System.Drawing.Color.Black;
+            this.label10.Location = new System.Drawing.Point(14, 27);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(170, 19);
+            this.label10.TabIndex = 37;
+            this.label10.Text = "Datos del proveedor:";
             // 
             // FormABMProveedores
             // 
@@ -560,6 +563,6 @@
         private System.Windows.Forms.Label label9;
         private FontAwesome.Sharp.IconButton iconButton1;
         private System.Windows.Forms.DataGridView Grilla;
-        private System.Windows.Forms.TextBox TxtBuscar;
+        private System.Windows.Forms.Label label10;
     }
 }

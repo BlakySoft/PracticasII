@@ -30,11 +30,7 @@ namespace CapaPresentacion
         {
             AbrirFrmHijo(new FormABMProductos());
         }
-        //private void bARRIOSToolStripMenuItem1_Click(object sender, EventArgs e)
-        //{
-        //    unuFormABMBarrios form = new unuFormABMBarrios();
-        //    form.ShowDialog();
-        //}
+
         private void clientesToolStripMenuItem2_Click(object sender, EventArgs e)
         {
             FormPAPELERAClientes form = new FormPAPELERAClientes();
@@ -50,12 +46,7 @@ namespace CapaPresentacion
             FormPAPELERAProveedores form = new FormPAPELERAProveedores();
             form.ShowDialog();
         }
-        //private void iconMenuItem5_Click(object sender, EventArgs e)
-        //{
-
-        //    unuFormPAPELERABarrios form = new unuFormPAPELERABarrios();
-        //    form.ShowDialog();
-        //}
+   
         private void rubrosToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
@@ -74,30 +65,11 @@ namespace CapaPresentacion
             FormPAPELERAMetodosdepago form = new FormPAPELERAMetodosdepago();
             form.ShowDialog();
         }
-        private void rEALIZARCOMPRAToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            AbrirFrmHijo(new FormCOMPRAS());
-        }
-        //private void pEDIDOSENTREGADOSToolStripMenuItem_Click(object sender, EventArgs e)
-        //{
-        //    FormPEDIDOSentregados form = new FormPEDIDOSentregados();
-        //    form.ShowDialog();
-        //}
-        //private void cABCELADOSToolStripMenuItem_Click(object sender, EventArgs e)
-        //{
 
-        //    FormPEDIDOScancelados form = new FormPEDIDOScancelados();
-        //    form.ShowDialog();
-        //}
         private void cLIENTESToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AbrirFrmHijo(new FormVENTAS());
         }
-        //private void pRODUCTOSToolStripMenuItem_Click(object sender, EventArgs e)
-        //{
-        //    FormPEDIDOSpendientes form = new FormPEDIDOSpendientes();
-        //    form.ShowDialog();
-        //}
 
         private void FormMENU_Load(object sender, EventArgs e)
         {
@@ -126,14 +98,8 @@ namespace CapaPresentacion
                 }
             }
 
-            //protected override void OnRenderItemText(ToolStripItemTextRenderEventArgs e)
-            //{
-            //    // Forzar texto blanco
-            //    e.TextColor = Color.White;
-            //    base.OnRenderItemText(e);
-            //}
+  
         }
-
         public class CustomColorTable : ProfessionalColorTable
         {
             public override Color MenuItemSelected => Color.FromArgb(245, 203, 204);
@@ -163,21 +129,36 @@ namespace CapaPresentacion
             FrmHijo.BringToFront();
             FrmHijo.Show();
         }
-
         private void mARCASToolStripMenuItem_Click(object sender, EventArgs e)
        
         {
             FormPAPELERAMarca form = new FormPAPELERAMarca();
             form.ShowDialog();
         }
-
         private void cOLORESToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FormPAPELERAColor form = new FormPAPELERAColor();
             form.ShowDialog();
         }
+        private void iconMenuItem2_Click(object sender, EventArgs e)
+        {
+            AbrirFrmHijo(new FormCOMPRAS());
+        }
+        private void iconMenuItem3_Click(object sender, EventArgs e)
+        {
+            AbrirFrmHijo(new FormVENTAS());
+        }
 
+        private void vENTASToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormINFORMESventas form = new FormINFORMESventas();
+            form.ShowDialog();
+        }
 
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
     }
     

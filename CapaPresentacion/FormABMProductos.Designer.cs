@@ -59,6 +59,7 @@
             this.LblIdProducto = new System.Windows.Forms.Label();
             this.BtnCat = new FontAwesome.Sharp.IconButton();
             this.PanelDatos = new System.Windows.Forms.Panel();
+            this.label12 = new System.Windows.Forms.Label();
             this.TxtPrecioVenta = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.btnCol = new FontAwesome.Sharp.IconButton();
@@ -125,19 +126,16 @@
             this.Grilla.DefaultCellStyle = dataGridViewCellStyle2;
             this.Grilla.EnableHeadersVisualStyles = false;
             this.Grilla.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(216)))), ((int)(((byte)(228)))));
-            this.Grilla.Location = new System.Drawing.Point(219, 81);
+            this.Grilla.Location = new System.Drawing.Point(240, 81);
             this.Grilla.Name = "Grilla";
             this.Grilla.ReadOnly = true;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.Empty;
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Empty;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Empty;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Empty;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.Grilla.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.Grilla.RowHeadersVisible = false;
             this.Grilla.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.Grilla.Size = new System.Drawing.Size(892, 532);
+            this.Grilla.Size = new System.Drawing.Size(871, 532);
             this.Grilla.TabIndex = 10;
             this.Grilla.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Grilla_CellClick);
             this.Grilla.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Grilla_CellDoubleClick);
@@ -484,6 +482,7 @@
             // 
             this.PanelDatos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(234)))), ((int)(((byte)(233)))));
             this.PanelDatos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.PanelDatos.Controls.Add(this.label12);
             this.PanelDatos.Controls.Add(this.TxtPrecioVenta);
             this.PanelDatos.Controls.Add(this.label10);
             this.PanelDatos.Controls.Add(this.btnCol);
@@ -510,6 +509,17 @@
             this.PanelDatos.Name = "PanelDatos";
             this.PanelDatos.Size = new System.Drawing.Size(219, 613);
             this.PanelDatos.TabIndex = 8;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.ForeColor = System.Drawing.Color.Black;
+            this.label12.Location = new System.Drawing.Point(2, 41);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(161, 19);
+            this.label12.TabIndex = 37;
+            this.label12.Text = "Datos del producto:";
             // 
             // TxtPrecioVenta
             // 
@@ -725,5 +735,6 @@
         private FontAwesome.Sharp.IconButton iconButton2;
         private System.Windows.Forms.TextBox TxtPrecioVenta;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label12;
     }
 }

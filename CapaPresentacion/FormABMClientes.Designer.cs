@@ -35,7 +35,6 @@
             this.TxtBuscar = new System.Windows.Forms.TextBox();
             this.Grilla = new System.Windows.Forms.DataGridView();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.BtnImprimir = new FontAwesome.Sharp.IconButton();
             this.BtnSalir = new FontAwesome.Sharp.IconButton();
             this.BtnCancelar = new FontAwesome.Sharp.IconButton();
             this.BtnModificar = new FontAwesome.Sharp.IconButton();
@@ -54,6 +53,7 @@
             this.TxtDomicilio = new System.Windows.Forms.TextBox();
             this.LblIdCliente = new System.Windows.Forms.Label();
             this.PanelDatos = new System.Windows.Forms.Panel();
+            this.label6 = new System.Windows.Forms.Label();
             this.TxtApellido = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -122,6 +122,7 @@
             this.Grilla.Name = "Grilla";
             this.Grilla.ReadOnly = true;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.Grilla.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.Grilla.RowHeadersVisible = false;
@@ -134,7 +135,6 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(234)))), ((int)(((byte)(233)))));
-            this.panel2.Controls.Add(this.BtnImprimir);
             this.panel2.Controls.Add(this.BtnSalir);
             this.panel2.Controls.Add(this.BtnCancelar);
             this.panel2.Controls.Add(this.BtnModificar);
@@ -147,27 +147,6 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(159, 613);
             this.panel2.TabIndex = 40;
-            // 
-            // BtnImprimir
-            // 
-            this.BtnImprimir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(156)))), ((int)(((byte)(191)))), ((int)(((byte)(227)))));
-            this.BtnImprimir.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BtnImprimir.FlatAppearance.BorderSize = 0;
-            this.BtnImprimir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnImprimir.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnImprimir.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.BtnImprimir.IconChar = FontAwesome.Sharp.IconChar.Paperclip;
-            this.BtnImprimir.IconColor = System.Drawing.Color.White;
-            this.BtnImprimir.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.BtnImprimir.IconSize = 30;
-            this.BtnImprimir.Location = new System.Drawing.Point(22, 542);
-            this.BtnImprimir.Name = "BtnImprimir";
-            this.BtnImprimir.Size = new System.Drawing.Size(115, 38);
-            this.BtnImprimir.TabIndex = 47;
-            this.BtnImprimir.Text = "&Imprimir";
-            this.BtnImprimir.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.BtnImprimir.UseVisualStyleBackColor = false;
-            this.BtnImprimir.Click += new System.EventHandler(this.BtnImprimir_Click);
             // 
             // BtnSalir
             // 
@@ -418,6 +397,7 @@
             // PanelDatos
             // 
             this.PanelDatos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(234)))), ((int)(((byte)(233)))));
+            this.PanelDatos.Controls.Add(this.label6);
             this.PanelDatos.Controls.Add(this.TxtApellido);
             this.PanelDatos.Controls.Add(this.label9);
             this.PanelDatos.Controls.Add(this.LblIdCliente);
@@ -435,6 +415,17 @@
             this.PanelDatos.Name = "PanelDatos";
             this.PanelDatos.Size = new System.Drawing.Size(219, 613);
             this.PanelDatos.TabIndex = 8;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.Black;
+            this.label6.Location = new System.Drawing.Point(7, 22);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(144, 19);
+            this.label6.TabIndex = 37;
+            this.label6.Text = "Datos del Cliente:";
             // 
             // TxtApellido
             // 
@@ -553,11 +544,11 @@
         private System.Windows.Forms.Panel PanelDatos;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label label7;
-        private FontAwesome.Sharp.IconButton BtnImprimir;
         private System.Drawing.Printing.PrintDocument Imprimir;
         private System.Windows.Forms.TextBox TxtApellido;
         private System.Windows.Forms.Label label9;
         private FontAwesome.Sharp.IconButton iconButton1;
+        private System.Windows.Forms.Label label6;
     }
 }
 

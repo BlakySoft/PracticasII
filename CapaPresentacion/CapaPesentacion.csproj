@@ -36,10 +36,28 @@
     <Reference Include="FontAwesome.Sharp, Version=6.6.0.0, Culture=neutral, PublicKeyToken=d16d1e4e568ec10f, processorArchitecture=MSIL">
       <HintPath>..\packages\FontAwesome.Sharp.6.6.0\lib\net472\FontAwesome.Sharp.dll</HintPath>
     </Reference>
+    <Reference Include="Guna.UI2, Version=2.0.4.7, Culture=neutral, PublicKeyToken=8b9d14aa5142e261, processorArchitecture=MSIL">
+      <HintPath>..\packages\Guna.UI2.WinForms.2.0.4.7\lib\net472\Guna.UI2.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Reporting.WinForms.v11.1.0.0.0\lib\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Reporting.WinForms.v11.1.0.0.0\lib\Microsoft.ReportViewer.ProcessingObjectModel.DLL</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Reporting.WinForms.v11.1.0.0.0\lib\Microsoft.ReportViewer.WinForms.DLL</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Reporting.WinForms.v11.1.0.0.0\lib\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -88,6 +106,36 @@
     </Compile>
     <Compile Include="FormBuscarProductosCOMPRAS.Designer.cs">
       <DependentUpon>FormBuscarProductosCOMPRAS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormINFORMEcompras.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormINFORMEcompras.Designer.cs">
+      <DependentUpon>FormINFORMEcompras.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormINFORMEproductos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormINFORMEproductos.Designer.cs">
+      <DependentUpon>FormINFORMEproductos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormINFORMEproveedores.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormINFORMEproveedores.Designer.cs">
+      <DependentUpon>FormINFORMEproveedores.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormINFORMESclientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormINFORMESclientes.Designer.cs">
+      <DependentUpon>FormINFORMESclientes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormINFORMESventas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormINFORMESventas.Designer.cs">
+      <DependentUpon>FormINFORMESventas.cs</DependentUpon>
     </Compile>
     <Compile Include="FormPAPELERAColor.cs">
       <SubType>Form</SubType>
@@ -234,6 +282,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormBuscarProductosCOMPRAS.resx">
       <DependentUpon>FormBuscarProductosCOMPRAS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormINFORMEcompras.resx">
+      <DependentUpon>FormINFORMEcompras.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormINFORMEproductos.resx">
+      <DependentUpon>FormINFORMEproductos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormINFORMEproveedores.resx">
+      <DependentUpon>FormINFORMEproveedores.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormINFORMESclientes.resx">
+      <DependentUpon>FormINFORMESclientes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormINFORMESventas.resx">
+      <DependentUpon>FormINFORMESventas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPAPELERAColor.resx">
       <DependentUpon>FormPAPELERAColor.cs</DependentUpon>

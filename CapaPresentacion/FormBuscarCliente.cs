@@ -15,7 +15,7 @@ namespace CapaPresentacion
     public partial class FormBuscarCliente: Form
     {
         #region Metodos y declaraciones 
-        string IdCliente, Nombre;
+        string IdCliente, Apellido, Nombre;
         public FormBuscarCliente()
         {
             InitializeComponent();
@@ -60,23 +60,44 @@ namespace CapaPresentacion
         }
         private void Grilla_CellDoubleClick_1(object sender, DataGridViewCellEventArgs e)
         {
+
+            if (e.RowIndex < 0)
+            {
+                MessageBox.Show("Seleccione un cliente válido.", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
             try
             {
-                if (IdCliente != "")
+
+                DataGridViewRow fila = Grilla.Rows[e.RowIndex];
+
+                string apellido = fila.Cells["Apellido"].Value?.ToString() ?? "";
+                string nombre = fila.Cells["Nombre"].Value?.ToString() ?? "";
+                string idClienteStr = fila.Cells["IdCliente"].Value?.ToString() ?? "";
+
+                if (string.IsNullOrEmpty(idClienteStr))
                 {
-                    FormVENTAS pedidos = Owner as FormVENTAS;
-                    pedidos.TxtCliente.Text = $"{Nombre}";
-                    pedidos.IdCliente = Convert.ToInt32(IdCliente);
-                    Close();
+                    MessageBox.Show("El cliente seleccionado no tiene ID válido.", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
                 }
-                else
+
+                if (!int.TryParse(idClienteStr, out int idCliente))
                 {
-                    MessageBox.Show("Seleccione un Cliente.", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageBox.Show("El ID del cliente no es válido.", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
                 }
+
+                if (Owner is FormVENTAS pedidos)
+                {
+                    pedidos.TxtCliente.Text = $"{apellido} {nombre}";
+                    pedidos.IdCliente = idCliente;
+                }
+                Close();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                MessageBox.Show("No se puede seleccionar desde la cabecera.", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show($"Ocurrió un error al seleccionar el cliente: {ex.Message}", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private void iconButton1_Click(object sender, EventArgs e)
