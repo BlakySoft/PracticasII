@@ -300,7 +300,7 @@ namespace CapaPresentacion
         #endregion
 
         #region Interaccion con el formulario
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        private void TxtBuscar_TextChanged(object sender, EventArgs e)
         {
             if (TxtBuscar.Text == "")
             {
@@ -491,5 +491,9 @@ namespace CapaPresentacion
 
         #endregion
 
+        private void TxtBuscar_TextChanged(object sender, KeyPressEventArgs e)
+        {
+
+        }
     }
 }

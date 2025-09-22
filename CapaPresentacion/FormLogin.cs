@@ -44,14 +44,15 @@ namespace LoginTry
 
                     if (!existe)
                     {
+                        lblAlerta.ForeColor = Color.Red;
                         lblAlerta.Text = "Usuario o contraseña incorrecta";
                         lblAlerta.Visible = true;
-                        lblAlerta.ForeColor = Color.Red;
                     }
                     else
                     {
                         this.DialogResult = DialogResult.OK;
                         this.Close();
+                        
                     }
                 }
             }
