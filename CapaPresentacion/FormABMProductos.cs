@@ -92,27 +92,30 @@ namespace CapaPresentacion
         }
         private void CargarCbo2()
         {
-            ConeColores cone = new ConeColores();
+            ConeColores cone = new ConeColores(); //Colores
 
             CboIdCol.ValueMember = "IdColor";
             CboIdCol.DisplayMember = "Descripcion";
             CboIdCol.DataSource = cone.ListarColor();
+            CboIdCol.SelectedIndex = -1;
         }
-        private void CargarCbo1()
+        private void CargarCbo1() //Marcas
         {
             ConeMarca cone = new ConeMarca();
 
             CboIdMar.ValueMember = "IdMarca";
             CboIdMar.DisplayMember = "Descripcion";
             CboIdMar.DataSource = cone.ListarMarca();
+            CboIdMar.SelectedIndex = -1;
         }
-        private void CargarCbo()
+        private void CargarCbo() //Categorias
         {
             ConeCategoria cone = new ConeCategoria ();
 
             CboIdCat.ValueMember = "IdCat";
             CboIdCat.DisplayMember = "Descripcion";
             CboIdCat.DataSource = cone.ListarCat();
+            CboIdCat.SelectedIndex = -1;
         }
         private void LimpiarTextos()
         {

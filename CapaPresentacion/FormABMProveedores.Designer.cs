@@ -32,7 +32,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label8 = new System.Windows.Forms.Label();
-            this.TxtBuscar = new System.Windows.Forms.TextBox();
             this.BtnModificar = new FontAwesome.Sharp.IconButton();
             this.BtnEliminar = new FontAwesome.Sharp.IconButton();
             this.BtnGrabar = new FontAwesome.Sharp.IconButton();
@@ -59,8 +58,8 @@
             this.iconButton1 = new FontAwesome.Sharp.IconButton();
             this.label7 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.Grilla = new System.Windows.Forms.DataGridView();
+            this.TxtBuscar = new System.Windows.Forms.TextBox();
             this.panel2.SuspendLayout();
             this.PanelDatos.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -76,14 +75,6 @@
             this.label8.Size = new System.Drawing.Size(70, 19);
             this.label8.TabIndex = 7;
             this.label8.Text = "Buscar:";
-            // 
-            // TxtBuscar
-            // 
-            this.TxtBuscar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.TxtBuscar.Location = new System.Drawing.Point(362, 42);
-            this.TxtBuscar.Name = "TxtBuscar";
-            this.TxtBuscar.Size = new System.Drawing.Size(369, 26);
-            this.TxtBuscar.TabIndex = 9;
             // 
             // BtnModificar
             // 
@@ -410,7 +401,7 @@
             this.panel3.Controls.Add(this.iconButton1);
             this.panel3.Controls.Add(this.label7);
             this.panel3.Controls.Add(this.label9);
-            this.panel3.Controls.Add(this.textBox1);
+            this.panel3.Controls.Add(this.TxtBuscar);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(219, 0);
             this.panel3.Name = "panel3";
@@ -456,15 +447,6 @@
             this.label9.Size = new System.Drawing.Size(70, 19);
             this.label9.TabIndex = 7;
             this.label9.Text = "Buscar:";
-            // 
-            // textBox1
-            // 
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox1.Location = new System.Drawing.Point(99, 42);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(682, 26);
-            this.textBox1.TabIndex = 9;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // Grilla
             // 
@@ -512,6 +494,15 @@
             this.Grilla.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Grilla_CellClick_1);
             this.Grilla.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Grilla_CellDoubleClick_1);
             // 
+            // TxtBuscar
+            // 
+            this.TxtBuscar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TxtBuscar.Location = new System.Drawing.Point(99, 42);
+            this.TxtBuscar.Name = "TxtBuscar";
+            this.TxtBuscar.Size = new System.Drawing.Size(682, 26);
+            this.TxtBuscar.TabIndex = 9;
+            this.TxtBuscar.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
             // FormABMProveedores
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 19F);
@@ -521,7 +512,6 @@
             this.Controls.Add(this.Grilla);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
-            this.Controls.Add(this.TxtBuscar);
             this.Controls.Add(this.PanelDatos);
             this.Controls.Add(this.label8);
             this.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -543,7 +533,6 @@
 
         #endregion
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox TxtBuscar;
         private FontAwesome.Sharp.IconButton BtnModificar;
         private FontAwesome.Sharp.IconButton BtnEliminar;
         private FontAwesome.Sharp.IconButton BtnGrabar;
@@ -569,8 +558,8 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox textBox1;
         private FontAwesome.Sharp.IconButton iconButton1;
         private System.Windows.Forms.DataGridView Grilla;
+        private System.Windows.Forms.TextBox TxtBuscar;
     }
 }

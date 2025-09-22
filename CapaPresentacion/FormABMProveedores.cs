@@ -29,7 +29,6 @@ namespace CapaPresentacion
             BtnGrabar.Enabled = false;
             BtnCancelar.Enabled = false;
             BtnEliminar.Enabled = false;
-            TxtBuscar.Enabled = false;
            
         }
         private void CargarCbo()
@@ -303,7 +302,7 @@ namespace CapaPresentacion
         #region Interaccion con el formulario
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            if (textBox1.Text == "")
+            if (TxtBuscar.Text == "")
             {
                 ListarProveedores();
             }
@@ -312,7 +311,7 @@ namespace CapaPresentacion
                 ConeProveedores cone = new ConeProveedores();
                 Proveedores Buscar = new Proveedores
                 {
-                    RazonSocial = textBox1.Text
+                    RazonSocial = TxtBuscar.Text
                 };
 
                 Grilla.DataSource = cone.Buscar(Buscar.RazonSocial);
