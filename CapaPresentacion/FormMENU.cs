@@ -17,7 +17,6 @@ namespace CapaPresentacion
             InitializeComponent();
             menuStrip1.Renderer = new CustomRenderer();
         }
-
         private void cLIENTESToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             AbrirFrmHijo(new FormABMClientes());
@@ -30,7 +29,6 @@ namespace CapaPresentacion
         {
             AbrirFrmHijo(new FormABMProductos());
         }
-
         private void clientesToolStripMenuItem2_Click(object sender, EventArgs e)
         {
             FormPAPELERAClientes form = new FormPAPELERAClientes();
@@ -46,7 +44,6 @@ namespace CapaPresentacion
             FormPAPELERAProveedores form = new FormPAPELERAProveedores();
             form.ShowDialog();
         }
-   
         private void rubrosToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
@@ -65,22 +62,14 @@ namespace CapaPresentacion
             FormPAPELERAMetodosdepago form = new FormPAPELERAMetodosdepago();
             form.ShowDialog();
         }
-
-        private void cLIENTESToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            AbrirFrmHijo(new FormVENTAS());
-        }
-
         private void FormMENU_Load(object sender, EventArgs e)
         {
             Timer.Start();
         }
-
         private void Timer_Tick(object sender, EventArgs e)
         {
             Reloj.Text = DateTime.Now.ToString("HH:mm");
         }
-
         public class CustomRenderer : ToolStripProfessionalRenderer
         {
             public CustomRenderer() : base(new CustomColorTable()) { }
@@ -98,23 +87,20 @@ namespace CapaPresentacion
                 }
             }
 
-  
+
         }
         public class CustomColorTable : ProfessionalColorTable
         {
             public override Color MenuItemSelected => Color.FromArgb(245, 203, 204);
             public override Color MenuItemSelectedGradientBegin => Color.FromArgb(245, 203, 204);
             public override Color MenuItemSelectedGradientEnd => Color.FromArgb(245, 203, 204);
-
             public override Color ToolStripDropDownBackground => Color.FromArgb(245, 203, 204);
             public override Color MenuBorder => Color.FromArgb(163, 135, 136);
             public override Color MenuItemBorder => Color.FromArgb(163, 135, 136);
-
             public override Color ImageMarginGradientBegin => Color.FromArgb(245, 203, 204);
             public override Color ImageMarginGradientMiddle => Color.FromArgb(245, 203, 204);
             public override Color ImageMarginGradientEnd => Color.FromArgb(245, 203, 204);
         }
-
         private Form frmActivo = null;
         public void AbrirFrmHijo(Form FrmHijo)
         {
@@ -148,15 +134,25 @@ namespace CapaPresentacion
         {
             AbrirFrmHijo(new FormVENTAS());
         }
-
         private void vENTASToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FormINFORMESventas form = new FormINFORMESventas();
             form.ShowDialog();
         }
-
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
+            FormINFORMESclientes form = new FormINFORMESclientes();
+            form.ShowDialog();
+        }
+        private void btnINPoductos_Click(object sender, EventArgs e)
+        {
+            FormINFORMEproductos form = new FormINFORMEproductos();
+            form.ShowDialog();
+        }
+        private void btnINProveedores_Click(object sender, EventArgs e)
+        {
+            FormINFORMEproveedores form = new FormINFORMEproveedores();
+            form.ShowDialog();
 
         }
     }

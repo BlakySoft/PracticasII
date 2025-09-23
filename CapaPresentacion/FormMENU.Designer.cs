@@ -30,10 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.Reloj = new System.Windows.Forms.Label();
-            this.Timer = new System.Windows.Forms.Timer(this.components);
-            this.Panelinf = new System.Windows.Forms.Panel();
-            this.PanelVisual = new System.Windows.Forms.Panel();
             this.iconMenuItem1 = new FontAwesome.Sharp.IconMenuItem();
             this.cLIENTESToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.pROVEEDORESToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -41,10 +37,10 @@
             this.iconMenuItem2 = new FontAwesome.Sharp.IconMenuItem();
             this.iconMenuItem3 = new FontAwesome.Sharp.IconMenuItem();
             this.iconMenuItem5 = new FontAwesome.Sharp.IconMenuItem();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
-            this.vENTASToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btniNClientes = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnINPoductos = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnINProveedores = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnINVentas = new System.Windows.Forms.ToolStripMenuItem();
             this.iconMenuItem4 = new FontAwesome.Sharp.IconMenuItem();
             this.clientesToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.productosToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
@@ -54,6 +50,10 @@
             this.metodosDePagoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mARCASToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cOLORESToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Reloj = new System.Windows.Forms.Label();
+            this.Timer = new System.Windows.Forms.Timer(this.components);
+            this.Panelinf = new System.Windows.Forms.Panel();
+            this.PanelVisual = new System.Windows.Forms.Panel();
             this.iconSplitButton1 = new FontAwesome.Sharp.IconSplitButton();
             this.menuStrip1.SuspendLayout();
             this.Panelinf.SuspendLayout();
@@ -75,45 +75,6 @@
             this.menuStrip1.Size = new System.Drawing.Size(1264, 27);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
-            // 
-            // Reloj
-            // 
-            this.Reloj.AutoSize = true;
-            this.Reloj.Dock = System.Windows.Forms.DockStyle.Right;
-            this.Reloj.Font = new System.Drawing.Font("Bernard MT Condensed", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Reloj.ForeColor = System.Drawing.Color.Black;
-            this.Reloj.Location = new System.Drawing.Point(1173, 0);
-            this.Reloj.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.Reloj.Name = "Reloj";
-            this.Reloj.Size = new System.Drawing.Size(91, 38);
-            this.Reloj.TabIndex = 1;
-            this.Reloj.Text = "RELOJ";
-            // 
-            // Timer
-            // 
-            this.Timer.Tick += new System.EventHandler(this.Timer_Tick);
-            // 
-            // Panelinf
-            // 
-            this.Panelinf.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(203)))), ((int)(((byte)(204)))));
-            this.Panelinf.Controls.Add(this.Reloj);
-            this.Panelinf.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.Panelinf.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.Panelinf.Location = new System.Drawing.Point(0, 640);
-            this.Panelinf.Name = "Panelinf";
-            this.Panelinf.Size = new System.Drawing.Size(1264, 41);
-            this.Panelinf.TabIndex = 2;
-            // 
-            // PanelVisual
-            // 
-            this.PanelVisual.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(234)))), ((int)(((byte)(233)))));
-            this.PanelVisual.BackgroundImage = global::CapaPresentacion.Properties.Resources.LizLogo2;
-            this.PanelVisual.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.PanelVisual.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PanelVisual.Location = new System.Drawing.Point(0, 27);
-            this.PanelVisual.Name = "PanelVisual";
-            this.PanelVisual.Size = new System.Drawing.Size(1264, 613);
-            this.PanelVisual.TabIndex = 3;
             // 
             // iconMenuItem1
             // 
@@ -178,10 +139,10 @@
             // iconMenuItem5
             // 
             this.iconMenuItem5.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem1,
-            this.toolStripMenuItem2,
-            this.toolStripMenuItem3,
-            this.vENTASToolStripMenuItem});
+            this.btniNClientes,
+            this.btnINPoductos,
+            this.btnINProveedores,
+            this.btnINVentas});
             this.iconMenuItem5.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.iconMenuItem5.ForeColor = System.Drawing.Color.Black;
             this.iconMenuItem5.IconChar = FontAwesome.Sharp.IconChar.Paperclip;
@@ -191,31 +152,33 @@
             this.iconMenuItem5.Size = new System.Drawing.Size(122, 23);
             this.iconMenuItem5.Text = "iNFORMES";
             // 
-            // toolStripMenuItem1
+            // btniNClientes
             // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(204, 24);
-            this.toolStripMenuItem1.Text = "CLIENTES";
-            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
+            this.btniNClientes.Name = "btniNClientes";
+            this.btniNClientes.Size = new System.Drawing.Size(204, 24);
+            this.btniNClientes.Text = "CLIENTES";
+            this.btniNClientes.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
-            // toolStripMenuItem2
+            // btnINPoductos
             // 
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(204, 24);
-            this.toolStripMenuItem2.Text = "PRODUCTOS";
+            this.btnINPoductos.Name = "btnINPoductos";
+            this.btnINPoductos.Size = new System.Drawing.Size(204, 24);
+            this.btnINPoductos.Text = "PRODUCTOS";
+            this.btnINPoductos.Click += new System.EventHandler(this.btnINPoductos_Click);
             // 
-            // toolStripMenuItem3
+            // btnINProveedores
             // 
-            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(204, 24);
-            this.toolStripMenuItem3.Text = "PROVEEDORES";
+            this.btnINProveedores.Name = "btnINProveedores";
+            this.btnINProveedores.Size = new System.Drawing.Size(204, 24);
+            this.btnINProveedores.Text = "PROVEEDORES";
+            this.btnINProveedores.Click += new System.EventHandler(this.btnINProveedores_Click);
             // 
-            // vENTASToolStripMenuItem
+            // btnINVentas
             // 
-            this.vENTASToolStripMenuItem.Name = "vENTASToolStripMenuItem";
-            this.vENTASToolStripMenuItem.Size = new System.Drawing.Size(204, 24);
-            this.vENTASToolStripMenuItem.Text = "VENTAS";
-            this.vENTASToolStripMenuItem.Click += new System.EventHandler(this.vENTASToolStripMenuItem_Click);
+            this.btnINVentas.Name = "btnINVentas";
+            this.btnINVentas.Size = new System.Drawing.Size(204, 24);
+            this.btnINVentas.Text = "VENTAS";
+            this.btnINVentas.Click += new System.EventHandler(this.vENTASToolStripMenuItem_Click);
             // 
             // iconMenuItem4
             // 
@@ -293,6 +256,45 @@
             this.cOLORESToolStripMenuItem.Text = "COLORES";
             this.cOLORESToolStripMenuItem.Click += new System.EventHandler(this.cOLORESToolStripMenuItem_Click);
             // 
+            // Reloj
+            // 
+            this.Reloj.AutoSize = true;
+            this.Reloj.Dock = System.Windows.Forms.DockStyle.Right;
+            this.Reloj.Font = new System.Drawing.Font("Bernard MT Condensed", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Reloj.ForeColor = System.Drawing.Color.Black;
+            this.Reloj.Location = new System.Drawing.Point(1173, 0);
+            this.Reloj.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.Reloj.Name = "Reloj";
+            this.Reloj.Size = new System.Drawing.Size(91, 38);
+            this.Reloj.TabIndex = 1;
+            this.Reloj.Text = "RELOJ";
+            // 
+            // Timer
+            // 
+            this.Timer.Tick += new System.EventHandler(this.Timer_Tick);
+            // 
+            // Panelinf
+            // 
+            this.Panelinf.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(203)))), ((int)(((byte)(204)))));
+            this.Panelinf.Controls.Add(this.Reloj);
+            this.Panelinf.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.Panelinf.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.Panelinf.Location = new System.Drawing.Point(0, 640);
+            this.Panelinf.Name = "Panelinf";
+            this.Panelinf.Size = new System.Drawing.Size(1264, 41);
+            this.Panelinf.TabIndex = 2;
+            // 
+            // PanelVisual
+            // 
+            this.PanelVisual.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(234)))), ((int)(((byte)(233)))));
+            this.PanelVisual.BackgroundImage = global::CapaPresentacion.Properties.Resources.LizLogo2;
+            this.PanelVisual.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.PanelVisual.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PanelVisual.Location = new System.Drawing.Point(0, 27);
+            this.PanelVisual.Name = "PanelVisual";
+            this.PanelVisual.Size = new System.Drawing.Size(1264, 613);
+            this.PanelVisual.TabIndex = 3;
+            // 
             // iconSplitButton1
             // 
             this.iconSplitButton1.Flip = FontAwesome.Sharp.FlipOrientation.Normal;
@@ -353,9 +355,9 @@
         private System.Windows.Forms.ToolStripMenuItem mARCASToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cOLORESToolStripMenuItem;
         private FontAwesome.Sharp.IconMenuItem iconMenuItem5;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
-        private System.Windows.Forms.ToolStripMenuItem vENTASToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem btniNClientes;
+        private System.Windows.Forms.ToolStripMenuItem btnINPoductos;
+        private System.Windows.Forms.ToolStripMenuItem btnINProveedores;
+        private System.Windows.Forms.ToolStripMenuItem btnINVentas;
     }
 }

@@ -117,7 +117,13 @@ namespace LoginTry
         {
             this.WindowState = FormWindowState.Minimized;
         }
-
-
+        private void txtContraseña_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                e.Handled = true;
+                btnEnter.Focus();
+            }
+        }
     }
 }
