@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Drawing.Printing;
 
 namespace CapaPresentacion
 {
@@ -173,7 +174,19 @@ namespace CapaPresentacion
                             }
                         }
                     }
-                    MessageBox.Show("Venta realizada con éxito.", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //Proceso de impresion formato ticket
+                PrintDocument pd = new PrintDocument();
+                pd.PrintPage += new PrintPageEventHandler(ImprimirGrilla);
+                PrintPreviewDialog printPreview = new PrintPreviewDialog();
+                printPreview.Document = pd;
+                printPreview.ShowDialog();
+                //pd.Print();
+                
+
+
+
+
+                MessageBox.Show("Venta realizada con éxito.", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     #region Enabled
 
                     //false
@@ -209,6 +222,69 @@ namespace CapaPresentacion
                 }
           
         }
+
+        private void ImprimirGrilla(object sender, PrintPageEventArgs e)
+        {
+            Graphics g = e.Graphics;
+            Font font = new Font("Arial", 9);
+            Font fontBold = new Font("Arial", 9, FontStyle.Bold);
+
+            float margenIzquierdo = 10; 
+            float y = 20; //posicion vertical inicial
+
+            //Encabezado
+            g.DrawString("Lis Showroom", fontBold, Brushes.Black, margenIzquierdo, y);
+            y += 20;
+            g.DrawString("Ticket de venta", font, Brushes.Black, margenIzquierdo, y);
+            y += 20;
+            g.DrawString("Fecha:" + DateTime.Now.ToString("dd/MM/yyyy HH:mm"), font, Brushes.Black, margenIzquierdo, y);
+            y += 30;
+
+            // Encabezados de columnas
+            g.DrawString("Producto", fontBold, Brushes.Black, margenIzquierdo, y);
+            g.DrawString("Precio", fontBold, Brushes.Black, margenIzquierdo + 120, y);
+            g.DrawString("Cant", fontBold, Brushes.Black, margenIzquierdo + 200, y);
+            g.DrawString("Subtotal", fontBold, Brushes.Black, margenIzquierdo + 250, y);
+            y += 20;
+
+            g.DrawLine(Pens.Black, margenIzquierdo, y, 320, y);
+            y += 10;
+
+            //Detalles de la venta 
+            foreach (DataGridViewRow fila in Grilla.Rows)
+            {
+                if (fila.Cells[0].Value != null) //Por si la fila esta vacia 
+                {
+                    string producto = fila.Cells[1].Value.ToString(); //Descripcion
+                    decimal precio = Convert.ToDecimal(fila.Cells[2].Value.ToString()); //Precio
+                    string cant = fila.Cells[3].Value.ToString(); //Cantidad
+                    decimal subtotal = Convert.ToDecimal(fila.Cells[4].Value.ToString()); //Subtotal
+
+                    g.DrawString(producto, font, Brushes.Black, margenIzquierdo, y);
+                    g.DrawString("$" + precio.ToString("N0"), font, Brushes.Black, margenIzquierdo + 120, y);
+                    g.DrawString(cant, font, Brushes.Black, margenIzquierdo + 200, y);
+                    g.DrawString("$" + subtotal.ToString("N0"), font, Brushes.Black, margenIzquierdo + 250, y);
+                    y += 20;
+                }
+            }
+
+            y += 10;
+            g.DrawLine(Pens.Black, margenIzquierdo, y, 320, y);
+            y += 20;
+
+            //Total general 
+            g.DrawString("TOTAL: $" + TxtTotal.Text, fontBold, Brushes.Black, margenIzquierdo, y);
+            y += 40;
+
+            g.DrawLine(Pens.Black, margenIzquierdo, y, 320, y);
+            y += 20;
+
+            g.DrawString("Gracias por su compra", font, Brushes.Black, margenIzquierdo, y);
+
+
+
+
+        }
         private void iconButton1_Click(object sender, EventArgs e)
         {
             Close();
@@ -236,6 +312,7 @@ namespace CapaPresentacion
                 BtnAgregarProducto.Enabled = false;
                 BtnBuscarProducto.Enabled = false;
                 TxtCantidad.Enabled = false;
+                panel3.Enabled = false;
                 //true
                 BtnNuevo.Enabled = true;
                 Grilla.Visible = true;
@@ -492,6 +569,7 @@ namespace CapaPresentacion
             if (Grilla.RowCount == 0)
             {
                 TxtTotal.Text = "0";
+                TxtSubTotal.Text = "0";
                 BtnGrabar.Enabled = false;
                 TxtIdProducto.Focus();
             }
