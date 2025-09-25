@@ -11,11 +11,11 @@ namespace CapaNegocios
         public int IdVenta { get; set; }
         public int IdCliente { get; set; }
         public int IdMetodo { get; set; }
+        public string ClienteNombre { get; set; }
+        public string MetodoDescripcion { get; set; }
         public decimal Total { get; set; }
         public DateTime Fecha { get; set; }
 
-        // Propiedades adicionales para los detalles del JOIN
-        public string ClienteNombre { get; set; }
-        public string MetodoDescripcion { get; set; }
+       
     }
 }

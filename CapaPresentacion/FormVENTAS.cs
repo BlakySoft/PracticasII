@@ -86,203 +86,237 @@ namespace CapaPresentacion
         #region Botones
         private void BtnGrabar_Click(object sender, EventArgs e)
         {
-            
-                if (TxtCliente.Text == "")
+            try
+            {
+                if (Grilla.Rows.Count == 0)
                 {
-                    MessageBox.Show("Debe seleccionar un cliente.", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Debe agregar al menos un producto para realizar la venta.", "Liz Showroom", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    BtnGrabar.Enabled = false;
                     return;
                 }
                 else
                 {
-                    decimal Suma = Grilla.Rows.OfType<DataGridViewRow>().Sum(x => Convert.ToInt32(x.Cells[3].Value));
-                    TxtTotal.Text = Suma.ToString("0,0");
+                    BtnGrabar.Enabled = true;
+                }
 
-                    ConeVentas cone = new ConeVentas();
-                    Venta Agregar = new Venta
+                if (string.IsNullOrEmpty(TxtCliente.Text))
+                {
+                    TxtCliente.Text = "Cliente Final";
+                    LblCliente.Text = "23";
+                    IdCliente = 23;
+                }
+
+                decimal totalVenta = 0;
+                foreach (DataGridViewRow fila in Grilla.Rows)
+                {
+                    if (fila.Cells[0].Value != null)
                     {
-                        IdCliente = IdCliente,
-                        IdMetodo = VarMetodo,
-                        IdVenta = 1,
-                        Total = Suma
-                    };
-
-                    cone.AgregarPedido(Agregar);
-
-                    OleDbCommand comando = new OleDbCommand();
-                    OleDbDataReader reader;
-
-                    comando.CommandText = "Select max(IdVenta) as IdVenta from Ventas";
-                    comando.Connection = con;
-                    con.Open();
-                    reader = comando.ExecuteReader();
-                    if (reader.Read())
-                    {
-                        Venta pedido = new Venta();
-                        pedido.IdVenta = reader.GetInt32(0);
-                        TxtPedido.Text = pedido.IdVenta.ToString();
+                        decimal subtotal = Convert.ToDecimal(fila.Cells[4].Value);
+                        totalVenta += subtotal;
                     }
+                }
+                TxtTotal.Text = totalVenta.ToString("0,0");
 
-                    con.Close();
+                ConeVentas cone = new ConeVentas();
+                Venta nuevaVenta = new Venta
+                {
+                    IdCliente = IdCliente,
+                    IdMetodo = VarMetodo,
+                    Total = totalVenta
+                };
+                cone.AgregarPedido(nuevaVenta);
 
-                    if (Grilla.Rows.Count > 0)
+                int idVenta;
+                using (OleDbConnection con = new OleDbConnection(cone.ConectarDB()))
+                {
+                    con.Open();
+                    using (OleDbCommand cmd = new OleDbCommand("SELECT MAX(IdVenta) FROM Ventas", con))
                     {
-                        foreach (DataGridViewRow row in Grilla.Rows)
+                        idVenta = (int)cmd.ExecuteScalar();
+                    }
+                    TxtPedido.Text = idVenta.ToString();
+
+
+                    foreach (DataGridViewRow fila in Grilla.Rows)
+                    {
+                        if (fila.Cells[0].Value != null)
                         {
-                            OleDbCommand cm = new OleDbCommand();
-                            cm.CommandType = CommandType.Text;
-                            cm.CommandText = "insert into DetalleVentas (IdVenta, IdProducto, PrecioVenta, Cantidad, Subtotal) values (@IdVenta, @IdProducto, @PrecioVenta, @Cantidad, @Subtotal)";
-                            cm.Connection = con;
+                            int idProducto = Convert.ToInt32(fila.Cells["Column1"].Value);
+                            decimal precio = Convert.ToDecimal(fila.Cells["Column3"].Value);
+                            int cantidad = Convert.ToInt32(fila.Cells["Column4"].Value);
+                            decimal subtotal = Convert.ToDecimal(fila.Cells["Column5"].Value);
 
-
-                            cm.Parameters.AddWithValue("@IdVenta", Convert.ToString(TxtPedido.Text));
-                            cm.Parameters.AddWithValue("@IdProducto", Convert.ToInt32(row.Cells["Column1"].Value));
-                            cm.Parameters.AddWithValue("@PrecioVenta", Convert.ToDecimal(row.Cells["Column3"].Value));
-                            cm.Parameters.AddWithValue("@Cantidad", Convert.ToDecimal(row.Cells["Column4"].Value));
-                            cm.Parameters.AddWithValue("@Subtotal", Convert.ToDecimal(row.Cells["Column5"].Value));
-
-                            int IdArti = Convert.ToInt32(row.Cells["Column1"].Value);
-                            Cantidad = Convert.ToInt32(row.Cells["Column4"].Value);
-
-                            con.Open();
-                            cm.ExecuteNonQuery();
-                            con.Close();
-
-
-                            comando.CommandText = $"Select Stock from Productos where IdProducto =" + IdArti;
-                            comando.Connection = con;
-                            con.Open();
-                            reader = comando.ExecuteReader();
-
-                            if (reader.Read())
+                            using (OleDbCommand cmdDetalle = new OleDbCommand(
+                                "INSERT INTO DetalleVentas (IdVenta, IdProducto, PrecioVenta, Cantidad, Subtotal) VALUES (?, ?, ?, ?, ?)", con))
                             {
-                                Productos producto = new Productos();
+                                cmdDetalle.Parameters.AddWithValue("?", idVenta);
+                                cmdDetalle.Parameters.AddWithValue("?", idProducto);
+                                cmdDetalle.Parameters.AddWithValue("?", precio);
+                                cmdDetalle.Parameters.AddWithValue("?", cantidad);
+                                cmdDetalle.Parameters.AddWithValue("?", subtotal);
+                                cmdDetalle.ExecuteNonQuery();
+                            }
 
-                                producto.Stock = reader.GetInt32(0);
-                                Stock = producto.Stock;
-                                Stock = Stock - Cantidad;
-                                con.Close();
-
-                                OleDbCommand com = new OleDbCommand();
-
-                                com.CommandType = CommandType.Text;
-                                com.CommandText = $"update Productos set Stock = {Stock} where IdProducto = {IdArti}";
-                                com.Connection = con;
-
-                                con.Open();
-                                com.ExecuteNonQuery();
-                                con.Close();
+                            using (OleDbCommand cmdStock = new OleDbCommand(
+                                "UPDATE Productos SET Stock = Stock - ? WHERE IdProducto = ?", con))
+                            {
+                                cmdStock.Parameters.AddWithValue("?", cantidad);
+                                cmdStock.Parameters.AddWithValue("?", idProducto);
+                                cmdStock.ExecuteNonQuery();
                             }
                         }
                     }
-                //Proceso de impresion formato ticket
+
+                    con.Close();
+                }
+
                 PrintDocument pd = new PrintDocument();
                 pd.PrintPage += new PrintPageEventHandler(ImprimirGrilla);
                 PrintPreviewDialog printPreview = new PrintPreviewDialog();
                 printPreview.Document = pd;
                 printPreview.ShowDialog();
-                //pd.Print();
-                
 
+                MessageBox.Show("Venta realizada con éxito.", "Liz Showroom", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+                #region Limpiar y Enabled  yes/no
+                TxtCliente.Text = "Cliente Final";
+                LblCliente.Text = "23";
+                IdCliente = 23;
+                TxtDescripcion.Text = "";
+                TxtPrecio.Text = "";
+                TxtStock.Text = "";
+                TxtSubTotal.Text = "";
+                TxtTotal.Text = "";
+                TxtCantidad.Text = "1";
+                TxtIdProducto.Text = "";
+                Grilla.Rows.Clear();
+                TxtPedido.Text = "";
 
+                BtnGrabar.Enabled = false;
+                BtnCancelar.Enabled = false;
+                BtnAgregarCliente.Enabled = false;
+                BtnBuscarCliente.Enabled = false;
+                BtnAgregarProducto.Enabled = false;
+                BtnBuscarProducto.Enabled = false;
+                TxtCantidad.Enabled = false;
+                TxtIdProducto.Enabled = false;
 
-                MessageBox.Show("Venta realizada con éxito.", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    #region Enabled
+                BtnNuevo.Enabled = true;
+                Grilla.Visible = true;
+                #endregion
+                BtnNuevo.Focus();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al guardar la venta: " + ex.Message, "Liz Showroom", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
-                    //false
-                    BtnGrabar.Enabled = false;
-                    BtnCancelar.Enabled = false;
-                    BtnAgregarCliente.Enabled = false;
-                    BtnBuscarCliente.Enabled = false;
-                    BtnAgregarProducto.Enabled = false;
-                    BtnBuscarProducto.Enabled = false;
-                    TxtCantidad.Enabled = false;
-                    TxtIdProducto.Enabled = false;
-
-                    //true
-                    BtnNuevo.Enabled = true;
-                    Grilla.Visible = true;
-
-                    #endregion
-
-                    TxtCliente.Text = "";
-                    TxtDescripcion.Text = "";
-                    TxtPrecio.Text = "";
-                    TxtStock.Text = "";
-                    TxtSubTotal.Text = "";
-                    TxtTotal.Text = "";
-                    TxtCantidad.Text = "1";
-                    TxtIdProducto.Text = "";
-                    Grilla.Rows.Clear();
-
-
-                    Total = 0;
-
-                    BtnNuevo.Focus();
-                }
-          
         }
-
         private void ImprimirGrilla(object sender, PrintPageEventArgs e)
         {
+
             Graphics g = e.Graphics;
+
             Font font = new Font("Arial", 9);
             Font fontBold = new Font("Arial", 9, FontStyle.Bold);
+            Font fontHeader = new Font("Arial", 11, FontStyle.Bold);
 
-            float margenIzquierdo = 10; 
-            float y = 20; //posicion vertical inicial
+            float margenIzquierdo = 10;
+            float y = 20;
+            float anchoTicket = 320;
 
-            //Encabezado
-            g.DrawString("Lis Showroom", fontBold, Brushes.Black, margenIzquierdo, y);
-            y += 20;
-            g.DrawString("Ticket de venta", font, Brushes.Black, margenIzquierdo, y);
-            y += 20;
-            g.DrawString("Fecha:" + DateTime.Now.ToString("dd/MM/yyyy HH:mm"), font, Brushes.Black, margenIzquierdo, y);
-            y += 30;
+                    string tienda = "Lis Showroom";
+            SizeF anchoTienda = g.MeasureString(tienda, fontHeader);
+            g.DrawString(tienda, fontHeader, Brushes.Black, (anchoTicket - anchoTienda.Width) / 2, y);
+            y += 25;
 
-            // Encabezados de columnas
-            g.DrawString("Producto", fontBold, Brushes.Black, margenIzquierdo, y);
-            g.DrawString("Precio", fontBold, Brushes.Black, margenIzquierdo + 120, y);
-            g.DrawString("Cant", fontBold, Brushes.Black, margenIzquierdo + 200, y);
-            g.DrawString("Subtotal", fontBold, Brushes.Black, margenIzquierdo + 250, y);
-            y += 20;
+            string titulo = "TICKET DE VENTA";
+            SizeF anchoTitulo = g.MeasureString(titulo, fontBold);
+            g.DrawString(titulo, fontBold, Brushes.Black, (anchoTicket - anchoTitulo.Width) / 2, y);
+            y += 25;
 
-            g.DrawLine(Pens.Black, margenIzquierdo, y, 320, y);
-            y += 10;
+            g.DrawString("Fecha: " + DateTime.Now.ToString("dd/MM/yyyy HH:mm"), font, Brushes.Black, margenIzquierdo, y);
+            y += 25;
 
-            //Detalles de la venta 
+            
+            float anchoProducto = 140;
             foreach (DataGridViewRow fila in Grilla.Rows)
             {
-                if (fila.Cells[0].Value != null) //Por si la fila esta vacia 
+                if (fila.Cells[1].Value != null)
                 {
-                    string producto = fila.Cells[1].Value.ToString(); //Descripcion
-                    decimal precio = Convert.ToDecimal(fila.Cells[2].Value.ToString()); //Precio
-                    string cant = fila.Cells[3].Value.ToString(); //Cantidad
-                    decimal subtotal = Convert.ToDecimal(fila.Cells[4].Value.ToString()); //Subtotal
+                    string producto = fila.Cells[1].Value.ToString();
+                    SizeF tamaño = g.MeasureString(producto, font);
+                    if (tamaño.Width > anchoProducto) anchoProducto = Math.Min(tamaño.Width + 10, 180); // max 180 px
+                }
+            }
 
-                    g.DrawString(producto, font, Brushes.Black, margenIzquierdo, y);
-                    g.DrawString("$" + precio.ToString("N0"), font, Brushes.Black, margenIzquierdo + 120, y);
-                    g.DrawString(cant, font, Brushes.Black, margenIzquierdo + 200, y);
-                    g.DrawString("$" + subtotal.ToString("N0"), font, Brushes.Black, margenIzquierdo + 250, y);
+            float columnaPrecio = anchoProducto + 10;  
+            float columnaCantidad = columnaPrecio + 60;   
+            float columnaSubtotal = columnaCantidad + 60; 
+
+            // --- Encabezados de columna ---
+            g.DrawLine(Pens.Black, margenIzquierdo, y, anchoTicket, y);
+            y += 5;
+
+            g.DrawString("Producto", fontBold, Brushes.Black, margenIzquierdo, y);
+            g.DrawString("Precio", fontBold, Brushes.Black, columnaPrecio, y);
+            g.DrawString("Cantidad", fontBold, Brushes.Black, columnaCantidad, y);
+            g.DrawString("Subtotal", fontBold, Brushes.Black, columnaSubtotal, y);
+            y += 20;
+
+            g.DrawLine(Pens.Black, margenIzquierdo, y, anchoTicket, y);
+            y += 5;
+
+            // --- Detalles de la venta ---
+            StringFormat sfDerecha = new StringFormat();
+            sfDerecha.Alignment = StringAlignment.Far;
+
+            decimal totalVenta = 0;
+
+            foreach (DataGridViewRow fila in Grilla.Rows)
+            {
+                if (fila.Cells[0].Value != null)
+                {
+                    string producto = fila.Cells[1].Value.ToString();
+                    decimal precio = Convert.ToDecimal(fila.Cells[2].Value);
+                    string cant = fila.Cells[3].Value.ToString();
+                    decimal subtotal = Convert.ToDecimal(fila.Cells[4].Value);
+
+                    totalVenta += subtotal;
+
+                    // Producto
+                    RectangleF rectProducto = new RectangleF(margenIzquierdo, y, anchoProducto, 20);
+                    g.DrawString(producto, font, Brushes.Black, rectProducto);
+
+                    // Columnas de números alineadas a la derecha
+                    g.DrawString("$" + precio.ToString("N0"), font, Brushes.Black, columnaPrecio + 50, y, sfDerecha);
+                    g.DrawString(cant, font, Brushes.Black, columnaCantidad + 50, y, sfDerecha);
+                    g.DrawString("$" + subtotal.ToString("N0"), font, Brushes.Black, columnaSubtotal + 50, y, sfDerecha);
+
                     y += 20;
                 }
             }
 
-            y += 10;
-            g.DrawLine(Pens.Black, margenIzquierdo, y, 320, y);
+            y += 5;
+            g.DrawLine(Pens.Black, margenIzquierdo, y, anchoTicket, y);
+            y += 15;
+
+            // --- Total general ---
+            g.DrawString("TOTAL: $" + totalVenta.ToString("N0"), fontBold, Brushes.Black, columnaSubtotal + 50, y, sfDerecha);
+            y += 25;
+
+            g.DrawLine(Pens.Black, margenIzquierdo, y, anchoTicket, y);
             y += 20;
 
-            //Total general 
-            g.DrawString("TOTAL: $" + TxtTotal.Text, fontBold, Brushes.Black, margenIzquierdo, y);
-            y += 40;
-
-            g.DrawLine(Pens.Black, margenIzquierdo, y, 320, y);
+            // --- Pie de página centrado ---
+            string gracias = "¡Gracias por su compra!";
+            SizeF anchoGracias = g.MeasureString(gracias, font);
+            g.DrawString(gracias, font, Brushes.Black, (anchoTicket - anchoGracias.Width) / 2, y);
             y += 20;
 
-            g.DrawString("Gracias por su compra", font, Brushes.Black, margenIzquierdo, y);
-
-
-
+            string mensaje = "Vuelva pronto";
+            SizeF anchoMensaje = g.MeasureString(mensaje, font);
+            g.DrawString(mensaje, font, Brushes.Black, (anchoTicket - anchoMensaje.Width) / 2, y);
 
         }
         private void iconButton1_Click(object sender, EventArgs e)
@@ -355,7 +389,7 @@ namespace CapaPresentacion
             #endregion
 
             #region Limpiar
-            TxtCliente.Text = "";
+            TxtCliente.Text = "Cliente Final";
             TxtDescripcion.Text = "";
             TxtDetalle.Text = "";
             TxtPrecio.Text = "";
@@ -392,15 +426,21 @@ namespace CapaPresentacion
         }
         private void FormVENTAS_Load(object sender, EventArgs e)
         {
+            TxtCliente.Text = "Cliente Final"; 
+            LblCliente.Text = "23";          
+            IdCliente = 23;                     
 
-            // Cambiar fuente de los encabezados de columna
             Grilla.ColumnHeadersDefaultCellStyle.Font = new Font("Arial", 16, FontStyle.Italic);
-
-            // Cambiar fuente de las filas
             Grilla.RowsDefaultCellStyle.Font = new Font("Arial", 14, FontStyle.Italic);
 
             Grilla.Columns[1].Width = 200;
         }
+
+        private void TxtIdProducto_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
         private void BtnAgregarProveedor_Click(object sender, EventArgs e)
         {
             FormAgregarCliente form = new FormAgregarCliente();
