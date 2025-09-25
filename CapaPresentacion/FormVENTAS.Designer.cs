@@ -573,7 +573,7 @@ namespace CapaPresentacion
             this.TxtCliente.BackColor = System.Drawing.Color.White;
             this.TxtCliente.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.TxtCliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.TxtCliente.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtCliente.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtCliente.ForeColor = System.Drawing.Color.Black;
             this.TxtCliente.Location = new System.Drawing.Point(100, 39);
             this.TxtCliente.Name = "TxtCliente";

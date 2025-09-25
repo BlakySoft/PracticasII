@@ -94,7 +94,7 @@ namespace CapaPresentacion
                 }
                 else
                 {
-                    decimal Suma = Grilla.Rows.OfType<DataGridViewRow>().Sum(x => Convert.ToInt32(x.Cells[4].Value));
+                    decimal Suma = Grilla.Rows.OfType<DataGridViewRow>().Sum(x => Convert.ToInt32(x.Cells[3].Value));
                     TxtTotal.Text = Suma.ToString("0,0");
 
                     ConeVentas cone = new ConeVentas();

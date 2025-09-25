@@ -11,7 +11,6 @@ namespace CapaNegocios
         public int IdVenta { get; set; }
         public int IdCliente { get; set; }
         public int IdMetodo { get; set; }
-        public int IdEntrega { get; set; }
         public decimal Total { get; set; }
         public DateTime Fecha { get; set; }
 

@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing.Printing;
+using CapaDatos;
 
 namespace CapaPresentacion
 {
@@ -18,17 +19,23 @@ namespace CapaPresentacion
     public partial class FormINFORMESventas : Form
     {
         private ConeVentas coneVentas;
-        private int filaActual = 0; 
+        private int filaActual = 0;
+        private CapaDatos.ConeDetalleVentas dtll = new CapaDatos.ConeDetalleVentas();
         public FormINFORMESventas()
         {
             InitializeComponent();
+            dataGridView1.DataSource = dtll.ListarVentaDtll();
             coneVentas = new ConeVentas();
         }
    
         private void btnFiltrar_Click(object sender, EventArgs e)
         {
-            DateTime fechaInicio = dateTimePickerInicio.Value;
-            DateTime fechaFin = dateTimePickerFin.Value;
+
+            // Fecha inicio a las 00:00:00
+            DateTime fechaInicio = dateTimePickerInicio.Value.Date;
+
+            // Fecha fin a las 23:59:59
+            DateTime fechaFin = dateTimePickerFin.Value.Date.AddDays(1).AddTicks(-1);
 
             List<Venta> ventasFiltradas = coneVentas.ListarVentasPorFecha(fechaInicio, fechaFin);
             Grilla.DataSource = ventasFiltradas;
@@ -42,14 +49,12 @@ namespace CapaPresentacion
             // Ocultar columnas si quieres
             Grilla.Columns["IdCliente"].Visible = false;
             Grilla.Columns["IdMetodo"].Visible = false;
-            Grilla.Columns["IdEntrega"].Visible = false;
             Grilla.Columns[1].Width = 0;
             Grilla.Columns[2].Width = 0;
             Grilla.Columns[3].Width = 0;
             Grilla.Columns[4].Width = 100;
             Grilla.Columns[5].Width = 150;
             Grilla.Columns[6].Width = 150;
-            Grilla.Columns[7].Width = 150;
 
         }
         private void btnSalir_Click(object sender, EventArgs e)

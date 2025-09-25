@@ -178,7 +178,7 @@
             this.dateTimePickerInicio.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(203)))), ((int)(((byte)(204)))));
             this.dateTimePickerInicio.Checked = true;
             this.dateTimePickerInicio.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(156)))), ((int)(((byte)(191)))), ((int)(((byte)(227)))));
-            this.dateTimePickerInicio.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePickerInicio.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold);
             this.dateTimePickerInicio.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.dateTimePickerInicio.Format = System.Windows.Forms.DateTimePickerFormat.Long;
             this.dateTimePickerInicio.Location = new System.Drawing.Point(196, 30);

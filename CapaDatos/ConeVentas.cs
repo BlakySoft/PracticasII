@@ -88,48 +88,47 @@ namespace CapaDatos
         public List<Venta> ListarVentasPorFecha(DateTime fechaInicio, DateTime fechaFin)
         {
             List<Venta> ventas = new List<Venta>();
-            OleDbConnection con = new OleDbConnection(ConectarDB());
-
-            string query = "SELECT v.IdVenta, v.IdCliente, v.IdMetodo, v.Total, v.Fecha, " +
-                           "c.Nombre AS ClienteNombre, m.Descripcion AS MetodoDescripcion " +
-                           "FROM (Ventas AS v " +
-                           "INNER JOIN Clientes AS c ON v.IdCliente = c.IdCliente) " +
-                           "INNER JOIN Metodos AS m ON v.IdMetodo = m.IdMetodo " +
-                           "WHERE v.Fecha BETWEEN ? AND ?;";
-
-            OleDbCommand cmd = new OleDbCommand(query, con);
-            cmd.Parameters.AddWithValue("?", fechaInicio.Date);
-            cmd.Parameters.AddWithValue("?", fechaFin.Date);
-
-            try
+            using (OleDbConnection con = new OleDbConnection(ConectarDB()))
             {
-                con.Open();
-                OleDbDataReader reader = cmd.ExecuteReader();
+                string query = "SELECT v.IdVenta, v.IdCliente, v.IdMetodo, v.Total, v.Fecha, " +
+                               "c.Nombre AS ClienteNombre, m.Descripcion AS MetodoDescripcion " +
+                               "FROM (Ventas AS v " +
+                               "INNER JOIN Clientes AS c ON v.IdCliente = c.IdCliente) " +
+                               "INNER JOIN Metodos AS m ON v.IdMetodo = m.IdMetodo " +
+                               "WHERE v.Fecha >= ? AND v.Fecha <= ?;";
 
-                while (reader.Read())
+
+                DateTime inicio = fechaInicio.Date;               
+                DateTime fin = fechaFin.Date.AddDays(1).AddSeconds(-1);
+                OleDbCommand cmd = new OleDbCommand(query, con);
+                cmd.Parameters.Add("?", OleDbType.Date).Value = inicio;
+                cmd.Parameters.Add("?", OleDbType.Date).Value = fin;
+
+                try
                 {
-                    Venta venta = new Venta()
+                    con.Open();
+                    OleDbDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
                     {
-                        IdVenta = reader.GetInt32(0),
-                        IdCliente = reader.GetInt32(1),
-                        IdMetodo = reader.GetInt32(2),
-                        Total = reader.GetDecimal(3),
-                        Fecha = reader.GetDateTime(4)
-                    };
+                        Venta venta = new Venta()
+                        {
+                            IdVenta = reader.GetInt32(0),
+                            IdCliente = reader.GetInt32(1),
+                            IdMetodo = reader.GetInt32(2),
+                            Total = reader.GetDecimal(3),
+                            Fecha = reader.GetDateTime(4),
+                            ClienteNombre = reader.GetString(5),
+                            MetodoDescripcion = reader.GetString(6)
+                        };
 
-                    venta.ClienteNombre = reader.GetString(5);
-                    venta.MetodoDescripcion = reader.GetString(6);
-
-                    ventas.Add(venta);
+                        ventas.Add(venta);
+                    }
                 }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error al listar ventas por fecha: " + ex.Message);
-            }
-            finally
-            {
-                con.Close();
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error al listar ventas por fecha: " + ex.Message);
+                }
             }
 
             return ventas;
