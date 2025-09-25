@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing.Printing;
 using CapaDatos;
+using CapaNegocio;
 
 namespace CapaPresentacion
 {
@@ -24,10 +25,9 @@ namespace CapaPresentacion
         public FormINFORMESventas()
         {
             InitializeComponent();
-            dataGridView1.DataSource = dtll.ListarVentaDtll();
             coneVentas = new ConeVentas();
         }
-   
+
         private void btnFiltrar_Click(object sender, EventArgs e)
         {
 
@@ -38,23 +38,23 @@ namespace CapaPresentacion
             DateTime fechaFin = dateTimePickerFin.Value.Date.AddDays(1).AddTicks(-1);
 
             List<Venta> ventasFiltradas = coneVentas.ListarVentasPorFecha(fechaInicio, fechaFin);
-            Grilla.DataSource = ventasFiltradas;
+            Grilla1.DataSource = ventasFiltradas;
 
-            Grilla.Columns["IdVenta"].HeaderText = "ID Venta";
-            Grilla.Columns["ClienteNombre"].HeaderText = "Cliente";
-            Grilla.Columns["MetodoDescripcion"].HeaderText = "Método de Pago";
-            Grilla.Columns["Total"].HeaderText = "Total";
-            Grilla.Columns["Fecha"].HeaderText = "Fecha";
+            Grilla1.Columns["IdVenta"].HeaderText = "ID";
+            Grilla1.Columns["ClienteNombre"].HeaderText = "Cliente";
+            Grilla1.Columns["MetodoDescripcion"].HeaderText = "Método de Pago";
+            Grilla1.Columns["Total"].HeaderText = "Total";
+            Grilla1.Columns["Fecha"].HeaderText = "Fecha";
 
-            // Ocultar columnas si quieres
-            Grilla.Columns["IdCliente"].Visible = false;
-            Grilla.Columns["IdMetodo"].Visible = false;
-            Grilla.Columns[1].Width = 0;
-            Grilla.Columns[2].Width = 0;
-            Grilla.Columns[3].Width = 0;
-            Grilla.Columns[4].Width = 100;
-            Grilla.Columns[5].Width = 150;
-            Grilla.Columns[6].Width = 150;
+            // Ocultar columnas si quieres      
+            Grilla1.Columns[0].Width = 40;
+            Grilla1.Columns["IdCliente"].Visible = false;
+            Grilla1.Columns["IdMetodo"].Visible = false;
+            Grilla1.Columns[3].Width = 150;
+            Grilla1.Columns[4].Width = 150;
+            Grilla1.Columns[5].Width = 90;
+            Grilla1.Columns[6].Width = 150;
+
 
         }
         private void btnSalir_Click(object sender, EventArgs e)
@@ -111,9 +111,9 @@ namespace CapaPresentacion
 
             // Contenido de la grilla
             decimal sumaTotal = 0;
-            while (filaActual < Grilla.Rows.Count)
+            while (filaActual < Grilla1.Rows.Count)
             {
-                DataGridViewRow row = Grilla.Rows[filaActual];
+                DataGridViewRow row = Grilla1.Rows[filaActual];
                 if (row.IsNewRow) { filaActual++; continue; }
 
                 xTemp = xPos;
@@ -152,9 +152,43 @@ namespace CapaPresentacion
 
             e.HasMorePages = false;
         }
+        private void Grilla1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                int idVenta = Convert.ToInt32(Grilla1.Rows[e.RowIndex].Cells["IdVenta"].Value);
 
-      
+                List<DetalleVenta> detalles = dtll.ListarDetallesPorVenta(idVenta);
+                Grilla2.DataSource = detalles;
+                Grilla2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
+                Grilla2.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
+                Grilla2.AllowUserToResizeColumns = false;
+                Grilla2.AllowUserToResizeRows = false;
+                Grilla2.RowTemplate.Height = 30;
+                Grilla2.ScrollBars = ScrollBars.Vertical;
+
+
+                if (Grilla2.Columns.Count > 0)
+                {
+                    if (Grilla2.Columns.Contains("IdVenta")) Grilla2.Columns["IdVenta"].HeaderText = "ID";
+                    if (Grilla2.Columns.Contains("DetalleProducto")) Grilla2.Columns["DetalleProducto"].HeaderText = "Producto";
+                    if (Grilla2.Columns.Contains("PrecioVenta")) Grilla2.Columns["PrecioVenta"].HeaderText = "Precio";
+                    if (Grilla2.Columns.Contains("Cantidad")) Grilla2.Columns["Cantidad"].HeaderText = "Cantidad";
+                    if (Grilla2.Columns.Contains("Subtotal")) Grilla2.Columns["Subtotal"].HeaderText = "Subtotal";
+
+                    if (Grilla2.Columns.Contains("IdVenta")) Grilla2.Columns["IdVenta"].Width= 45;
+                    if (Grilla2.Columns.Contains("IdProducto")) Grilla2.Columns["IdProducto"].Visible = false;
+
+                    if (Grilla2.Columns.Contains("DetalleProducto")) Grilla2.Columns["DetalleProducto"].Width = 220;
+                    if (Grilla2.Columns.Contains("PrecioVenta")) Grilla2.Columns["PrecioVenta"].Width = 100;
+                    if (Grilla2.Columns.Contains("Cantidad")) Grilla2.Columns["Cantidad"].Width = 100;
+                    if (Grilla2.Columns.Contains("Subtotal")) Grilla2.Columns["Subtotal"].Width = 120;
+
+                }
+            }
+        }
     }
-    }
+}
+
 
 

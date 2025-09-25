@@ -11,11 +11,10 @@ namespace CapaNegocio
 
         public int IdVenta { get; set; }
         public int IdProducto { get; set; }
-        public int PrecioVenta { get; set; }
+        public string DetalleProducto { get; set; }
+        public decimal PrecioVenta { get; set; }
         public int Cantidad { get; set; }
-        public decimal SubTotal { get; set; }
+        public decimal Subtotal { get; set; }
 
-        // Propiedades adicionales para los detalles del JOIN
-        public string DetalleProducto{ get; set; }
     }
 }

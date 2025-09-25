@@ -37,54 +37,6 @@ namespace CapaDatos
             return "Provider=Microsoft.Jet.OLEDB.4.0; Data Source=|DataDirectory|DB.mdb;";
 
         }
-    
-        public List<Venta> ListarVentas()
-        {
-            List<Venta> ventas = new List<Venta>();
-            OleDbConnection con = new OleDbConnection(ConectarDB());
-
-            string query = "SELECT v.IdVenta, v.IdCliente, v.IdMetodo, v.Total, v.Fecha, " +
-                           "c.Nombre AS ClienteNombre, m.Descripcion AS MetodoDescripcion " +
-                           "FROM (Ventas AS v " +
-                           "INNER JOIN Clientes AS c ON v.IdCliente = c.IdCliente) " +
-                           "INNER JOIN Metodos AS m ON v.IdMetodo = m.IdMetodo;";
-
-            OleDbCommand cmd = new OleDbCommand(query, con);
-
-            try
-            {
-                con.Open();
-                OleDbDataReader reader = cmd.ExecuteReader();
-
-                while (reader.Read())
-                {
-                    Venta venta = new Venta()
-                    {
-                        IdVenta = reader.GetInt32(0),
-                        IdCliente = reader.GetInt32(1),
-                        IdMetodo = reader.GetInt32(2),
-                        Total = reader.GetDecimal(3),
-                        Fecha = reader.GetDateTime(4)
-                    };
-
-                    venta.ClienteNombre = reader.GetString(5);
-                    venta.MetodoDescripcion = reader.GetString(6);
-
-                    ventas.Add(venta);
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error al listar ventas: " + ex.Message);
-            }
-            finally
-            {
-                con.Close();
-            }
-
-            return ventas;
-        }
-
         public List<Venta> ListarVentasPorFecha(DateTime fechaInicio, DateTime fechaFin)
         {
             List<Venta> ventas = new List<Venta>();

@@ -35,7 +35,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.Grilla = new System.Windows.Forms.DataGridView();
+            this.Grilla1 = new System.Windows.Forms.DataGridView();
             this.label12 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.btnFiltrar = new FontAwesome.Sharp.IconButton();
@@ -46,24 +46,24 @@
             this.guna2AnimateWindow1 = new Guna.UI2.WinForms.Guna2AnimateWindow(this.components);
             this.label4 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.Grilla2 = new System.Windows.Forms.DataGridView();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.Grilla)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Grilla1)).BeginInit();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Grilla2)).BeginInit();
             this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
-            // Grilla
+            // Grilla1
             // 
-            this.Grilla.AllowUserToAddRows = false;
-            this.Grilla.AllowUserToDeleteRows = false;
-            this.Grilla.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(216)))), ((int)(((byte)(228)))));
-            this.Grilla.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.Grilla.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            this.Grilla.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            this.Grilla1.AllowUserToAddRows = false;
+            this.Grilla1.AllowUserToDeleteRows = false;
+            this.Grilla1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(216)))), ((int)(((byte)(228)))));
+            this.Grilla1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.Grilla1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            this.Grilla1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(216)))), ((int)(((byte)(228)))));
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -71,9 +71,9 @@
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.ActiveCaption;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.Grilla.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.Grilla.ColumnHeadersHeight = 40;
-            this.Grilla.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.Grilla1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.Grilla1.ColumnHeadersHeight = 40;
+            this.Grilla1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -81,19 +81,20 @@
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.ActiveCaption;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.Grilla.DefaultCellStyle = dataGridViewCellStyle2;
-            this.Grilla.EnableHeadersVisualStyles = false;
-            this.Grilla.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(216)))), ((int)(((byte)(228)))));
-            this.Grilla.Location = new System.Drawing.Point(12, 108);
-            this.Grilla.Name = "Grilla";
-            this.Grilla.ReadOnly = true;
+            this.Grilla1.DefaultCellStyle = dataGridViewCellStyle2;
+            this.Grilla1.EnableHeadersVisualStyles = false;
+            this.Grilla1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(216)))), ((int)(((byte)(228)))));
+            this.Grilla1.Location = new System.Drawing.Point(12, 108);
+            this.Grilla1.Name = "Grilla1";
+            this.Grilla1.ReadOnly = true;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.Grilla.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            this.Grilla.RowHeadersVisible = false;
-            this.Grilla.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.Grilla.Size = new System.Drawing.Size(559, 379);
-            this.Grilla.TabIndex = 11;
+            this.Grilla1.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.Grilla1.RowHeadersVisible = false;
+            this.Grilla1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.Grilla1.Size = new System.Drawing.Size(559, 379);
+            this.Grilla1.TabIndex = 11;
+            this.Grilla1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Grilla1_CellDoubleClick);
             // 
             // label12
             // 
@@ -228,14 +229,14 @@
             this.panel1.Size = new System.Drawing.Size(1248, 24);
             this.panel1.TabIndex = 51;
             // 
-            // dataGridView1
+            // Grilla2
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(216)))), ((int)(((byte)(228)))));
-            this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dataGridView1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            this.dataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            this.Grilla2.AllowUserToAddRows = false;
+            this.Grilla2.AllowUserToDeleteRows = false;
+            this.Grilla2.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(216)))), ((int)(((byte)(228)))));
+            this.Grilla2.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.Grilla2.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            this.Grilla2.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(216)))), ((int)(((byte)(228)))));
             dataGridViewCellStyle4.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -243,9 +244,9 @@
             dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.ActiveCaption;
             dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
-            this.dataGridView1.ColumnHeadersHeight = 40;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.Grilla2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.Grilla2.ColumnHeadersHeight = 40;
+            this.Grilla2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle5.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -253,19 +254,19 @@
             dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.ActiveCaption;
             dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle5;
-            this.dataGridView1.EnableHeadersVisualStyles = false;
-            this.dataGridView1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(216)))), ((int)(((byte)(228)))));
-            this.dataGridView1.Location = new System.Drawing.Point(27, 84);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
+            this.Grilla2.DefaultCellStyle = dataGridViewCellStyle5;
+            this.Grilla2.EnableHeadersVisualStyles = false;
+            this.Grilla2.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(216)))), ((int)(((byte)(228)))));
+            this.Grilla2.Location = new System.Drawing.Point(27, 84);
+            this.Grilla2.Name = "Grilla2";
+            this.Grilla2.ReadOnly = true;
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
-            this.dataGridView1.RowHeadersVisible = false;
-            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(591, 379);
-            this.dataGridView1.TabIndex = 52;
+            this.Grilla2.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            this.Grilla2.RowHeadersVisible = false;
+            this.Grilla2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.Grilla2.Size = new System.Drawing.Size(591, 379);
+            this.Grilla2.TabIndex = 52;
             // 
             // panel2
             // 
@@ -279,7 +280,7 @@
             // 
             this.panel3.Controls.Add(this.label1);
             this.panel3.Controls.Add(this.btnSalir);
-            this.panel3.Controls.Add(this.dataGridView1);
+            this.panel3.Controls.Add(this.Grilla2);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel3.Location = new System.Drawing.Point(602, 24);
             this.panel3.Name = "panel3";
@@ -308,7 +309,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.dateTimePickerFin);
             this.Controls.Add(this.dateTimePickerInicio);
-            this.Controls.Add(this.Grilla);
+            this.Controls.Add(this.Grilla1);
             this.Controls.Add(this.btnImprimir);
             this.Controls.Add(this.btnFiltrar);
             this.Controls.Add(this.panel2);
@@ -317,10 +318,10 @@
             this.Name = "FormINFORMESventas";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Informes de Venta";
-            ((System.ComponentModel.ISupportInitialize)(this.Grilla)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Grilla1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Grilla2)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.ResumeLayout(false);
@@ -330,7 +331,7 @@
 
         #endregion
 
-        private System.Windows.Forms.DataGridView Grilla;
+        private System.Windows.Forms.DataGridView Grilla1;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label2;
         private FontAwesome.Sharp.IconButton btnFiltrar;
@@ -341,7 +342,7 @@
         private Guna.UI2.WinForms.Guna2AnimateWindow guna2AnimateWindow1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView Grilla2;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label label1;
