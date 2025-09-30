@@ -11,18 +11,17 @@ namespace CapaDatos
     public class ConeLocalidades
     {
 
-        public string ConectarDB()
-        {
-            OleDbConnection con = new OleDbConnection("Provider = Microsoft.Jet.OLEDB.4.0; Data Source =|DataDirectory|DB.mdb;");
-            string cadenaconexion = ("Provider =Microsoft.Jet.OLEDB.4.0; Data Source =|DataDirectory|DB.mdb;");
-            return cadenaconexion;
-        }
+        #region conexion a BD
+
+        Conexion cn = new Conexion();
+
+        #endregion
         public void AgregarLocalidad(Localidad Localidad)
         {
             OleDbConnection cone = new OleDbConnection();
             OleDbCommand cm = new OleDbCommand();
 
-            cone.ConnectionString = ConectarDB();
+            cone.ConnectionString = cn.ConectarDB();
             cm.CommandType = System.Data.CommandType.Text;
             cm.CommandText = "insert into Localidades(Descripcion, Estado) values (@Descripcion, true)";
             cm.Connection = cone;
@@ -37,7 +36,7 @@ namespace CapaDatos
             OleDbConnection cone = new OleDbConnection();
             OleDbCommand cm = new OleDbCommand();
 
-            cone.ConnectionString = ConectarDB();
+            cone.ConnectionString = cn.ConectarDB();
             cm.CommandType = System.Data.CommandType.Text;
 
 
@@ -55,7 +54,7 @@ namespace CapaDatos
             OleDbConnection cone = new OleDbConnection();
             OleDbCommand cm = new OleDbCommand();
 
-            cone.ConnectionString = ConectarDB();
+            cone.ConnectionString = cn.ConectarDB();
             cm.CommandType = System.Data.CommandType.Text;
 
 
@@ -71,7 +70,7 @@ namespace CapaDatos
             OleDbConnection cone = new OleDbConnection();
             OleDbCommand cm = new OleDbCommand();
 
-            cone.ConnectionString = ConectarDB();
+            cone.ConnectionString = cn.ConectarDB();
             cm.CommandType = System.Data.CommandType.Text;
 
 
@@ -90,7 +89,7 @@ namespace CapaDatos
 
             OleDbDataReader reader;
 
-            con.ConnectionString = ConectarDB();
+            con.ConnectionString = cn.ConectarDB();
             cm.CommandType = System.Data.CommandType.Text;
             cm.CommandText = "SELECT * FROM Localidades WHERE Estado = false";
             cm.Connection = con;
@@ -119,7 +118,7 @@ namespace CapaDatos
 
             OleDbDataReader reader;
 
-            con.ConnectionString = ConectarDB();
+            con.ConnectionString = cn.ConectarDB();
             cm.CommandType = System.Data.CommandType.Text;
             cm.CommandText = "SELECT * FROM Localidades WHERE Estado = true";
             cm.Connection = con;
@@ -143,7 +142,7 @@ namespace CapaDatos
         public List<Localidad> BuscarPapelera(string letra)
         {
             List<Localidad> list = new List<Localidad>();
-            using (OleDbConnection cone = new OleDbConnection(ConectarDB()))
+            using (OleDbConnection cone = new OleDbConnection(cn.ConectarDB()))
             using (OleDbCommand cm = cone.CreateCommand())
             {
                 cm.CommandType = System.Data.CommandType.Text;
@@ -170,7 +169,7 @@ namespace CapaDatos
         public List<Localidad> BuscarLocalidad(string letra)
         {
             List<Localidad> list = new List<Localidad>();
-            using (OleDbConnection cone = new OleDbConnection(ConectarDB()))
+            using (OleDbConnection cone = new OleDbConnection(cn.ConectarDB()))
             using (OleDbCommand cm = cone.CreateCommand())
             {
                 cm.CommandType = System.Data.CommandType.Text;
@@ -201,7 +200,7 @@ namespace CapaDatos
             OleDbCommand cm = new OleDbCommand();
             OleDbDataReader reader;
 
-            cone.ConnectionString = ConectarDB();
+            cone.ConnectionString = cn.ConectarDB();
             cm.CommandType = System.Data.CommandType.Text;
 
             cm.CommandText = $"Select IdLocalidad, Descripcion from Localidades where IdLocalidad like ('%{IdLocalidad}%');";

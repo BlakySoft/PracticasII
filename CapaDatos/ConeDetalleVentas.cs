@@ -11,12 +11,14 @@ namespace CapaDatos
 {
     public class ConeDetalleVentas
     {
-        CapaDatos.ConeClientes cone = new CapaDatos.ConeClientes();
+        #region conexion a BD
+        Conexion cn = new Conexion();
+        #endregion
         public List<DetalleVenta> ListarDetallesPorVenta(int idVenta)
         {
             List<DetalleVenta> detalles = new List<DetalleVenta>();
 
-            using (OleDbConnection con = new OleDbConnection(cone.ConectarDB()))
+            using (OleDbConnection con = new OleDbConnection(cn.ConectarDB()))
             {
                 string query = "SELECT d.IdVenta, d.IdProducto, p.[Descripcion] AS DetalleProducto, " +
                                "d.PrecioVenta, d.Cantidad, d.Subtotal " +

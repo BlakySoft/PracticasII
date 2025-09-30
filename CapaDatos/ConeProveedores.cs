@@ -12,19 +12,14 @@ namespace CapaDatos
     public class ConeProveedores
     {
         #region conexion a BD
-        public string ConectarDB()
-        {
-            OleDbConnection con = new OleDbConnection("Provider = Microsoft.Jet.OLEDB.4.0; Data Source =|DataDirectory|elfrancesrances.mdb;");
-            string cadenaconexion = ("Provider =Microsoft.Jet.OLEDB.4.0; Data Source =|DataDirectory|DB.mdb;");
-            return cadenaconexion;
-        }
+        Conexion cn = new Conexion();
         #endregion
         public void AgregarProveedor(Proveedores Pro)
         {
             OleDbConnection con = new OleDbConnection();
             OleDbCommand cm = new OleDbCommand();
 
-            con.ConnectionString = ConectarDB();
+            con.ConnectionString = cn.ConectarDB();
             cm.CommandType = System.Data.CommandType.Text;
 
             cm.CommandText = "insert into Proveedores (RazonSocial, Documento, Telefono, Domicilio, IdLocalidad, Estado) values (@RazonSocial, @Documento, @Telefono, @Domicilio, @IdLocalidad, true)";
@@ -45,7 +40,7 @@ namespace CapaDatos
             OleDbConnection con = new OleDbConnection();
             OleDbCommand cm = new OleDbCommand();
 
-            con.ConnectionString = ConectarDB();
+            con.ConnectionString = cn.ConectarDB();
             cm.CommandType = System.Data.CommandType.Text;
 
 
@@ -68,7 +63,7 @@ namespace CapaDatos
             OleDbConnection cone = new OleDbConnection();
             OleDbCommand cm = new OleDbCommand();
 
-            cone.ConnectionString = ConectarDB();
+            cone.ConnectionString = cn.ConectarDB();
             cm.CommandType = System.Data.CommandType.Text;
 
 
@@ -84,7 +79,7 @@ namespace CapaDatos
             OleDbConnection cone = new OleDbConnection();
             OleDbCommand cm = new OleDbCommand();
 
-            cone.ConnectionString = ConectarDB();
+            cone.ConnectionString = cn.ConectarDB();
             cm.CommandType = System.Data.CommandType.Text;
 
 
@@ -99,7 +94,7 @@ namespace CapaDatos
         {
             List<Proveedores> lista = new List<Proveedores>();
 
-            using (OleDbConnection con = new OleDbConnection(ConectarDB()))
+            using (OleDbConnection con = new OleDbConnection(cn.ConectarDB()))
             using (OleDbCommand cm = con.CreateCommand())
             {
                 cm.CommandType = CommandType.Text;
@@ -140,7 +135,7 @@ namespace CapaDatos
         {
             List<Proveedores> lista = new List<Proveedores>();
 
-            using (OleDbConnection con = new OleDbConnection(ConectarDB()))
+            using (OleDbConnection con = new OleDbConnection(cn.ConectarDB()))
             using (OleDbCommand cm = con.CreateCommand())
             {
                 cm.CommandType = CommandType.Text;
@@ -181,7 +176,7 @@ namespace CapaDatos
         {
             List<Proveedores> lista = new List<Proveedores>();
 
-            using (OleDbConnection con = new OleDbConnection(ConectarDB()))
+            using (OleDbConnection con = new OleDbConnection(cn.ConectarDB()))
             using (OleDbCommand cm = con.CreateCommand())
             {
                 cm.CommandType = CommandType.Text;
@@ -225,7 +220,7 @@ namespace CapaDatos
         {
             List<Proveedores> lista = new List<Proveedores>();
 
-            using (OleDbConnection con = new OleDbConnection(ConectarDB()))
+            using (OleDbConnection con = new OleDbConnection(cn.ConectarDB()))
             using (OleDbCommand cm = con.CreateCommand())
             {
                 cm.CommandType = CommandType.Text;

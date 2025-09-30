@@ -10,18 +10,15 @@ namespace CapaDatos
 {
    public class ConeCompras
     {
-        public string ConectarDB()
-        {
-            OleDbConnection con = new OleDbConnection("Provider = Microsoft.Jet.OLEDB.4.0; Data Source =|DataDirectory|DB.mdb;");
-            string cadenaconexion = ("Provider =Microsoft.Jet.OLEDB.4.0; Data Source =|DataDirectory|DB.mdb;");
-            return cadenaconexion;
-        }
+        #region conexion a BD
+        Conexion cn = new Conexion();
+        #endregion
         public void Agregar(Compra Compra)
         {
             OleDbConnection conexion = new OleDbConnection();
             OleDbCommand comando = new OleDbCommand();
 
-            conexion.ConnectionString = ConectarDB();
+            conexion.ConnectionString = cn.ConectarDB();
             comando.CommandType = System.Data.CommandType.Text;
 
             comando.CommandText = "INSERT INTO Compras(IdProveedor, IdMetodo, Total) VALUES (@IdProveedor, @IdMetodo, @Total)";

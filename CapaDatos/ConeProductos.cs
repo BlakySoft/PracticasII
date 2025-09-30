@@ -12,16 +12,11 @@ namespace CapaDatos
     public class ConeProductos
     {
         #region conexion a BD
-        public string ConectarDB()
-        {
-            OleDbConnection con = new OleDbConnection("Provider = Microsoft.Jet.OLEDB.4.0; Data Source =|DataDirectory|DB.mdb;");
-            string cadenaconexion = ("Provider =Microsoft.Jet.OLEDB.4.0; Data Source =|DataDirectory|DB.mdb;");
-            return cadenaconexion;
-        }
+        Conexion cn = new Conexion();
         #endregion
         public void Agregar(Productos Prod)
         {
-            using (OleDbConnection con = new OleDbConnection(ConectarDB()))
+            using (OleDbConnection con = new OleDbConnection(cn.ConectarDB()))
             {
                 using (OleDbCommand cm = new OleDbCommand())
                 {
@@ -47,7 +42,7 @@ namespace CapaDatos
         }
         public void Actualizar(Productos Prod)
         {
-            using (OleDbConnection con = new OleDbConnection(ConectarDB()))
+            using (OleDbConnection con = new OleDbConnection(cn.ConectarDB()))
             {
                 using (OleDbCommand cm = new OleDbCommand())
                 {
@@ -86,7 +81,7 @@ namespace CapaDatos
             OleDbConnection cone = new OleDbConnection();
             OleDbCommand cm = new OleDbCommand();
 
-            cone.ConnectionString = ConectarDB();
+            cone.ConnectionString = cn.ConectarDB();
             cm.CommandType = System.Data.CommandType.Text;
 
 
@@ -102,7 +97,7 @@ namespace CapaDatos
             OleDbConnection cone = new OleDbConnection();
             OleDbCommand cm = new OleDbCommand();
 
-            cone.ConnectionString = ConectarDB();
+            cone.ConnectionString = cn.ConectarDB();
             cm.CommandType = System.Data.CommandType.Text;
 
 
@@ -121,7 +116,7 @@ namespace CapaDatos
 
             OleDbDataReader reader;
 
-            con.ConnectionString = ConectarDB();
+            con.ConnectionString = cn.ConectarDB();
             cm.CommandType = System.Data.CommandType.Text;
             cm.CommandText = "SELECT * FROM Productos WHERE Estado = false";
             cm.Connection = con;
@@ -153,7 +148,7 @@ namespace CapaDatos
         {
             List<Productos> lista = new List<Productos>();
 
-            using (OleDbConnection con = new OleDbConnection(ConectarDB()))
+            using (OleDbConnection con = new OleDbConnection(cn.ConectarDB()))
             using (OleDbCommand cm = con.CreateCommand())
             {
                 cm.CommandText = @"
@@ -206,7 +201,7 @@ namespace CapaDatos
         {
             List<Productos> lista = new List<Productos>();
 
-            using (OleDbConnection con = new OleDbConnection(ConectarDB()))
+            using (OleDbConnection con = new OleDbConnection(cn.ConectarDB()))
             using (OleDbCommand cm = con.CreateCommand())
             {
                 cm.CommandText = @"
@@ -264,7 +259,7 @@ namespace CapaDatos
         {
             List<Productos> lista = new List<Productos>();
 
-            using (OleDbConnection con = new OleDbConnection(ConectarDB()))
+            using (OleDbConnection con = new OleDbConnection(cn.ConectarDB()))
             using (OleDbCommand cm = con.CreateCommand())
             {
 

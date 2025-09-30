@@ -11,13 +11,15 @@ namespace CapaDatos
 {
     public class ConeVentas
     {
-        
+        #region conexion a BD
+        Conexion cn = new Conexion();
+        #endregion
         public void AgregarPedido(Venta pedido)
         {
             OleDbConnection cone = new OleDbConnection();
             OleDbCommand cm = new OleDbCommand();
 
-            cone.ConnectionString = ConectarDB();
+            cone.ConnectionString = cn.ConectarDB();
             cm.CommandType = System.Data.CommandType.Text;
 
             cm.CommandText = "insert into Ventas (IdCliente, IdMetodo, Total) values (@IdCliente, @IdMetodo, @Total)";
@@ -31,16 +33,11 @@ namespace CapaDatos
             cm.ExecuteNonQuery();
             cone.Close();
         }
-        public string ConectarDB()
-        {
-            _ = new OleDbConnection("Provider = Microsoft.Jet.OLEDB.4.0; Data Source =|DataDirectory|DB.mdb;");
-            return "Provider=Microsoft.Jet.OLEDB.4.0; Data Source=|DataDirectory|DB.mdb;";
-
-        }
+        
         public List<Venta> ListarVentasPorFecha(DateTime fechaInicio, DateTime fechaFin)
         {
             List<Venta> ventas = new List<Venta>();
-            using (OleDbConnection con = new OleDbConnection(ConectarDB()))
+            using (OleDbConnection con = new OleDbConnection(cn.ConectarDB()))
             {
                 string query = "SELECT v.IdVenta, v.IdCliente, v.IdMetodo, v.Total, v.Fecha, " +
                                "c.Nombre AS ClienteNombre, m.Descripcion AS MetodoDescripcion " +

@@ -11,18 +11,13 @@ namespace CapaDatos
    public class ConeClientes
     {
         #region conexion a BD
-        public string ConectarDB()
-        {
-            OleDbConnection con = new OleDbConnection("Provider = Microsoft.Jet.OLEDB.4.0; Data Source =|DataDirectory|DB.mdb;");
-            string cadenaconexion = ("Provider =Microsoft.Jet.OLEDB.4.0; Data Source =|DataDirectory|DB.mdb;");
-            return cadenaconexion;
-        }
+        Conexion cn = new Conexion();
         #endregion
 
         // ----------------- Agregar Cliente -----------------
         public void AgregarCliente(Cliente Cli)
         {
-            using (OleDbConnection con = new OleDbConnection(ConectarDB()))
+            using (OleDbConnection con = new OleDbConnection(cn.ConectarDB()))
             using (OleDbCommand cm = new OleDbCommand())
             {
                 cm.Connection = con;
@@ -44,7 +39,7 @@ namespace CapaDatos
         // ----------------- Actualizar Cliente -----------------
         public void ActualizarCliente(Cliente Cli)
         {
-            using (OleDbConnection con = new OleDbConnection(ConectarDB()))
+            using (OleDbConnection con = new OleDbConnection(cn.ConectarDB()))
             using (OleDbCommand cm = new OleDbCommand())
             {
                 cm.Connection = con;
@@ -67,7 +62,7 @@ namespace CapaDatos
         // ----------------- Borrar Cliente -----------------
         public void BorrarCliente(Cliente Cli)
         {
-            using (OleDbConnection con = new OleDbConnection(ConectarDB()))
+            using (OleDbConnection con = new OleDbConnection(cn.ConectarDB()))
             using (OleDbCommand cm = new OleDbCommand())
             {
                 cm.Connection = con;
@@ -83,7 +78,7 @@ namespace CapaDatos
         // ----------------- Recuperar Cliente -----------------
         public void RecuperarCliente(Cliente Cli)
         {
-            using (OleDbConnection con = new OleDbConnection(ConectarDB()))
+            using (OleDbConnection con = new OleDbConnection(cn.ConectarDB()))
             using (OleDbCommand cm = new OleDbCommand())
             {
                 cm.Connection = con;
@@ -100,7 +95,7 @@ namespace CapaDatos
         public List<Cliente> ListarCliente()
         {
             List<Cliente> list = new List<Cliente>();
-            using (OleDbConnection con = new OleDbConnection(ConectarDB()))
+            using (OleDbConnection con = new OleDbConnection(cn.ConectarDB()))
             using (OleDbCommand cm = new OleDbCommand("SELECT * FROM Clientes WHERE Estado=true", con))
             {
                 con.Open();
@@ -129,7 +124,7 @@ namespace CapaDatos
         public List<Cliente> ListarClientePapelera()
         {
             List<Cliente> list = new List<Cliente>();
-            using (OleDbConnection con = new OleDbConnection(ConectarDB()))
+            using (OleDbConnection con = new OleDbConnection(cn.ConectarDB()))
             using (OleDbCommand cm = new OleDbCommand("SELECT * FROM Clientes WHERE Estado=false", con))
             {
                 con.Open();
@@ -158,7 +153,7 @@ namespace CapaDatos
         public List<Cliente> BuscarCliente(string letra)
         {
             List<Cliente> list = new List<Cliente>();
-            using (OleDbConnection con = new OleDbConnection(ConectarDB()))
+            using (OleDbConnection con = new OleDbConnection(cn.ConectarDB()))
             using (OleDbCommand cm = new OleDbCommand(
                 "SELECT IdCliente, Apellido, Nombre, Documento, Telefono, Domicilio, Estado " +
                 "FROM Clientes " +
@@ -193,7 +188,7 @@ namespace CapaDatos
         public List<Cliente> BuscarPapelera(string letra)
         {
             List<Cliente> list = new List<Cliente>();
-            using (OleDbConnection con = new OleDbConnection(ConectarDB()))
+            using (OleDbConnection con = new OleDbConnection(cn.ConectarDB()))
             using (OleDbCommand cm = new OleDbCommand(
                 "SELECT IdCliente, Apellido, Nombre, Documento, Telefono, Domicilio, Estado " +
                 "FROM Clientes " +

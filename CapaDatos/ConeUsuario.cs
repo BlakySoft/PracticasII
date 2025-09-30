@@ -10,12 +10,9 @@ namespace CapaDatos
 {
     public class ConeUsuario
     {
-        public string ConectarDB()
-        {
-            OleDbConnection con = new OleDbConnection("Provider = Microsoft.Jet.OLEDB.4.0; Data Source =|DataDirectory|DB.mdb;");
-            string cadenaconexion = ("Provider =Microsoft.Jet.OLEDB.4.0; Data Source =|DataDirectory|DB.mdb;");
-            return cadenaconexion;
-        }
+        #region conectar a BD
+        Conexion cn = new Conexion();
+        #endregion
 
         static ConeUsuario conexion = new ConeUsuario();
 
@@ -26,7 +23,7 @@ namespace CapaDatos
 
             bool xst = false;
 
-            using (OleDbConnection con = new OleDbConnection(conexion.ConectarDB()))
+            using (OleDbConnection con = new OleDbConnection(conexion.cn.ConectarDB()))
             {
                 try
                 {

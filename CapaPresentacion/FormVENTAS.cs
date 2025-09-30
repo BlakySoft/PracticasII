@@ -170,6 +170,7 @@ namespace CapaPresentacion
                     con.Close();
                 }
 
+                //Imprimir ticket
                 PrintDocument pd = new PrintDocument();
                 pd.PrintPage += new PrintPageEventHandler(ImprimirGrilla);
                 PrintPreviewDialog printPreview = new PrintPreviewDialog();

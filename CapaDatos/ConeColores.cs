@@ -10,18 +10,16 @@ namespace CapaDatos
 {
     public class ConeColores
     {
-        public string ConectarDB()
-        {
-            OleDbConnection con = new OleDbConnection("Provider = Microsoft.Jet.OLEDB.4.0; Data Source =|DataDirectory|DB.mdb;");
-            string cadenaconexion = ("Provider =Microsoft.Jet.OLEDB.4.0; Data Source =|DataDirectory|DB.mdb;");
-            return cadenaconexion;
-        }
+        #region Conexion a BD
+        Conexion cn = new Conexion();
+        #endregion
+        
         public void Agregar(Colores Color)
         {
             OleDbConnection cone = new OleDbConnection();
             OleDbCommand cm = new OleDbCommand();
 
-            cone.ConnectionString = ConectarDB();
+            cone.ConnectionString = cn.ConectarDB();
             cm.CommandType = System.Data.CommandType.Text;
             cm.CommandText = "insert into Color (Descripcion, Estado) values (@Descripcion, true)";
             cm.Connection = cone;
@@ -36,7 +34,7 @@ namespace CapaDatos
             OleDbConnection cone = new OleDbConnection();
             OleDbCommand cm = new OleDbCommand();
 
-            cone.ConnectionString = ConectarDB();
+            cone.ConnectionString = cn.ConectarDB();
             cm.CommandType = System.Data.CommandType.Text;
 
 
@@ -54,7 +52,7 @@ namespace CapaDatos
             OleDbConnection cone = new OleDbConnection();
             OleDbCommand cm = new OleDbCommand();
 
-            cone.ConnectionString = ConectarDB();
+            cone.ConnectionString = cn.ConectarDB();
             cm.CommandType = System.Data.CommandType.Text;
 
 
@@ -70,7 +68,7 @@ namespace CapaDatos
             OleDbConnection cone = new OleDbConnection();
             OleDbCommand cm = new OleDbCommand();
 
-            cone.ConnectionString = ConectarDB();
+            cone.ConnectionString = cn.ConectarDB();
             cm.CommandType = System.Data.CommandType.Text;
 
 
@@ -89,7 +87,7 @@ namespace CapaDatos
 
             OleDbDataReader reader;
 
-            con.ConnectionString = ConectarDB();
+            con.ConnectionString = cn.ConectarDB();
             cm.CommandType = System.Data.CommandType.Text;
             cm.CommandText = "SELECT * FROM Color WHERE Estado = false";
             cm.Connection = con;
@@ -118,7 +116,7 @@ namespace CapaDatos
 
             OleDbDataReader reader;
 
-            con.ConnectionString = ConectarDB();
+            con.ConnectionString = cn.ConectarDB();
             cm.CommandType = System.Data.CommandType.Text;
             cm.CommandText = "SELECT * FROM Color WHERE Estado = true";
             cm.Connection = con;
@@ -142,7 +140,7 @@ namespace CapaDatos
         public List<Colores> BuscarColor(string letra)
         {
             List<Colores> list = new List<Colores>();
-            using (OleDbConnection cone = new OleDbConnection(ConectarDB()))
+            using (OleDbConnection cone = new OleDbConnection(cn.ConectarDB()))
             using (OleDbCommand cm = cone.CreateCommand())
             {
                 cm.CommandType = System.Data.CommandType.Text;
@@ -169,7 +167,7 @@ namespace CapaDatos
         public List<Colores> BuscarPapelera(string letra)
         {
             List<Colores> list = new List<Colores>();
-            using (OleDbConnection cone = new OleDbConnection(ConectarDB()))
+            using (OleDbConnection cone = new OleDbConnection(cn.ConectarDB()))
             using (OleDbCommand cm = cone.CreateCommand())
             {
                 cm.CommandType = System.Data.CommandType.Text;

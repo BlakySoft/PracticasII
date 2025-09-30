@@ -12,18 +12,15 @@ namespace CapaDatos
 {
     public class ConeMarca
     {
-        public string ConectarDB()
-        {
-            OleDbConnection con = new OleDbConnection("Provider = Microsoft.Jet.OLEDB.4.0; Data Source =|DataDirectory|DB.mdb;");
-            string cadenaconexion = ("Provider =Microsoft.Jet.OLEDB.4.0; Data Source =|DataDirectory|DB.mdb;");
-            return cadenaconexion;
-        }
+        #region conexion a BD
+        Conexion cn = new Conexion();
+        #endregion
         public void Agregar(Marca Marcas)
         {
             OleDbConnection cone = new OleDbConnection();
             OleDbCommand cm = new OleDbCommand();
 
-            cone.ConnectionString = ConectarDB();
+            cone.ConnectionString = cn.ConectarDB();
             cm.CommandType = System.Data.CommandType.Text;
             cm.CommandText = "insert into Marcas (Descripcion, Estado) values (@Descripcion, true)";
             cm.Connection = cone;
@@ -38,7 +35,7 @@ namespace CapaDatos
             OleDbConnection cone = new OleDbConnection();
             OleDbCommand cm = new OleDbCommand();
 
-            cone.ConnectionString = ConectarDB();
+            cone.ConnectionString = cn.ConectarDB();
             cm.CommandType = System.Data.CommandType.Text;
 
 
@@ -56,7 +53,7 @@ namespace CapaDatos
             OleDbConnection cone = new OleDbConnection();
             OleDbCommand cm = new OleDbCommand();
 
-            cone.ConnectionString = ConectarDB();
+            cone.ConnectionString = cn.ConectarDB();
             cm.CommandType = System.Data.CommandType.Text;
 
 
@@ -72,7 +69,7 @@ namespace CapaDatos
             OleDbConnection cone = new OleDbConnection();
             OleDbCommand cm = new OleDbCommand();
 
-            cone.ConnectionString = ConectarDB();
+            cone.ConnectionString = cn.ConectarDB();
             cm.CommandType = System.Data.CommandType.Text;
 
 
@@ -91,7 +88,7 @@ namespace CapaDatos
 
             OleDbDataReader reader;
 
-            con.ConnectionString = ConectarDB();
+            con.ConnectionString = cn.ConectarDB();
             cm.CommandType = System.Data.CommandType.Text;
             cm.CommandText = "SELECT * FROM Marcas WHERE Estado = false";
             cm.Connection = con;
@@ -120,7 +117,7 @@ namespace CapaDatos
 
             OleDbDataReader reader;
 
-            con.ConnectionString = ConectarDB();
+            con.ConnectionString = cn.ConectarDB();
             cm.CommandType = System.Data.CommandType.Text;
             cm.CommandText = "SELECT * FROM Marcas WHERE Estado = true";
             cm.Connection = con;
@@ -144,7 +141,7 @@ namespace CapaDatos
         public List<Marca> BuscarMarca(string letra)
         {
             List<Marca> list = new List<Marca>();
-            using (OleDbConnection cone = new OleDbConnection(ConectarDB()))
+            using (OleDbConnection cone = new OleDbConnection(cn.ConectarDB()))
             using (OleDbCommand cm = cone.CreateCommand())
             {
                 cm.CommandType = System.Data.CommandType.Text;
@@ -171,7 +168,7 @@ namespace CapaDatos
         public List<Marca> BuscarPapelera(string letra)
         {
             List<Marca> list = new List<Marca>();
-            using (OleDbConnection cone = new OleDbConnection(ConectarDB()))
+            using (OleDbConnection cone = new OleDbConnection(cn.ConectarDB()))
             using (OleDbCommand cm = cone.CreateCommand())
             {
                 cm.CommandType = System.Data.CommandType.Text;
