@@ -102,6 +102,9 @@
             // 
             this.Grilla.AllowUserToAddRows = false;
             this.Grilla.AllowUserToDeleteRows = false;
+            this.Grilla.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.Grilla.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(216)))), ((int)(((byte)(228)))));
             this.Grilla.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.Grilla.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
@@ -139,6 +142,9 @@
             this.Grilla.TabIndex = 10;
             this.Grilla.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Grilla_CellClick);
             this.Grilla.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Grilla_CellDoubleClick);
+            this.Grilla.SelectionChanged += new System.EventHandler(this.Grilla_SelectionChanged);
+            this.Grilla.SizeChanged += new System.EventHandler(this.Grilla_SizeChanged);
+            this.Grilla.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Grilla_KeyDown);
             // 
             // BtnModificar
             // 
@@ -685,6 +691,7 @@
             this.Name = "FormABMProductos";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Productos";
+            this.Resize += new System.EventHandler(this.FormABMProductos_Resize);
             ((System.ComponentModel.ISupportInitialize)(this.Grilla)).EndInit();
             this.panel2.ResumeLayout(false);
             this.PanelDatos.ResumeLayout(false);

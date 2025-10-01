@@ -33,6 +33,7 @@ namespace CapaPresentacion
             BtnCancelar.Enabled = false;
             BtnEliminar.Enabled = false;
             TxtBuscar.Enabled = true;
+            
         }
         private void LimpiarTextos()
         {
@@ -50,9 +51,9 @@ namespace CapaPresentacion
 
             Grilla.Columns[0].HeaderText = "Codigo";
             Grilla.Columns[0].Width = 85;
-            
+
             Grilla.Columns[1].Width = 120; // Apellido
-            Grilla.Columns[1].HeaderText = "Apellido"; 
+            Grilla.Columns[1].HeaderText = "Apellido";
 
             Grilla.Columns[2].Width = 120; // Nombre
             Grilla.Columns[2].HeaderText = "Nombre";
@@ -68,9 +69,9 @@ namespace CapaPresentacion
 
             Grilla.Columns[6].Visible = false;
 
-            
+           
         }
-        
+
         #endregion
 
         #region Botones
@@ -78,7 +79,7 @@ namespace CapaPresentacion
         {
             using (FormPAPELERAClientes form = new FormPAPELERAClientes())
             {
-                if (form.ShowDialog() == DialogResult.OK )
+                if (form.ShowDialog() == DialogResult.OK)
                 {
                     ListarClientes();
                 }
@@ -100,7 +101,7 @@ namespace CapaPresentacion
             BtnCancelar.Enabled = true;
             #endregion
 
-            
+
         }
         private void BtnCancelar_Click(object sender, EventArgs e)
         {
@@ -287,7 +288,7 @@ namespace CapaPresentacion
             }
             finally
             {
-               
+
             }
 
         }
@@ -303,17 +304,11 @@ namespace CapaPresentacion
 
         #region Interacciones con Formulario
 
-        private void Grilla_KeyDown(object sender, KeyEventArgs e)
+        private void Grilla_SelectionChanged(object sender, EventArgs e) //Carga los datos del cliente seleccionado en los TextBox
         {
-            if (e.KeyCode == Keys.Up || e.KeyCode == Keys.Down)
+            if (Grilla.CurrentRow != null)
             {
-                e.Handled = false; // Permitir la navegación con las flechas
-
-                BtnModificar.Enabled = true;   
-
-
-                int rowIndex = Grilla.CurrentCell.RowIndex;
-
+                var rowIndex = Grilla.CurrentRow.Index;
 
                 LblIdCliente.Text = Grilla.Rows[rowIndex].Cells[0].Value.ToString();
                 TxtApellido.Text = Grilla.Rows[rowIndex].Cells[1].Value.ToString();
@@ -322,14 +317,29 @@ namespace CapaPresentacion
                 TxtTelefono.Text = Grilla.Rows[rowIndex].Cells[4].Value.ToString();
                 TxtDomicilio.Text = Grilla.Rows[rowIndex].Cells[5].Value.ToString();
 
+
             }
-            else if (e.KeyCode == Keys.Escape)
+        }
+
+        private void Grilla_KeyDown(object sender, KeyEventArgs e) //Navegación con flechas y Enter
+        {
+            if (e.KeyCode == Keys.Up || e.KeyCode == Keys.Down)
             {
-                BtnCancelar.PerformClick(); // Simular clic en el botón Cancelar
+                e.Handled = false; // Permitir la navegación con las flechas
+
+                BtnModificar.Enabled = true;
+                BtnEliminar.Enabled = true;
+
+
             }
             else if (e.KeyCode == Keys.Enter)
             {
                 BtnModificar.PerformClick(); // Simular clic en el botón Modificar
+                e.Handled = true; // Evitar el sonido de "ding"
+            }
+            else if(e.KeyCode == Keys.Delete)
+            {
+                BtnEliminar.PerformClick(); // Simular clic en el botón Eliminar
                 e.Handled = true; // Evitar el sonido de "ding"
             }
             else
@@ -398,7 +408,7 @@ namespace CapaPresentacion
                 Grilla.Enabled = false;
                 BtnNuevo.Enabled = false;
 
-                TxtApellido.Focus(); 
+                TxtApellido.Focus();
             }
             catch (Exception)
             {
@@ -434,7 +444,7 @@ namespace CapaPresentacion
             if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != ' ')
             {
                 e.Handled = true;
-               // MessageBox.Show("Solo se permiten letras en el Nombre.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                // MessageBox.Show("Solo se permiten letras en el Nombre.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
@@ -456,7 +466,7 @@ namespace CapaPresentacion
             if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
             {
                 e.Handled = true;
-               // MessageBox.Show("Solo se permiten números en Documento.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                // MessageBox.Show("Solo se permiten números en Documento.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
@@ -485,7 +495,7 @@ namespace CapaPresentacion
             if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
             {
                 e.Handled = true;
-               // MessageBox.Show("Solo se permiten números en Teléfono.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                // MessageBox.Show("Solo se permiten números en Teléfono.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
@@ -515,7 +525,7 @@ namespace CapaPresentacion
                 && e.KeyChar != ' ' && e.KeyChar != '-' && e.KeyChar != '.' && e.KeyChar != '/')
             {
                 e.Handled = true;
-              //  MessageBox.Show("Caracter no válido en Dirección.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                //  MessageBox.Show("Caracter no válido en Dirección.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
@@ -598,21 +608,22 @@ namespace CapaPresentacion
 
         #endregion
 
-        #region Comportamiento del formulario
+        #region Comportamiento visual
         private void Grilla_SizeChanged_1(object sender, EventArgs e) //Redimenciona el ancho de las columnas al redimencionar el formulario
         {
-         GridHelper.ResizeColumns(Grilla);
+            GridHelper.ResizeColumns(Grilla);
         }
 
         private void FormABMClientes_Resize(object sender, EventArgs e) //Redimenciona el ancho de las columnas al redimencionar el formulario
         {
-           GridHelper.ResizeColumns(Grilla);
+            GridHelper.ResizeColumns(Grilla);
         }
+
 
 
         #endregion
 
-
+        
     }
 }
 

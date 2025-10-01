@@ -18,13 +18,13 @@ namespace CapaPresentacion
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            using (FormLogin login = new FormLogin())
-            {
-                if (login.ShowDialog() == DialogResult.OK)
-                {
+            //using (FormLogin login = new FormLogin())
+            //{
+              //  if (login.ShowDialog() == DialogResult.OK)
+                //{
                     Application.Run(new FormMENU());
-                }
-            }
+                //}
+            //}
         }
     }
 }

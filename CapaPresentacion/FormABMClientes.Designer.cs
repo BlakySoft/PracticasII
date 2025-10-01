@@ -133,6 +133,7 @@
             this.Grilla.TabIndex = 3;
             this.Grilla.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Grilla_CellClick);
             this.Grilla.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Grilla_CellDoubleClick);
+            this.Grilla.SelectionChanged += new System.EventHandler(this.Grilla_SelectionChanged);
             this.Grilla.SizeChanged += new System.EventHandler(this.Grilla_SizeChanged_1);
             this.Grilla.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Grilla_KeyDown);
             // 

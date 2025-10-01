@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -29,7 +30,7 @@ namespace CapaPresentacion
             BtnGrabar.Enabled = false;
             BtnCancelar.Enabled = false;
             BtnEliminar.Enabled = false;
-           
+           GridHelper.ResizeColumns(Grilla);
         }
         private void CargarCbo()
         {
@@ -279,7 +280,6 @@ namespace CapaPresentacion
             PanelDatos.Enabled = false;
             #endregion
             LimpiarTextos();
-            ListarProveedores();
             BtnNuevo.Focus();
         }
         private void BtnPapelera_Click(object sender, EventArgs e)
@@ -403,6 +403,11 @@ namespace CapaPresentacion
                 e.Handled = true;
                 SelectNextControl((Control)sender, true, true, true, true);
             }
+
+            if (e.KeyChar == (char)Keys.Escape)
+            {
+                BtnCancelar.PerformClick();
+            }
         }
         private void TxtDocumento_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -411,6 +416,11 @@ namespace CapaPresentacion
                 e.Handled = true;
               //  MessageBox.Show("Solo se permiten números en el Cuit.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
+            }
+
+            if (e.KeyChar == (char)Keys.Escape)
+            {
+                BtnCancelar.PerformClick();
             }
 
 
@@ -450,6 +460,11 @@ namespace CapaPresentacion
                 e.Handled = true;
                 this.SelectNextControl((Control)sender, true, true, true, true);
             }
+
+            if (e.KeyChar == (char)Keys.Escape)
+            {
+                BtnCancelar.PerformClick();
+            }
         }
         private void TxtDomicilio_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -471,6 +486,11 @@ namespace CapaPresentacion
                 e.Handled = true;
                 this.SelectNextControl((Control)sender, true, true, true, true);
             }
+
+            if (e.KeyChar == (char)Keys.Escape)
+            {
+                BtnCancelar.PerformClick();
+            }
         }
         private void CboIdLocalidad_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -487,13 +507,79 @@ namespace CapaPresentacion
 
                 SelectNextControl((Control)sender, true, true, true, true);
             }
+
+            if (e.KeyChar == (char)Keys.Escape)
+            {
+                BtnCancelar.PerformClick();
+            }
         }
 
         #endregion
 
-        private void TxtBuscar_TextChanged(object sender, KeyPressEventArgs e)
-        {
+        #region Comportamiento visual
+        
 
+        private void Grilla_SizeChanged(object sender, EventArgs e)
+        {
+            GridHelper.ResizeColumns(Grilla);
+        }
+
+        private void FormABMProveedores_Resize(object sender, EventArgs e)
+        {
+            GridHelper.ResizeColumns(Grilla);
+        }
+        #endregion
+
+        private void Grilla_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Up || e.KeyCode == Keys.Down)
+            {
+                e.Handled = false;
+
+                BtnModificar.Enabled = true;
+                BtnEliminar.Enabled = true;
+
+
+            }
+            else if (e.KeyCode == Keys.Enter)
+            {
+                BtnModificar.PerformClick(); // Simular clic en el botón Modificar
+                e.Handled = true; // Evitar el sonido de "ding"
+            }
+            else if (e.KeyCode == Keys.Delete)
+            {
+                BtnEliminar.PerformClick(); // Simular clic en el botón Eliminar
+                e.Handled = true; // Evitar el sonido de "ding"
+            }
+            else
+            {
+                e.Handled = true; // Bloquear otras teclas
+            }
+        }
+
+        private void Grilla_SelectionChanged(object sender, EventArgs e)
+        {
+            if (Grilla.CurrentRow != null)
+            {
+                var rowIndex = Grilla.CurrentRow.Index;
+
+                LblIdProveedor.Text = Grilla.Rows[rowIndex].Cells[0].Value.ToString();
+                TxtRazon.Text = Grilla.Rows[rowIndex].Cells[1].Value.ToString();
+                TxtDocumento.Text = Grilla.Rows[rowIndex].Cells[2].Value.ToString();
+                TxtTelefono.Text = Grilla.Rows[rowIndex].Cells[3].Value.ToString();
+                TxtDomicilio.Text = Grilla.Rows[rowIndex].Cells[4].Value.ToString();
+                VarLocalidad = Convert.ToInt32(Grilla.Rows[rowIndex].Cells[5].Value.ToString());
+
+                ConeLocalidades cone = new ConeLocalidades();
+                _ = new Localidad
+                {
+                    IdLocalidad = VarLocalidad
+                };
+
+                CboIdLocalidad.ValueMember = "IdLocalidad";
+                CboIdLocalidad.DisplayMember = "Descripcion";
+                CboIdLocalidad.DataSource = cone.BuscarIdLocalidad(VarLocalidad);
+            }
         }
     }
 }
