@@ -15,7 +15,7 @@ namespace CapaPresentacion
     public partial class FormBuscarCliente: Form
     {
         #region Metodos y declaraciones 
-        string IdCliente, Apellido, Nombre;
+        string IdCliente , Nombre;
         public FormBuscarCliente()
         {
             InitializeComponent();

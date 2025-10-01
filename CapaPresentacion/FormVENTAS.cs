@@ -19,7 +19,7 @@ namespace CapaPresentacion
         #region Declaraciones y cponexion
         public decimal Stock, Cantidad, Precio, Subtotal, Total, Resultado;
         public int IdCliente, VarMetodo;
-
+        Conexion cn = new Conexion();
         OleDbConnection con = new OleDbConnection("Provider = Microsoft.Jet.OLEDB.4.0; Data Source =|DataDirectory|DB.mdb;");
         #endregion 
 
@@ -127,7 +127,7 @@ namespace CapaPresentacion
                 cone.AgregarPedido(nuevaVenta);
 
                 int idVenta;
-                using (OleDbConnection con = new OleDbConnection(cone.ConectarDB()))
+                using (OleDbConnection con = new OleDbConnection(cn.ConectarDB()))
                 {
                     con.Open();
                     using (OleDbCommand cmd = new OleDbCommand("SELECT MAX(IdVenta) FROM Ventas", con))

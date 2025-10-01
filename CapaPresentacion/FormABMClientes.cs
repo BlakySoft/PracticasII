@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
 using System.Drawing.Printing;
+using System.Diagnostics.CodeAnalysis;
 
 namespace CapaPresentacion
 {
@@ -36,7 +37,7 @@ namespace CapaPresentacion
         private void LimpiarTextos()
         {
             LblIdCliente.Text = "";
-            TxtApellido.Clear(); // NUEVO
+            TxtApellido.Clear();
             TxtNombre.Clear();
             TxtDocumento.Clear();
             TxtTelefono.Clear();
@@ -49,19 +50,27 @@ namespace CapaPresentacion
 
             Grilla.Columns[0].HeaderText = "Codigo";
             Grilla.Columns[0].Width = 85;
+            
             Grilla.Columns[1].Width = 120; // Apellido
-            Grilla.Columns[2].Width = 120; // Nombre
-            Grilla.Columns[3].Width = 130;
-            Grilla.Columns[4].Width = 130;
-            Grilla.Columns[5].Width = 300;
+            Grilla.Columns[1].HeaderText = "Apellido"; 
 
-            Grilla.Columns[1].HeaderText = "Apellido"; // NUEVO
+            Grilla.Columns[2].Width = 120; // Nombre
             Grilla.Columns[2].HeaderText = "Nombre";
+
+            Grilla.Columns[3].Width = 130;
             Grilla.Columns[3].HeaderText = "Documento";
+
+            Grilla.Columns[4].Width = 130;
             Grilla.Columns[4].HeaderText = "Teléfono";
+
+            Grilla.Columns[5].Width = 300;
             Grilla.Columns[5].HeaderText = "Domicilio";
+
             Grilla.Columns[6].Visible = false;
+
+            
         }
+        
         #endregion
 
         #region Botones
@@ -90,6 +99,8 @@ namespace CapaPresentacion
             BtnModificar.Enabled = false;
             BtnCancelar.Enabled = true;
             #endregion
+
+            
         }
         private void BtnCancelar_Click(object sender, EventArgs e)
         {
@@ -291,6 +302,42 @@ namespace CapaPresentacion
         #endregion
 
         #region Interacciones con Formulario
+
+        private void Grilla_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Up || e.KeyCode == Keys.Down)
+            {
+                e.Handled = false; // Permitir la navegación con las flechas
+
+                BtnModificar.Enabled = true;   
+
+
+                int rowIndex = Grilla.CurrentCell.RowIndex;
+
+
+                LblIdCliente.Text = Grilla.Rows[rowIndex].Cells[0].Value.ToString();
+                TxtApellido.Text = Grilla.Rows[rowIndex].Cells[1].Value.ToString();
+                TxtNombre.Text = Grilla.Rows[rowIndex].Cells[2].Value.ToString();
+                TxtDocumento.Text = Grilla.Rows[rowIndex].Cells[3].Value.ToString();
+                TxtTelefono.Text = Grilla.Rows[rowIndex].Cells[4].Value.ToString();
+                TxtDomicilio.Text = Grilla.Rows[rowIndex].Cells[5].Value.ToString();
+
+            }
+            else if (e.KeyCode == Keys.Escape)
+            {
+                BtnCancelar.PerformClick(); // Simular clic en el botón Cancelar
+            }
+            else if (e.KeyCode == Keys.Enter)
+            {
+                BtnModificar.PerformClick(); // Simular clic en el botón Modificar
+                e.Handled = true; // Evitar el sonido de "ding"
+            }
+            else
+            {
+                e.Handled = true; // Bloquear otras teclas
+            }
+        }
+
         private void TxtBuscar_TextChanged(object sender, EventArgs e)
         {
             if (TxtBuscar.Text != "")
@@ -315,7 +362,7 @@ namespace CapaPresentacion
                 if (e.RowIndex < 0) return; // Evita tocar la cabecera
 
                 LblIdCliente.Text = Grilla.Rows[e.RowIndex].Cells[0].Value.ToString();
-                TxtApellido.Text = Grilla.Rows[e.RowIndex].Cells[1].Value.ToString(); // NUEVO
+                TxtApellido.Text = Grilla.Rows[e.RowIndex].Cells[1].Value.ToString();
                 TxtNombre.Text = Grilla.Rows[e.RowIndex].Cells[2].Value.ToString();
                 TxtDocumento.Text = Grilla.Rows[e.RowIndex].Cells[3].Value.ToString();
                 TxtTelefono.Text = Grilla.Rows[e.RowIndex].Cells[4].Value.ToString();
@@ -336,7 +383,7 @@ namespace CapaPresentacion
             try
             {
                 LblIdCliente.Text = Grilla.Rows[e.RowIndex].Cells[0].Value.ToString();
-                TxtApellido.Text = Grilla.Rows[e.RowIndex].Cells[1].Value.ToString(); // NUEVO
+                TxtApellido.Text = Grilla.Rows[e.RowIndex].Cells[1].Value.ToString();
                 TxtNombre.Text = Grilla.Rows[e.RowIndex].Cells[2].Value.ToString();
                 TxtDocumento.Text = Grilla.Rows[e.RowIndex].Cells[3].Value.ToString();
                 TxtTelefono.Text = Grilla.Rows[e.RowIndex].Cells[4].Value.ToString();
@@ -351,7 +398,7 @@ namespace CapaPresentacion
                 Grilla.Enabled = false;
                 BtnNuevo.Enabled = false;
 
-                TxtApellido.Focus(); // NUEVO
+                TxtApellido.Focus(); 
             }
             catch (Exception)
             {
@@ -361,19 +408,24 @@ namespace CapaPresentacion
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
 
-            // 1️⃣ Validar que solo sean letras, espacios y teclas de control
+            // Validar que solo sean letras, espacios y teclas de control
             if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != ' ')
             {
                 e.Handled = true; // Cancela la tecla
-            //    MessageBox.Show("Solo se permiten letras en el apellido.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                                  //    MessageBox.Show("Solo se permiten letras en el apellido.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
-            // 2️⃣ Si el usuario presiona Enter, mover al siguiente TextBox
+            // Si el usuario presiona Enter, mover al siguiente TextBox
             if (e.KeyChar == (char)Keys.Enter)
             {
                 e.Handled = true; // Evita el sonido de "ding"
                 this.SelectNextControl((Control)sender, true, true, true, true);
+            }
+            else if (e.KeyChar == (char)Keys.Escape)
+            {
+                BtnCancelar.PerformClick(); // Simular clic en el botón Cancelar
+
             }
         }
         private void TxtNombre_KeyPress(object sender, KeyPressEventArgs e)
@@ -391,6 +443,11 @@ namespace CapaPresentacion
             {
                 e.Handled = true;
                 this.SelectNextControl((Control)sender, true, true, true, true);
+            }
+            else if (e.KeyChar == (char)Keys.Escape)
+            {
+                BtnCancelar.PerformClick(); // Simular clic en el botón Cancelar
+
             }
         }
         private void TxtDocumento_KeyPress(object sender, KeyPressEventArgs e)
@@ -416,6 +473,11 @@ namespace CapaPresentacion
                 e.Handled = true;
                 this.SelectNextControl((Control)sender, true, true, true, true);
             }
+            else if (e.KeyChar == (char)Keys.Escape)
+            {
+                BtnCancelar.PerformClick(); // Simular clic en el botón Cancelar
+
+            }
         }
         private void TxtTelefono_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -439,6 +501,11 @@ namespace CapaPresentacion
             {
                 e.Handled = true;
                 this.SelectNextControl((Control)sender, true, true, true, true);
+            }
+            else if (e.KeyChar == (char)Keys.Escape)
+            {
+                BtnCancelar.PerformClick(); // Simular clic en el botón Cancelar
+
             }
         }
         private void TxtDomicilio_KeyPress(object sender, KeyPressEventArgs e)
@@ -464,6 +531,11 @@ namespace CapaPresentacion
             {
                 e.Handled = true;
                 this.SelectNextControl((Control)sender, true, true, true, true);
+            }
+            else if (e.KeyChar == (char)Keys.Escape)
+            {
+                BtnCancelar.PerformClick(); // Simular clic en el botón Cancelar
+
             }
         }
         #endregion
@@ -517,9 +589,30 @@ namespace CapaPresentacion
 
 
 
+
+
+
+
+
+
+
         #endregion
 
-        
+        #region Comportamiento del formulario
+        private void Grilla_SizeChanged_1(object sender, EventArgs e) //Redimenciona el ancho de las columnas al redimencionar el formulario
+        {
+         GridHelper.ResizeColumns(Grilla);
+        }
+
+        private void FormABMClientes_Resize(object sender, EventArgs e) //Redimenciona el ancho de las columnas al redimencionar el formulario
+        {
+           GridHelper.ResizeColumns(Grilla);
+        }
+
+
+        #endregion
+
+
     }
 }
 

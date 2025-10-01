@@ -46,7 +46,6 @@ namespace CapaPresentacion
 
         #region Interacciones con formulario
 
-        public event Action ProductoSeleccionado;
         private void TxtBuscar_TextChanged(object sender, EventArgs e)
         {
             if (TxtBuscar.Text != "")
