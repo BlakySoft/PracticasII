@@ -34,7 +34,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.PanelBotones = new System.Windows.Forms.Panel();
-            this.Fecha = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.TxtTotall = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.TxtSubtotall = new System.Windows.Forms.Label();
@@ -57,6 +57,7 @@
             this.TxtStock = new System.Windows.Forms.Label();
             this.TxtCantidad = new System.Windows.Forms.TextBox();
             this.LblTitleStock = new System.Windows.Forms.Label();
+            this.Fecha = new System.Windows.Forms.Label();
             this.TxtCompra = new System.Windows.Forms.Label();
             this.LbCom = new System.Windows.Forms.Label();
             this.LblTitleApellidoNombre = new System.Windows.Forms.Label();
@@ -81,7 +82,6 @@
             this.BtnAgregarProveedor = new FontAwesome.Sharp.IconButton();
             this.BtnBuscarProveedor = new FontAwesome.Sharp.IconButton();
             this.LblRazon = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.PanelBotones.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Grilla)).BeginInit();
             this.panel1.SuspendLayout();
@@ -121,16 +121,16 @@
             this.PanelBotones.Size = new System.Drawing.Size(251, 613);
             this.PanelBotones.TabIndex = 2;
             // 
-            // Fecha
+            // label4
             // 
-            this.Fecha.AutoSize = true;
-            this.Fecha.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Fecha.ForeColor = System.Drawing.Color.Black;
-            this.Fecha.Location = new System.Drawing.Point(57, 18);
-            this.Fecha.Name = "Fecha";
-            this.Fecha.Size = new System.Drawing.Size(86, 19);
-            this.Fecha.TabIndex = 55;
-            this.Fecha.Text = "Producto:";
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.Black;
+            this.label4.Location = new System.Drawing.Point(7, 18);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(97, 19);
+            this.label4.TabIndex = 55;
+            this.label4.Text = "COMPRAS:";
             // 
             // TxtTotall
             // 
@@ -407,6 +407,17 @@
             this.LblTitleStock.TabIndex = 6;
             this.LblTitleStock.Text = "Stock:";
             // 
+            // Fecha
+            // 
+            this.Fecha.AutoSize = true;
+            this.Fecha.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Fecha.ForeColor = System.Drawing.Color.Black;
+            this.Fecha.Location = new System.Drawing.Point(57, 18);
+            this.Fecha.Name = "Fecha";
+            this.Fecha.Size = new System.Drawing.Size(86, 19);
+            this.Fecha.TabIndex = 55;
+            this.Fecha.Text = "Producto:";
+            // 
             // TxtCompra
             // 
             this.TxtCompra.BackColor = System.Drawing.Color.White;
@@ -470,8 +481,7 @@
             // Grilla
             // 
             this.Grilla.AllowUserToAddRows = false;
-            this.Grilla.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.Grilla.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.Grilla.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.Grilla.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(216)))), ((int)(((byte)(228)))));
             this.Grilla.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.Grilla.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
@@ -544,19 +554,16 @@
             // 
             this.Column3.HeaderText = "Cantidad";
             this.Column3.Name = "Column3";
-            this.Column3.Width = 108;
             // 
             // Column4
             // 
             this.Column4.HeaderText = "Precio";
             this.Column4.Name = "Column4";
-            this.Column4.Width = 88;
             // 
             // Column5
             // 
             this.Column5.HeaderText = "Subtotal";
             this.Column5.Name = "Column5";
-            this.Column5.Width = 102;
             // 
             // TxtSubTotal
             // 
@@ -772,17 +779,6 @@
             this.LblRazon.Size = new System.Drawing.Size(18, 19);
             this.LblRazon.TabIndex = 35;
             this.LblRazon.Text = "0";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.Black;
-            this.label4.Location = new System.Drawing.Point(7, 18);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(97, 19);
-            this.label4.TabIndex = 55;
-            this.label4.Text = "COMPRAS:";
             // 
             // FormCOMPRAS
             // 

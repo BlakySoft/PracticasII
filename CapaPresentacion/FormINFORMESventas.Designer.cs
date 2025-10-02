@@ -60,6 +60,7 @@
             // 
             this.Grilla1.AllowUserToAddRows = false;
             this.Grilla1.AllowUserToDeleteRows = false;
+            this.Grilla1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.Grilla1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(216)))), ((int)(((byte)(228)))));
             this.Grilla1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.Grilla1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
@@ -233,6 +234,7 @@
             // 
             this.Grilla2.AllowUserToAddRows = false;
             this.Grilla2.AllowUserToDeleteRows = false;
+            this.Grilla2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.Grilla2.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(216)))), ((int)(((byte)(228)))));
             this.Grilla2.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.Grilla2.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
