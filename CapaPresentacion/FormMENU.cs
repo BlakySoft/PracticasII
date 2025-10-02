@@ -19,15 +19,15 @@ namespace CapaPresentacion
         }
         private void cLIENTESToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            AbrirFrmHijo(new FormABMClientes());
+            AbrirFrmHijo(new FormABMClientes(), cLIENTESToolStripMenuItem1);
         }
         private void pROVEEDORESToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            AbrirFrmHijo(new FormABMProveedores());
+            AbrirFrmHijo(new FormABMProveedores(), pROVEEDORESToolStripMenuItem1);
         }
         private void pRODUCTOSToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            AbrirFrmHijo(new FormABMProductos());
+            AbrirFrmHijo(new FormABMProductos(), pRODUCTOSToolStripMenuItem1);
         }
         private void clientesToolStripMenuItem2_Click(object sender, EventArgs e)
         {
@@ -76,13 +76,30 @@ namespace CapaPresentacion
 
             protected override void OnRenderMenuItemBackground(ToolStripItemRenderEventArgs e)
             {
-                // Fondo del botón al pasar el mouse o al estar seleccionado
-                if (e.Item.Selected || e.Item.Pressed)
+                //// Fondo del botón al pasar el mouse o al estar seleccionado
+                //if (e.Item.Selected || e.Item.Pressed)
+                //{
+                //    e.Graphics.FillRectangle(new SolidBrush(Color.FromArgb(163, 135, 136)), e.Item.ContentRectangle);
+                //}
+                //else
+                //{
+                //    e.Graphics.FillRectangle(new SolidBrush(Color.FromArgb(245, 203, 204)), e.Item.ContentRectangle);
+                //}
+
+                var menuItem = e.Item as ToolStripMenuItem;
+                if (menuItem != null && menuItem.Checked)
                 {
-                    e.Graphics.FillRectangle(new SolidBrush(Color.FromArgb(163, 135, 136)), e.Item.ContentRectangle);
+                    //Fondo del boton activo
+                    e.Graphics.FillRectangle(new SolidBrush(Color.FromArgb(252, 154, 3)), e.Item.ContentRectangle);
                 }
+                else if (e.Item.Selected || e.Item.Pressed)
+                {
+                    // Fondo al pasar el mouse o presionar
+                    e.Graphics.FillRectangle(new SolidBrush(Color.FromArgb(163, 135, 136)), e.Item.ContentRectangle);
+                } 
                 else
                 {
+                    // Fondo por defecto
                     e.Graphics.FillRectangle(new SolidBrush(Color.FromArgb(245, 203, 204)), e.Item.ContentRectangle);
                 }
             }
@@ -102,18 +119,29 @@ namespace CapaPresentacion
             public override Color ImageMarginGradientEnd => Color.FromArgb(245, 203, 204);
         }
         private Form frmActivo = null;
-        public void AbrirFrmHijo(Form FrmHijo)
+        public void AbrirFrmHijo(Form FrmHijo, ToolStripMenuItem menuItem)
         {
             if (frmActivo != null)
                 frmActivo.Close();
+
+            FormHelper.ResetearMenuItems(menuStrip1.Items);
+
             frmActivo = FrmHijo;
             FrmHijo.TopLevel = false;
             FrmHijo.FormBorderStyle = FormBorderStyle.None;
             FrmHijo.Dock = DockStyle.Fill;
+
+            PanelVisual.Controls.Clear();   
             PanelVisual.Controls.Add(FrmHijo);
+
             PanelVisual.Tag = FrmHijo;
             FrmHijo.BringToFront();
             FrmHijo.Show();
+
+            menuItem.Checked = true;
+            menuItem.BackColor = Color.FromArgb(32, 160, 32);
+
+
         }
         private void mARCASToolStripMenuItem_Click(object sender, EventArgs e)
        
@@ -128,11 +156,11 @@ namespace CapaPresentacion
         }
         private void iconMenuItem2_Click(object sender, EventArgs e)
         {
-            AbrirFrmHijo(new FormCOMPRAS());
+            AbrirFrmHijo(new FormCOMPRAS(), iconMenuItem2);
         }
         private void iconMenuItem3_Click(object sender, EventArgs e)
         {
-            AbrirFrmHijo(new FormVENTAS());
+            AbrirFrmHijo(new FormVENTAS(), iconMenuItem3);
         }
         private void vENTASToolStripMenuItem_Click(object sender, EventArgs e)
         {

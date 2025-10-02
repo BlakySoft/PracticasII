@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,8 +18,8 @@ namespace CapaPresentacion
             int n = dgv.Columns.GetColumnCount(DataGridViewElementStates.Visible); // Cantidad de columnas visibles
             int sumaColumnas = dgv.Columns.GetColumnsWidth(DataGridViewElementStates.Visible); // Suma del ancho de las columnas visibles
 
-            int resto = wGrilla - sumaColumnas; // Calculo el espacio restante
-            int sizable = resto / n; // Calculo cuánto le corresponde incrementar a cada columna
+            int resto = wGrilla - sumaColumnas; // Calculo del espacio restante
+            int sizable = resto / n; // Calculo de cuánto le corresponde incrementar a cada columna
 
 
             if (resto > 0) //Si hay espacio restante, lo distribuyo
@@ -39,6 +40,26 @@ namespace CapaPresentacion
                 }
             }
 
+        }
+    }
+
+    public static class FormHelper
+    {
+        public static void ResetearMenuItems(ToolStripItemCollection item)
+        {
+            foreach (ToolStripMenuItem i in item)
+            {
+                if(i is ToolStripMenuItem menuItem)
+                {
+                    menuItem.Checked = false;
+                    menuItem.BackColor = Color.FromArgb(163, 135, 136);
+
+                    if (menuItem.HasDropDownItems)
+                    {
+                        ResetearMenuItems(menuItem.DropDownItems);
+                    }
+                }
+            }
         }
     }
 }
