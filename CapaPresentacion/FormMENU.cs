@@ -104,7 +104,10 @@ namespace CapaPresentacion
                 }
             }
 
-
+            protected override void OnRenderItemCheck(ToolStripItemImageRenderEventArgs e)
+            {
+               //Si no llama a nada no se ve el check
+            }
         }
         public class CustomColorTable : ProfessionalColorTable
         {
@@ -139,6 +142,7 @@ namespace CapaPresentacion
             FrmHijo.Show();
 
             menuItem.Checked = true;
+            
             menuItem.BackColor = Color.FromArgb(32, 160, 32);
 
 
