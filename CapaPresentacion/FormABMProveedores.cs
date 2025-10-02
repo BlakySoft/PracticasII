@@ -30,7 +30,6 @@ namespace CapaPresentacion
             BtnGrabar.Enabled = false;
             BtnCancelar.Enabled = false;
             BtnEliminar.Enabled = false;
-           GridHelper.ResizeColumns(Grilla);
         }
         private void CargarCbo()
         {
@@ -521,12 +520,10 @@ namespace CapaPresentacion
 
         private void Grilla_SizeChanged(object sender, EventArgs e)
         {
-            GridHelper.ResizeColumns(Grilla);
         }
 
         private void FormABMProveedores_Resize(object sender, EventArgs e)
         {
-            GridHelper.ResizeColumns(Grilla);
         }
         #endregion
 

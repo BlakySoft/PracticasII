@@ -1,4 +1,5 @@
 ﻿using CapaDatos;
+using CapaNegocio;
 using CapaNegocios;
 using System;
 using System.Collections.Generic;
@@ -6,11 +7,11 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.OleDb;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Drawing.Printing;
 
 namespace CapaPresentacion
 {
@@ -27,6 +28,7 @@ namespace CapaPresentacion
         public FormVENTAS()
         {
             InitializeComponent();
+            
             CargarCbo();
             Fecha.Text = DateTime.Now.ToString("dd/MM/yyyy");
             #region Enabled no
@@ -61,6 +63,7 @@ namespace CapaPresentacion
             Grilla.Rows.Clear();
             Total = 0;
             BtnNuevo.Focus();
+           
         }
         private void CargarCbo()
         {
@@ -71,6 +74,7 @@ namespace CapaPresentacion
             CboIdMetodo.DataSource = cone.Listar();
             CboIdMetodo.SelectedIndex = 0;
             VarMetodo = int.Parse(CboIdMetodo.SelectedValue.ToString());
+          
         }
         private void LimpiarTextos()
         {
@@ -505,7 +509,7 @@ namespace CapaPresentacion
                     TxtSubTotal.Text = Subtotal.ToString("0,0");
 
                     bool Existe = Grilla.Rows.Cast<DataGridViewRow>().Any(x => x.Cells["Column1"].Value.ToString() == TxtIdProducto.Text);
-
+                  
                     if (!Existe)
                     {
                         if (Grilla.Rows.Count > 15)

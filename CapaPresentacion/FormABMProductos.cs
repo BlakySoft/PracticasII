@@ -38,7 +38,6 @@ namespace CapaPresentacion
             CargarCbo2();
             LimpiarTextos();
             ListarProducto();
-            GridHelper.ResizeColumns(Grilla);
 
         }
         public void ListarProducto()
@@ -700,12 +699,10 @@ namespace CapaPresentacion
         #region Comportamiento visual
         private void Grilla_SizeChanged(object sender, EventArgs e)
         {
-            GridHelper.ResizeColumns(Grilla); 
         }
 
         private void FormABMProductos_Resize(object sender, EventArgs e)
         {
-            GridHelper.ResizeColumns(Grilla);
         }
 
         #endregion

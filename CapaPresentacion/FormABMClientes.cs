@@ -611,12 +611,10 @@ namespace CapaPresentacion
         #region Comportamiento visual
         private void Grilla_SizeChanged_1(object sender, EventArgs e) //Redimenciona el ancho de las columnas al redimencionar el formulario
         {
-            GridHelper.ResizeColumns(Grilla);
         }
 
         private void FormABMClientes_Resize(object sender, EventArgs e) //Redimenciona el ancho de las columnas al redimencionar el formulario
         {
-            GridHelper.ResizeColumns(Grilla);
         }
 
 
