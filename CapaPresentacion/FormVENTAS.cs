@@ -222,23 +222,23 @@ namespace CapaPresentacion
 
             Graphics g = e.Graphics;
 
-            Font font = new Font("Arial", 9);
-            Font fontBold = new Font("Arial", 9, FontStyle.Bold);
-            Font fontHeader = new Font("Arial", 11, FontStyle.Bold);
+            Font font = new Font("Arial", 7);
+            Font fontBold = new Font("Arial", 7, FontStyle.Bold);
+            Font fontHeader = new Font("Arial", 9, FontStyle.Bold);
 
             float margenIzquierdo = 10;
             float y = 20;
-            float anchoTicket = 320;
+            float anchoTicket = 188;
 
                     string tienda = "Lis Showroom";
-            SizeF anchoTienda = g.MeasureString(tienda, fontHeader);
-            g.DrawString(tienda, fontHeader, Brushes.Black, (anchoTicket - anchoTienda.Width) / 2, y);
+            //SizeF anchoTienda = g.MeasureString(tienda, fontHeader);
+            g.DrawString(tienda, fontHeader, Brushes.Black,margenIzquierdo, y);
             y += 25;
 
-            string titulo = "TICKET DE VENTA";
-            SizeF anchoTitulo = g.MeasureString(titulo, fontBold);
-            g.DrawString(titulo, fontBold, Brushes.Black, (anchoTicket - anchoTitulo.Width) / 2, y);
-            y += 25;
+            //string titulo = "TICKET DE VENTA";
+            ////SizeF anchoTitulo = g.MeasureString(titulo, fontBold);
+            //g.DrawString(titulo, fontBold, Brushes.Black, margenIzquierdo, y);
+            //y += 25;
 
             g.DrawString("Fecha: " + DateTime.Now.ToString("dd/MM/yyyy HH:mm"), font, Brushes.Black, margenIzquierdo, y);
             y += 25;
@@ -255,18 +255,18 @@ namespace CapaPresentacion
                 }
             }
 
-            float columnaPrecio = anchoProducto + 10;  
-            float columnaCantidad = columnaPrecio + 60;   
-            float columnaSubtotal = columnaCantidad + 60; 
+            float columnaPrecio = anchoProducto - 50;
+            float columnaCantidad = anchoProducto;
+            float columnaSubtotal = columnaCantidad + 40;
 
             // --- Encabezados de columna ---
             g.DrawLine(Pens.Black, margenIzquierdo, y, anchoTicket, y);
             y += 5;
 
             g.DrawString("Producto", fontBold, Brushes.Black, margenIzquierdo, y);
-            g.DrawString("Precio", fontBold, Brushes.Black, columnaPrecio, y);
-            g.DrawString("Cantidad", fontBold, Brushes.Black, columnaCantidad, y);
-            g.DrawString("Subtotal", fontBold, Brushes.Black, columnaSubtotal, y);
+            g.DrawString("Cantidad", fontBold, Brushes.Black,columnaCantidad , y);
+            g.DrawString("Precio", fontBold, Brushes.Black,columnaPrecio , y);
+            //g.DrawString("Subtotal", fontBold, Brushes.Black,columnaSubtotal , y);
             y += 20;
 
             g.DrawLine(Pens.Black, margenIzquierdo, y, anchoTicket, y);
@@ -294,9 +294,9 @@ namespace CapaPresentacion
                     g.DrawString(producto, font, Brushes.Black, rectProducto);
 
                     // Columnas de números alineadas a la derecha
-                    g.DrawString("$" + precio.ToString("N0"), font, Brushes.Black, columnaPrecio + 50, y, sfDerecha);
-                    g.DrawString(cant, font, Brushes.Black, columnaCantidad + 50, y, sfDerecha);
-                    g.DrawString("$" + subtotal.ToString("N0"), font, Brushes.Black, columnaSubtotal + 50, y, sfDerecha);
+                    g.DrawString(cant, font, Brushes.Black, columnaCantidad, y);
+                    g.DrawString("$" + precio.ToString("N0"), font, Brushes.Black, columnaPrecio, y);
+                    //g.DrawString("$" + subtotal.ToString("N0"), font, Brushes.Black, columnaSubtotal + 50, y, sfDerecha);
 
                     y += 20;
                 }
@@ -307,7 +307,7 @@ namespace CapaPresentacion
             y += 15;
 
             // --- Total general ---
-            g.DrawString("TOTAL: $" + totalVenta.ToString("N0"), fontBold, Brushes.Black, columnaSubtotal + 50, y, sfDerecha);
+            g.DrawString("TOTAL: $" + totalVenta.ToString("N0"), fontBold, Brushes.Black,margenIzquierdo, y);
             y += 25;
 
             g.DrawLine(Pens.Black, margenIzquierdo, y, anchoTicket, y);
@@ -316,12 +316,12 @@ namespace CapaPresentacion
             // --- Pie de página centrado ---
             string gracias = "¡Gracias por su compra!";
             SizeF anchoGracias = g.MeasureString(gracias, font);
-            g.DrawString(gracias, font, Brushes.Black, (anchoTicket - anchoGracias.Width) / 2, y);
+            g.DrawString(gracias, font, Brushes.Black,margenIzquierdo, y);
             y += 20;
 
             string mensaje = "Vuelva pronto";
             SizeF anchoMensaje = g.MeasureString(mensaje, font);
-            g.DrawString(mensaje, font, Brushes.Black, (anchoTicket - anchoMensaje.Width) / 2, y);
+            g.DrawString(mensaje, font, Brushes.Black, margenIzquierdo, y);
 
         }
         private void iconButton1_Click(object sender, EventArgs e)
