@@ -1,4 +1,5 @@
 ﻿using CapaNegocios;
+using Microsoft.ReportingServices.ReportProcessing.ReportObjectModel;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -14,6 +15,50 @@ namespace CapaDatos
         #region conexion a BD
         Conexion cn = new Conexion();
         #endregion
+        public bool Validar(Productos prod)
+        {
+            // Lógica para verificar CodeBar
+
+            bool xst = false;
+
+            using (OleDbConnection con = new OleDbConnection(cn.ConectarDB()))
+            {
+                try
+                {
+                    con.Open();
+
+                    string consulta = "SELECT COUNT(*) FROM Productos WHERE BarCode = ?";
+                    using (OleDbCommand com = new OleDbCommand(consulta, con))
+                    {
+                        com.Parameters.AddWithValue("?", prod.BarCode);
+                        
+
+                        int cont = (int)com.ExecuteScalar();
+                        if (cont > 1)
+                        {
+                            throw new Exception("Error: Se encontraron múltiples productos con las mismas credenciales."); //Por las dudas no vaya ser...
+                        }
+                        else
+                        if (cont > 0)
+                        {
+                            xst = true;
+                        }
+
+                    }
+
+
+
+
+                }
+                catch (Exception)
+                {
+
+                }
+            }
+
+
+            return xst;
+        }
         public void Agregar(Productos Prod)
         {
             using (OleDbConnection con = new OleDbConnection(cn.ConectarDB()))
@@ -23,9 +68,10 @@ namespace CapaDatos
                     cm.Connection = con;
                     cm.CommandType = System.Data.CommandType.Text;
                     cm.CommandText = @"INSERT INTO Productos
-                               (Descripcion, Detalle, IdCat, IdMarca, IdColor, PrecioCompra, PrecioVenta, Stock, Estado)
+                               (BarCode, Descripcion, Detalle, IdCat, IdMarca, IdColor, PrecioCompra, PrecioVenta, Stock, Estado)
                                VALUES (@Descripcion, @Detalle, @IdCat, @IdMarca, @IdColor, @PrecioCompra, @PrecioVenta, @Stock, true)";
 
+                    cm.Parameters.AddWithValue("BarCode", Prod.BarCode);
                     cm.Parameters.AddWithValue("Descripcion", Prod.Descripcion);
                     cm.Parameters.AddWithValue("Detalle", Prod.Detalle);
                     cm.Parameters.AddWithValue("IdCat", Prod.IdCat);
@@ -50,7 +96,8 @@ namespace CapaDatos
                     cm.CommandType = System.Data.CommandType.Text;
 
                     cm.CommandText = @"UPDATE Productos
-                               SET Descripcion=@Descripcion,
+                               SET BarCode=@BarCode,
+                                   Descripcion=@Descripcion,
                                    Detalle=@Detalle,
                                    IdCat=@IdCat,
                                    IdMarca=@IdMarca,
@@ -60,6 +107,7 @@ namespace CapaDatos
                                    Stock=@Stock
                                WHERE IdProducto=@IdProducto";
 
+                    cm.Parameters.AddWithValue("BarCode", Prod.BarCode);
                     cm.Parameters.AddWithValue("Descripcion", Prod.Descripcion);
                     cm.Parameters.AddWithValue("Detalle", Prod.Detalle);
                     cm.Parameters.AddWithValue("IdCat", Prod.IdCat);
@@ -264,7 +312,7 @@ namespace CapaDatos
             {
 
                 cm.CommandText = @"
-                SELECT p.IdProducto, p.Descripcion, p.Detalle,
+                SELECT p.IdProducto, p.BarCode, p.Descripcion, p.Detalle,
                        c.IdCat, c.Descripcion AS Categoria,
                        m.IdMarca, m.Descripcion AS Marca,
                        col.IdColor, col.Descripcion AS Color,
@@ -284,6 +332,7 @@ namespace CapaDatos
                         Productos prod = new Productos
                         {
                             IdProducto = reader["IdProducto"] != DBNull.Value ? Convert.ToInt32(reader["IdProducto"]) : 0,
+                            BarCode = reader["BarCode"] != DBNull.Value ? Convert.ToDouble(reader["BarCode"]) : 0,
                             Descripcion = reader["Descripcion"] != DBNull.Value ? reader["Descripcion"].ToString() : string.Empty,
                             Detalle = reader["Detalle"] != DBNull.Value ? reader["Detalle"].ToString() : string.Empty,
                             IdCat = reader["IdCat"] != DBNull.Value ? Convert.ToInt32(reader["IdCat"]) : 0,

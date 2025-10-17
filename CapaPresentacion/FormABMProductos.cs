@@ -26,7 +26,7 @@ namespace CapaPresentacion
         public FormABMProductos()
         {
             InitializeComponent();
-            ConfigurarGrilla();
+            
             BtnModificar.Enabled = false;
             PanelDatos.Enabled = false;
             BtnGrabar.Enabled = false;
@@ -45,23 +45,25 @@ namespace CapaPresentacion
             ConeProductos listar = new ConeProductos();
             Grilla.DataSource = listar.ListarINNERJOIN();
             Grilla.Columns[0].HeaderText = "ID";
-            Grilla.Columns[1].HeaderText = "Descripcion";
-            Grilla.Columns[2].HeaderText = "Detalle";
-            Grilla.Columns[6].HeaderText = "Categoria";
-            Grilla.Columns[7].HeaderText = "Marca";
-            Grilla.Columns[8].HeaderText = "Color";
-            Grilla.Columns[9].HeaderText = "Precio Compra";
-            Grilla.Columns[10].HeaderText = "Precio Venta";
-            Grilla.Columns[11].HeaderText = "Stock";
+            Grilla.Columns[1].HeaderText = "Código de Barras";
+            Grilla.Columns[2].HeaderText = "Descripcion";
+            Grilla.Columns[3].HeaderText = "Detalle";
+            Grilla.Columns[7].HeaderText = "Categoria";
+            Grilla.Columns[8].HeaderText = "Marca";
+            Grilla.Columns[9].HeaderText = "Color";
+            Grilla.Columns[10].HeaderText = "Precio Compra";
+            Grilla.Columns[11].HeaderText = "Precio Venta";
+            Grilla.Columns[12].HeaderText = "Stock";
 
             Grilla.Columns[0].Visible = false;
-            Grilla.Columns[3].Visible = false;
+            Grilla.Columns[1].Visible = false;
             Grilla.Columns[4].Visible = false;
             Grilla.Columns[5].Visible = false;
-            Grilla.Columns[12].Visible = false;
+            Grilla.Columns[6].Visible = false;
+            Grilla.Columns[13].Visible = false;
             Grilla.Columns[1].Width = 175;
             Grilla.Columns[2].Width = 190;
-            Grilla.Columns[3].Width = 0;
+            Grilla.Columns[3].Width = 85;
             Grilla.Columns[4].Width = 0;
             Grilla.Columns[5].Width = 0;
             Grilla.Columns[6].Width = 110;
@@ -70,26 +72,9 @@ namespace CapaPresentacion
             Grilla.Columns[9].Width = 85;
             Grilla.Columns[10].Width = 85;
             Grilla.Columns[11].Width = 65;
-            Grilla.Columns[12].Width = 0;
+            Grilla.Columns[12].Width = 65;
         }
-        private void ConfigurarGrilla()
-        {
-            // Centrar los títulos de las columnas
-            Grilla.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-
-            // Opcional: centrar también el contenido de cada celda
-            foreach (DataGridViewColumn col in Grilla.Columns)
-            {
-                col.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-
-                // Bloquear el redimensionamiento de columnas individualmente
-                col.Resizable = DataGridViewTriState.False;
-            }
-
-            // Bloquear redimensionamiento general
-            Grilla.AllowUserToResizeColumns = false;
-            Grilla.AllowUserToResizeRows = false;
-        }
+        
         private void CargarCbo2()
         {
             ConeColores cone = new ConeColores(); //Colores
@@ -120,6 +105,7 @@ namespace CapaPresentacion
         private void LimpiarTextos()
         {
             LblIdProducto.Text = "";
+            TxtBarCode.Clear();
             TxtDescripcion.Clear();
             TxtStock.Clear();
             TxtPrecioCompra.Clear();
@@ -149,13 +135,18 @@ namespace CapaPresentacion
             CboIdMar.SelectedIndex = -1;
             CboIdCol.SelectedIndex = -1;
             LimpiarTextos();
-            TxtDescripcion.Focus();
+            TxtBarCode.Focus();
         }
         private void BtnGrabar_Click(object sender, EventArgs e)
         {
             try
             {
-             
+                if(string.IsNullOrEmpty(TxtBarCode.Text))
+                {
+                    MessageBox.Show("Ingrese el Código de Barras.", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    TxtBarCode.Focus();
+                    return;
+                }
                 if (string.IsNullOrWhiteSpace(TxtDescripcion.Text))
                 {
                     MessageBox.Show("Ingrese la Descripción.", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -214,6 +205,7 @@ namespace CapaPresentacion
 
                 Productos producto = new Productos
                 {
+                    BarCode = int.Parse(TxtBarCode.Text),
                     Descripcion = TxtDescripcion.Text.Trim(),
                     Detalle = TxtDetalle.Text.Trim(),
                     IdCat = VarCat,
@@ -458,14 +450,15 @@ namespace CapaPresentacion
                 if (e.RowIndex < 0) return; // Evita tocar la cabecera
 
                 LblIdProducto.Text = Grilla.Rows[e.RowIndex].Cells[0].Value?.ToString() ?? "";
-                TxtDescripcion.Text = Grilla.Rows[e.RowIndex].Cells[1].Value?.ToString() ?? "";
-                TxtDetalle.Text = Grilla.Rows[e.RowIndex].Cells[2].Value?.ToString() ?? "";
-                VarCat = Convert.ToInt32(Grilla.Rows[e.RowIndex].Cells[3].Value);
-                VarMar = Convert.ToInt32(Grilla.Rows[e.RowIndex].Cells[4].Value);
-                VarCol = Convert.ToInt32(Grilla.Rows[e.RowIndex].Cells[5].Value);
-                TxtPrecioCompra.Text = Grilla.Rows[e.RowIndex].Cells[9].Value?.ToString() ?? "";
-                TxtPrecioVenta.Text = Grilla.Rows[e.RowIndex].Cells[10].Value?.ToString() ?? "";
-                TxtStock.Text = Grilla.Rows[e.RowIndex].Cells[11].Value?.ToString() ?? "";
+                TxtBarCode.Text = Grilla.Rows[e.RowIndex].Cells[1].Value?.ToString() ?? "";
+                TxtDescripcion.Text = Grilla.Rows[e.RowIndex].Cells[2].Value?.ToString() ?? "";
+                TxtDetalle.Text = Grilla.Rows[e.RowIndex].Cells[3].Value?.ToString() ?? "";
+                VarCat = Convert.ToInt32(Grilla.Rows[e.RowIndex].Cells[4].Value);
+                VarMar = Convert.ToInt32(Grilla.Rows[e.RowIndex].Cells[5].Value);
+                VarCol = Convert.ToInt32(Grilla.Rows[e.RowIndex].Cells[6].Value);
+                TxtPrecioCompra.Text = Grilla.Rows[e.RowIndex].Cells[10].Value?.ToString() ?? "";
+                TxtPrecioVenta.Text = Grilla.Rows[e.RowIndex].Cells[11].Value?.ToString() ?? "";
+                TxtStock.Text = Grilla.Rows[e.RowIndex].Cells[12].Value?.ToString() ?? "";
 
                 // Asignar valores a combos sin recargar DataSource
                 CboIdCat.SelectedValue = VarCat;
@@ -489,16 +482,17 @@ namespace CapaPresentacion
             try
             {
                 LblIdProducto.Text = Grilla.Rows[e.RowIndex].Cells[0].Value.ToString();
-                TxtDescripcion.Text = Grilla.Rows[e.RowIndex].Cells[1].Value.ToString();
-                TxtDetalle.Text = Grilla.Rows[e.RowIndex].Cells[2].Value.ToString();
-                TxtPrecioCompra.Text = Grilla.Rows[e.RowIndex].Cells[6].Value.ToString();
-                TxtPrecioVenta.Text = Grilla.Rows[e.RowIndex].Cells[7].Value.ToString();
-                TxtStock.Text = Grilla.Rows[e.RowIndex].Cells[8].Value.ToString();
+                TxtBarCode.Text = Grilla.Rows[e.RowIndex].Cells[1].Value.ToString();
+                TxtDescripcion.Text = Grilla.Rows[e.RowIndex].Cells[2].Value.ToString();
+                TxtDetalle.Text = Grilla.Rows[e.RowIndex].Cells[3].Value.ToString();
+                TxtPrecioCompra.Text = Grilla.Rows[e.RowIndex].Cells[7].Value.ToString();
+                TxtPrecioVenta.Text = Grilla.Rows[e.RowIndex].Cells[8].Value.ToString();
+                TxtStock.Text = Grilla.Rows[e.RowIndex].Cells[9].Value.ToString();
 
                 // IDs
-                VarCat = Convert.ToInt32(Grilla.Rows[e.RowIndex].Cells[3].Value);
-                VarMar = Convert.ToInt32(Grilla.Rows[e.RowIndex].Cells[4].Value);
-                VarCol = Convert.ToInt32(Grilla.Rows[e.RowIndex].Cells[5].Value);
+                VarCat = Convert.ToInt32(Grilla.Rows[e.RowIndex].Cells[4].Value);
+                VarMar = Convert.ToInt32(Grilla.Rows[e.RowIndex].Cells[5].Value);
+                VarCol = Convert.ToInt32(Grilla.Rows[e.RowIndex].Cells[6].Value);
 
                 nuevo = false;
 
@@ -714,20 +708,44 @@ namespace CapaPresentacion
                 var rowIndex = Grilla.CurrentCell.RowIndex;
 
                 LblIdProducto.Text = Grilla.Rows[rowIndex].Cells[0].Value?.ToString() ?? "";
-                TxtDescripcion.Text = Grilla.Rows[rowIndex].Cells[1].Value?.ToString() ?? "";
-                TxtDetalle.Text = Grilla.Rows[rowIndex].Cells[2].Value?.ToString() ?? "";
-                VarCat = Convert.ToInt32(Grilla.Rows[rowIndex].Cells[3].Value);
-                VarMar = Convert.ToInt32(Grilla.Rows[rowIndex].Cells[4].Value);
-                VarCol = Convert.ToInt32(Grilla.Rows[rowIndex].Cells[5].Value);
-                TxtPrecioCompra.Text = Grilla.Rows[rowIndex].Cells[9].Value?.ToString() ?? "";
-                TxtPrecioVenta.Text = Grilla.Rows[rowIndex].Cells[10].Value?.ToString() ?? "";
-                TxtStock.Text = Grilla.Rows[rowIndex].Cells[11].Value?.ToString() ?? "";
+                TxtBarCode.Text = Grilla.Rows[rowIndex].Cells[1].Value?.ToString() ?? "";
+                TxtDescripcion.Text = Grilla.Rows[rowIndex].Cells[2].Value?.ToString() ?? "";
+                TxtDetalle.Text = Grilla.Rows[rowIndex].Cells[3].Value?.ToString() ?? "";
+                VarCat = Convert.ToInt32(Grilla.Rows[rowIndex].Cells[4].Value);
+                VarMar = Convert.ToInt32(Grilla.Rows[rowIndex].Cells[5].Value);
+                VarCol = Convert.ToInt32(Grilla.Rows[rowIndex].Cells[6].Value);
+                TxtPrecioCompra.Text = Grilla.Rows[rowIndex].Cells[10].Value?.ToString() ?? "";
+                TxtPrecioVenta.Text = Grilla.Rows[rowIndex].Cells[11].Value?.ToString() ?? "";
+                TxtStock.Text = Grilla.Rows[rowIndex].Cells[12].Value?.ToString() ?? "";
 
                 // Asignar valores a combos sin recargar DataSource
                 CboIdCat.SelectedValue = VarCat;
                 CboIdMar.SelectedValue = VarMar;
                 CboIdCol.SelectedValue = VarCol;
 
+            }
+        }
+
+        private void TxtBarCode_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                bool exist;
+                ConeProductos vali = new ConeProductos();
+                Productos bar = new Productos
+                {
+                    BarCode = Double.Parse(TxtBarCode.Text)
+                };
+                exist = vali.Validar(bar);
+
+                if (exist == true)
+                {
+                    MessageBox.Show("El Código de Barras ya existe. Ingrese otro.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    TxtBarCode.Clear();
+                    TxtBarCode.Focus();
+                    return;
+                }
+                TxtDescripcion.Focus();
             }
         }
     }

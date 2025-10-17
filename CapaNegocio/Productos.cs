@@ -9,7 +9,8 @@ namespace CapaNegocios
     public class Productos
     {
         public int IdProducto { get; set; }
-         public string Descripcion { get; set; }
+        public Double BarCode { get; set; }
+        public string Descripcion { get; set; }
         public string Detalle { get; set; }
         public int IdCat { get; set; }
         public int IdMarca { get; set; }
