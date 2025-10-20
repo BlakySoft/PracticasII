@@ -20,12 +20,14 @@ namespace CapaPresentacion
         #region Metodos y declaraciones
 
         Boolean nuevo;
+        
 
         public FormABMClientes()
         {
             InitializeComponent();
             LimpiarTextos();
             ListarClientes();
+            
 
             BtnModificar.Enabled = false;
             PanelDatos.Enabled = false;

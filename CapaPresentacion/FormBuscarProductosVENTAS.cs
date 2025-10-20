@@ -16,7 +16,7 @@ namespace CapaPresentacion
     {
         #region Metodos y Declaraciones
         int IdProducto, Stock;
-        string Descripcion, Detalle;
+        string Descripcion,BarCode, Detalle;
         decimal Precio;
 
         public FormBuscarProducto()
@@ -30,11 +30,14 @@ namespace CapaPresentacion
             ConeProductos listar = new ConeProductos();
             Grilla.DataSource = listar.ListarINNERJOIN();
             Grilla.Columns[0].HeaderText = "Código";
+            Grilla.Columns[1].Visible = false; //BarCode
             Grilla.Columns[3].Visible = false;
-            Grilla.Columns[4].Visible = false;
-            Grilla.Columns[5].Visible = false;
-            Grilla.Columns[9].Visible = false;
-            Grilla.Columns[12].Visible = false;
+            Grilla.Columns[4].Visible = false; //idCat
+            Grilla.Columns[5].Visible = false; //idMarca
+            Grilla.Columns[6].Visible = false; //idColor
+            Grilla.Columns[9].Visible = false; 
+            Grilla.Columns[12].Visible = true; //Stock
+            Grilla.Columns[13].Visible = false; //State
 
             Grilla.Columns[0].Width = 83;
             Grilla.Columns[1].Width = 140;
@@ -77,10 +80,11 @@ namespace CapaPresentacion
                 if (e.RowIndex >= 0)
                 {
                     IdProducto = int.Parse(Grilla.Rows[e.RowIndex].Cells[0].Value.ToString());
-                    Descripcion = Grilla.Rows[e.RowIndex].Cells[1].Value.ToString();
-                    Detalle = Grilla.Rows[e.RowIndex].Cells[2].Value.ToString();
-                    Precio = decimal.Parse(Grilla.Rows[e.RowIndex].Cells[9].Value.ToString()); // Corrige índice
-                    Stock = int.Parse(Grilla.Rows[e.RowIndex].Cells[10].Value.ToString());     // Corrige índice
+                    BarCode = Grilla.Rows[e.RowIndex].Cells[1].Value.ToString();
+                    Descripcion = Grilla.Rows[e.RowIndex].Cells[2].Value.ToString();
+                    Detalle = Grilla.Rows[e.RowIndex].Cells[3].Value.ToString();
+                    Precio = decimal.Parse(Grilla.Rows[e.RowIndex].Cells[10].Value.ToString()); // Corrige índice
+                    Stock = int.Parse(Grilla.Rows[e.RowIndex].Cells[11].Value.ToString());     // Corrige índice
                 }
             }
             catch (Exception)
