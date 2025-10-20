@@ -30,13 +30,15 @@ namespace CapaPresentacion
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
             this.PanelBotones = new System.Windows.Forms.Panel();
+            this.label13 = new System.Windows.Forms.Label();
+            this.TxtBarCode = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.TxtTotal = new System.Windows.Forms.Label();
             this.TxtDetalle = new System.Windows.Forms.Label();
@@ -89,6 +91,8 @@ namespace CapaPresentacion
             // PanelBotones
             // 
             this.PanelBotones.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(234)))), ((int)(((byte)(233)))));
+            this.PanelBotones.Controls.Add(this.label13);
+            this.PanelBotones.Controls.Add(this.TxtBarCode);
             this.PanelBotones.Controls.Add(this.label7);
             this.PanelBotones.Controls.Add(this.TxtTotal);
             this.PanelBotones.Controls.Add(this.TxtDetalle);
@@ -116,8 +120,30 @@ namespace CapaPresentacion
             this.PanelBotones.ForeColor = System.Drawing.Color.Black;
             this.PanelBotones.Location = new System.Drawing.Point(0, 0);
             this.PanelBotones.Name = "PanelBotones";
-            this.PanelBotones.Size = new System.Drawing.Size(260, 613);
+            this.PanelBotones.Size = new System.Drawing.Size(270, 613);
             this.PanelBotones.TabIndex = 2;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(6, 48);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(59, 19);
+            this.label13.TabIndex = 50;
+            this.label13.Text = "|l|l|l|l|l|:";
+            // 
+            // TxtBarCode
+            // 
+            this.TxtBarCode.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TxtBarCode.Enabled = false;
+            this.TxtBarCode.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtBarCode.Location = new System.Drawing.Point(122, 44);
+            this.TxtBarCode.MaxLength = 13;
+            this.TxtBarCode.Name = "TxtBarCode";
+            this.TxtBarCode.Size = new System.Drawing.Size(141, 21);
+            this.TxtBarCode.TabIndex = 49;
+            this.TxtBarCode.TextChanged += new System.EventHandler(this.TxtBarCode_TextChanged);
             // 
             // label7
             // 
@@ -137,7 +163,7 @@ namespace CapaPresentacion
             this.TxtTotal.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.TxtTotal.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtTotal.ForeColor = System.Drawing.Color.Red;
-            this.TxtTotal.Location = new System.Drawing.Point(88, 470);
+            this.TxtTotal.Location = new System.Drawing.Point(88, 511);
             this.TxtTotal.Name = "TxtTotal";
             this.TxtTotal.Size = new System.Drawing.Size(121, 25);
             this.TxtTotal.TabIndex = 39;
@@ -149,7 +175,7 @@ namespace CapaPresentacion
             this.TxtDetalle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.TxtDetalle.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtDetalle.ForeColor = System.Drawing.Color.Black;
-            this.TxtDetalle.Location = new System.Drawing.Point(3, 124);
+            this.TxtDetalle.Location = new System.Drawing.Point(3, 165);
             this.TxtDetalle.Name = "TxtDetalle";
             this.TxtDetalle.Size = new System.Drawing.Size(229, 25);
             this.TxtDetalle.TabIndex = 47;
@@ -159,7 +185,7 @@ namespace CapaPresentacion
             this.lb.AutoSize = true;
             this.lb.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lb.ForeColor = System.Drawing.Color.Black;
-            this.lb.Location = new System.Drawing.Point(3, 470);
+            this.lb.Location = new System.Drawing.Point(3, 511);
             this.lb.Name = "lb";
             this.lb.Size = new System.Drawing.Size(52, 19);
             this.lb.TabIndex = 38;
@@ -176,7 +202,7 @@ namespace CapaPresentacion
             this.BtnMetodo.IconColor = System.Drawing.Color.White;
             this.BtnMetodo.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.BtnMetodo.IconSize = 20;
-            this.BtnMetodo.Location = new System.Drawing.Point(208, 302);
+            this.BtnMetodo.Location = new System.Drawing.Point(208, 343);
             this.BtnMetodo.Name = "BtnMetodo";
             this.BtnMetodo.Size = new System.Drawing.Size(25, 25);
             this.BtnMetodo.TabIndex = 44;
@@ -190,7 +216,7 @@ namespace CapaPresentacion
             this.TxtSubTotal.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.TxtSubTotal.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtSubTotal.ForeColor = System.Drawing.Color.Black;
-            this.TxtSubTotal.Location = new System.Drawing.Point(88, 436);
+            this.TxtSubTotal.Location = new System.Drawing.Point(88, 477);
             this.TxtSubTotal.Name = "TxtSubTotal";
             this.TxtSubTotal.Size = new System.Drawing.Size(135, 24);
             this.TxtSubTotal.TabIndex = 37;
@@ -200,7 +226,7 @@ namespace CapaPresentacion
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(3, 101);
+            this.label3.Location = new System.Drawing.Point(3, 142);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(67, 19);
             this.label3.TabIndex = 46;
@@ -211,7 +237,7 @@ namespace CapaPresentacion
             this.lbsub.AutoSize = true;
             this.lbsub.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbsub.ForeColor = System.Drawing.Color.Black;
-            this.lbsub.Location = new System.Drawing.Point(3, 441);
+            this.lbsub.Location = new System.Drawing.Point(3, 482);
             this.lbsub.Name = "lbsub";
             this.lbsub.Size = new System.Drawing.Size(79, 19);
             this.lbsub.TabIndex = 31;
@@ -223,7 +249,7 @@ namespace CapaPresentacion
             this.CboIdMetodo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CboIdMetodo.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CboIdMetodo.FormattingEnabled = true;
-            this.CboIdMetodo.Location = new System.Drawing.Point(3, 303);
+            this.CboIdMetodo.Location = new System.Drawing.Point(3, 344);
             this.CboIdMetodo.Name = "CboIdMetodo";
             this.CboIdMetodo.Size = new System.Drawing.Size(194, 27);
             this.CboIdMetodo.TabIndex = 43;
@@ -234,7 +260,7 @@ namespace CapaPresentacion
             this.LbCom.AutoSize = true;
             this.LbCom.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LbCom.ForeColor = System.Drawing.Color.Black;
-            this.LbCom.Location = new System.Drawing.Point(3, 408);
+            this.LbCom.Location = new System.Drawing.Point(3, 449);
             this.LbCom.Name = "LbCom";
             this.LbCom.Size = new System.Drawing.Size(58, 19);
             this.LbCom.TabIndex = 40;
@@ -247,7 +273,7 @@ namespace CapaPresentacion
             this.TxtPedido.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.TxtPedido.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtPedido.ForeColor = System.Drawing.Color.Black;
-            this.TxtPedido.Location = new System.Drawing.Point(88, 403);
+            this.TxtPedido.Location = new System.Drawing.Point(88, 444);
             this.TxtPedido.Name = "TxtPedido";
             this.TxtPedido.Size = new System.Drawing.Size(38, 24);
             this.TxtPedido.TabIndex = 41;
@@ -257,7 +283,7 @@ namespace CapaPresentacion
             this.LblIdProducto.AutoSize = true;
             this.LblIdProducto.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LblIdProducto.ForeColor = System.Drawing.Color.Black;
-            this.LblIdProducto.Location = new System.Drawing.Point(3, 44);
+            this.LblIdProducto.Location = new System.Drawing.Point(3, 85);
             this.LblIdProducto.Name = "LblIdProducto";
             this.LblIdProducto.Size = new System.Drawing.Size(86, 19);
             this.LblIdProducto.TabIndex = 4;
@@ -269,9 +295,9 @@ namespace CapaPresentacion
             this.TxtIdProducto.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.TxtIdProducto.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtIdProducto.ForeColor = System.Drawing.Color.Black;
-            this.TxtIdProducto.Location = new System.Drawing.Point(88, 39);
+            this.TxtIdProducto.Location = new System.Drawing.Point(122, 84);
             this.TxtIdProducto.Name = "TxtIdProducto";
-            this.TxtIdProducto.Size = new System.Drawing.Size(102, 22);
+            this.TxtIdProducto.Size = new System.Drawing.Size(132, 22);
             this.TxtIdProducto.TabIndex = 45;
             this.TxtIdProducto.TextChanged += new System.EventHandler(this.TxtIdProducto_TextChanged);
             this.TxtIdProducto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtIdProducto_KeyPress);
@@ -283,7 +309,7 @@ namespace CapaPresentacion
             this.TxtDescripcion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.TxtDescripcion.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtDescripcion.ForeColor = System.Drawing.Color.Black;
-            this.TxtDescripcion.Location = new System.Drawing.Point(3, 72);
+            this.TxtDescripcion.Location = new System.Drawing.Point(3, 113);
             this.TxtDescripcion.Name = "TxtDescripcion";
             this.TxtDescripcion.Size = new System.Drawing.Size(189, 25);
             this.TxtDescripcion.TabIndex = 35;
@@ -295,7 +321,7 @@ namespace CapaPresentacion
             this.TxtPrecio.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.TxtPrecio.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtPrecio.ForeColor = System.Drawing.Color.Black;
-            this.TxtPrecio.Location = new System.Drawing.Point(3, 363);
+            this.TxtPrecio.Location = new System.Drawing.Point(3, 404);
             this.TxtPrecio.Name = "TxtPrecio";
             this.TxtPrecio.Size = new System.Drawing.Size(227, 25);
             this.TxtPrecio.TabIndex = 35;
@@ -305,7 +331,7 @@ namespace CapaPresentacion
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(3, 274);
+            this.label2.Location = new System.Drawing.Point(3, 315);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(138, 19);
             this.label2.TabIndex = 42;
@@ -322,7 +348,7 @@ namespace CapaPresentacion
             this.BtnBuscarProducto.IconColor = System.Drawing.Color.White;
             this.BtnBuscarProducto.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.BtnBuscarProducto.IconSize = 20;
-            this.BtnBuscarProducto.Location = new System.Drawing.Point(198, 71);
+            this.BtnBuscarProducto.Location = new System.Drawing.Point(198, 112);
             this.BtnBuscarProducto.Name = "BtnBuscarProducto";
             this.BtnBuscarProducto.Size = new System.Drawing.Size(25, 25);
             this.BtnBuscarProducto.TabIndex = 40;
@@ -341,7 +367,7 @@ namespace CapaPresentacion
             this.BtnAgregarProducto.IconColor = System.Drawing.Color.White;
             this.BtnAgregarProducto.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.BtnAgregarProducto.IconSize = 20;
-            this.BtnAgregarProducto.Location = new System.Drawing.Point(229, 71);
+            this.BtnAgregarProducto.Location = new System.Drawing.Point(229, 112);
             this.BtnAgregarProducto.Name = "BtnAgregarProducto";
             this.BtnAgregarProducto.Size = new System.Drawing.Size(25, 25);
             this.BtnAgregarProducto.TabIndex = 41;
@@ -354,7 +380,7 @@ namespace CapaPresentacion
             this.LblTitlePrecio.AutoSize = true;
             this.LblTitlePrecio.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LblTitlePrecio.ForeColor = System.Drawing.Color.Black;
-            this.LblTitlePrecio.Location = new System.Drawing.Point(3, 334);
+            this.LblTitlePrecio.Location = new System.Drawing.Point(3, 375);
             this.LblTitlePrecio.Name = "LblTitlePrecio";
             this.LblTitlePrecio.Size = new System.Drawing.Size(64, 19);
             this.LblTitlePrecio.TabIndex = 29;
@@ -365,7 +391,7 @@ namespace CapaPresentacion
             this.LblCantidad.AutoSize = true;
             this.LblCantidad.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LblCantidad.ForeColor = System.Drawing.Color.Black;
-            this.LblCantidad.Location = new System.Drawing.Point(3, 155);
+            this.LblCantidad.Location = new System.Drawing.Point(3, 196);
             this.LblCantidad.Name = "LblCantidad";
             this.LblCantidad.Size = new System.Drawing.Size(84, 19);
             this.LblCantidad.TabIndex = 27;
@@ -378,7 +404,7 @@ namespace CapaPresentacion
             this.TxtStock.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.TxtStock.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtStock.ForeColor = System.Drawing.Color.Black;
-            this.TxtStock.Location = new System.Drawing.Point(3, 240);
+            this.TxtStock.Location = new System.Drawing.Point(3, 281);
             this.TxtStock.Name = "TxtStock";
             this.TxtStock.Size = new System.Drawing.Size(230, 25);
             this.TxtStock.TabIndex = 36;
@@ -389,7 +415,7 @@ namespace CapaPresentacion
             this.TxtCantidad.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.TxtCantidad.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtCantidad.ForeColor = System.Drawing.Color.Black;
-            this.TxtCantidad.Location = new System.Drawing.Point(3, 179);
+            this.TxtCantidad.Location = new System.Drawing.Point(3, 220);
             this.TxtCantidad.Name = "TxtCantidad";
             this.TxtCantidad.Size = new System.Drawing.Size(230, 26);
             this.TxtCantidad.TabIndex = 28;
@@ -400,7 +426,7 @@ namespace CapaPresentacion
             this.LblTitleStock.AutoSize = true;
             this.LblTitleStock.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LblTitleStock.ForeColor = System.Drawing.Color.Black;
-            this.LblTitleStock.Location = new System.Drawing.Point(3, 210);
+            this.LblTitleStock.Location = new System.Drawing.Point(3, 251);
             this.LblTitleStock.Name = "LblTitleStock";
             this.LblTitleStock.Size = new System.Drawing.Size(59, 19);
             this.LblTitleStock.TabIndex = 6;
@@ -540,7 +566,7 @@ namespace CapaPresentacion
             this.BtnAgregarCliente.IconColor = System.Drawing.Color.White;
             this.BtnAgregarCliente.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.BtnAgregarCliente.IconSize = 26;
-            this.BtnAgregarCliente.Location = new System.Drawing.Point(723, 41);
+            this.BtnAgregarCliente.Location = new System.Drawing.Point(713, 41);
             this.BtnAgregarCliente.Name = "BtnAgregarCliente";
             this.BtnAgregarCliente.Size = new System.Drawing.Size(30, 27);
             this.BtnAgregarCliente.TabIndex = 24;
@@ -560,7 +586,7 @@ namespace CapaPresentacion
             this.BtnBuscarCliente.IconColor = System.Drawing.Color.White;
             this.BtnBuscarCliente.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.BtnBuscarCliente.IconSize = 20;
-            this.BtnBuscarCliente.Location = new System.Drawing.Point(687, 41);
+            this.BtnBuscarCliente.Location = new System.Drawing.Point(677, 41);
             this.BtnBuscarCliente.Name = "BtnBuscarCliente";
             this.BtnBuscarCliente.Size = new System.Drawing.Size(30, 27);
             this.BtnBuscarCliente.TabIndex = 23;
@@ -576,7 +602,7 @@ namespace CapaPresentacion
             this.TxtCliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.TxtCliente.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtCliente.ForeColor = System.Drawing.Color.Black;
-            this.TxtCliente.Location = new System.Drawing.Point(100, 39);
+            this.TxtCliente.Location = new System.Drawing.Point(95, 39);
             this.TxtCliente.Name = "TxtCliente";
             this.TxtCliente.Size = new System.Drawing.Size(569, 25);
             this.TxtCliente.TabIndex = 34;
@@ -606,9 +632,9 @@ namespace CapaPresentacion
             this.panel3.Controls.Add(this.LblTitleApellidoNombre);
             this.panel3.Controls.Add(this.LblCliente);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel3.Location = new System.Drawing.Point(260, 0);
+            this.panel3.Location = new System.Drawing.Point(270, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(811, 81);
+            this.panel3.Size = new System.Drawing.Size(801, 81);
             this.panel3.TabIndex = 43;
             // 
             // label1
@@ -638,22 +664,19 @@ namespace CapaPresentacion
             this.Grilla.AllowUserToAddRows = false;
             this.Grilla.AllowUserToResizeColumns = false;
             this.Grilla.AllowUserToResizeRows = false;
-            this.Grilla.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.Grilla.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.Grilla.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(216)))), ((int)(((byte)(228)))));
             this.Grilla.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.Grilla.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
             this.Grilla.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(216)))), ((int)(((byte)(228)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.ActiveCaption;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.Grilla.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle19.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(216)))), ((int)(((byte)(228)))));
+            dataGridViewCellStyle19.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle19.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle19.SelectionBackColor = System.Drawing.SystemColors.ActiveCaption;
+            dataGridViewCellStyle19.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.Grilla.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle19;
             this.Grilla.ColumnHeadersHeight = 50;
             this.Grilla.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.Grilla.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -662,54 +685,55 @@ namespace CapaPresentacion
             this.Column3,
             this.Column4,
             this.Column5});
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.ActiveCaption;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.Grilla.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle22.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle22.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle22.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle22.SelectionBackColor = System.Drawing.SystemColors.ActiveCaption;
+            dataGridViewCellStyle22.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle22.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.Grilla.DefaultCellStyle = dataGridViewCellStyle22;
+            this.Grilla.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Grilla.EnableHeadersVisualStyles = false;
             this.Grilla.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(216)))), ((int)(((byte)(228)))));
-            this.Grilla.Location = new System.Drawing.Point(260, 81);
+            this.Grilla.Location = new System.Drawing.Point(270, 81);
             this.Grilla.MultiSelect = false;
             this.Grilla.Name = "Grilla";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.Grilla.RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle23.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.Grilla.RowHeadersDefaultCellStyle = dataGridViewCellStyle23;
             this.Grilla.RowHeadersVisible = false;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.ActiveCaption;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
-            this.Grilla.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle24.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle24.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle24.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle24.SelectionBackColor = System.Drawing.SystemColors.ActiveCaption;
+            dataGridViewCellStyle24.SelectionForeColor = System.Drawing.Color.White;
+            this.Grilla.RowsDefaultCellStyle = dataGridViewCellStyle24;
             this.Grilla.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.Grilla.Size = new System.Drawing.Size(811, 532);
+            this.Grilla.Size = new System.Drawing.Size(801, 532);
             this.Grilla.TabIndex = 44;
             this.Grilla.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.Grilla_CellEndEdit);
             this.Grilla.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.Grilla_RowsRemoved);
             // 
             // Column1
             // 
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(216)))), ((int)(((byte)(228)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.ActiveCaption;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
-            this.Column1.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle20.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(216)))), ((int)(((byte)(228)))));
+            dataGridViewCellStyle20.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle20.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.SystemColors.ActiveCaption;
+            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.Color.White;
+            this.Column1.DefaultCellStyle = dataGridViewCellStyle20;
             this.Column1.HeaderText = "Código";
             this.Column1.Name = "Column1";
             // 
             // Column2
             // 
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(216)))), ((int)(((byte)(228)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.ActiveCaption;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
-            this.Column2.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle21.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(216)))), ((int)(((byte)(228)))));
+            dataGridViewCellStyle21.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle21.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle21.SelectionBackColor = System.Drawing.SystemColors.ActiveCaption;
+            dataGridViewCellStyle21.SelectionForeColor = System.Drawing.Color.White;
+            this.Column2.DefaultCellStyle = dataGridViewCellStyle21;
             this.Column2.HeaderText = "Descripción";
             this.Column2.Name = "Column2";
             // 
@@ -801,5 +825,7 @@ namespace CapaPresentacion
         private DataGridViewTextBoxColumn Column4;
         private DataGridViewTextBoxColumn Column5;
         private Label label7;
+        private Label label13;
+        private TextBox TxtBarCode;
     }
 }

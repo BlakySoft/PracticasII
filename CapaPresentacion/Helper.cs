@@ -40,9 +40,9 @@ namespace CapaPresentacion
     //            }
     //        }
 
-        
-    //}
 
+    //    }
+    //}
     public static class FormHelper
     {
         public static void ResetearMenuItems(ToolStripItemCollection item)

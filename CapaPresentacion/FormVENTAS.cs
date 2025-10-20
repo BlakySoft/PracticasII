@@ -20,6 +20,7 @@ namespace CapaPresentacion
         #region Declaraciones y cponexion
         public decimal Stock, Cantidad, Precio, Subtotal, Total, Resultado;
         public int IdCliente, VarMetodo;
+        bool exist;
         Conexion cn = new Conexion();
         OleDbConnection con = new OleDbConnection("Provider = Microsoft.Jet.OLEDB.4.0; Data Source =|DataDirectory|DB.mdb;");
         #endregion 
@@ -79,6 +80,7 @@ namespace CapaPresentacion
         private void LimpiarTextos()
         {
             TxtDetalle.Text = "";
+            TxtBarCode.Text = "";
             TxtIdProducto.Text = "";
             TxtCantidad.Text = "1";
             TxtDescripcion.Text = "";
@@ -342,6 +344,7 @@ namespace CapaPresentacion
                 #region EnabledNO
                 //false
                 CboIdMetodo.Enabled = false;
+                TxtBarCode.Enabled = false;
                 BtnMetodo.Enabled = false;
                 Fecha.Enabled = false;
                 BtnGrabar.Enabled = false;
@@ -359,6 +362,7 @@ namespace CapaPresentacion
 
                 #region Limpiar
                 TxtCliente.Text = "";
+                TxtBarCode.Text = "";
                 TxtDescripcion.Text = "";
                 TxtDetalle.Text = "";
                 TxtPrecio.Text = "";
@@ -380,6 +384,7 @@ namespace CapaPresentacion
             //true
             CboIdMetodo.Enabled = true;
             BtnMetodo.Enabled = true;
+            TxtBarCode.Enabled = true;
             BtnGrabar.Enabled = true;
             BtnCancelar.Enabled = true;
             BtnAgregarCliente.Enabled = true;
@@ -405,6 +410,7 @@ namespace CapaPresentacion
             TxtIdProducto.Text = "";
             #endregion
 
+            TxtBarCode.Focus();
             Grilla.Rows.Clear();
             Total = 0;
         }
@@ -444,6 +450,58 @@ namespace CapaPresentacion
         private void TxtIdProducto_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void TxtBarCode_TextChanged(object sender, EventArgs e)
+        {
+            if (TxtBarCode.Text.Length == 13)
+            {
+
+                
+                ConeProductos vali = new ConeProductos();
+                Productos bar = new Productos
+                {
+                    BarCode = Double.Parse(TxtBarCode.Text)
+                };
+                exist = vali.Validar(bar);
+
+                if (exist == true)
+                {
+                    OleDbCommand cm = new OleDbCommand($"SELECT IdProducto, Descripcion, Detalle, Stock, PrecioVenta FROM Productos WHERE BarCode = {TxtBarCode.Text};", con);
+                    con.Open();
+                    OleDbDataReader dr = cm.ExecuteReader();
+                    if (dr.HasRows)
+                    {
+                        while (dr.Read())
+                        {
+                            TxtIdProducto.Text = dr.GetInt32(0).ToString();
+                            TxtDescripcion.Text = dr.GetString(1);
+                            TxtDetalle.Text= dr.GetString(2);
+                            TxtStock.Text = dr.GetInt32(3).ToString();
+                            Precio = dr.GetDecimal(4);
+                            TxtPrecio.Text = Precio.ToString("0,0");
+                        }
+                        TxtCantidad.Enabled = true;
+                        TxtCantidad.Focus();
+                    }
+                    dr.Close();
+                    con.Close();
+                    //TxtBarCode.Text = "";
+                }
+                else
+                {
+                    MessageBox.Show("El Código de Barras no existe. Le sugerimos que revise la base de datos ", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    TxtBarCode.Clear();
+                    TxtBarCode.Focus();
+                    return;
+                }
+                
+
+
+
+                    
+                    
+            }
         }
 
         private void BtnAgregarProveedor_Click(object sender, EventArgs e)
