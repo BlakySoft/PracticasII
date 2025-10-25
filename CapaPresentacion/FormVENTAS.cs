@@ -328,6 +328,7 @@ namespace CapaPresentacion
         }
         private void iconButton1_Click(object sender, EventArgs e)
         {
+            
             Close();
         }
         private void BtnCancelar_Click(object sender, EventArgs e)

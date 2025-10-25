@@ -45,20 +45,32 @@ namespace CapaPresentacion
     //}
     public static class FormHelper
     {
-        public static void ResetearMenuItems(ToolStripItemCollection item)
+
+        public static void ResetearMenuItems(ToolStripItemCollection items, Form frm)
         {
-            foreach (ToolStripMenuItem i in item)
+            foreach (ToolStripItem itemChild in items)
             {
-                if(i is ToolStripMenuItem menuItem)
+                if(itemChild is ToolStripMenuItem menuItem)
                 {
                     menuItem.Checked = false;
-                    menuItem.BackColor = Color.FromArgb(163, 135, 136);
 
                     if (menuItem.HasDropDownItems)
                     {
-                        ResetearMenuItems(menuItem.DropDownItems);
+                        ResetearMenuItems(menuItem.DropDownItems, frm);
                     }
+                    
                 }
+            }
+        }
+
+        public static void ResaltarMenuItem(ToolStripMenuItem menuItem)
+        {
+            menuItem.Checked = true;
+
+            if (menuItem.OwnerItem is ToolStripMenuItem parentItem)
+            {
+                parentItem.Checked = true;
+                ResaltarMenuItem(parentItem);
             }
         }
     }
