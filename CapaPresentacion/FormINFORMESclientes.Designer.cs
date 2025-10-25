@@ -173,7 +173,7 @@
             this.dateTimePickerFin.Name = "dateTimePickerFin";
             this.dateTimePickerFin.Size = new System.Drawing.Size(284, 26);
             this.dateTimePickerFin.TabIndex = 45;
-            this.dateTimePickerFin.Value = new System.DateTime(2025, 9, 18, 14, 48, 8, 826);
+            this.dateTimePickerFin.Value = new System.DateTime(2025, 10, 25, 15, 48, 57, 0);
             // 
             // dateTimePickerInicio
             // 

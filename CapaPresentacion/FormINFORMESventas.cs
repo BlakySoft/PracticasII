@@ -21,20 +21,27 @@ namespace CapaPresentacion
         private ConeVentas coneVentas;
         private int filaActual = 0;
         private CapaDatos.ConeDetalleVentas dtll = new CapaDatos.ConeDetalleVentas();
+        public DateTime fechaInicio, fechaFin;
+
         public FormINFORMESventas()
         {
             InitializeComponent();
             coneVentas = new ConeVentas();
+            fechaFin = DateTime.Now;
+            dateTimePickerFin.Value = fechaFin;
+            dateTimePickerInicio.Value = fechaFin.AddMonths(-1);
+
+
         }
 
         private void btnFiltrar_Click(object sender, EventArgs e)
         {
 
             // Fecha inicio a las 00:00:00
-            DateTime fechaInicio = dateTimePickerInicio.Value.Date;
+             fechaInicio = dateTimePickerInicio.Value.Date;
 
             // Fecha fin a las 23:59:59
-            DateTime fechaFin = dateTimePickerFin.Value.Date.AddDays(1).AddTicks(-1);
+             fechaFin = dateTimePickerFin.Value.Date.AddDays(1).AddTicks(-1);
 
             List<Venta> ventasFiltradas = coneVentas.ListarVentasPorFecha(fechaInicio, fechaFin);
             Grilla1.DataSource = ventasFiltradas;
