@@ -76,21 +76,21 @@ namespace CapaPresentacion
 
             protected override void OnRenderMenuItemBackground(ToolStripItemRenderEventArgs e)
             {
-                //// Fondo del botón al pasar el mouse o al estar seleccionado
-                //if (e.Item.Selected || e.Item.Pressed)
-                //{
-                //    e.Graphics.FillRectangle(new SolidBrush(Color.FromArgb(163, 135, 136)), e.Item.ContentRectangle);
-                //}
-                //else
-                //{
-                //    e.Graphics.FillRectangle(new SolidBrush(Color.FromArgb(245, 203, 204)), e.Item.ContentRectangle);
-                //}
+                // Fondo del botón al pasar el mouse o al estar seleccionado
+                if (e.Item.Selected || e.Item.Pressed)
+                {
+                    e.Graphics.FillRectangle(new SolidBrush(Color.FromArgb(163, 135, 136)), e.Item.ContentRectangle);
+                }
+                else
+                {
+                    e.Graphics.FillRectangle(new SolidBrush(Color.FromArgb(245, 203, 204)), e.Item.ContentRectangle);
+                }
 
                 var menuItem = e.Item as ToolStripMenuItem;
                 if (menuItem != null && menuItem.Checked)
                 {
                     //Fondo del boton activo
-                    e.Graphics.FillRectangle(new SolidBrush(Color.FromArgb(252, 154, 3)), e.Item.ContentRectangle);
+                    e.Graphics.FillRectangle(new SolidBrush(Color.FromArgb(243, 106, 158)), e.Item.ContentRectangle);
                 }
                 else if (e.Item.Selected || e.Item.Pressed)
                 {
@@ -124,26 +124,35 @@ namespace CapaPresentacion
         private Form frmActivo = null;
         public void AbrirFrmHijo(Form FrmHijo, ToolStripMenuItem menuItem)
         {
+
+            if (frmActivo != null && frmActivo.GetType() == FrmHijo.GetType())
+                return;
             if (frmActivo != null)
                 frmActivo.Close();
 
-            FormHelper.ResetearMenuItems(menuStrip1.Items);
+            FormHelper.ResetearMenuItems(menuStrip1.Items, frmActivo);
 
             frmActivo = FrmHijo;
             FrmHijo.TopLevel = false;
             FrmHijo.FormBorderStyle = FormBorderStyle.None;
             FrmHijo.Dock = DockStyle.Fill;
+            
 
             PanelVisual.Controls.Clear();   
             PanelVisual.Controls.Add(FrmHijo);
-
             PanelVisual.Tag = FrmHijo;
-            FrmHijo.BringToFront();
-            FrmHijo.Show();
 
-            menuItem.Checked = true;
-            
-            menuItem.BackColor = Color.FromArgb(32, 160, 32);
+            FrmHijo.BringToFront();
+
+            FormHelper.ResaltarMenuItem(menuItem);
+
+            FrmHijo.FormClosed += (s, e) =>
+            {
+                FormHelper.ResetearMenuItems(menuStrip1.Items, frmActivo);
+                frmActivo = null;
+            };
+
+            FrmHijo.Show();
 
 
         }
@@ -165,6 +174,7 @@ namespace CapaPresentacion
         private void iconMenuItem3_Click(object sender, EventArgs e)
         {
             AbrirFrmHijo(new FormVENTAS(), iconMenuItem3);
+
         }
         private void vENTASToolStripMenuItem_Click(object sender, EventArgs e)
         {
