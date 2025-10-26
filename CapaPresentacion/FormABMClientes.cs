@@ -12,22 +12,23 @@ using System.Windows.Forms;
 using System.Text.RegularExpressions;
 using System.Drawing.Printing;
 using System.Diagnostics.CodeAnalysis;
+using System.Windows.Input;
 
 namespace CapaPresentacion
 {
     public partial class FormABMClientes : Form
     {
         #region Metodos y declaraciones
-
+        private Timer scanTimer;
         Boolean nuevo;
-        
+
 
         public FormABMClientes()
         {
             InitializeComponent();
             LimpiarTextos();
             ListarClientes();
-            
+
 
             BtnModificar.Enabled = false;
             PanelDatos.Enabled = false;
@@ -35,7 +36,7 @@ namespace CapaPresentacion
             BtnCancelar.Enabled = false;
             BtnEliminar.Enabled = false;
             TxtBuscar.Enabled = true;
-            
+
         }
         private void LimpiarTextos()
         {
@@ -71,7 +72,7 @@ namespace CapaPresentacion
 
             Grilla.Columns[6].Visible = false;
 
-           
+
         }
 
         #endregion
@@ -85,11 +86,11 @@ namespace CapaPresentacion
                 {
                     ListarClientes();
                 }
+                Grilla.Focus();
             }
         }
         private void BtnModificar_Click(object sender, EventArgs e)
         {
-            nuevo = false;
             #region Enabled yes/no
             //true
             PanelDatos.Enabled = true;
@@ -103,6 +104,9 @@ namespace CapaPresentacion
             BtnCancelar.Enabled = true;
             #endregion
 
+            nuevo = false;
+
+            TxtApellido.Focus();
 
         }
         private void BtnCancelar_Click(object sender, EventArgs e)
@@ -124,6 +128,16 @@ namespace CapaPresentacion
 
             LimpiarTextos();
             BtnNuevo.Focus();
+
+            scanTimer = new Timer();
+            scanTimer.Interval = 3000;
+            scanTimer.Start();
+            scanTimer.Tick += (s, args) =>
+            {
+                Grilla.Focus();
+                scanTimer.Stop();
+            };
+
         }
         private void BtnEliminar_Click(object sender, EventArgs e)
         {
@@ -158,7 +172,7 @@ namespace CapaPresentacion
                     BtnEliminar.Enabled = false;
                     #endregion
 
-                    BtnNuevo.Focus();
+                    Grilla.Focus();
                 }
                 catch (Exception ex)
                 {
@@ -168,6 +182,7 @@ namespace CapaPresentacion
             else
             {
                 // Si el usuario cancela, no hace nada
+                Grilla.Focus();
                 return;
             }
         }
@@ -323,7 +338,7 @@ namespace CapaPresentacion
             }
         }
 
-        private void Grilla_KeyDown(object sender, KeyEventArgs e) //Navegación con flechas y Enter
+        private void Grilla_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e) //Navegación con flechas y Enter
         {
             if (e.KeyCode == Keys.Up || e.KeyCode == Keys.Down)
             {
@@ -339,7 +354,7 @@ namespace CapaPresentacion
                 BtnModificar.PerformClick(); // Simular clic en el botón Modificar
                 e.Handled = true; // Evitar el sonido de "ding"
             }
-            else if(e.KeyCode == Keys.Delete)
+            else if (e.KeyCode == Keys.Delete)
             {
                 BtnEliminar.PerformClick(); // Simular clic en el botón Eliminar
                 e.Handled = true; // Evitar el sonido de "ding"
@@ -380,7 +395,6 @@ namespace CapaPresentacion
                 TxtTelefono.Text = Grilla.Rows[e.RowIndex].Cells[4].Value.ToString();
                 TxtDomicilio.Text = Grilla.Rows[e.RowIndex].Cells[5].Value.ToString();
 
-                BtnCancelar.Enabled = true;
                 BtnEliminar.Enabled = true;
                 BtnModificar.Enabled = true;
             }
@@ -436,6 +450,7 @@ namespace CapaPresentacion
             }
             else if (e.KeyChar == (char)Keys.Escape)
             {
+                e.Handled = true;
                 BtnCancelar.PerformClick(); // Simular clic en el botón Cancelar
 
             }
@@ -458,6 +473,7 @@ namespace CapaPresentacion
             }
             else if (e.KeyChar == (char)Keys.Escape)
             {
+                e.Handled = true;
                 BtnCancelar.PerformClick(); // Simular clic en el botón Cancelar
 
             }
@@ -487,6 +503,7 @@ namespace CapaPresentacion
             }
             else if (e.KeyChar == (char)Keys.Escape)
             {
+                e.Handled = true;
                 BtnCancelar.PerformClick(); // Simular clic en el botón Cancelar
 
             }
@@ -516,8 +533,26 @@ namespace CapaPresentacion
             }
             else if (e.KeyChar == (char)Keys.Escape)
             {
+                e.Handled = true;
                 BtnCancelar.PerformClick(); // Simular clic en el botón Cancelar
 
+            }
+        }
+        private void FormABMClientes_Load(object sender, EventArgs e)
+        {
+            Grilla.Focus();
+        }
+
+        private void TxtBuscar_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                e.Handled = true; // Evita el sonido de "ding"
+                Grilla.Focus();
+            }
+            if (e.KeyChar == (char)Keys.Escape)
+            {
+                iconButton1.PerformClick();
             }
         }
         private void TxtDomicilio_KeyPress(object sender, KeyPressEventArgs e)
@@ -546,6 +581,7 @@ namespace CapaPresentacion
             }
             else if (e.KeyChar == (char)Keys.Escape)
             {
+                e.Handled = true;
                 BtnCancelar.PerformClick(); // Simular clic en el botón Cancelar
 
             }
@@ -621,7 +657,10 @@ namespace CapaPresentacion
 
 
 
+
         #endregion
+
+       
 
         
     }

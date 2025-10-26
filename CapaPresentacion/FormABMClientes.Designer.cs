@@ -85,6 +85,7 @@
             this.TxtBuscar.Size = new System.Drawing.Size(703, 26);
             this.TxtBuscar.TabIndex = 1;
             this.TxtBuscar.TextChanged += new System.EventHandler(this.TxtBuscar_TextChanged);
+            this.TxtBuscar.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtBuscar_KeyPress);
             // 
             // Grilla
             // 
@@ -399,6 +400,7 @@
             this.LblIdCliente.Size = new System.Drawing.Size(18, 19);
             this.LblIdCliente.TabIndex = 13;
             this.LblIdCliente.Text = "0";
+            this.LblIdCliente.Visible = false;
             // 
             // PanelDatos
             // 
@@ -516,6 +518,7 @@
             this.MinimumSize = new System.Drawing.Size(1264, 613);
             this.Name = "FormABMClientes";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Load += new System.EventHandler(this.FormABMClientes_Load);
             this.Resize += new System.EventHandler(this.FormABMClientes_Resize);
             ((System.ComponentModel.ISupportInitialize)(this.Grilla)).EndInit();
             this.panel2.ResumeLayout(false);

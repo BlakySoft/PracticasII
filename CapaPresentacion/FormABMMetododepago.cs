@@ -8,7 +8,9 @@ namespace CapaPresentacion
     public partial class FormABMMetododepago : Form
     {
         #region Metodos y declaraciones
+
         Boolean nuevo;
+
         public FormABMMetododepago()
         {
             InitializeComponent();
@@ -124,6 +126,7 @@ namespace CapaPresentacion
         }
         private void BtnModificar_Click(object sender, EventArgs e)
         {
+            nuevo = false;
             #region Enabled yes/no
             //true
             PnlBarraLateral.Enabled = true;
