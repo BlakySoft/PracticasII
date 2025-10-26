@@ -37,10 +37,6 @@ namespace CapaPresentacion
         {
             ConeLocalidades cone = new ConeLocalidades();
             Grilla.DataSource = cone.ListarLocalidad();
-            Grilla.Columns[0].HeaderText = "Código";
-            Grilla.Columns[0].Width = 50;
-            Grilla.Columns[1].Width = 150;
-            Grilla.Columns[1].HeaderText = "Localidad";
             Grilla.Columns[2].Visible = false;
 
         }

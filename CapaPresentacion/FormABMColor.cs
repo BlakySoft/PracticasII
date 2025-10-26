@@ -38,10 +38,6 @@ namespace CapaPresentacion
         {
             ConeColores cone = new ConeColores();
             Grilla.DataSource = cone.ListarColor();
-            Grilla.Columns[0].HeaderText = "Código";
-            Grilla.Columns[0].Width = 100;
-            Grilla.Columns[2].Width = 300;
-            Grilla.Columns[1].HeaderText = "Colores";
             Grilla.Columns[2].Visible = false;
         }
         #endregion

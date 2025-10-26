@@ -30,19 +30,20 @@ namespace CapaPresentacion
             ConeClientes cone = new ConeClientes();
             Grilla.DataSource = cone.ListarClientePapelera();
             Grilla.Columns[0].HeaderText = "Codigo";
-            Grilla.Columns[0].Width = 85;
-            Grilla.Columns[1].Width = 120; // Apellido
-            Grilla.Columns[2].Width = 120; // Nombre
-            Grilla.Columns[3].Width = 130;
-            Grilla.Columns[4].Width = 130;
-            Grilla.Columns[5].Width = 300;
-
             Grilla.Columns[1].HeaderText = "Apellido"; // NUEVO
             Grilla.Columns[2].HeaderText = "Nombre";
             Grilla.Columns[3].HeaderText = "Documento";
             Grilla.Columns[4].HeaderText = "Teléfono";
             Grilla.Columns[5].HeaderText = "Domicilio";
             Grilla.Columns[6].Visible = false;
+
+
+            Grilla.Columns[0].Width = 85;
+            Grilla.Columns[1].Width = 120; // Apellido
+            Grilla.Columns[2].Width = 120; // Nombre
+            Grilla.Columns[3].Width = 130;
+            Grilla.Columns[4].Width = 130;
+            Grilla.Columns[5].Width = 300;
 
         }
         #endregion
