@@ -5,6 +5,7 @@ using System.Text;
 using CapaNegocios;
 using System.Data.OleDb;
 using System.Threading.Tasks;
+using System.Data;
 
 namespace CapaDatos
 {
@@ -217,7 +218,6 @@ namespace CapaDatos
                 }
             }
             return list;
-
         }
-    }
+   }
 }

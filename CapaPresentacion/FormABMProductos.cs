@@ -205,7 +205,7 @@ namespace CapaPresentacion
 
                 Productos producto = new Productos
                 {
-                    BarCode = int.Parse(TxtBarCode.Text),
+                    BarCode = Int64.Parse(TxtBarCode.Text),
                     Descripcion = TxtDescripcion.Text.Trim(),
                     Detalle = TxtDetalle.Text.Trim(),
                     IdCat = VarCat,
