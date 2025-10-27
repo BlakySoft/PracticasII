@@ -373,7 +373,6 @@ namespace CapaPresentacion
         }
         private void BtnSalir_Click(object sender, EventArgs e)
         {
-            
             Close();
         }
         private void BtnMar_Click(object sender, EventArgs e)

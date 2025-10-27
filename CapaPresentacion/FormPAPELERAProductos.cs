@@ -30,14 +30,16 @@ namespace CapaPresentacion
             ConeProductos cone = new ConeProductos();
             Grilla.DataSource = cone.ListarPapelera();
 
-            Grilla.Columns[0].HeaderText = "Código";
-            Grilla.Columns[0].Width = 100;
-            Grilla.Columns[1].HeaderText = "Descripcion";
-            Grilla.Columns[2].HeaderText = "Detalle";
-            Grilla.Columns[3].Visible = false;
-            Grilla.Columns[4].HeaderText = "Precio";
-            Grilla.Columns[5].HeaderText = "Stock";
+            
+            Grilla.Columns[1].Visible = false;
+            Grilla.Columns[4].Visible = false;
+            Grilla.Columns[5].Visible = false;
             Grilla.Columns[6].Visible = false;
+            Grilla.Columns[7].Visible = false;
+            Grilla.Columns[8].Visible = false;
+            Grilla.Columns[9].Visible = false;
+            Grilla.Columns[13].Visible = false;
+
 
         }
 

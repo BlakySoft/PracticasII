@@ -50,13 +50,14 @@
             this.PnlBarraLateral.Controls.Add(this.BtnVolver);
             this.PnlBarraLateral.Controls.Add(this.BtnRecuperar);
             this.PnlBarraLateral.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.PnlBarraLateral.Location = new System.Drawing.Point(0, 226);
+            this.PnlBarraLateral.Location = new System.Drawing.Point(0, 395);
             this.PnlBarraLateral.Name = "PnlBarraLateral";
-            this.PnlBarraLateral.Size = new System.Drawing.Size(331, 66);
+            this.PnlBarraLateral.Size = new System.Drawing.Size(484, 66);
             this.PnlBarraLateral.TabIndex = 2;
             // 
             // BtnVolver
             // 
+            this.BtnVolver.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.BtnVolver.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(156)))), ((int)(((byte)(191)))), ((int)(((byte)(227)))));
             this.BtnVolver.FlatAppearance.BorderSize = 0;
             this.BtnVolver.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -66,7 +67,7 @@
             this.BtnVolver.IconColor = System.Drawing.Color.White;
             this.BtnVolver.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.BtnVolver.IconSize = 30;
-            this.BtnVolver.Location = new System.Drawing.Point(268, 12);
+            this.BtnVolver.Location = new System.Drawing.Point(421, 12);
             this.BtnVolver.Name = "BtnVolver";
             this.BtnVolver.Size = new System.Drawing.Size(51, 41);
             this.BtnVolver.TabIndex = 45;
@@ -140,7 +141,9 @@
             // 
             this.Grilla.AllowUserToAddRows = false;
             this.Grilla.AllowUserToDeleteRows = false;
-            this.Grilla.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.Grilla.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.Grilla.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(216)))), ((int)(((byte)(228)))));
             this.Grilla.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
             this.Grilla.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
@@ -177,7 +180,7 @@
             dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
             this.Grilla.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.Grilla.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.Grilla.Size = new System.Drawing.Size(307, 177);
+            this.Grilla.Size = new System.Drawing.Size(460, 346);
             this.Grilla.TabIndex = 52;
             this.Grilla.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Grilla_CellClick);
             // 
@@ -197,7 +200,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(156)))), ((int)(((byte)(191)))), ((int)(((byte)(227)))));
-            this.ClientSize = new System.Drawing.Size(331, 292);
+            this.ClientSize = new System.Drawing.Size(484, 461);
             this.Controls.Add(this.LblIdMetodos);
             this.Controls.Add(this.LblBuscar);
             this.Controls.Add(this.Grilla);

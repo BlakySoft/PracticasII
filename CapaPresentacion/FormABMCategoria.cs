@@ -37,11 +37,7 @@ namespace CapaPresentacion
         {
             ConeCategoria cone = new ConeCategoria();
             Grilla.DataSource = cone.ListarCat();
-            Grilla.Columns[0].HeaderText = "Código";
-            Grilla.Columns[0].Width = 100;
-            Grilla.Columns[1].Width = 300;
-            Grilla.Columns[1].HeaderText = "Categoria";
-            Grilla.Columns[2].Visible = false;
+            Grilla.Columns[2].Visible = false; // Ocultar columna de estado
 
         }
 

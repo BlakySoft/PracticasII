@@ -38,9 +38,6 @@ namespace CapaPresentacion
         {
             ConeMarca cone = new ConeMarca();
             Grilla.DataSource = cone.ListarMarca();
-            Grilla.Columns[0].HeaderText = "Código";
-            Grilla.Columns[0].Width = 100;
-            Grilla.Columns[1].HeaderText = "Marcas";
             Grilla.Columns[2].Visible = false;
         }
         #endregion

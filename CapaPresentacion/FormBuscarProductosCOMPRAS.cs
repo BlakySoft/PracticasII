@@ -88,7 +88,7 @@ namespace CapaPresentacion
             }
             catch (Exception msg)
             {
-                //MessageBox.Show(msg.ToString(), "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show(msg.ToString(), "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
         private void Grilla_CellDoubleClick_1(object sender, DataGridViewCellEventArgs e)
