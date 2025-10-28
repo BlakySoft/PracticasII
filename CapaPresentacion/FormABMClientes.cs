@@ -564,6 +564,7 @@ namespace CapaPresentacion
             }
             if (e.KeyChar == (char)Keys.Escape)
             {
+                e.Handled = true;
                 iconButton1.PerformClick();
             }
         }
