@@ -499,7 +499,19 @@ namespace CapaPresentacion
             if (e.KeyChar == (char)Keys.Enter)
             {
                 e.Handled = true;
-                this.SelectNextControl((Control)sender, true, true, true, true);
+                ConeClientes cone = new ConeClientes();
+                {
+                    if (cone.ExisteCliente(TxtDocumento.Text) == true)
+                    {
+                        MessageBox.Show("El número de documento ya existe.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        TxtDocumento.Clear();
+                        TxtDocumento.Focus();
+                    }
+                    else
+                    {
+                        this.SelectNextControl((Control)sender, true, true, true, true);
+                    }
+                }
             }
             else if (e.KeyChar == (char)Keys.Escape)
             {
@@ -577,7 +589,7 @@ namespace CapaPresentacion
             if (e.KeyChar == (char)Keys.Enter)
             {
                 e.Handled = true;
-                this.SelectNextControl((Control)sender, true, true, true, true);
+                BtnGrabar.PerformClick(); // Simular clic en el botón Grabar
             }
             else if (e.KeyChar == (char)Keys.Escape)
             {
