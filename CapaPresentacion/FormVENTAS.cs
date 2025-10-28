@@ -584,7 +584,7 @@ namespace CapaPresentacion
                             Total += Subtotal;
                             TxtTotal.Text = Total.ToString("0,0");
                             LimpiarTextos();
-                            TxtIdProducto.Focus();
+                            TxtBarCode.Focus();
                             BtnGrabar.Enabled = true;
                         }
                     }
@@ -594,7 +594,7 @@ namespace CapaPresentacion
 
                         LimpiarTextos();
 
-                        TxtIdProducto.Focus();
+                        TxtBarCode.Focus();
                         return;
                     }
                 }
@@ -603,7 +603,7 @@ namespace CapaPresentacion
             {
                 LimpiarTextos();
                 TxtCantidad.Enabled = false;
-                TxtIdProducto.Focus();
+                TxtBarCode.Focus();
             }
         }
         private void TxtIdProducto_KeyPress(object sender, KeyPressEventArgs e)
@@ -699,6 +699,8 @@ namespace CapaPresentacion
             decimal Suma = Grilla.Rows.OfType<DataGridViewRow>().Sum(x => Convert.ToDecimal(x.Cells[4].Value));
             Total = Suma;
             TxtTotal.Text = Suma.ToString("0,0");
+
+            TxtBarCode.Focus();
         }
         #endregion
     }
