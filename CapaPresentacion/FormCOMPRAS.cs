@@ -55,7 +55,7 @@ namespace CapaPresentacion
             TxtPrecio.Text = "";
             TxtStock.Text = "";
             TxtSubtotall.Text = "";
-            TxtTotall.Text = "";
+            TxtTotal.Text = "";
             TxtCantidad.Text = "1";
             #endregion
 
@@ -112,7 +112,7 @@ namespace CapaPresentacion
             TxtPrecio.Text = "";
             TxtStock.Text = "";
             TxtSubtotall.Text = "";
-            TxtTotall.Text = "";
+            TxtTotal.Text = "";
             TxtCantidad.Text = "1";
             #endregion
             TxtBarCode.Focus();
@@ -239,7 +239,7 @@ namespace CapaPresentacion
                 TxtPrecio.Text = "";
                 TxtStock.Text = "";
                 TxtSubtotall.Text = "";
-                TxtTotall.Text = "";
+                TxtTotal.Text = "";
                 TxtCantidad.Text = "1";
                 #endregion
 
@@ -286,7 +286,7 @@ namespace CapaPresentacion
                 TxtPrecio.Text = "";
                 TxtStock.Text = "";
                 TxtSubtotall.Text = "";
-                TxtTotall.Text = "";
+                TxtTotal.Text = "";
                 TxtCantidad.Text = "1";
                 #endregion
 
@@ -380,6 +380,14 @@ namespace CapaPresentacion
             }
         }
 
+        private void TxtBarCode_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                BtnCancelar.PerformClick();
+            }
+        }
+
         private void iconButton1_Click(object sender, EventArgs e)
         {
             Close();
@@ -433,9 +441,11 @@ namespace CapaPresentacion
                     Cantidad = int.Parse(TxtCantidad.Text);
                     Subtotal = Cantidad * Precio;
                     TxtSubtotall.Text = Subtotal.ToString("0,0");
+                    
 
                     bool Existe = Grilla.Rows.Cast<DataGridViewRow>().Any(x => x.Cells["Column1"].Value.ToString() == TxtIdProducto
                     .Text);
+                    TxtBarCode.Focus();
 
                     if (!Existe)
                     {
@@ -463,6 +473,7 @@ namespace CapaPresentacion
                         MessageBox.Show("El producto seleccionado ya fue ingresado.", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                         LimpiarTextos();
+                        TxtBarCode.Focus();
 
                         return;
                     }
@@ -470,8 +481,7 @@ namespace CapaPresentacion
             }
             if (e.KeyChar == (int)Keys.Escape)
             {
-                LimpiarTextos();
-                TxtCantidad.Enabled = false;
+                BtnCancelar.PerformClick();
             }
         }
         private void Grilla_CellEndEdit(object sender, DataGridViewCellEventArgs e)
@@ -491,6 +501,7 @@ namespace CapaPresentacion
             decimal Suma = Grilla.Rows.OfType<DataGridViewRow>().Sum(x => Convert.ToDecimal(x.Cells[4].Value));
             Total = Suma;
             TxtTotal.Text = Suma.ToString("0,0");
+            TxtBarCode.Focus();
         }   
         private void Grilla_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
         {
@@ -500,7 +511,7 @@ namespace CapaPresentacion
             {
                 TxtTotal.Text = "0";
                 BtnGrabar.Enabled = false;
-                TxtIdProducto.Focus();
+                TxtBarCode.Focus();
             }
 
             decimal Suma = Grilla.Rows.OfType<DataGridViewRow>().Sum(x => Convert.ToDecimal(x.Cells[4].Value));

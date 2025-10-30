@@ -505,6 +505,22 @@ namespace CapaPresentacion
             }
         }
 
+        private void TxtBarCode_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                BtnCancelar.PerformClick();
+            }
+        }
+
+        private void TxtCantidad_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                BtnCancelar.PerformClick();
+            }
+        }
+
         private void BtnAgregarProveedor_Click(object sender, EventArgs e)
         {
             FormAgregarCliente form = new FormAgregarCliente();
