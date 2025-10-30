@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace CapaPresentacion
 {
-    //public static class GridHelper
+    //public static class GridHelper //Esto se quedo obsoleto cuando descubri el AutoSizeColumnsMode T-T
     //{
     //    public static void ResizeColumns(DataGridView dgv)
     //    {
@@ -43,7 +43,7 @@ namespace CapaPresentacion
 
     //    }
     //}
-    public static class FormHelper
+    public static class FormHelper 
     {
 
         public static void ResetearMenuItems(ToolStripItemCollection items, Form frm)
