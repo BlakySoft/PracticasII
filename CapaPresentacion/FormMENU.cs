@@ -197,6 +197,12 @@ namespace CapaPresentacion
             form.ShowDialog();
 
         }
+
+        private void toolStripMenuItem1_Click_1(object sender, EventArgs e)
+        {
+            FormINFORMEcompras form = new FormINFORMEcompras();
+            form.ShowDialog();
+        }
     }
     }
     

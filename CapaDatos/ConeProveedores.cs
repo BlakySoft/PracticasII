@@ -141,12 +141,12 @@ namespace CapaDatos
                 cm.CommandType = CommandType.Text;
 
                 cm.CommandText = @"
-            SELECT p.IdProveedor, p.RazonSocial, p.Documento, p.Telefono, p.Domicilio,
-                   p.IdLocalidad, l.Descripcion AS Localidad
-            FROM Proveedores p
-            INNER JOIN Localidades l ON p.IdLocalidad = l.IdLocalidad
-            WHERE p.Estado = True
-            ORDER BY p.RazonSocial";
+                        SELECT p.IdProveedor, p.RazonSocial, p.Documento, p.Telefono, p.Domicilio,
+                        p.IdLocalidad, l.Descripcion AS Localidad
+                        FROM Proveedores p
+                        INNER JOIN Localidades l ON p.IdLocalidad = l.IdLocalidad
+                        WHERE p.Estado = True
+                        ORDER BY p.RazonSocial";
 
                 con.Open();
 

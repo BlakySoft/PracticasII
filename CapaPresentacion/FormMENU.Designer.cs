@@ -55,6 +55,7 @@
             this.Panelinf = new System.Windows.Forms.Panel();
             this.PanelVisual = new System.Windows.Forms.Panel();
             this.iconSplitButton1 = new FontAwesome.Sharp.IconSplitButton();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.Panelinf.SuspendLayout();
             this.SuspendLayout();
@@ -142,6 +143,7 @@
             this.btniNClientes,
             this.btnINPoductos,
             this.btnINProveedores,
+            this.toolStripMenuItem1,
             this.btnINVentas});
             this.iconMenuItem5.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.iconMenuItem5.ForeColor = System.Drawing.Color.Black;
@@ -307,6 +309,13 @@
             this.iconSplitButton1.Size = new System.Drawing.Size(23, 23);
             this.iconSplitButton1.Text = "iconSplitButton1";
             // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(204, 24);
+            this.toolStripMenuItem1.Text = "COMPRAS";
+            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click_1);
+            // 
             // FormMENU
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(5F, 15F);
@@ -360,5 +369,6 @@
         private System.Windows.Forms.ToolStripMenuItem btnINPoductos;
         private System.Windows.Forms.ToolStripMenuItem btnINProveedores;
         private System.Windows.Forms.ToolStripMenuItem btnINVentas;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
     }
 }

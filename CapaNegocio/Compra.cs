@@ -11,6 +11,8 @@ namespace CapaNegocios
         public int IdCompra { get; set; }
         public int IdProveedor { get; set; }
         public int IdMetodo { get; set; }
+        public string RazonSocial { get; set; }
+        public string MetodoDescripcion { get; set; }
         public decimal Total { get; set; }
         public DateTime FechaCompra { get; set; }
     }
