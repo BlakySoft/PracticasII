@@ -219,5 +219,39 @@ namespace CapaDatos
             }
             return list;
         }
+
+        public bool ExisteCliente(string Documento)
+        {
+            bool xst = false;
+
+            using (OleDbConnection con = new OleDbConnection(cn.ConectarDB()))
+            {
+                try
+                {
+                    con.Open();
+                    string consulta = "SELECT COUNT(*) FROM Clientes WHERE Documento = @Documento AND Estado = true";
+                    using (OleDbCommand cm = new OleDbCommand(consulta, con))
+                    {
+                        cm.Parameters.AddWithValue("@Documento", Documento);
+                        int count = (int)cm.ExecuteScalar();
+                        if (count >= 1)
+                        {
+                            xst= true;
+
+                        }else
+                        {
+                            xst= false;
+                        }
+
+                        con.Close();
+                    }
+                }catch (Exception)
+                {
+
+                }
+            }
+
+            return xst;
+        }
    }
 }

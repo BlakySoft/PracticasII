@@ -261,5 +261,41 @@ namespace CapaDatos
 
             return lista;
         }
+
+        public bool ExisteProveedor(string Cuil)
+        {
+            bool xst = false;
+
+            using (OleDbConnection con = new OleDbConnection(cn.ConectarDB()))
+            {
+                try
+                {
+                    con.Open();
+                    string consulta = "SELECT COUNT(*) FROM Proveedores WHERE Documento = @Documento AND Estado = true";
+                    using (OleDbCommand cm = new OleDbCommand(consulta, con))
+                    {
+                        cm.Parameters.AddWithValue("@Documento", Cuil);
+                        int count = (int)cm.ExecuteScalar();
+                        if (count >= 1)
+                        {
+                            xst = true;
+
+                        }
+                        else
+                        {
+                            xst = false;
+                        }
+
+                        con.Close();
+                    }
+                }
+                catch (Exception)
+                {
+
+                }
+            }
+
+            return xst;
+        }
     }
 }

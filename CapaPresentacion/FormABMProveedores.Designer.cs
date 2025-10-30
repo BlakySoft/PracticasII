@@ -353,6 +353,7 @@
             this.LblIdProveedor.Size = new System.Drawing.Size(18, 19);
             this.LblIdProveedor.TabIndex = 13;
             this.LblIdProveedor.Text = "0";
+            this.LblIdProveedor.Visible = false;
             // 
             // BtnLocalidad
             // 
@@ -429,6 +430,7 @@
             this.TxtBuscar.Size = new System.Drawing.Size(702, 26);
             this.TxtBuscar.TabIndex = 7;
             this.TxtBuscar.TextChanged += new System.EventHandler(this.TxtBuscar_TextChanged);
+            this.TxtBuscar.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtBuscar_KeyDown);
             // 
             // iconButton1
             // 
@@ -537,6 +539,7 @@
             this.Name = "FormABMProveedores";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Proveedores";
+            this.Load += new System.EventHandler(this.FormABMProveedores_Load);
             this.Resize += new System.EventHandler(this.FormABMProveedores_Resize);
             this.panel2.ResumeLayout(false);
             this.PanelDatos.ResumeLayout(false);

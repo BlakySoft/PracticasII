@@ -20,6 +20,7 @@ namespace CapaPresentacion
     {
         #region Metodos y declaraciones
         Boolean nuevo;
+        Timer scanTimer;
         int VarCat;
         int VarMar;
         int VarCol;
@@ -350,6 +351,17 @@ namespace CapaPresentacion
             CargarCbo2();
            
             BtnNuevo.Focus();
+
+            scanTimer = new Timer();
+            scanTimer.Interval = 3000;
+            scanTimer.Start();
+            scanTimer.Tick += (s, args) =>
+            {
+                Grilla.Focus();
+                scanTimer.Stop();
+            };
+
+
         }
         private void BtnPapelera_Click(object sender, EventArgs e)
         {
@@ -424,6 +436,11 @@ namespace CapaPresentacion
             {
                 e.Handled = true; // Bloquear otras teclas
             }
+        }
+
+        private void FormABMProductos_Load(object sender, EventArgs e)
+        {
+            Grilla.Focus();
         }
         private void TxtBuscar_TextChanged(object sender, EventArgs e)
         {
@@ -542,11 +559,13 @@ namespace CapaPresentacion
 
             if (e.KeyChar == (char)Keys.Enter)
             {
+                e.Handled = true;
                 TxtDetalle.Focus();
             }
 
             if (e.KeyChar == (char)Keys.Escape)
             {
+                e.Handled = true;
                 BtnCancelar.PerformClick();
             }
         }
@@ -559,11 +578,13 @@ namespace CapaPresentacion
 
             if (e.KeyChar == (char)Keys.Enter)
             {
+                e.Handled = true;
                 CboIdCat.Focus();
             }
 
             if (e.KeyChar == (char)Keys.Escape)
             {
+                e.Handled = true;
                 BtnCancelar.PerformClick();
             }
         }
@@ -585,6 +606,7 @@ namespace CapaPresentacion
 
             if (e.KeyChar == (char)Keys.Escape)
             {
+                e.Handled = true;
                 BtnCancelar.PerformClick();
             }
         }
@@ -606,6 +628,7 @@ namespace CapaPresentacion
 
             if (e.KeyChar == (char)Keys.Escape)
             {
+                e.Handled = true;
                 BtnCancelar.PerformClick();
             }
         }
@@ -626,6 +649,7 @@ namespace CapaPresentacion
             }
             if (e.KeyChar == (char)Keys.Escape)
             {
+                e.Handled = true;
                 BtnCancelar.PerformClick();
             }
         }
@@ -638,11 +662,13 @@ namespace CapaPresentacion
 
             if (e.KeyChar == (char)Keys.Enter)
             {
+                e.Handled = true;
                 TxtPrecioVenta.Focus();
             }
 
             if (e.KeyChar == (char)Keys.Escape)
             {
+                e.Handled = true;
                 BtnCancelar.PerformClick();
             }
         }
@@ -655,11 +681,13 @@ namespace CapaPresentacion
 
             if (e.KeyChar == (char)Keys.Enter)
             {
+                e.Handled = true;   
                 TxtStock.Focus();
             }
 
             if (e.KeyChar == (char)Keys.Escape)
-            {
+            { 
+                e.Handled = true;
                 BtnCancelar.PerformClick();
             }
         }
@@ -678,28 +706,16 @@ namespace CapaPresentacion
 
             if (e.KeyChar == (char)Keys.Enter)
             {
+                e.Handled = true;
                 BtnGrabar.Focus(); 
             }
 
             if (e.KeyChar == (char)Keys.Escape)
             {
+                e.Handled = true;
                 BtnCancelar.PerformClick();
             }
         }
-
-
-        #endregion
-
-        #region Comportamiento visual
-        private void Grilla_SizeChanged(object sender, EventArgs e)
-        {
-        }
-
-        private void FormABMProductos_Resize(object sender, EventArgs e)
-        {
-        }
-
-        #endregion
 
         private void Grilla_SelectionChanged(object sender, EventArgs e)
         {
@@ -746,6 +762,39 @@ namespace CapaPresentacion
                     return;
                 }
                 TxtDescripcion.Focus();
+            }
+            if (e.KeyChar == (char)Keys.Escape)
+            {
+                e.Handled = true;
+                BtnCancelar.PerformClick();
+            }
+        }
+        #endregion
+
+        #region Comportamiento visual
+        private void Grilla_SizeChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void FormABMProductos_Resize(object sender, EventArgs e)
+        {
+        }
+
+
+
+        #endregion
+
+        private void TxtBuscar_KeyDown(object sender, KeyEventArgs e)
+        {
+            if ( e.KeyCode == Keys.Escape)
+            {
+                e.Handled = true;
+                iconButton1.PerformClick();
+            }
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.Handled = true; // Evita el sonido de "ding"
+                Grilla.Focus();
             }
         }
     }

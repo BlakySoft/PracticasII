@@ -16,7 +16,7 @@ namespace CapaPresentacion
     public partial class FormABMProveedores : Form
     {
         #region Metodos y declaraciones
-
+        Timer scanTimer;
         Boolean nuevo;
         int VarLocalidad;
         public FormABMProveedores()
@@ -280,6 +280,15 @@ namespace CapaPresentacion
             #endregion
             LimpiarTextos();
             BtnNuevo.Focus();
+
+            scanTimer = new Timer();
+            scanTimer.Interval = 3000;
+            scanTimer.Start();
+            scanTimer.Tick += (s, args) =>
+            {
+                Grilla.Focus();
+                scanTimer.Stop();
+            };
         }
         private void BtnPapelera_Click(object sender, EventArgs e)
         {
@@ -405,6 +414,7 @@ namespace CapaPresentacion
 
             if (e.KeyChar == (char)Keys.Escape)
             {
+                e.Handled = true;
                 BtnCancelar.PerformClick();
             }
         }
@@ -419,6 +429,7 @@ namespace CapaPresentacion
 
             if (e.KeyChar == (char)Keys.Escape)
             {
+                e.Handled = true;
                 BtnCancelar.PerformClick();
             }
 
@@ -432,8 +443,19 @@ namespace CapaPresentacion
             // Enter → siguiente control
             if (e.KeyChar == (char)Keys.Enter)
             {
-                e.Handled = true;
-                this.SelectNextControl((Control)sender, true, true, true, true);
+                ConeProveedores cone = new ConeProveedores();
+                if (cone.ExisteProveedor(TxtDocumento.Text) == true)
+                {
+                    MessageBox.Show("El CUIT ya existe en el sistema.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    TxtDocumento.Focus();
+                    return;
+                }
+                else
+                {
+                    e.Handled = true;
+                    this.SelectNextControl((Control)sender, true, true, true, true);
+
+                }
             }
         }
         private void TxtTelefono_KeyPress(object sender, KeyPressEventArgs e)
@@ -462,6 +484,7 @@ namespace CapaPresentacion
 
             if (e.KeyChar == (char)Keys.Escape)
             {
+                e.Handled = true;
                 BtnCancelar.PerformClick();
             }
         }
@@ -488,6 +511,7 @@ namespace CapaPresentacion
 
             if (e.KeyChar == (char)Keys.Escape)
             {
+                e.Handled = true;
                 BtnCancelar.PerformClick();
             }
         }
@@ -576,6 +600,25 @@ namespace CapaPresentacion
                 CboIdLocalidad.ValueMember = "IdLocalidad";
                 CboIdLocalidad.DisplayMember = "Descripcion";
                 CboIdLocalidad.DataSource = cone.BuscarIdLocalidad(VarLocalidad);
+            }
+        }
+
+        private void FormABMProveedores_Load(object sender, EventArgs e)
+        {
+            Grilla.Focus();
+        }
+
+        private void TxtBuscar_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                e.Handled = true;
+                iconButton1.PerformClick();
+            }
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.Handled = true; // Evita el sonido de "ding"
+                Grilla.Focus();
             }
         }
     }
