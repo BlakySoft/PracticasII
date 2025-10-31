@@ -5,6 +5,7 @@ using System.Data.OleDb;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace CapaDatos
 {
@@ -15,6 +16,37 @@ namespace CapaDatos
         #endregion
 
         static ConeUsuario conexion = new ConeUsuario();
+        public bool ExisteUsuario(string nombreUsuario)
+        {
+            using (OleDbConnection con = new OleDbConnection(cn.ConectarDB()))
+            {
+                con.Open();
+                string query = "SELECT COUNT(*) FROM Usuarios WHERE Usuarios = ?";
+                using (OleDbCommand cmd = new OleDbCommand(query, con))
+                {
+                    cmd.Parameters.AddWithValue("?", nombreUsuario);
+                    int count = (int)cmd.ExecuteScalar();
+                    return count > 0;
+                }
+            }
+        }
+        public bool AgregarUsuario(Usuario nuevo)
+        {
+            using (OleDbConnection con = new OleDbConnection(cn.ConectarDB()))
+            {
+                con.Open();
+
+                string query = "INSERT INTO Usuarios (Usuarios, Pass, Tipousuario) VALUES (?, ?, ?)";
+                using (OleDbCommand cmd = new OleDbCommand(query, con))
+                {
+                    cmd.Parameters.AddWithValue("?", nuevo.Usuarios);
+                    cmd.Parameters.AddWithValue("?", nuevo.Pass);
+                    cmd.Parameters.AddWithValue("?", nuevo.TipoUsuario);
+
+                    return cmd.ExecuteNonQuery() > 0;
+                }
+            }
+        }
         public Usuario VerificarUsuario(Usuario user)
         {
             Usuario usuarioEncontrado = null;

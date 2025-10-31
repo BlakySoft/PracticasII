@@ -21,6 +21,8 @@ namespace CapaPresentacion
             menuStrip1.Renderer = new CustomRenderer();
            
         }
+        #region Botones
+
         private void cLIENTESToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             AbrirFrmHijo(new FormABMClientes(), cLIENTESToolStripMenuItem1);
@@ -66,6 +68,63 @@ namespace CapaPresentacion
             FormPAPELERAMetodosdepago form = new FormPAPELERAMetodosdepago();
             form.ShowDialog();
         }
+
+        private void mARCASToolStripMenuItem_Click(object sender, EventArgs e)
+
+        {
+            FormPAPELERAMarca form = new FormPAPELERAMarca();
+            form.ShowDialog();
+        }
+        private void cOLORESToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormPAPELERAColor form = new FormPAPELERAColor();
+            form.ShowDialog();
+        }
+        private void iconMenuItem2_Click(object sender, EventArgs e)
+        {
+            AbrirFrmHijo(new FormCOMPRAS(), btnCompras);
+        }
+        private void iconMenuItem3_Click(object sender, EventArgs e)
+        {
+            string nombreCajero = lblUsuario.Text;
+            AbrirFrmHijo(new FormVENTAS(nombreCajero), iconMenuItem3);
+        }
+        private void vENTASToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormINFORMESventas form = new FormINFORMESventas();
+            form.ShowDialog();
+        }
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            FormINFORMESclientes form = new FormINFORMESclientes();
+            form.ShowDialog();
+        }
+        private void btnINPoductos_Click(object sender, EventArgs e)
+        {
+            FormINFORMEproductos form = new FormINFORMEproductos();
+            form.ShowDialog();
+        }
+        private void btnINProveedores_Click(object sender, EventArgs e)
+        {
+            FormINFORMEproveedores form = new FormINFORMEproveedores();
+            form.ShowDialog();
+
+        }
+
+        private void toolStripMenuItem1_Click_1(object sender, EventArgs e)
+        {
+            FormINFORMEcompras form = new FormINFORMEcompras();
+            form.ShowDialog();
+        }
+
+        private void btnUsuarios_Click(object sender, EventArgs e)
+        {
+            FormAgregarUsuarios form = new FormAgregarUsuarios();
+            form.ShowDialog();
+        }
+        #endregion
+
+        #region Varios 
         private void FormMENU_Load(object sender, EventArgs e)
         {
             Timer.Start();
@@ -95,7 +154,6 @@ namespace CapaPresentacion
 
             protected override void OnRenderMenuItemBackground(ToolStripItemRenderEventArgs e)
             {
-                // Fondo del botón al pasar el mouse o al estar seleccionado
                 if (e.Item.Selected || e.Item.Pressed)
                 {
                     e.Graphics.FillRectangle(new SolidBrush(Color.FromArgb(163, 135, 136)), e.Item.ContentRectangle);
@@ -108,24 +166,20 @@ namespace CapaPresentacion
                 var menuItem = e.Item as ToolStripMenuItem;
                 if (menuItem != null && menuItem.Checked)
                 {
-                    //Fondo del boton activo
                     e.Graphics.FillRectangle(new SolidBrush(Color.FromArgb(243, 106, 158)), e.Item.ContentRectangle);
                 }
                 else if (e.Item.Selected || e.Item.Pressed)
                 {
-                    // Fondo al pasar el mouse o presionar
                     e.Graphics.FillRectangle(new SolidBrush(Color.FromArgb(163, 135, 136)), e.Item.ContentRectangle);
                 } 
                 else
                 {
-                    // Fondo por defecto
                     e.Graphics.FillRectangle(new SolidBrush(Color.FromArgb(245, 203, 204)), e.Item.ContentRectangle);
                 }
             }
 
             protected override void OnRenderItemCheck(ToolStripItemImageRenderEventArgs e)
             {
-               //Si no llama a nada no se ve el check
             }
         }
         public class CustomColorTable : ProfessionalColorTable
@@ -175,62 +229,8 @@ namespace CapaPresentacion
 
 
         }
-        private void mARCASToolStripMenuItem_Click(object sender, EventArgs e)
-       
-        {
-            FormPAPELERAMarca form = new FormPAPELERAMarca();
-            form.ShowDialog();
-        }
-        private void cOLORESToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            FormPAPELERAColor form = new FormPAPELERAColor();
-            form.ShowDialog();
-        }
-        private void iconMenuItem2_Click(object sender, EventArgs e)
-        {
-            AbrirFrmHijo(new FormCOMPRAS(), btnCompras);
-        }
-        private void iconMenuItem3_Click(object sender, EventArgs e)
-        {
-            string nombreCajero = lblUsuario.Text;
-            AbrirFrmHijo(new FormVENTAS(nombreCajero), iconMenuItem3); 
-        }
-        private void vENTASToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            FormINFORMESventas form = new FormINFORMESventas();
-            form.ShowDialog();
-        }
-        private void toolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            FormINFORMESclientes form = new FormINFORMESclientes();
-            form.ShowDialog();
-        }
-        private void btnINPoductos_Click(object sender, EventArgs e)
-        {
-            FormINFORMEproductos form = new FormINFORMEproductos();
-            form.ShowDialog();
-        }
-        private void btnINProveedores_Click(object sender, EventArgs e)
-        {
-            FormINFORMEproveedores form = new FormINFORMEproveedores();
-            form.ShowDialog();
-
-        }
-
-        private void toolStripMenuItem1_Click_1(object sender, EventArgs e)
-        {
-            FormINFORMEcompras form = new FormINFORMEcompras();
-            form.ShowDialog();
-        }
-
-        private void toolStripMenuItem2_Click(object sender, EventArgs e)
-        {
-
-            FormConfiguracion frmConfig = new FormConfiguracion();
-
-            frmConfig.ShowDialog();
-        }
+        #endregion
     }
-    }
+}
     
 

@@ -278,6 +278,7 @@
             this.btnUsuarios.Name = "btnUsuarios";
             this.btnUsuarios.Size = new System.Drawing.Size(122, 23);
             this.btnUsuarios.Text = "USUARIOS";
+            this.btnUsuarios.Click += new System.EventHandler(this.btnUsuarios_Click);
             // 
             // Reloj
             // 
