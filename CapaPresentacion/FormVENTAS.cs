@@ -255,7 +255,7 @@ namespace CapaPresentacion
 
             g.DrawString("Dirección: Cipolletti Av. Los Andes 1605", font, Brushes.Black, margenIzquierdo, y);
             y += 15;
-            g.DrawString("Tel: 3718555651", font, Brushes.Black, margenIzquierdo, y);
+            g.DrawString("Tel: +54 9 299 510-4051", font, Brushes.Black, margenIzquierdo, y);
             y += 15;
             g.DrawString("Cajero: " + nombreCajero, font, Brushes.Black, margenIzquierdo, y);
             y += 15;
@@ -265,7 +265,7 @@ namespace CapaPresentacion
             y += 15;
 
             g.DrawString("Descripción", fontBold, Brushes.Black, margenIzquierdo, y);
-            g.DrawString("Cant.", fontBold, Brushes.Black, columnaCant, y, sfDerecha); // CORRECCIÓN: Alineación Derecha para Cant.
+            g.DrawString("Cant.", fontBold, Brushes.Black, columnaCant, y, sfDerecha); 
             g.DrawString("Subtotal", fontBold, Brushes.Black, columnaSubtotal, y, sfDerecha);
             y += 15;
 
@@ -312,16 +312,16 @@ namespace CapaPresentacion
             y += 20;
 
 
-            g.DrawString("$ " + totalVenta.ToString("N0"), font, Brushes.Black, columnaSubtotal, y, sfDerecha);
-            y += 20;
+
+
 
             g.DrawLine(Pens.Black, margenIzquierdo, y, anchoTicket - margenIzquierdo, y);
             y += 15;
 
-            string p1 = "Se aceptan cambios en mercancia intacta dentro";
-            string p2 = "de los 15 dias siguientes a la compra,";
-            string p3 = "presentando el ticket. No hay cambios en";
-            string p4 = "ropa interior ni trajes de baño.";
+            string p1 = "Se aceptan cambios en mercancia intacta ";
+            string p2 = "dentro de los 3 dias siguientes a la compra,";
+            string p3 = "presentando el ticket. No hay ";
+            string p4 = "cambios en ropa interior ni trajes de baño.";
 
             g.DrawString(p1, fontSmall, Brushes.Black, (anchoTicket - g.MeasureString(p1, fontSmall).Width) / 2, y);
             y += 10;
@@ -338,6 +338,9 @@ namespace CapaPresentacion
             float xGraciasMensaje = (anchoTicket - g.MeasureString(gracias, font).Width) / 2;
             g.DrawString(gracias, font, Brushes.Black, xGraciasMensaje, y);
             y += 20;
+
+            g.DrawLine(Pens.Black, margenIzquierdo, y, anchoTicket - margenIzquierdo, y);
+            y += 15;
 
         }
         private void iconButton1_Click(object sender, EventArgs e)
