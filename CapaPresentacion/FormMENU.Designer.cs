@@ -57,6 +57,7 @@
             this.PanelVisual = new System.Windows.Forms.Panel();
             this.iconSplitButton1 = new FontAwesome.Sharp.IconSplitButton();
             this.lblUsuario = new System.Windows.Forms.Label();
+            this.iconMenuItem1 = new FontAwesome.Sharp.IconMenuItem();
             this.menuStrip1.SuspendLayout();
             this.Panelinf.SuspendLayout();
             this.SuspendLayout();
@@ -70,7 +71,8 @@
             this.btnCompras,
             this.iconMenuItem3,
             this.btnInformes,
-            this.iconMenuItem4});
+            this.iconMenuItem4,
+            this.iconMenuItem1});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
@@ -328,6 +330,17 @@
             this.lblUsuario.TabIndex = 4;
             this.lblUsuario.Text = "Usuario";
             // 
+            // iconMenuItem1
+            // 
+            this.iconMenuItem1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.iconMenuItem1.ForeColor = System.Drawing.Color.Black;
+            this.iconMenuItem1.IconChar = FontAwesome.Sharp.IconChar.Pen;
+            this.iconMenuItem1.IconColor = System.Drawing.Color.Black;
+            this.iconMenuItem1.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconMenuItem1.Name = "iconMenuItem1";
+            this.iconMenuItem1.Size = new System.Drawing.Size(122, 23);
+            this.iconMenuItem1.Text = "USUARIOS";
+            // 
             // FormMENU
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(5F, 15F);
@@ -384,5 +397,6 @@
         private System.Windows.Forms.ToolStripMenuItem btnINVentas;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.Label lblUsuario;
+        private FontAwesome.Sharp.IconMenuItem iconMenuItem1;
     }
 }

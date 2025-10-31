@@ -223,7 +223,13 @@ namespace CapaPresentacion
             form.ShowDialog();
         }
 
-      
+        private void toolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+
+            FormConfiguracion frmConfig = new FormConfiguracion();
+
+            frmConfig.ShowDialog();
+        }
     }
     }
     

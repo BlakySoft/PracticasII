@@ -41,6 +41,7 @@ namespace CapaPresentacion
             ListarProducto();
 
         }
+      
         public void ListarProducto()
         {
             ConeProductos listar = new ConeProductos();
@@ -787,28 +788,26 @@ namespace CapaPresentacion
         #region Comportamiento visual
         private void Grilla_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
+            int limiteAlerta = Properties.Settings.Default.LimiteAlertaStock;
+
             if (Grilla.Columns[e.ColumnIndex].Name == "Stock")
             {
-                if (e.Value != null)
+                if (e.Value != null && int.TryParse(e.Value.ToString(), out int stockActual))
                 {
-                    int stockActual;
-                    if (int.TryParse(e.Value.ToString(), out stockActual))
+                    if (stockActual == 0)
                     {
-                        if (stockActual == 0)
-                        {
-                            Grilla.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.Black;
-                            Grilla.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.White;
-                        }
-                        else if (stockActual <= 5)
-                        {
-                            Grilla.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.Red;
-                            Grilla.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.White;
-                        }
-                        else
-                        {
-                            Grilla.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.White;
-                            Grilla.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.Black;
-                        }
+                        Grilla.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.Black;
+                        Grilla.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.White;
+                    }
+                    else if (stockActual <= limiteAlerta)
+                    {
+                        Grilla.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.Red;
+                        Grilla.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.White;
+                    }
+                    else
+                    {
+                        Grilla.Rows[e.RowIndex].DefaultCellStyle.BackColor = Grilla.DefaultCellStyle.BackColor;
+                        Grilla.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Grilla.DefaultCellStyle.ForeColor;
                     }
                 }
             }
@@ -816,6 +815,16 @@ namespace CapaPresentacion
 
         #endregion
 
+        private void iconButton3_Click(object sender, EventArgs e)
+        {
+            using (FormConfiguracion form = new FormConfiguracion())
+            {
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    ListarProducto();
+                }
+            }
+        }
     }
 }
 
