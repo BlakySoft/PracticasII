@@ -128,7 +128,7 @@ namespace CapaPresentacion
         private void FormMENU_Load(object sender, EventArgs e)
         {
             Timer.Start();
-            lblUsuario.Text = "" + usuarioActual.Usuarios;
+            lblUsuario.Text = "Usuario: " + usuarioActual.Usuarios;
             if (usuarioActual.TipoUsuario == 2)
             {
                btnUsuarios.Visible = false; 
