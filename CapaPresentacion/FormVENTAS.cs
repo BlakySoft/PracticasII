@@ -18,10 +18,11 @@ namespace CapaPresentacion
 {
     public partial class FormVENTAS: Form
     {
-        #region Declaraciones y cponexion
+        #region Declaraciones y conexion
         public decimal Stock, Cantidad, Precio, Subtotal, Total, Resultado;
         public int IdCliente, VarMetodo;
         bool exist;
+        private bool mostrandoMensaje = false;
         private string nombreCajeroActual;
         Conexion cn = new Conexion();
         OleDbConnection con = new OleDbConnection("Provider = Microsoft.Jet.OLEDB.4.0; Data Source =|DataDirectory|DB.mdb;");
@@ -31,6 +32,7 @@ namespace CapaPresentacion
         public FormVENTAS(string cajero)
         {
             InitializeComponent();
+            Grilla.CellEndEdit += Grilla_CellEndEdit;
             this.nombreCajeroActual = cajero;
             CargarCbo();
             Fecha.Text = DateTime.Now.ToString("dd/MM/yyyy");
@@ -395,6 +397,8 @@ namespace CapaPresentacion
 
             #region Enabled yes
             //true
+            panel3.Enabled = true;  
+            TxtCliente.Enabled = true;
             CboIdMetodo.Enabled = true;
             BtnMetodo.Enabled = true;
             TxtBarCode.Enabled = true;
@@ -703,6 +707,39 @@ namespace CapaPresentacion
         }
         private void Grilla_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
+
+            if (Grilla.Columns[e.ColumnIndex].Name == "Column4") 
+            {
+                int nuevaCantidad;
+                var valor = Grilla.Rows[e.RowIndex].Cells[e.ColumnIndex].Value?.ToString();
+
+                if (!int.TryParse(valor, out nuevaCantidad))
+                {
+                    MessageBox.Show("Ingrese una cantidad válida.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Grilla.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = 1;
+                    return;
+                }
+
+                int idProducto = Convert.ToInt32(Grilla.Rows[e.RowIndex].Cells["Column1"].Value); 
+                CapaDatos.ConeProductos datos = new CapaDatos.ConeProductos();
+                int stockDisponible = datos.ObtenerStockDesdeDB(idProducto);
+
+                if (nuevaCantidad > stockDisponible)
+                {
+                    MessageBox.Show($"No puede vender {nuevaCantidad} unidades. Solo hay {stockDisponible} disponibles.",
+                        "Stock insuficiente", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    Grilla.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = stockDisponible; // ajustamos al stock
+                    nuevaCantidad = stockDisponible;
+                }
+                else if (nuevaCantidad <= 0)
+                {
+                    MessageBox.Show("La cantidad debe ser mayor que cero.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Grilla.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = 1;
+                    nuevaCantidad = 1;
+                }
+            }
+
+
             Resultado = 0;
 
             if (Grilla.RowCount == 0)

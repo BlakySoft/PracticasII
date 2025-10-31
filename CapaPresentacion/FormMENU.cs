@@ -72,14 +72,14 @@ namespace CapaPresentacion
             lblUsuario.Text = "" + usuarioActual.Usuarios;
             if (usuarioActual.TipoUsuario == 2)
             {
-               
+               btnUsuarios.Visible = false; 
                 btnRegistros.Visible = false;
                 btnCompras.Visible = false;
                 btnInformes.Visible = false;
             }
             else if (usuarioActual.TipoUsuario == 1)
             {
-               
+                btnUsuarios.Enabled = true;
                 btnRegistros.Enabled = true;
                 btnCompras.Enabled = true;
                 btnInformes.Visible = true;

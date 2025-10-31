@@ -51,13 +51,13 @@
             this.metodosDePagoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mARCASToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cOLORESToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnUsuarios = new FontAwesome.Sharp.IconMenuItem();
             this.Reloj = new System.Windows.Forms.Label();
             this.Timer = new System.Windows.Forms.Timer(this.components);
             this.Panelinf = new System.Windows.Forms.Panel();
             this.PanelVisual = new System.Windows.Forms.Panel();
             this.iconSplitButton1 = new FontAwesome.Sharp.IconSplitButton();
             this.lblUsuario = new System.Windows.Forms.Label();
-            this.iconMenuItem1 = new FontAwesome.Sharp.IconMenuItem();
             this.menuStrip1.SuspendLayout();
             this.Panelinf.SuspendLayout();
             this.SuspendLayout();
@@ -72,7 +72,7 @@
             this.iconMenuItem3,
             this.btnInformes,
             this.iconMenuItem4,
-            this.iconMenuItem1});
+            this.btnUsuarios});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
@@ -268,6 +268,17 @@
             this.cOLORESToolStripMenuItem.Text = "COLORES";
             this.cOLORESToolStripMenuItem.Click += new System.EventHandler(this.cOLORESToolStripMenuItem_Click);
             // 
+            // btnUsuarios
+            // 
+            this.btnUsuarios.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUsuarios.ForeColor = System.Drawing.Color.Black;
+            this.btnUsuarios.IconChar = FontAwesome.Sharp.IconChar.Pen;
+            this.btnUsuarios.IconColor = System.Drawing.Color.Black;
+            this.btnUsuarios.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnUsuarios.Name = "btnUsuarios";
+            this.btnUsuarios.Size = new System.Drawing.Size(122, 23);
+            this.btnUsuarios.Text = "USUARIOS";
+            // 
             // Reloj
             // 
             this.Reloj.AutoSize = true;
@@ -330,17 +341,6 @@
             this.lblUsuario.TabIndex = 4;
             this.lblUsuario.Text = "Usuario";
             // 
-            // iconMenuItem1
-            // 
-            this.iconMenuItem1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.iconMenuItem1.ForeColor = System.Drawing.Color.Black;
-            this.iconMenuItem1.IconChar = FontAwesome.Sharp.IconChar.Pen;
-            this.iconMenuItem1.IconColor = System.Drawing.Color.Black;
-            this.iconMenuItem1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconMenuItem1.Name = "iconMenuItem1";
-            this.iconMenuItem1.Size = new System.Drawing.Size(122, 23);
-            this.iconMenuItem1.Text = "USUARIOS";
-            // 
             // FormMENU
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(5F, 15F);
@@ -397,6 +397,6 @@
         private System.Windows.Forms.ToolStripMenuItem btnINVentas;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.Label lblUsuario;
-        private FontAwesome.Sharp.IconMenuItem iconMenuItem1;
+        private FontAwesome.Sharp.IconMenuItem btnUsuarios;
     }
 }

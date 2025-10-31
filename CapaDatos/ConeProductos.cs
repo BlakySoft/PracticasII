@@ -68,7 +68,6 @@ namespace CapaDatos
                     cm.Connection = con;
                     cm.CommandType = System.Data.CommandType.Text;
 
-                    // 🌟 CÓDIGO CORREGIDO 🌟
                     cm.CommandText = @"INSERT INTO Productos
                                 (BarCode, Descripcion, Detalle, IdCat, IdMarca, IdColor, PrecioCompra, PrecioVenta, Stock, Estado)
                                 VALUES (@BarCode, @Descripcion, @Detalle, @IdCat, @IdMarca, @IdColor, @PrecioCompra, @PrecioVenta, @Stock, true)";
@@ -217,7 +216,6 @@ namespace CapaDatos
               AND p.Descripcion LIKE @desc
             ORDER BY p.IdProducto";
 
-                // 🔹 Usamos parámetros para evitar errores y SQL Injection
                 cm.Parameters.AddWithValue("@desc", Descripcion + "%");
 
                 con.Open();
@@ -306,6 +304,23 @@ namespace CapaDatos
             for (int i = 0; i < r.FieldCount; i++)
                 if (r.GetName(i).Equals(columnName, StringComparison.OrdinalIgnoreCase)) return true;
             return false;
+        }
+
+        public int ObtenerStockDesdeDB(int idProducto)
+        {
+            int stock = 0;
+            using (OleDbConnection con = new OleDbConnection(cn.ConectarDB()))
+            {
+                string query = "SELECT Stock FROM Productos WHERE IdProducto = ?";
+                using (OleDbCommand cmd = new OleDbCommand(query, con))
+                {
+                    cmd.Parameters.AddWithValue("?", idProducto);
+                    con.Open();
+                    var result = cmd.ExecuteScalar();
+                    if (result != null) stock = Convert.ToInt32(result);
+                }
+            }
+            return stock;
         }
         public List<Productos> ListarINNERJOIN()
         {
