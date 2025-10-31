@@ -63,6 +63,8 @@ namespace CapaPresentacion
             TxtStock.Clear();
             TxtPrecioCompra.Clear();
             TxtDetalle.Clear();
+            TxtPrecioVenta.Clear();
+            TxtBarCode.Clear();
         }
         #endregion
 
@@ -82,13 +84,18 @@ namespace CapaPresentacion
 
             CargarCbo();
             LimpiarTextos();
-            TxtDescripcion.Focus();
+            TxtBarCode.Focus();
         }
         private void BtnGrabar_Click(object sender, EventArgs e)
         {
             try
             {
-
+                if (string.IsNullOrEmpty(TxtBarCode.Text))
+                {
+                    MessageBox.Show("Ingrese el Código de Barras.", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    TxtBarCode.Focus();
+                    return;
+                }
                 if (string.IsNullOrWhiteSpace(TxtDescripcion.Text))
                 {
                     MessageBox.Show("Ingrese la Descripción.", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -147,6 +154,7 @@ namespace CapaPresentacion
 
                 Productos producto = new Productos
                 {
+                    BarCode = Int64.Parse(TxtBarCode.Text),
                     Descripcion = TxtDescripcion.Text.Trim(),
                     Detalle = TxtDetalle.Text.Trim(),
                     IdCat = VarCat,
@@ -168,26 +176,53 @@ namespace CapaPresentacion
                     }
                     else return;
                 }
-                else
-                {
-                    LimpiarTextos();
-                    CboIdCat.SelectedIndex = -1;
-                    CboIdMar.SelectedIndex = -1;
-                    CboIdCol.SelectedIndex = -1;
-                    VarCat = 0; VarMar = 0; VarCol = 0;
+             
+                LimpiarTextos();
+                CboIdCat.SelectedIndex = -1;
+                CboIdMar.SelectedIndex = -1;
+                CboIdCol.SelectedIndex = -1;
+                VarCat = 0; VarMar = 0; VarCol = 0;
 
-
-                    PanelDatos.Enabled = false;
-                    BtnGrabar.Enabled = false;
-                    BtnCancelar.Enabled = false;
-                    BtnNuevo.Enabled = true;
-                    BtnNuevo.Focus();
-                }
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Ocurrió un error al procesar el producto.\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
+        }
+        private void BtnEliminar_Click(object sender, EventArgs e)
+        {
+            // Pregunta de confirmación
+            DialogResult result = MessageBox.Show(
+                "¿Está seguro de eliminar este cliente?",
+                "Confirmación",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+
+            );
+
+            if (result == DialogResult.Yes)
+            {
+                ConeProductos cone = new ConeProductos();
+                Productos Borrar = new Productos
+                {
+                    IdProducto = int.Parse(LblIdProducto.Text)
+                };
+
+                cone.Borrar(Borrar);
+
+            }
+            else return;
+
+            #region Enabled yes/no 
+            //true 
+            BtnNuevo.Enabled = true;
+            //false
+            BtnGrabar.Enabled = false;
+            BtnCancelar.Enabled = false;
+            #endregion
+
+            BtnNuevo.Focus();
 
         }
         private void BtnCancelar_Click(object sender, EventArgs e)
@@ -236,6 +271,33 @@ namespace CapaPresentacion
         #endregion
 
         #region Validadores
+        private void TxtBarCode_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                bool exist;
+                ConeProductos vali = new ConeProductos();
+                Productos bar = new Productos
+                {
+                    BarCode = Double.Parse(TxtBarCode.Text)
+                };
+                exist = vali.Validar(bar);
+
+                if (exist == true)
+                {
+                    MessageBox.Show("El Código de Barras ya existe. Ingrese otro.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    TxtBarCode.Clear();
+                    TxtBarCode.Focus();
+                    return;
+                }
+                TxtDescripcion.Focus();
+            }
+            if (e.KeyChar == (char)Keys.Escape)
+            {
+                e.Handled = true;
+                BtnCancelar.PerformClick();
+            }
+        }
         private void TxtDescripcion_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
@@ -360,8 +422,9 @@ namespace CapaPresentacion
         {
             VarCol = int.Parse(CboIdCol.SelectedValue.ToString());
         }
+
         #endregion
 
-
+     
     }
 }

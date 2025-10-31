@@ -28,6 +28,8 @@
         private void InitializeComponent()
         {
             this.PanelDatos = new System.Windows.Forms.Panel();
+            this.label13 = new System.Windows.Forms.Label();
+            this.TxtBarCode = new System.Windows.Forms.TextBox();
             this.TxtPrecioVenta = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -61,6 +63,8 @@
             // PanelDatos
             // 
             this.PanelDatos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(156)))), ((int)(((byte)(191)))), ((int)(((byte)(227)))));
+            this.PanelDatos.Controls.Add(this.label13);
+            this.PanelDatos.Controls.Add(this.TxtBarCode);
             this.PanelDatos.Controls.Add(this.TxtPrecioVenta);
             this.PanelDatos.Controls.Add(this.label8);
             this.PanelDatos.Controls.Add(this.label7);
@@ -86,14 +90,36 @@
             this.PanelDatos.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PanelDatos.Location = new System.Drawing.Point(0, 0);
             this.PanelDatos.Name = "PanelDatos";
-            this.PanelDatos.Size = new System.Drawing.Size(218, 470);
+            this.PanelDatos.Size = new System.Drawing.Size(218, 507);
             this.PanelDatos.TabIndex = 40;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label13.Location = new System.Drawing.Point(4, 22);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(59, 19);
+            this.label13.TabIndex = 68;
+            this.label13.Text = "|l|l|l|l|l|:";
+            // 
+            // TxtBarCode
+            // 
+            this.TxtBarCode.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TxtBarCode.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtBarCode.Location = new System.Drawing.Point(63, 18);
+            this.TxtBarCode.MaxLength = 13;
+            this.TxtBarCode.Name = "TxtBarCode";
+            this.TxtBarCode.Size = new System.Drawing.Size(141, 25);
+            this.TxtBarCode.TabIndex = 67;
+            this.TxtBarCode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtBarCode_KeyPress);
             // 
             // TxtPrecioVenta
             // 
             this.TxtPrecioVenta.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.TxtPrecioVenta.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtPrecioVenta.Location = new System.Drawing.Point(13, 372);
+            this.TxtPrecioVenta.Location = new System.Drawing.Point(13, 413);
             this.TxtPrecioVenta.Name = "TxtPrecioVenta";
             this.TxtPrecioVenta.Size = new System.Drawing.Size(191, 26);
             this.TxtPrecioVenta.TabIndex = 66;
@@ -104,7 +130,7 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.White;
-            this.label8.Location = new System.Drawing.Point(9, 350);
+            this.label8.Location = new System.Drawing.Point(9, 391);
             this.label8.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(111, 19);
@@ -116,7 +142,7 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(8, 232);
+            this.label7.Location = new System.Drawing.Point(8, 273);
             this.label7.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(57, 19);
@@ -128,7 +154,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(8, 171);
+            this.label1.Location = new System.Drawing.Point(8, 212);
             this.label1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(61, 19);
@@ -146,7 +172,7 @@
             this.iconButton2.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(156)))), ((int)(((byte)(191)))), ((int)(((byte)(227)))));
             this.iconButton2.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconButton2.IconSize = 20;
-            this.iconButton2.Location = new System.Drawing.Point(170, 257);
+            this.iconButton2.Location = new System.Drawing.Point(170, 298);
             this.iconButton2.Name = "iconButton2";
             this.iconButton2.Size = new System.Drawing.Size(30, 27);
             this.iconButton2.TabIndex = 62;
@@ -165,7 +191,7 @@
             this.iconButton1.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(156)))), ((int)(((byte)(191)))), ((int)(((byte)(227)))));
             this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconButton1.IconSize = 20;
-            this.iconButton1.Location = new System.Drawing.Point(172, 198);
+            this.iconButton1.Location = new System.Drawing.Point(172, 239);
             this.iconButton1.Name = "iconButton1";
             this.iconButton1.Size = new System.Drawing.Size(30, 27);
             this.iconButton1.TabIndex = 61;
@@ -178,7 +204,7 @@
             this.CboIdCol.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CboIdCol.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CboIdCol.FormattingEnabled = true;
-            this.CboIdCol.Location = new System.Drawing.Point(9, 257);
+            this.CboIdCol.Location = new System.Drawing.Point(9, 298);
             this.CboIdCol.Name = "CboIdCol";
             this.CboIdCol.Size = new System.Drawing.Size(155, 27);
             this.CboIdCol.TabIndex = 60;
@@ -190,7 +216,7 @@
             this.CboIdMar.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CboIdMar.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CboIdMar.FormattingEnabled = true;
-            this.CboIdMar.Location = new System.Drawing.Point(9, 197);
+            this.CboIdMar.Location = new System.Drawing.Point(9, 238);
             this.CboIdMar.Name = "CboIdMar";
             this.CboIdMar.Size = new System.Drawing.Size(155, 27);
             this.CboIdMar.TabIndex = 59;
@@ -208,7 +234,7 @@
             this.BtnCat.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(156)))), ((int)(((byte)(191)))), ((int)(((byte)(227)))));
             this.BtnCat.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.BtnCat.IconSize = 20;
-            this.BtnCat.Location = new System.Drawing.Point(173, 138);
+            this.BtnCat.Location = new System.Drawing.Point(173, 179);
             this.BtnCat.Name = "BtnCat";
             this.BtnCat.Size = new System.Drawing.Size(30, 27);
             this.BtnCat.TabIndex = 58;
@@ -221,7 +247,7 @@
             this.CboIdCat.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CboIdCat.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CboIdCat.FormattingEnabled = true;
-            this.CboIdCat.Location = new System.Drawing.Point(9, 136);
+            this.CboIdCat.Location = new System.Drawing.Point(9, 177);
             this.CboIdCat.Name = "CboIdCat";
             this.CboIdCat.Size = new System.Drawing.Size(155, 27);
             this.CboIdCat.TabIndex = 57;
@@ -232,7 +258,7 @@
             // 
             this.TxtPrecioCompra.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.TxtPrecioCompra.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtPrecioCompra.Location = new System.Drawing.Point(9, 319);
+            this.TxtPrecioCompra.Location = new System.Drawing.Point(9, 360);
             this.TxtPrecioCompra.Name = "TxtPrecioCompra";
             this.TxtPrecioCompra.Size = new System.Drawing.Size(191, 26);
             this.TxtPrecioCompra.TabIndex = 56;
@@ -242,7 +268,7 @@
             // 
             this.TxtStock.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.TxtStock.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtStock.Location = new System.Drawing.Point(12, 432);
+            this.TxtStock.Location = new System.Drawing.Point(12, 473);
             this.TxtStock.Name = "TxtStock";
             this.TxtStock.Size = new System.Drawing.Size(191, 26);
             this.TxtStock.TabIndex = 55;
@@ -252,7 +278,7 @@
             // 
             this.TxtDetalle.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.TxtDetalle.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtDetalle.Location = new System.Drawing.Point(9, 85);
+            this.TxtDetalle.Location = new System.Drawing.Point(9, 126);
             this.TxtDetalle.Name = "TxtDetalle";
             this.TxtDetalle.Size = new System.Drawing.Size(191, 26);
             this.TxtDetalle.TabIndex = 54;
@@ -262,7 +288,7 @@
             // 
             this.TxtDescripcion.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.TxtDescripcion.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtDescripcion.Location = new System.Drawing.Point(9, 34);
+            this.TxtDescripcion.Location = new System.Drawing.Point(9, 75);
             this.TxtDescripcion.Name = "TxtDescripcion";
             this.TxtDescripcion.Size = new System.Drawing.Size(191, 26);
             this.TxtDescripcion.TabIndex = 53;
@@ -273,7 +299,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(8, 410);
+            this.label6.Location = new System.Drawing.Point(8, 451);
             this.label6.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(59, 19);
@@ -285,7 +311,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(5, 114);
+            this.label5.Location = new System.Drawing.Point(5, 155);
             this.label5.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(89, 19);
@@ -297,7 +323,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(5, 297);
+            this.label4.Location = new System.Drawing.Point(5, 338);
             this.label4.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(129, 19);
@@ -309,7 +335,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(5, 63);
+            this.label3.Location = new System.Drawing.Point(5, 104);
             this.label3.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(67, 19);
@@ -321,7 +347,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(5, 12);
+            this.label2.Location = new System.Drawing.Point(5, 53);
             this.label2.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(107, 19);
@@ -357,7 +383,7 @@
             this.PanelBotones.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PanelBotones.Location = new System.Drawing.Point(0, 0);
             this.PanelBotones.Name = "PanelBotones";
-            this.PanelBotones.Size = new System.Drawing.Size(374, 470);
+            this.PanelBotones.Size = new System.Drawing.Size(374, 507);
             this.PanelBotones.TabIndex = 41;
             // 
             // BtnVolver
@@ -444,7 +470,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(156)))), ((int)(((byte)(191)))), ((int)(((byte)(227)))));
-            this.ClientSize = new System.Drawing.Size(374, 470);
+            this.ClientSize = new System.Drawing.Size(374, 507);
             this.Controls.Add(this.PanelDatos);
             this.Controls.Add(this.PanelBotones);
             this.Name = "FormAgregarProducto";
@@ -485,5 +511,7 @@
         private System.Windows.Forms.ComboBox CboIdMar;
         private System.Windows.Forms.TextBox TxtPrecioVenta;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.TextBox TxtBarCode;
     }
 }

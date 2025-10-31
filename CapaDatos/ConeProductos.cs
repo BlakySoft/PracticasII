@@ -67,19 +67,22 @@ namespace CapaDatos
                 {
                     cm.Connection = con;
                     cm.CommandType = System.Data.CommandType.Text;
-                    cm.CommandText = @"INSERT INTO Productos
-                               (BarCode, Descripcion, Detalle, IdCat, IdMarca, IdColor, PrecioCompra, PrecioVenta, Stock, Estado)
-                               VALUES (@Descripcion, @Detalle, @IdCat, @IdMarca, @IdColor, @PrecioCompra, @PrecioVenta, @Stock, true)";
 
-                    cm.Parameters.AddWithValue("BarCode", Prod.BarCode);
-                    cm.Parameters.AddWithValue("Descripcion", Prod.Descripcion);
-                    cm.Parameters.AddWithValue("Detalle", Prod.Detalle);
-                    cm.Parameters.AddWithValue("IdCat", Prod.IdCat);
-                    cm.Parameters.AddWithValue("IdMarca", Prod.IdMarca);
-                    cm.Parameters.AddWithValue("IdColor", Prod.IdColor);
-                    cm.Parameters.AddWithValue("PrecioCompra", Prod.PrecioCompra);
-                    cm.Parameters.AddWithValue("PrecioVenta", Prod.PrecioVenta);
-                    cm.Parameters.AddWithValue("Stock", Prod.Stock);
+                    // 🌟 CÓDIGO CORREGIDO 🌟
+                    cm.CommandText = @"INSERT INTO Productos
+                                (BarCode, Descripcion, Detalle, IdCat, IdMarca, IdColor, PrecioCompra, PrecioVenta, Stock, Estado)
+                                VALUES (@BarCode, @Descripcion, @Detalle, @IdCat, @IdMarca, @IdColor, @PrecioCompra, @PrecioVenta, @Stock, true)";
+
+                    cm.Parameters.AddWithValue("@BarCode", Prod.BarCode); 
+                    cm.Parameters.AddWithValue("@Descripcion", Prod.Descripcion);
+                    cm.Parameters.AddWithValue("@Detalle", Prod.Detalle);
+                    cm.Parameters.AddWithValue("@IdCat", Prod.IdCat);
+                    cm.Parameters.AddWithValue("@IdMarca", Prod.IdMarca);
+                    cm.Parameters.AddWithValue("@IdColor", Prod.IdColor);
+                    cm.Parameters.AddWithValue("@PrecioCompra", Prod.PrecioCompra);
+                    cm.Parameters.AddWithValue("@PrecioVenta", Prod.PrecioVenta);
+                    cm.Parameters.AddWithValue("@Stock", Prod.Stock);
+
 
                     con.Open();
                     cm.ExecuteNonQuery();

@@ -43,7 +43,6 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.iconButton2 = new FontAwesome.Sharp.IconButton();
             this.BtnPapelera = new FontAwesome.Sharp.IconButton();
-            this.BtnImprimir = new FontAwesome.Sharp.IconButton();
             this.BtnSalir = new FontAwesome.Sharp.IconButton();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -256,7 +255,6 @@
             this.panel2.Controls.Add(this.BtnEliminar);
             this.panel2.Controls.Add(this.BtnGrabar);
             this.panel2.Controls.Add(this.BtnNuevo);
-            this.panel2.Controls.Add(this.BtnImprimir);
             this.panel2.Controls.Add(this.BtnSalir);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
@@ -304,25 +302,6 @@
             this.BtnPapelera.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.BtnPapelera.UseVisualStyleBackColor = false;
             this.BtnPapelera.Click += new System.EventHandler(this.BtnPapelera_Click);
-            // 
-            // BtnImprimir
-            // 
-            this.BtnImprimir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(156)))), ((int)(((byte)(191)))), ((int)(((byte)(227)))));
-            this.BtnImprimir.FlatAppearance.BorderSize = 0;
-            this.BtnImprimir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnImprimir.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnImprimir.ForeColor = System.Drawing.Color.White;
-            this.BtnImprimir.IconChar = FontAwesome.Sharp.IconChar.Paperclip;
-            this.BtnImprimir.IconColor = System.Drawing.Color.White;
-            this.BtnImprimir.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.BtnImprimir.IconSize = 30;
-            this.BtnImprimir.Location = new System.Drawing.Point(18, 543);
-            this.BtnImprimir.Name = "BtnImprimir";
-            this.BtnImprimir.Size = new System.Drawing.Size(115, 38);
-            this.BtnImprimir.TabIndex = 47;
-            this.BtnImprimir.Text = "&Imprimir";
-            this.BtnImprimir.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.BtnImprimir.UseVisualStyleBackColor = false;
             // 
             // BtnSalir
             // 
@@ -759,7 +738,6 @@
         private FontAwesome.Sharp.IconButton BtnMar;
         private System.Windows.Forms.ComboBox CboIdCol;
         private System.Windows.Forms.Label label9;
-        private FontAwesome.Sharp.IconButton BtnImprimir;
         private FontAwesome.Sharp.IconButton BtnSalir;
         private FontAwesome.Sharp.IconButton iconButton1;
         private FontAwesome.Sharp.IconButton iconButton2;
