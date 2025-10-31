@@ -15,13 +15,9 @@ namespace CapaDatos
         #endregion
 
         static ConeUsuario conexion = new ConeUsuario();
-
-        public bool VerificarUsuario(Usuario user)
+        public Usuario VerificarUsuario(Usuario user)
         {
-
-            // Lógica para verificar usuario
-
-            bool xst = false;
+            Usuario usuarioEncontrado = null;
 
             using (OleDbConnection con = new OleDbConnection(conexion.cn.ConectarDB()))
             {
@@ -29,38 +25,35 @@ namespace CapaDatos
                 {
                     con.Open();
 
-                    string consulta = "SELECT COUNT(*) FROM Usuarios WHERE Usuario = ? AND Pass = ?";
+                    string consulta = "SELECT * FROM Usuarios WHERE Usuarios = ? AND Pass = ?";
                     using (OleDbCommand com = new OleDbCommand(consulta, con))
                     {
-                        com.Parameters.AddWithValue("?", user.Nombre);
-                        com.Parameters.AddWithValue("?", user.Pass);
+                        com.Parameters.AddWithValue("?", user.Usuarios.Trim());
+                        com.Parameters.AddWithValue("?", user.Pass.Trim());
 
-                        int cont = (int)com.ExecuteScalar();
-                        if (cont > 1)
+                        using (OleDbDataReader reader = com.ExecuteReader())
                         {
-                           throw new Exception("Error: Se encontraron múltiples usuarios con las mismas credenciales."); //Por las dudas no vaya ser...
+                            if (reader.Read())
+                            {
+                                usuarioEncontrado = new Usuario
+                                {
+                                    Id = Convert.ToInt32(reader["Id"]),
+                                    Usuarios = reader["Usuarios"].ToString().Trim(),
+                                    Pass = reader["Pass"].ToString().Trim(),
+                                    TipoUsuario = Convert.ToInt32(reader["Tipousuario"])
+                                };
+                            }
                         }
-                        else
-                        if (cont > 0)
-                        {
-                            xst = true;
-                        }
-
                     }
-
-
-
-
                 }
                 catch (Exception)
                 {
-
+                   
                 }
             }
 
-
-            return xst;
-
+            return usuarioEncontrado;
         }
+
     }
 }

@@ -522,22 +522,18 @@ namespace CapaPresentacion
         }
         private void TxtTelefono_KeyPress(object sender, KeyPressEventArgs e)
         {
-            // Solo números
             if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
             {
                 e.Handled = true;
-                // MessageBox.Show("Solo se permiten números en Teléfono.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
-            // Limitar a 15 caracteres
+            
             TextBox txt = sender as TextBox;
             if (txt.Text.Length >= 15 && !char.IsControl(e.KeyChar))
             {
                 e.Handled = true;
             }
-
-            // Enter → siguiente control
             if (e.KeyChar == (char)Keys.Enter)
             {
                 e.Handled = true;
@@ -546,7 +542,7 @@ namespace CapaPresentacion
             else if (e.KeyChar == (char)Keys.Escape)
             {
                 e.Handled = true;
-                BtnCancelar.PerformClick(); // Simular clic en el botón Cancelar
+                BtnCancelar.PerformClick(); 
 
             }
         }
@@ -559,7 +555,7 @@ namespace CapaPresentacion
         {
             if (e.KeyChar == (char)Keys.Enter)
             {
-                e.Handled = true; // Evita el sonido de "ding"
+                e.Handled = true; 
                 Grilla.Focus();
             }
             if (e.KeyChar == (char)Keys.Escape)
@@ -570,32 +566,30 @@ namespace CapaPresentacion
         }
         private void TxtDomicilio_KeyPress(object sender, KeyPressEventArgs e)
         {
-            // Permitir letras, números, espacios y algunos símbolos básicos
+           
             if (!char.IsLetterOrDigit(e.KeyChar) && !char.IsControl(e.KeyChar)
                 && e.KeyChar != ' ' && e.KeyChar != '-' && e.KeyChar != '.' && e.KeyChar != '/')
             {
                 e.Handled = true;
-                //  MessageBox.Show("Caracter no válido en Dirección.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+             
                 return;
             }
 
-            // Limitar a 50 caracteres
             TextBox txt = sender as TextBox;
             if (txt.Text.Length >= 50 && !char.IsControl(e.KeyChar))
             {
                 e.Handled = true;
             }
 
-            // Enter → siguiente control
             if (e.KeyChar == (char)Keys.Enter)
             {
                 e.Handled = true;
-                BtnGrabar.PerformClick(); // Simular clic en el botón Grabar
+                BtnGrabar.PerformClick(); 
             }
             else if (e.KeyChar == (char)Keys.Escape)
             {
                 e.Handled = true;
-                BtnCancelar.PerformClick(); // Simular clic en el botón Cancelar
+                BtnCancelar.PerformClick(); 
 
             }
         }
@@ -673,9 +667,9 @@ namespace CapaPresentacion
 
         #endregion
 
-       
 
-        
+
+
     }
 }
 

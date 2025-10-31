@@ -9,9 +9,8 @@ namespace CapaNegocio
     public class Usuario
     {
         public int Id { get; set; }
-        public string Clase { get; set; }
-        public int IdClase { get; set; }
-        public string Nombre { get; set; }
+        public string Usuarios { get; set; }
+        public int TipoUsuario{ get; set; }
         public string Pass { get; set; }
 
     }

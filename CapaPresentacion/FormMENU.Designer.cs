@@ -30,16 +30,17 @@
         {
             this.components = new System.ComponentModel.Container();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.iconMenuItem1 = new FontAwesome.Sharp.IconMenuItem();
+            this.btnRegistros = new FontAwesome.Sharp.IconMenuItem();
             this.cLIENTESToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.pROVEEDORESToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.pRODUCTOSToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.iconMenuItem2 = new FontAwesome.Sharp.IconMenuItem();
+            this.btnCompras = new FontAwesome.Sharp.IconMenuItem();
             this.iconMenuItem3 = new FontAwesome.Sharp.IconMenuItem();
-            this.iconMenuItem5 = new FontAwesome.Sharp.IconMenuItem();
+            this.btnInformes = new FontAwesome.Sharp.IconMenuItem();
             this.btniNClientes = new System.Windows.Forms.ToolStripMenuItem();
             this.btnINPoductos = new System.Windows.Forms.ToolStripMenuItem();
             this.btnINProveedores = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.btnINVentas = new System.Windows.Forms.ToolStripMenuItem();
             this.iconMenuItem4 = new FontAwesome.Sharp.IconMenuItem();
             this.clientesToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
@@ -55,7 +56,6 @@
             this.Panelinf = new System.Windows.Forms.Panel();
             this.PanelVisual = new System.Windows.Forms.Panel();
             this.iconSplitButton1 = new FontAwesome.Sharp.IconSplitButton();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.Panelinf.SuspendLayout();
             this.SuspendLayout();
@@ -65,10 +65,10 @@
             this.menuStrip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(203)))), ((int)(((byte)(204)))));
             this.menuStrip1.Font = new System.Drawing.Font("Arial Narrow", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.iconMenuItem1,
-            this.iconMenuItem2,
+            this.btnRegistros,
+            this.btnCompras,
             this.iconMenuItem3,
-            this.iconMenuItem5,
+            this.btnInformes,
             this.iconMenuItem4});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -77,20 +77,20 @@
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // iconMenuItem1
+            // btnRegistros
             // 
-            this.iconMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btnRegistros.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.cLIENTESToolStripMenuItem1,
             this.pROVEEDORESToolStripMenuItem1,
             this.pRODUCTOSToolStripMenuItem1});
-            this.iconMenuItem1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.iconMenuItem1.ForeColor = System.Drawing.Color.Black;
-            this.iconMenuItem1.IconChar = FontAwesome.Sharp.IconChar.BoxesPacking;
-            this.iconMenuItem1.IconColor = System.Drawing.Color.Black;
-            this.iconMenuItem1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconMenuItem1.Name = "iconMenuItem1";
-            this.iconMenuItem1.Size = new System.Drawing.Size(132, 23);
-            this.iconMenuItem1.Text = "REGISTROS";
+            this.btnRegistros.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRegistros.ForeColor = System.Drawing.Color.Black;
+            this.btnRegistros.IconChar = FontAwesome.Sharp.IconChar.BoxesPacking;
+            this.btnRegistros.IconColor = System.Drawing.Color.Black;
+            this.btnRegistros.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnRegistros.Name = "btnRegistros";
+            this.btnRegistros.Size = new System.Drawing.Size(132, 23);
+            this.btnRegistros.Text = "REGISTROS";
             // 
             // cLIENTESToolStripMenuItem1
             // 
@@ -113,17 +113,17 @@
             this.pRODUCTOSToolStripMenuItem1.Text = "PRODUCTOS";
             this.pRODUCTOSToolStripMenuItem1.Click += new System.EventHandler(this.pRODUCTOSToolStripMenuItem1_Click);
             // 
-            // iconMenuItem2
+            // btnCompras
             // 
-            this.iconMenuItem2.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.iconMenuItem2.ForeColor = System.Drawing.Color.Black;
-            this.iconMenuItem2.IconChar = FontAwesome.Sharp.IconChar.Shopify;
-            this.iconMenuItem2.IconColor = System.Drawing.Color.Black;
-            this.iconMenuItem2.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconMenuItem2.Name = "iconMenuItem2";
-            this.iconMenuItem2.Size = new System.Drawing.Size(119, 23);
-            this.iconMenuItem2.Text = "COMPRAS";
-            this.iconMenuItem2.Click += new System.EventHandler(this.iconMenuItem2_Click);
+            this.btnCompras.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCompras.ForeColor = System.Drawing.Color.Black;
+            this.btnCompras.IconChar = FontAwesome.Sharp.IconChar.Shopify;
+            this.btnCompras.IconColor = System.Drawing.Color.Black;
+            this.btnCompras.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnCompras.Name = "btnCompras";
+            this.btnCompras.Size = new System.Drawing.Size(119, 23);
+            this.btnCompras.Text = "COMPRAS";
+            this.btnCompras.Click += new System.EventHandler(this.iconMenuItem2_Click);
             // 
             // iconMenuItem3
             // 
@@ -137,22 +137,22 @@
             this.iconMenuItem3.Text = "VENTAS";
             this.iconMenuItem3.Click += new System.EventHandler(this.iconMenuItem3_Click);
             // 
-            // iconMenuItem5
+            // btnInformes
             // 
-            this.iconMenuItem5.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btnInformes.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btniNClientes,
             this.btnINPoductos,
             this.btnINProveedores,
             this.toolStripMenuItem1,
             this.btnINVentas});
-            this.iconMenuItem5.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.iconMenuItem5.ForeColor = System.Drawing.Color.Black;
-            this.iconMenuItem5.IconChar = FontAwesome.Sharp.IconChar.Paperclip;
-            this.iconMenuItem5.IconColor = System.Drawing.Color.Black;
-            this.iconMenuItem5.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconMenuItem5.Name = "iconMenuItem5";
-            this.iconMenuItem5.Size = new System.Drawing.Size(122, 23);
-            this.iconMenuItem5.Text = "iNFORMES";
+            this.btnInformes.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnInformes.ForeColor = System.Drawing.Color.Black;
+            this.btnInformes.IconChar = FontAwesome.Sharp.IconChar.Paperclip;
+            this.btnInformes.IconColor = System.Drawing.Color.Black;
+            this.btnInformes.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnInformes.Name = "btnInformes";
+            this.btnInformes.Size = new System.Drawing.Size(122, 23);
+            this.btnInformes.Text = "iNFORMES";
             // 
             // btniNClientes
             // 
@@ -174,6 +174,13 @@
             this.btnINProveedores.Size = new System.Drawing.Size(204, 24);
             this.btnINProveedores.Text = "PROVEEDORES";
             this.btnINProveedores.Click += new System.EventHandler(this.btnINProveedores_Click);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(204, 24);
+            this.toolStripMenuItem1.Text = "COMPRAS";
+            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click_1);
             // 
             // btnINVentas
             // 
@@ -309,13 +316,6 @@
             this.iconSplitButton1.Size = new System.Drawing.Size(23, 23);
             this.iconSplitButton1.Text = "iconSplitButton1";
             // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(204, 24);
-            this.toolStripMenuItem1.Text = "COMPRAS";
-            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click_1);
-            // 
             // FormMENU
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(5F, 15F);
@@ -343,11 +343,11 @@
         }
 
         #endregion
-        private FontAwesome.Sharp.IconMenuItem iconMenuItem1;
+        private FontAwesome.Sharp.IconMenuItem btnRegistros;
         private System.Windows.Forms.ToolStripMenuItem cLIENTESToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem pROVEEDORESToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem pRODUCTOSToolStripMenuItem1;
-        private FontAwesome.Sharp.IconMenuItem iconMenuItem2;
+        private FontAwesome.Sharp.IconMenuItem btnCompras;
         private FontAwesome.Sharp.IconMenuItem iconMenuItem3;
         private FontAwesome.Sharp.IconMenuItem iconMenuItem4;
         private System.Windows.Forms.ToolStripMenuItem clientesToolStripMenuItem2;
@@ -364,7 +364,7 @@
         private System.Windows.Forms.Panel PanelVisual;
         private System.Windows.Forms.ToolStripMenuItem mARCASToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cOLORESToolStripMenuItem;
-        private FontAwesome.Sharp.IconMenuItem iconMenuItem5;
+        private FontAwesome.Sharp.IconMenuItem btnInformes;
         private System.Windows.Forms.ToolStripMenuItem btniNClientes;
         private System.Windows.Forms.ToolStripMenuItem btnINPoductos;
         private System.Windows.Forms.ToolStripMenuItem btnINProveedores;

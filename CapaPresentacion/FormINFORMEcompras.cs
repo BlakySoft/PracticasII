@@ -44,12 +44,14 @@ namespace CapaPresentacion
             Grilla1.Columns["Total"].HeaderText = "Total";
             Grilla1.Columns["FechaCompra"].HeaderText = "Fecha";
 
-            Grilla1.Columns[0].Width = 40;
+            Grilla1.Columns[0].Width = 30;
+            Grilla1.Columns[1].Width = 150;
+            Grilla1.Columns[2].Width = 20;
+            Grilla1.Columns[3].Width = 100;
+
             Grilla1.Columns["IdProveedor"].Visible = false;
-            Grilla1.Columns[3].Width = 150;
-            Grilla1.Columns[4].Width = 150;
-            Grilla1.Columns[5].Width = 90;
-            Grilla1.Columns[6].Width = 150;
+            Grilla1.Columns["IdMetodo"].Visible = false;
+            Grilla1.Columns["MetodoDescripcion"].Visible = false;
         }
 
         private void Grilla1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)

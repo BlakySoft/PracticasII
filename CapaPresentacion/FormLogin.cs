@@ -1,4 +1,5 @@
-﻿using CapaPresentacion;
+﻿using CapaNegocio;
+using CapaPresentacion;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,7 +18,7 @@ namespace LoginTry
         {
             InitializeComponent();
         }
-
+        public CapaNegocio.Usuario UsuarioAutenticado { get; private set; }
         private void btnEnter_Click(object sender, EventArgs e)
         {
             try
@@ -34,25 +35,29 @@ namespace LoginTry
                 }
                 else
                 {
+
                     CapaDatos.ConeUsuario verif = new CapaDatos.ConeUsuario();
                     CapaNegocio.Usuario user = new CapaNegocio.Usuario();
 
-                    // Comparar datos
-                    user.Nombre = txtUsuario.Text;
+                    user.Usuarios = txtUsuario.Text;
                     user.Pass = txtContraseña.Text;
-                    bool existe = verif.VerificarUsuario(user);
 
-                    if (!existe)
+
+                    Usuario usuarioEncontrado = verif.VerificarUsuario(user);
+
+                    if (usuarioEncontrado != null)
                     {
-                        lblAlerta.ForeColor = Color.Red;
-                        lblAlerta.Text = "Usuario o contraseña incorrecta";
-                        lblAlerta.Visible = true;
+
+                        this.UsuarioAutenticado = usuarioEncontrado; 
+                        this.DialogResult = DialogResult.OK;
+                        this.Close();
                     }
                     else
                     {
-                        this.DialogResult = DialogResult.OK;
-                        this.Close();
-                        
+
+                        lblAlerta.Text = "Usuario o contraseña incorrecta";
+                        lblAlerta.ForeColor = Color.Red;
+                        lblAlerta.Visible = true;
                     }
                 }
             }

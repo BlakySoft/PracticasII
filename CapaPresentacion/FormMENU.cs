@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CapaNegocio;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,10 +13,13 @@ namespace CapaPresentacion
 {
     public partial class FormMENU: Form
     {
-        public FormMENU()
+        private Usuario usuarioActual;
+        public FormMENU(CapaNegocio.Usuario usuario)
         {
             InitializeComponent();
+            usuarioActual = usuario;
             menuStrip1.Renderer = new CustomRenderer();
+           
         }
         private void cLIENTESToolStripMenuItem1_Click(object sender, EventArgs e)
         {
@@ -65,6 +69,20 @@ namespace CapaPresentacion
         private void FormMENU_Load(object sender, EventArgs e)
         {
             Timer.Start();
+            if (usuarioActual.TipoUsuario == 2)
+            {
+                // Si es empleado, restringís funciones
+                btnRegistros.Visible = false;
+                btnCompras.Visible = false;
+                btnInformes.Visible = false;
+            }
+            else if (usuarioActual.TipoUsuario == 1)
+            {
+                // Si es admin, todo habilitado
+                btnRegistros.Enabled = true;
+                btnCompras.Enabled = true;
+                btnInformes.Visible = true;
+            }
         }
         private void Timer_Tick(object sender, EventArgs e)
         {
@@ -169,7 +187,7 @@ namespace CapaPresentacion
         }
         private void iconMenuItem2_Click(object sender, EventArgs e)
         {
-            AbrirFrmHijo(new FormCOMPRAS(), iconMenuItem2);
+            AbrirFrmHijo(new FormCOMPRAS(), btnCompras);
         }
         private void iconMenuItem3_Click(object sender, EventArgs e)
         {

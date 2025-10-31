@@ -22,7 +22,9 @@ namespace CapaPresentacion
             {
                 if (login.ShowDialog() == DialogResult.OK)
                 {
-                    Application.Run(new FormMENU());
+                    CapaNegocio.Usuario usuarioLogueado = login.UsuarioAutenticado;
+
+                    Application.Run(new FormMENU(usuarioLogueado));
                 }
             }
         }

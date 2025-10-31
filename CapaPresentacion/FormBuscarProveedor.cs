@@ -28,7 +28,6 @@ namespace CapaPresentacion
             Grilla.DataSource = cone.ListarProveedorINNERJOIN();
 
             Grilla.Columns[0].HeaderText = "Código";
-            // Grilla.Columns[0].Width = 100;
             Grilla.Columns[1].HeaderText = "Razón Social";
             Grilla.Columns[2].HeaderText = "CUIT";
             Grilla.Columns[3].HeaderText = "Teléfono";
