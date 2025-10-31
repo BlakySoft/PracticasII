@@ -69,16 +69,17 @@ namespace CapaPresentacion
         private void FormMENU_Load(object sender, EventArgs e)
         {
             Timer.Start();
+            lblUsuario.Text = "" + usuarioActual.Usuarios;
             if (usuarioActual.TipoUsuario == 2)
             {
-                // Si es empleado, restringís funciones
+               
                 btnRegistros.Visible = false;
                 btnCompras.Visible = false;
                 btnInformes.Visible = false;
             }
             else if (usuarioActual.TipoUsuario == 1)
             {
-                // Si es admin, todo habilitado
+               
                 btnRegistros.Enabled = true;
                 btnCompras.Enabled = true;
                 btnInformes.Visible = true;
@@ -191,8 +192,8 @@ namespace CapaPresentacion
         }
         private void iconMenuItem3_Click(object sender, EventArgs e)
         {
-            AbrirFrmHijo(new FormVENTAS(), iconMenuItem3);
-
+            string nombreCajero = lblUsuario.Text;
+            AbrirFrmHijo(new FormVENTAS(nombreCajero), iconMenuItem3); 
         }
         private void vENTASToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -221,6 +222,8 @@ namespace CapaPresentacion
             FormINFORMEcompras form = new FormINFORMEcompras();
             form.ShowDialog();
         }
+
+      
     }
     }
     

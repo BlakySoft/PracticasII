@@ -300,7 +300,6 @@ namespace CapaPresentacion
             this.TxtIdProducto.Name = "TxtIdProducto";
             this.TxtIdProducto.Size = new System.Drawing.Size(132, 22);
             this.TxtIdProducto.TabIndex = 45;
-            this.TxtIdProducto.TextChanged += new System.EventHandler(this.TxtIdProducto_TextChanged);
             this.TxtIdProducto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtIdProducto_KeyPress);
             // 
             // TxtDescripcion

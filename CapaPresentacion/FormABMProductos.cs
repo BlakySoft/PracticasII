@@ -412,12 +412,24 @@ namespace CapaPresentacion
         #endregion
 
         #region Interaccion con Formulario
-
-        private void Grilla_KeyDown(object sender, KeyEventArgs e) //Navegacion con flechas y Enter
+        private void TxtBuscar_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                e.Handled = true;
+                iconButton1.PerformClick();
+            }
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.Handled = true;
+                Grilla.Focus();
+            }
+        }
+        private void Grilla_KeyDown(object sender, KeyEventArgs e) 
         {
             if (e.KeyCode == Keys.Up || e.KeyCode == Keys.Down)
             {
-                e.Handled = false; // Permitir la navegación con las flechas
+                e.Handled = false; 
 
                 BtnModificar.Enabled = true;
                 BtnEliminar.Enabled = true;
@@ -425,21 +437,22 @@ namespace CapaPresentacion
             }
             else if (e.KeyCode == Keys.Enter)
             {
-                BtnModificar.PerformClick(); // Simular clic en el botón Modificar
-                e.Handled = true; // Evitar el sonido de "ding"
+                BtnModificar.PerformClick(); 
+                e.Handled = true; 
             }
             else if(e.KeyCode == Keys.Delete)
             {
-                BtnEliminar.PerformClick(); // Simular clic en el botón Eliminar
+                BtnEliminar.PerformClick(); 
             }
             else
             {
-                e.Handled = true; // Bloquear otras teclas
+                e.Handled = true; 
             }
         }
-
         private void FormABMProductos_Load(object sender, EventArgs e)
         {
+            Grilla.CellFormatting += Grilla_CellFormatting;
+
             Grilla.Focus();
         }
         private void TxtBuscar_TextChanged(object sender, EventArgs e)
@@ -464,7 +477,7 @@ namespace CapaPresentacion
         {
             try
             {
-                if (e.RowIndex < 0) return; // Evita tocar la cabecera
+                if (e.RowIndex < 0) return; 
 
                 LblIdProducto.Text = Grilla.Rows[e.RowIndex].Cells[0].Value?.ToString() ?? "";
                 TxtBarCode.Text = Grilla.Rows[e.RowIndex].Cells[1].Value?.ToString() ?? "";
@@ -477,19 +490,19 @@ namespace CapaPresentacion
                 TxtPrecioVenta.Text = Grilla.Rows[e.RowIndex].Cells[11].Value?.ToString() ?? "";
                 TxtStock.Text = Grilla.Rows[e.RowIndex].Cells[12].Value?.ToString() ?? "";
 
-                // Asignar valores a combos sin recargar DataSource
+
                 CboIdCat.SelectedValue = VarCat;
                 CboIdMar.SelectedValue = VarMar;
                 CboIdCol.SelectedValue = VarCol;
 
-                // Habilitar botones
+
                 BtnCancelar.Enabled = true;
                 BtnEliminar.Enabled = true;
                 BtnModificar.Enabled = true;
             }
             catch (Exception ex)
             {
-                // Mostrar mensaje o ignorar según lo que necesites
+
                 MessageBox.Show("Error al seleccionar la fila: " + ex.Message, "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
@@ -772,31 +785,37 @@ namespace CapaPresentacion
         #endregion
 
         #region Comportamiento visual
-        private void Grilla_SizeChanged(object sender, EventArgs e)
+        private void Grilla_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
+            if (Grilla.Columns[e.ColumnIndex].Name == "Stock")
+            {
+                if (e.Value != null)
+                {
+                    int stockActual;
+                    if (int.TryParse(e.Value.ToString(), out stockActual))
+                    {
+                        if (stockActual == 0)
+                        {
+                            Grilla.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.Black;
+                            Grilla.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.White;
+                        }
+                        else if (stockActual <= 5)
+                        {
+                            Grilla.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.Red;
+                            Grilla.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.White;
+                        }
+                        else
+                        {
+                            Grilla.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.White;
+                            Grilla.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.Black;
+                        }
+                    }
+                }
+            }
         }
-
-        private void FormABMProductos_Resize(object sender, EventArgs e)
-        {
-        }
-
-
 
         #endregion
 
-        private void TxtBuscar_KeyDown(object sender, KeyEventArgs e)
-        {
-            if ( e.KeyCode == Keys.Escape)
-            {
-                e.Handled = true;
-                iconButton1.PerformClick();
-            }
-            if (e.KeyCode == Keys.Enter)
-            {
-                e.Handled = true; // Evita el sonido de "ding"
-                Grilla.Focus();
-            }
-        }
     }
 }
 

@@ -56,6 +56,7 @@
             this.Panelinf = new System.Windows.Forms.Panel();
             this.PanelVisual = new System.Windows.Forms.Panel();
             this.iconSplitButton1 = new FontAwesome.Sharp.IconSplitButton();
+            this.lblUsuario = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.Panelinf.SuspendLayout();
             this.SuspendLayout();
@@ -316,12 +317,24 @@
             this.iconSplitButton1.Size = new System.Drawing.Size(23, 23);
             this.iconSplitButton1.Text = "iconSplitButton1";
             // 
+            // lblUsuario
+            // 
+            this.lblUsuario.AutoSize = true;
+            this.lblUsuario.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(203)))), ((int)(((byte)(204)))));
+            this.lblUsuario.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUsuario.Location = new System.Drawing.Point(1154, 2);
+            this.lblUsuario.Name = "lblUsuario";
+            this.lblUsuario.Size = new System.Drawing.Size(87, 24);
+            this.lblUsuario.TabIndex = 4;
+            this.lblUsuario.Text = "Usuario";
+            // 
             // FormMENU
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(5F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(140)))), ((int)(((byte)(174)))));
             this.ClientSize = new System.Drawing.Size(1264, 681);
+            this.Controls.Add(this.lblUsuario);
             this.Controls.Add(this.PanelVisual);
             this.Controls.Add(this.Panelinf);
             this.Controls.Add(this.menuStrip1);
@@ -370,5 +383,6 @@
         private System.Windows.Forms.ToolStripMenuItem btnINProveedores;
         private System.Windows.Forms.ToolStripMenuItem btnINVentas;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.Label lblUsuario;
     }
 }

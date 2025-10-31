@@ -12,6 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Media.Media3D;
 
 namespace CapaPresentacion
 {
@@ -21,15 +22,16 @@ namespace CapaPresentacion
         public decimal Stock, Cantidad, Precio, Subtotal, Total, Resultado;
         public int IdCliente, VarMetodo;
         bool exist;
+        private string nombreCajeroActual;
         Conexion cn = new Conexion();
         OleDbConnection con = new OleDbConnection("Provider = Microsoft.Jet.OLEDB.4.0; Data Source =|DataDirectory|DB.mdb;");
         #endregion 
 
         #region Metodo
-        public FormVENTAS()
+        public FormVENTAS(string cajero)
         {
             InitializeComponent();
-            
+            this.nombreCajeroActual = cajero;
             CargarCbo();
             Fecha.Text = DateTime.Now.ToString("dd/MM/yyyy");
             #region Enabled no
@@ -181,7 +183,7 @@ namespace CapaPresentacion
                 pd.PrintPage += new PrintPageEventHandler(ImprimirGrilla);
                 PrintPreviewDialog printPreview = new PrintPreviewDialog();
                 printPreview.Document = pd;
-                //printPreview.ShowDialog(); simular
+                printPreview.ShowDialog();
                 pd.Print(); //imprimir
                 MessageBox.Show("Venta realizada con éxito.", "Liz Showroom", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -221,109 +223,119 @@ namespace CapaPresentacion
         }
         private void ImprimirGrilla(object sender, PrintPageEventArgs e)
         {
-
             Graphics g = e.Graphics;
 
             Font font = new Font("Arial", 7);
             Font fontBold = new Font("Arial", 7, FontStyle.Bold);
-            Font fontHeader = new Font("Arial", 9, FontStyle.Bold);
+            Font fontHeader = new Font("Arial", 11, FontStyle.Bold);
+            Font fontSmall = new Font("Arial", 6);
 
-            float margenIzquierdo = 10;
-            float y = 20;
-            float anchoTicket = 188;
+            float margenIzquierdo = 5;
+            float y = 10;
+            float anchoTicket = 188; 
 
-                    string tienda = "Lis Showroom";
-            //SizeF anchoTienda = g.MeasureString(tienda, fontHeader);
-            g.DrawString(tienda, fontHeader, Brushes.Black,margenIzquierdo, y);
-            y += 25;
-
-            //string titulo = "TICKET DE VENTA";
-            ////SizeF anchoTitulo = g.MeasureString(titulo, fontBold);
-            //g.DrawString(titulo, fontBold, Brushes.Black, margenIzquierdo, y);
-            //y += 25;
-
-            g.DrawString("Fecha: " + DateTime.Now.ToString("dd/MM/yyyy HH:mm"), font, Brushes.Black, margenIzquierdo, y);
-            y += 25;
-
-            
-            float anchoProducto = 140;
-            foreach (DataGridViewRow fila in Grilla.Rows)
-            {
-                if (fila.Cells[1].Value != null)
-                {
-                    string producto = fila.Cells[1].Value.ToString();
-                    SizeF tamaño = g.MeasureString(producto, font);
-                    if (tamaño.Width > anchoProducto) anchoProducto = Math.Min(tamaño.Width + 10, 180); // max 180 px
-                }
-            }
-
-            float columnaPrecio = anchoProducto - 50;
-            float columnaCantidad = anchoProducto;
-            float columnaSubtotal = columnaCantidad + 40;
-
-            // --- Encabezados de columna ---
-            g.DrawLine(Pens.Black, margenIzquierdo, y, anchoTicket, y);
-            y += 5;
-
-            g.DrawString("Producto", fontBold, Brushes.Black, margenIzquierdo, y);
-            g.DrawString("Cantidad", fontBold, Brushes.Black,columnaCantidad , y);
-            g.DrawString("Precio", fontBold, Brushes.Black,columnaPrecio , y);
-            //g.DrawString("Subtotal", fontBold, Brushes.Black,columnaSubtotal , y);
-            y += 20;
-
-            g.DrawLine(Pens.Black, margenIzquierdo, y, anchoTicket, y);
-            y += 5;
-
-            // --- Detalles de la venta ---
             StringFormat sfDerecha = new StringFormat();
             sfDerecha.Alignment = StringAlignment.Far;
 
+            string nombreCajero = this.nombreCajeroActual;
             decimal totalVenta = 0;
+            int contadorArticulos = 0;
+            float columnaCant = 135;
+            float columnaSubtotal = anchoTicket - margenIzquierdo;
+            float anchoProducto = 120; 
+
+
+            string tienda = "Liz Showroom";
+            SizeF anchoTienda = g.MeasureString(tienda, fontHeader);
+            float xTienda = (anchoTicket - anchoTienda.Width) / 2;
+            g.DrawString(tienda, fontHeader, Brushes.Black, xTienda, y);
+            y += 25;
+
+            g.DrawString("Dirección: Cipolletti Av. Los Andes 1605", font, Brushes.Black, margenIzquierdo, y);
+            y += 15;
+            g.DrawString("Tel: 3718555651", font, Brushes.Black, margenIzquierdo, y);
+            y += 15;
+            g.DrawString("Cajero: " + nombreCajero, font, Brushes.Black, margenIzquierdo, y);
+            y += 15;
+            g.DrawString("Fecha: " + DateTime.Now.ToString("dd/MM/yyyy HH:mm"), font, Brushes.Black, margenIzquierdo, y);
+            y += 15;
+            g.DrawLine(Pens.Black, margenIzquierdo, y, anchoTicket - margenIzquierdo, y);
+            y += 15;
+
+            g.DrawString("Descripción", fontBold, Brushes.Black, margenIzquierdo, y);
+            g.DrawString("Cant.", fontBold, Brushes.Black, columnaCant, y, sfDerecha); // CORRECCIÓN: Alineación Derecha para Cant.
+            g.DrawString("Subtotal", fontBold, Brushes.Black, columnaSubtotal, y, sfDerecha);
+            y += 15;
+
+
+            g.DrawLine(Pens.Black, margenIzquierdo, y, anchoTicket - margenIzquierdo, y);
+            y += 10;
+
 
             foreach (DataGridViewRow fila in Grilla.Rows)
             {
                 if (fila.Cells[0].Value != null)
                 {
                     string producto = fila.Cells[1].Value.ToString();
-                    decimal precio = Convert.ToDecimal(fila.Cells[2].Value);
                     string cant = fila.Cells[3].Value.ToString();
                     decimal subtotal = Convert.ToDecimal(fila.Cells[4].Value);
 
                     totalVenta += subtotal;
+                    contadorArticulos += Convert.ToInt32(cant);
 
-                    // Producto
-                    RectangleF rectProducto = new RectangleF(margenIzquierdo, y, anchoProducto, 20);
+
+                    RectangleF rectProducto = new RectangleF(margenIzquierdo, y, anchoProducto, 30);
                     g.DrawString(producto, font, Brushes.Black, rectProducto);
 
-                    // Columnas de números alineadas a la derecha
-                    g.DrawString(cant, font, Brushes.Black, columnaCantidad, y);
-                    g.DrawString("$" + precio.ToString("N0"), font, Brushes.Black, columnaPrecio, y);
-                    //g.DrawString("$" + subtotal.ToString("N0"), font, Brushes.Black, columnaSubtotal + 50, y, sfDerecha);
+                    g.DrawString(cant, font, Brushes.Black, columnaCant, y, sfDerecha); // CORRECCIÓN: Alineación Derecha para Cant.
+
+                    g.DrawString("$" + subtotal.ToString("N0"), font, Brushes.Black, columnaSubtotal, y, sfDerecha);
 
                     y += 20;
                 }
             }
 
             y += 5;
-            g.DrawLine(Pens.Black, margenIzquierdo, y, anchoTicket, y);
+            g.DrawLine(Pens.Black, margenIzquierdo, y, anchoTicket - margenIzquierdo, y);
             y += 15;
 
-            // --- Total general ---
-            g.DrawString("TOTAL: $" + totalVenta.ToString("N0"), fontBold, Brushes.Black,margenIzquierdo, y);
-            y += 25;
+            g.DrawString(contadorArticulos.ToString() + " artículo" + (contadorArticulos != 1 ? "s" : ""), font, Brushes.Black, margenIzquierdo, y);
+            y += 15;
 
-            g.DrawLine(Pens.Black, margenIzquierdo, y, anchoTicket, y);
+            float anchoTotal = g.MeasureString("TOTAL:", fontBold).Width;
+            float xTotalEtiqueta = columnaSubtotal - anchoTotal - 50; 
+
+            g.DrawString("TOTAL:", fontBold, Brushes.Black, xTotalEtiqueta, y);
+            g.DrawString("$ " + totalVenta.ToString("N0"), fontBold, Brushes.Black, columnaSubtotal, y, sfDerecha);
             y += 20;
 
-            // --- Pie de página centrado ---
-            string gracias = "¡Gracias por su compra!";
-            SizeF anchoGracias = g.MeasureString(gracias, font);
-            g.DrawString(gracias, font, Brushes.Black,margenIzquierdo, y);
+
+            g.DrawString("$ " + totalVenta.ToString("N0"), font, Brushes.Black, columnaSubtotal, y, sfDerecha);
             y += 20;
 
-            string mensaje = "Vuelva pronto";
-            SizeF anchoMensaje = g.MeasureString(mensaje, font);
-            g.DrawString(mensaje, font, Brushes.Black, margenIzquierdo, y);
+            g.DrawLine(Pens.Black, margenIzquierdo, y, anchoTicket - margenIzquierdo, y);
+            y += 15;
+
+            string p1 = "Se aceptan cambios en mercancia intacta dentro";
+            string p2 = "de los 15 dias siguientes a la compra,";
+            string p3 = "presentando el ticket. No hay cambios en";
+            string p4 = "ropa interior ni trajes de baño.";
+
+            g.DrawString(p1, fontSmall, Brushes.Black, (anchoTicket - g.MeasureString(p1, fontSmall).Width) / 2, y);
+            y += 10;
+            g.DrawString(p2, fontSmall, Brushes.Black, (anchoTicket - g.MeasureString(p2, fontSmall).Width) / 2, y);
+            y += 10;
+            g.DrawString(p3, fontSmall, Brushes.Black, (anchoTicket - g.MeasureString(p3, fontSmall).Width) / 2, y);
+            y += 10;
+            g.DrawString(p4, fontSmall, Brushes.Black, (anchoTicket - g.MeasureString(p4, fontSmall).Width) / 2, y);
+            y += 20;
+            g.DrawLine(Pens.Black, margenIzquierdo, y, anchoTicket - margenIzquierdo, y);
+            y += 15;
+
+            string gracias = "Gracias por su compra y vuelva pronto";
+            float xGraciasMensaje = (anchoTicket - g.MeasureString(gracias, font).Width) / 2;
+            g.DrawString(gracias, font, Brushes.Black, xGraciasMensaje, y);
+            y += 20;
 
         }
         private void iconButton1_Click(object sender, EventArgs e)
@@ -447,12 +459,6 @@ namespace CapaPresentacion
 
             Grilla.Columns[1].Width = 200;
         }
-
-        private void TxtIdProducto_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void TxtBarCode_TextChanged(object sender, EventArgs e)
         {
             if (TxtBarCode.Text.Length == 13)
@@ -504,7 +510,6 @@ namespace CapaPresentacion
                     
             }
         }
-
         private void TxtBarCode_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape)
@@ -512,7 +517,6 @@ namespace CapaPresentacion
                 BtnCancelar.PerformClick();
             }
         }
-
         private void TxtCantidad_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape)
@@ -520,7 +524,6 @@ namespace CapaPresentacion
                 BtnCancelar.PerformClick();
             }
         }
-
         private void BtnAgregarProveedor_Click(object sender, EventArgs e)
         {
             FormAgregarCliente form = new FormAgregarCliente();
