@@ -31,7 +31,10 @@ namespace CapaPresentacion
 
             Grilla.Columns["Id"].HeaderText = "ID";
             Grilla.Columns["Usuarios"].HeaderText = "Usuario";
+            
             Grilla.Columns["TipoUsuario"].HeaderText = "Tipo de Usuario";
+
+
         }
 
         private void BtnEliminar_Click(object sender, EventArgs e)
@@ -71,6 +74,11 @@ namespace CapaPresentacion
             {
                 BtnEliminar.PerformClick(); 
             }
+        }
+
+        private void iconButton1_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }
