@@ -17,6 +17,7 @@ namespace CapaPresentacion
             InitializeComponent();
         }
 
+        
         private void FormConfiguracion_Load(object sender, EventArgs e)
         {
             txtLimiteStock.Text = Properties.Settings.Default.LimiteAlertaStock.ToString();
@@ -49,5 +50,13 @@ namespace CapaPresentacion
         {
             txtLimiteStock.Clear();
         }
+
+        #region Estilo de borde
+        protected override void OnPaint(PaintEventArgs e)
+        {
+            base.OnPaint(e);
+            FormHelper.BorderStyle(this, e, Color.FromArgb(242, 66, 131), 8);
+        }
+        #endregion
     }
 }

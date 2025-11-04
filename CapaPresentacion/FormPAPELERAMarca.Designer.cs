@@ -211,6 +211,7 @@
             this.Name = "FormPAPELERAMarca";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Papelera de Marcas";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormPAPELERAMarca_FormClosing);
             this.PnlBarraLateral.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.Grilla)).EndInit();
             this.ResumeLayout(false);

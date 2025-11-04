@@ -50,38 +50,46 @@ namespace CapaPresentacion
         }
         private void BtnRecuperar_Click(object sender, EventArgs e)
         {
-            ConeProveedores cone = new ConeProveedores();
-            Proveedores Recuperar = new Proveedores
+            try
             {
-                IdProveedor = int.Parse(LblIdProveedor.Text)
-            };
+                ConeProveedores cone = new ConeProveedores();
 
-            DialogResult resultado = MessageBox.Show(
-                "¿Está seguro que desea recuperar este proveedor?",
-                "Confirmar recuperación",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Question
-            );
-
-            if (resultado == DialogResult.Yes)
-            {
-                cone.RecuperarProveedor(Recuperar);
-
-                try
+                Proveedores Recuperar = new Proveedores
                 {
-                    MessageBox.Show("El Proveedor se recuperó correctamente!!!", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    LimpiarTextos();
-                    ListarProveedorPapelera();
-                }
-                catch (Exception ex)
+                    IdProveedor = int.Parse(LblIdProveedor.Text)
+                };
+
+                DialogResult resultado = MessageBox.Show(
+                    "¿Está seguro que desea recuperar este proveedor?",
+                    "Confirmar recuperación",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question
+                );
+
+                if (resultado == DialogResult.Yes)
                 {
-                    MessageBox.Show($"Error: {ex.ToString()}");
-                    throw;
+                    cone.RecuperarProveedor(Recuperar);
+
+                    try
+                    {
+                        MessageBox.Show("El Proveedor se recuperó correctamente!!!", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        LimpiarTextos();
+                        ListarProveedorPapelera();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Error: {ex.ToString()}");
+                        throw;
+                    }
+
+                    BtnVolver.Focus();
                 }
 
-                BtnVolver.Focus();
             }
-
+            catch (Exception)
+            {
+                MessageBox.Show("Seleccione un Proveedor para recuperar.", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
         }
         private void BtnVolver_Click(object sender, EventArgs e)
         {
@@ -120,5 +128,9 @@ namespace CapaPresentacion
         }
         #endregion
 
+        private void FormPAPELERAProveedores_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            this.DialogResult = DialogResult.OK;
+        }
     }
 }

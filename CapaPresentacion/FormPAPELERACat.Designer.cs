@@ -209,6 +209,7 @@
             this.Name = "FormPAPELERACategoria";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Papelera de Categorias";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormPAPELERACategoria_FormClosing);
             this.PnlBarraLateral.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.Grilla)).EndInit();
             this.ResumeLayout(false);

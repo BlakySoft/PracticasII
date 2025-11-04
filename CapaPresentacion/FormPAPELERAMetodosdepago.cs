@@ -50,37 +50,45 @@ namespace CapaPresentacion
         }
         private void BtnRecuperar_Click(object sender, EventArgs e)
         {
-            ConeMetododepago cone = new ConeMetododepago();
-            Metododepago recuperar = new Metododepago
+            try
             {
-                IdMetodo = int.Parse(LblIdMetodos.Text)
-            };
 
-            DialogResult resultado = MessageBox.Show(
-                "¿Está seguro que desea recuperar este método de pago?",
-                "Confirmar recuperación",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Question
-            );
+                ConeMetododepago cone = new ConeMetododepago();
+                Metododepago recuperar = new Metododepago
+                {
+                    IdMetodo = int.Parse(LblIdMetodos.Text)
+                };
 
-            if (resultado == DialogResult.Yes)
+                DialogResult resultado = MessageBox.Show(
+                    "¿Está seguro que desea recuperar este método de pago?",
+                    "Confirmar recuperación",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question
+                );
+
+                if (resultado == DialogResult.Yes)
+                {
+                    cone.Recuperar(recuperar);
+
+                    try
+                    {
+                        MessageBox.Show("El método de pago se recuperó correctamente!!!", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        LimpiarTextos();
+                        ListarPapelera();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Error: {ex}");
+                        throw;
+                    }
+
+                    BtnVolver.Focus();
+                }
+            }
+            catch (Exception)
             {
-                cone.Recuperar(recuperar);
-
-                try
-                {
-                    MessageBox.Show("El método de pago se recuperó correctamente!!!", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                    LimpiarTextos();
-                    ListarPapelera();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"Error: {ex}");
-                    throw;
-                }
-
-                BtnVolver.Focus();
+                MessageBox.Show("Seleccione un método de pago para recuperar.", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
         private void iconButton1_Click(object sender, EventArgs e)
@@ -117,8 +125,12 @@ namespace CapaPresentacion
             LblIdMetodos.Text = Grilla.Rows[e.RowIndex].Cells[0].Value?.ToString() ?? "";
         }
 
+
         #endregion
 
-
+        private void FormPAPELERAMetodosdepago_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            this.DialogResult = DialogResult.OK;
+        }
     }
 }

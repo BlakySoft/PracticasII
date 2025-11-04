@@ -123,9 +123,13 @@ namespace CapaPresentacion
                 LblMar.Text = fila.Cells[0].Value?.ToString() ?? "";
             }
         }
+
         #endregion
 
-
+        private void FormPAPELERAMarca_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            this.DialogResult = DialogResult.OK;
+        }
     }
 }
 
