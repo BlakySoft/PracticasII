@@ -289,7 +289,7 @@ namespace CapaPresentacion
                     RectangleF rectProducto = new RectangleF(margenIzquierdo, y, anchoProducto, 30);
                     g.DrawString(producto, font, Brushes.Black, rectProducto);
 
-                    g.DrawString(cant, font, Brushes.Black, columnaCant, y, sfDerecha); // CORRECCIÓN: Alineación Derecha para Cant.
+                    g.DrawString(cant, font, Brushes.Black, columnaCant, y, sfDerecha); 
 
                     g.DrawString("$" + subtotal.ToString("N0"), font, Brushes.Black, columnaSubtotal, y, sfDerecha);
 
