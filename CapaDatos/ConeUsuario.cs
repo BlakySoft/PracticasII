@@ -86,6 +86,66 @@ namespace CapaDatos
 
             return usuarioEncontrado;
         }
+        public List<Usuario> ListarUsuarios()
+        {
+            List<Usuario> lista = new List<Usuario>();
+
+            using (OleDbConnection con = new OleDbConnection(cn.ConectarDB()))
+            {
+                try
+                {
+                    con.Open();
+                    string query = "SELECT Id, Usuarios, Pass, Tipousuario FROM Usuarios";
+
+                    using (OleDbCommand cmd = new OleDbCommand(query, con))
+                    {
+                        using (OleDbDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                Usuario u = new Usuario
+                                {
+                                    Id = Convert.ToInt32(reader["Id"]),
+                                    Usuarios = reader["Usuarios"].ToString(),
+                                    Pass = reader["Pass"].ToString(),
+                                    TipoUsuario = Convert.ToInt32(reader["Tipousuario"])
+                                };
+                                lista.Add(u);
+                            }
+                        }
+                    }
+                }
+                catch (Exception)
+                {
+                  
+                }
+            }
+
+            return lista;
+        }
+
+        public bool EliminarUsuario(int idUsuario)
+        {
+            using (OleDbConnection con = new OleDbConnection(cn.ConectarDB()))
+            {
+                try
+                {
+                    con.Open();
+                    string query = "DELETE FROM Usuarios WHERE Id = ?";
+                    using (OleDbCommand cmd = new OleDbCommand(query, con))
+                    {
+                        cmd.Parameters.AddWithValue("?", idUsuario);
+                        int filasAfectadas = cmd.ExecuteNonQuery();
+                        return filasAfectadas > 0;
+                    }
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
+            }
+        }
+
 
     }
 }

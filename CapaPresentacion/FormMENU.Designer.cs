@@ -58,6 +58,8 @@
             this.lblUsuario = new System.Windows.Forms.Label();
             this.PanelVisual = new System.Windows.Forms.Panel();
             this.iconSplitButton1 = new FontAwesome.Sharp.IconSplitButton();
+            this.aGREGARUSUARIOSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.eLIMINARUSUARIOSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.Panelinf.SuspendLayout();
             this.SuspendLayout();
@@ -270,6 +272,9 @@
             // 
             // btnUsuarios
             // 
+            this.btnUsuarios.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.aGREGARUSUARIOSToolStripMenuItem,
+            this.eLIMINARUSUARIOSToolStripMenuItem});
             this.btnUsuarios.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUsuarios.ForeColor = System.Drawing.Color.Black;
             this.btnUsuarios.IconChar = FontAwesome.Sharp.IconChar.Pen;
@@ -278,7 +283,7 @@
             this.btnUsuarios.Name = "btnUsuarios";
             this.btnUsuarios.Size = new System.Drawing.Size(122, 23);
             this.btnUsuarios.Text = "USUARIOS";
-            this.btnUsuarios.Click += new System.EventHandler(this.btnUsuarios_Click);
+
             // 
             // Reloj
             // 
@@ -344,6 +349,20 @@
             this.iconSplitButton1.Size = new System.Drawing.Size(23, 23);
             this.iconSplitButton1.Text = "iconSplitButton1";
             // 
+            // aGREGARUSUARIOSToolStripMenuItem
+            // 
+            this.aGREGARUSUARIOSToolStripMenuItem.Name = "aGREGARUSUARIOSToolStripMenuItem";
+            this.aGREGARUSUARIOSToolStripMenuItem.Size = new System.Drawing.Size(248, 24);
+            this.aGREGARUSUARIOSToolStripMenuItem.Text = "AGREGAR USUARIOS";
+            this.aGREGARUSUARIOSToolStripMenuItem.Click += new System.EventHandler(this.aGREGARUSUARIOSToolStripMenuItem_Click);
+            // 
+            // eLIMINARUSUARIOSToolStripMenuItem
+            // 
+            this.eLIMINARUSUARIOSToolStripMenuItem.Name = "eLIMINARUSUARIOSToolStripMenuItem";
+            this.eLIMINARUSUARIOSToolStripMenuItem.Size = new System.Drawing.Size(248, 24);
+            this.eLIMINARUSUARIOSToolStripMenuItem.Text = "ELIMINAR USUARIOS";
+            this.eLIMINARUSUARIOSToolStripMenuItem.Click += new System.EventHandler(this.eLIMINARUSUARIOSToolStripMenuItem_Click);
+            // 
             // FormMENU
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(5F, 15F);
@@ -400,5 +419,7 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.Label lblUsuario;
         private FontAwesome.Sharp.IconMenuItem btnUsuarios;
+        private System.Windows.Forms.ToolStripMenuItem aGREGARUSUARIOSToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem eLIMINARUSUARIOSToolStripMenuItem;
     }
 }
