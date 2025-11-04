@@ -118,6 +118,7 @@
             this.Controls.Add(this.iconButton1);
             this.Controls.Add(this.txtLimiteStock);
             this.Controls.Add(this.lblAlerta);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormConfiguracion";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Configuracion";

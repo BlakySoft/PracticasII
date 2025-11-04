@@ -597,7 +597,7 @@ namespace CapaPresentacion
                   
                     if (!Existe)
                     {
-                        if (Grilla.Rows.Count > 15)
+                        if (Grilla.Rows.Count >50)
                         {
                             MessageBox.Show("Ha superado el número de productos.", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             BtnGrabar.Focus();
