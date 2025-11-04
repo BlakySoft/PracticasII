@@ -24,16 +24,19 @@ namespace CapaPresentacion
         bool exist;
         private bool mostrandoMensaje = false;
         private string nombreCajeroActual;
+        private int  usuarioActual;
+
         Conexion cn = new Conexion();
         OleDbConnection con = new OleDbConnection("Provider = Microsoft.Jet.OLEDB.4.0; Data Source =|DataDirectory|DB.mdb;");
         #endregion 
 
         #region Metodo
-        public FormVENTAS(string cajero)
+        public FormVENTAS(string cajero, Usuario Tipo)
         {
             InitializeComponent();
             Grilla.CellEndEdit += Grilla_CellEndEdit;
             this.nombreCajeroActual = cajero;
+            this.usuarioActual = Tipo.TipoUsuario;
             CargarCbo();
             Fecha.Text = DateTime.Now.ToString("dd/MM/yyyy");
             #region Enabled no
@@ -472,6 +475,7 @@ namespace CapaPresentacion
             {
 
                 
+
                 ConeProductos vali = new ConeProductos();
                 Productos bar = new Productos
                 {
@@ -490,7 +494,7 @@ namespace CapaPresentacion
                         {
                             TxtIdProducto.Text = dr.GetInt32(0).ToString();
                             TxtDescripcion.Text = dr.GetString(1);
-                            TxtDetalle.Text= dr.GetString(2);
+                            TxtDetalle.Text = dr.GetString(2);
                             TxtStock.Text = dr.GetInt32(3).ToString();
                             Precio = dr.GetDecimal(4);
                             TxtPrecio.Text = Precio.ToString("0,0");
@@ -500,7 +504,93 @@ namespace CapaPresentacion
                     }
                     dr.Close();
                     con.Close();
-                    //TxtBarCode.Text = "";
+
+                    //Aumentar cantidad si el producto ya existe en la grilla
+                    string valorBuscado = TxtIdProducto.Text;
+                    foreach (DataGridViewRow fila in Grilla.Rows)
+                    {
+                        if (fila.IsNewRow)
+                        {
+                            continue;
+                        }
+                        
+                        if (fila.Cells["Column1"].Value != null && fila.Cells["Column1"].Value.ToString() == valorBuscado)
+                        {
+                            //Se prepara para aumentar la cantidad
+                            int filaIndex = fila.Index;
+                            int pPlus = Int32.Parse(Grilla.Rows[filaIndex].Cells["Column4"].Value.ToString());
+                            pPlus = pPlus + 1; //Cantidad + 1
+
+                            //Verificar que el stock lo permita
+                            int StockDisponible = vali.ObtenerStockDesdeDB(Int32.Parse(valorBuscado));
+                            if (pPlus > StockDisponible)
+                            {
+                                pPlus = pPlus-1; //Revertir aumento
+                                if (usuarioActual == 1)
+                                {
+                                    MessageBox.Show(
+                                        $"El stock disponible: {StockDisponible} es menor a la cantidad que intenta vender = {pPlus+1}.\n" +
+                                        $"La venta se realizara con el maximo stock disponible de ''{Grilla.Rows[filaIndex].Cells[1].Value}'' \n" +
+                                        "(SE RECOMIENDA REVISAR LA BASE DE DATOS)",
+                                        "Confirmar acción",
+                                        MessageBoxButtons.OK,
+                                        MessageBoxIcon.Warning
+                                    );
+                                    LimpiarTextos();
+                                    TxtBarCode.Focus();
+                                    //Ajustar cantidad al stock disponible
+                                    Grilla.Rows[filaIndex].Cells["Column4"].Value = StockDisponible;
+
+                                    //Recalcular subtotal
+                                    Grilla.Rows[filaIndex].Cells["Column5"].Value = pPlus * Precio;
+                                    
+
+
+
+                                }
+                                else if (usuarioActual == 2)
+                                {
+                                    MessageBox.Show($"Error inesperado, la base de datos registra un stock menor al que intenta vender \n" +
+                                        $"Stock: {StockDisponible} \n" +
+                                        $"Cantidad: {pPlus+1}\n" +
+                                        $"Notifica al administrador correspondiente. La venta se realizara con el maximo stock disponible de ''{Grilla.Rows[filaIndex].Cells[1].Value}''",
+                                    "Stock insuficiente", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                    LimpiarTextos();
+                                    TxtBarCode.Focus();
+
+                                    //Ajustar cantidad al stock disponible
+                                    Grilla.Rows[filaIndex].Cells["Column4"].Value = StockDisponible;
+
+                                    //Recalcular subtotal
+                                    Grilla.Rows[filaIndex].Cells["Column5"].Value = pPlus * Precio;
+
+                                }
+
+                                
+
+                            }
+                            else 
+                            {
+
+                                //Aumentar cantidad
+                                Grilla.Rows[filaIndex].Cells["Column4"].Value = pPlus;
+                                //Recalcular subtotal
+                                Grilla.Rows[filaIndex].Cells[4].Value = pPlus * Precio;
+
+                                LimpiarTextos();
+                                TxtBarCode.Focus();
+
+                            }
+
+                             
+                        }
+                        
+
+                    }
+
+                    decimal Suma = Grilla.Rows.OfType<DataGridViewRow>().Sum(x => Convert.ToDecimal(x.Cells[4].Value));
+                    Total = Suma;
+                    TxtTotal.Text = String.Format("{0:0,0}", Suma);
                 }
                 else
                 {
@@ -597,7 +687,7 @@ namespace CapaPresentacion
                   
                     if (!Existe)
                     {
-                        if (Grilla.Rows.Count > 15)
+                        if (Grilla.Rows.Count > 30)
                         {
                             MessageBox.Show("Ha superado el número de productos.", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             BtnGrabar.Focus();
@@ -614,15 +704,7 @@ namespace CapaPresentacion
                             BtnGrabar.Enabled = true;
                         }
                     }
-                    else
-                    {
-                        MessageBox.Show("El producto seleccionado ya fue ingresado.", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                        LimpiarTextos();
-
-                        TxtBarCode.Focus();
-                        return;
-                    }
+                    
                 }
             }
             if (e.KeyChar == (int)Keys.Escape)

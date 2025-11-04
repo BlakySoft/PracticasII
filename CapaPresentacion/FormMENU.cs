@@ -87,7 +87,7 @@ namespace CapaPresentacion
         private void iconMenuItem3_Click(object sender, EventArgs e)
         {
             string nombreCajero = lblUsuario.Text;
-            AbrirFrmHijo(new FormVENTAS(nombreCajero), iconMenuItem3);
+            AbrirFrmHijo(new FormVENTAS(nombreCajero, usuarioActual), iconMenuItem3);
         }
         private void vENTASToolStripMenuItem_Click(object sender, EventArgs e)
         {
