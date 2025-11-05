@@ -44,37 +44,44 @@ namespace CapaPresentacion
         }
         private void BtnRecuperar_Click(object sender, EventArgs e)
         {
-            ConeLocalidades cone = new ConeLocalidades();
-            Localidad recuperar = new Localidad
+            try
             {
-                IdLocalidad = int.Parse(LblIdLocalidad.Text)
-            };
+                ConeLocalidades cone = new ConeLocalidades();
+                Localidad recuperar = new Localidad
+                {
+                    IdLocalidad = int.Parse(LblIdLocalidad.Text)
+                };
 
-            DialogResult resultado = MessageBox.Show(
-                "¿Está seguro que desea recuperar esta localidad?",
-                "Confirmar recuperación",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Question
-            );
+                DialogResult resultado = MessageBox.Show(
+                    "¿Está seguro que desea recuperar esta localidad?",
+                    "Confirmar recuperación",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question
+                );
 
-            if (resultado == DialogResult.Yes)
+                if (resultado == DialogResult.Yes)
+                {
+                    cone.RecuperarLocalidad(recuperar);
+
+                    try
+                    {
+                        MessageBox.Show("La localidad se recuperó correctamente!!!", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        LimpiarTextos();
+                        ListarLocalidadPapelera();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Error: {ex}");
+                        throw;
+                    }
+
+                    BtnVolver.Focus();
+                }
+            }
+            catch (Exception)
             {
-                cone.RecuperarLocalidad(recuperar);
-
-                try
-                {
-                    MessageBox.Show("La localidad se recuperó correctamente!!!", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                    LimpiarTextos();
-                    ListarLocalidadPapelera(); 
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"Error: {ex}");
-                    throw;
-                }
-
-                BtnVolver.Focus();
+                MessageBox.Show("Seleccione una localidad para recuperar.","Sistema",MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
         private void iconButton1_Click(object sender, EventArgs e)
@@ -109,8 +116,12 @@ namespace CapaPresentacion
 
             }
         }
+
         #endregion
 
-     
+        private void FormPAPELERALocalidades_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            this.DialogResult = DialogResult.OK;    
+        }
     }
 }

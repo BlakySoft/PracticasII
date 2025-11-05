@@ -205,6 +205,7 @@
             this.Name = "FormPAPELERALocalidades";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = resources.GetString("$this.Text");
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormPAPELERALocalidades_FormClosing);
             this.PnlBarraLateral.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.Grilla)).EndInit();
             this.ResumeLayout(false);

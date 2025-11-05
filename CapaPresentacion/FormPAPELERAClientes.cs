@@ -55,40 +55,47 @@ namespace CapaPresentacion
         }
         private void BtnRecuperar_Click(object sender, EventArgs e)
         {
-            ConeClientes cone = new ConeClientes();
-            Cliente Recuperar = new Cliente
+            try
             {
-                IdCliente = int.Parse(LblIdClientes.Text)
-            };
-
-            DialogResult resultado = MessageBox.Show(
-                "¿Está seguro que desea recuperar este cliente?",
-                "Confirmar recuperación",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Question
-            );
-
-            if (resultado == DialogResult.Yes)
-            {
-                cone.RecuperarCliente(Recuperar);
-
-                try
+                ConeClientes cone = new ConeClientes();
+                Cliente Recuperar = new Cliente
                 {
-                    MessageBox.Show("El Cliente se recuperó correctamente!!!", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    LimpiarTextos();
-                    ListarClientesPapelera();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"Error: {ex.ToString()}");
-                    throw;
-                }
+                    IdCliente = int.Parse(LblIdClientes.Text)
+                };
 
-                BtnVolver.Focus();
+                DialogResult resultado = MessageBox.Show(
+                    "¿Está seguro que desea recuperar este cliente?",
+                    "Confirmar recuperación",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question
+                );
+
+                if (resultado == DialogResult.Yes)
+                {
+                    cone.RecuperarCliente(Recuperar);
+
+                    try
+                    {
+                        MessageBox.Show("El Cliente se recuperó correctamente!!!", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        LimpiarTextos();
+                        ListarClientesPapelera();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Error: {ex.ToString()}");
+                        throw;
+                    }
+
+                    BtnVolver.Focus();
+                }
+                else
+                {
+                    MessageBox.Show("Recuperación cancelada.", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
-            else
+            catch (Exception)
             {
-                MessageBox.Show("Recuperación cancelada.", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Seleccione un Cliente para recuperar.", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
         private void BtnVolver_Click(object sender, EventArgs e)
@@ -122,8 +129,12 @@ namespace CapaPresentacion
                
             }
         }
+
         #endregion
 
-      
+        private void FormPAPELERAClientes_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            this.DialogResult = DialogResult.OK;
+        }
     }
 }

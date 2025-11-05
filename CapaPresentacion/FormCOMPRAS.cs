@@ -375,7 +375,40 @@ namespace CapaPresentacion
                     }
                     dr.Close();
                     con.Close();
-                    //TxtBarCode.Text = "";
+
+                    //Aumentar cantidad si el producto ya existe en la grilla
+                    string valorBuscado = TxtIdProducto.Text;
+                    foreach (DataGridViewRow fila in Grilla.Rows)
+                    {
+                        if (fila.IsNewRow)
+                        {
+                            continue;
+                        }
+
+                        if (fila.Cells["Column1"].Value != null && fila.Cells["Column1"].Value.ToString() == valorBuscado)
+                        {
+                            //Se prepara para aumentar la cantidad
+                            int filaIndex = fila.Index;
+                            int pPlus = Int32.Parse(Grilla.Rows[filaIndex].Cells["Column3"].Value.ToString());
+                            pPlus = pPlus + 1; //Cantidad + 1
+
+                            Grilla.Rows[filaIndex].Cells["Column3"].Value = pPlus;
+                            Grilla.Rows[filaIndex].Cells["Column5"].Value = String.Format("{0:0,0}", pPlus * Precio);
+                            TxtBarCode.Clear();
+                            TxtBarCode.Focus();
+
+                        }
+                        else
+                        {
+                            TxtCantidad.Focus();
+                        }
+
+
+                    }
+
+                    decimal Suma = Grilla.Rows.OfType<DataGridViewRow>().Sum(x => Convert.ToDecimal(x.Cells[4].Value));
+                    Total = Suma;
+                    TxtTotal.Text = String.Format("{0:0,0}", Suma);
                 }
             }
         }
@@ -449,7 +482,7 @@ namespace CapaPresentacion
 
                     if (!Existe)
                     {
-                        if (Grilla.Rows.Count > 15)
+                        if (Grilla.Rows.Count > 90)
                         {
                             MessageBox.Show("Ha superado el número del Producto.", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             BtnGrabar.Focus();

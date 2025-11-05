@@ -211,6 +211,7 @@
             this.Name = "FormPAPELERAProductos";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Papelera de Productos";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormPAPELERAProductos_FormClosing);
             this.PnlBarraLateral.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.Grilla)).EndInit();
             this.ResumeLayout(false);

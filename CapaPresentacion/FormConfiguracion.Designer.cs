@@ -79,7 +79,7 @@
             this.BtnSalir.IconColor = System.Drawing.Color.White;
             this.BtnSalir.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.BtnSalir.IconSize = 30;
-            this.BtnSalir.Location = new System.Drawing.Point(235, 124);
+            this.BtnSalir.Location = new System.Drawing.Point(264, 213);
             this.BtnSalir.Name = "BtnSalir";
             this.BtnSalir.Size = new System.Drawing.Size(24, 25);
             this.BtnSalir.TabIndex = 52;
@@ -98,7 +98,7 @@
             this.BtnGrabar.IconColor = System.Drawing.Color.White;
             this.BtnGrabar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.BtnGrabar.IconSize = 30;
-            this.BtnGrabar.Location = new System.Drawing.Point(55, 90);
+            this.BtnGrabar.Location = new System.Drawing.Point(32, 197);
             this.BtnGrabar.Name = "BtnGrabar";
             this.BtnGrabar.Size = new System.Drawing.Size(126, 41);
             this.BtnGrabar.TabIndex = 53;
@@ -112,7 +112,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(234)))), ((int)(((byte)(233)))));
-            this.ClientSize = new System.Drawing.Size(266, 161);
+            this.ClientSize = new System.Drawing.Size(300, 250);
             this.Controls.Add(this.BtnGrabar);
             this.Controls.Add(this.BtnSalir);
             this.Controls.Add(this.iconButton1);

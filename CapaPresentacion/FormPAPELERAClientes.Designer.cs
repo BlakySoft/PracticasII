@@ -206,6 +206,7 @@
             this.Name = "FormPAPELERAClientes";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Papelera de clientes";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormPAPELERAClientes_FormClosing);
             this.PnlBarraLateral.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.Grilla)).EndInit();
             this.ResumeLayout(false);

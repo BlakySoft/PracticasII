@@ -73,5 +73,13 @@ namespace CapaPresentacion
                 ResaltarMenuItem(parentItem);
             }
         }
+
+        public static void BorderStyle(Form frm, PaintEventArgs e, Color color, int grosor = 1)
+        {
+            using (Pen pen = new Pen(color, grosor))
+            {
+                e.Graphics.DrawRectangle(pen, 0, 0, frm.Width, frm.Height);
+            }
+        }
     }
 }

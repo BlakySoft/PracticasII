@@ -45,38 +45,45 @@ namespace CapaPresentacion
         }
         private void BtnRecuperar_Click(object sender, EventArgs e)
         {
-            ConeColores cone = new ConeColores();
-            Colores Recuperar = new Colores
+            try
             {
-                IdColor = int.Parse(LblIdColor.Text)
-            };
-
-            DialogResult resultado = MessageBox.Show(
-                "¿Está seguro que desea recuperar este color?",
-                "Confirmar recuperación",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Question
-            );
-
-            if (resultado == DialogResult.Yes)
-            {
-                cone.Recuperar(Recuperar);
-
-                try
+                ConeColores cone = new ConeColores();
+                Colores Recuperar = new Colores
                 {
-                    MessageBox.Show("El Color se recuperó correctamente!!!", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    LimpiarTextos();
-                    Listar();
-                }
-                catch (Exception ex)
+                    IdColor = int.Parse(LblIdColor.Text)
+                };
+
+                DialogResult resultado = MessageBox.Show(
+                    "¿Está seguro que desea recuperar este color?",
+                    "Confirmar recuperación",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question
+                );
+
+                if (resultado == DialogResult.Yes)
                 {
-                    MessageBox.Show($"Error: {ex.ToString()}");
-                    throw;
+                    cone.Recuperar(Recuperar);
+
+                    try
+                    {
+                        MessageBox.Show("El Color se recuperó correctamente!!!", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        LimpiarTextos();
+                        Listar();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Error: {ex.ToString()}");
+                        throw;
+                    }
+
+                    BtnVolver.Focus();
                 }
 
-                BtnVolver.Focus();
             }
-
+            catch (Exception)
+            {
+                MessageBox.Show("Seleccione un Color para recuperar.", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
         }
         private void BtnVolver_Click(object sender, EventArgs e)
         {
@@ -111,5 +118,9 @@ namespace CapaPresentacion
         }
         #endregion
 
+        private void FormPAPELERAColor_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            this.DialogResult = DialogResult.OK;
+        }
     }
 }

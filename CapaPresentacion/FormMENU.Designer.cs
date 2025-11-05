@@ -349,19 +349,17 @@
             this.iconSplitButton1.Size = new System.Drawing.Size(23, 23);
             this.iconSplitButton1.Text = "iconSplitButton1";
             // 
-            // aGREGARUSUARIOSToolStripMenuItem
+            // lblUsuario
             // 
-            this.aGREGARUSUARIOSToolStripMenuItem.Name = "aGREGARUSUARIOSToolStripMenuItem";
-            this.aGREGARUSUARIOSToolStripMenuItem.Size = new System.Drawing.Size(248, 24);
-            this.aGREGARUSUARIOSToolStripMenuItem.Text = "AGREGAR USUARIOS";
-            this.aGREGARUSUARIOSToolStripMenuItem.Click += new System.EventHandler(this.aGREGARUSUARIOSToolStripMenuItem_Click);
-            // 
-            // eLIMINARUSUARIOSToolStripMenuItem
-            // 
-            this.eLIMINARUSUARIOSToolStripMenuItem.Name = "eLIMINARUSUARIOSToolStripMenuItem";
-            this.eLIMINARUSUARIOSToolStripMenuItem.Size = new System.Drawing.Size(248, 24);
-            this.eLIMINARUSUARIOSToolStripMenuItem.Text = "ELIMINAR USUARIOS";
-            this.eLIMINARUSUARIOSToolStripMenuItem.Click += new System.EventHandler(this.eLIMINARUSUARIOSToolStripMenuItem_Click);
+            this.lblUsuario.AutoSize = true;
+            this.lblUsuario.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(203)))), ((int)(((byte)(204)))));
+            this.lblUsuario.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUsuario.ForeColor = System.Drawing.Color.Black;
+            this.lblUsuario.Location = new System.Drawing.Point(12, 8);
+            this.lblUsuario.Name = "lblUsuario";
+            this.lblUsuario.Size = new System.Drawing.Size(87, 24);
+            this.lblUsuario.TabIndex = 4;
+            this.lblUsuario.Text = "Usuario";
             // 
             // FormMENU
             // 

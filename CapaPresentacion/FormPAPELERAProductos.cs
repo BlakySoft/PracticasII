@@ -52,38 +52,45 @@ namespace CapaPresentacion
         }
         private void BtnRecuperar_Click(object sender, EventArgs e)
         {
-            ConeProductos cone = new ConeProductos();
-            Productos Recuperar = new Productos
+            try
             {
-                IdProducto = int.Parse(LblIdProducto.Text)
-            };
-
-            DialogResult resultado = MessageBox.Show(
-                "¿Está seguro que desea recuperar este producto?",
-                "Confirmar recuperación",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Question
-            );
-
-            if (resultado == DialogResult.Yes)
-            {
-                cone.Recuperar(Recuperar);
-
-                try
+                ConeProductos cone = new ConeProductos();
+                Productos Recuperar = new Productos
                 {
-                    MessageBox.Show("El Producto se recuperó correctamente!!!", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    LimpiarTextos();
-                    ListarPapelera();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"Error: {ex.ToString()}");
-                    throw;
-                }
+                    IdProducto = int.Parse(LblIdProducto.Text)
+                };
 
-                BtnVolver.Focus();
+                DialogResult resultado = MessageBox.Show(
+                    "¿Está seguro que desea recuperar este producto?",
+                    "Confirmar recuperación",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question
+                );
+
+                if (resultado == DialogResult.Yes)
+                {
+                    cone.Recuperar(Recuperar);
+
+                    try
+                    {
+                        MessageBox.Show("El Producto se recuperó correctamente!!!", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        LimpiarTextos();
+                        ListarPapelera();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Error: {ex.ToString()}");
+                        throw;
+                    }
+
+                    BtnVolver.Focus();
+                }
             }
+            catch
+            {
+                MessageBox.Show("Seleccione un Producto para recuperar.", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
+            }
         }
         private void iconButton1_Click(object sender, EventArgs e)
         {
@@ -116,8 +123,12 @@ namespace CapaPresentacion
             if (e.RowIndex < 0) return;
             LblIdProducto.Text = Grilla.Rows[e.RowIndex].Cells[0].Value.ToString();
         }
+
         #endregion
 
-      
+        private void FormPAPELERAProductos_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            this.DialogResult = DialogResult.OK;
+        }
     }
 }

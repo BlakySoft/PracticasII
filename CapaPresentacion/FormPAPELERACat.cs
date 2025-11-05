@@ -44,39 +44,47 @@ namespace CapaPresentacion
         }
         private void BtnRecuperar_Click(object sender, EventArgs e)
         {
-            ConeCategoria cone = new ConeCategoria();
-            Categoria Recuperar = new Categoria
+            try
             {
-                IdCat = int.Parse(LblIdCat.Text)
-            };
-
-            DialogResult resultado = MessageBox.Show(
-                "¿Está seguro que desea recuperar esta categoría?",
-                "Confirmar recuperación",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Question
-            );
-
-            if (resultado == DialogResult.Yes)
-            {
-                cone.RecuperarCat(Recuperar);
-
-                try
+                ConeCategoria cone = new ConeCategoria();
+                Categoria Recuperar = new Categoria
                 {
-                    MessageBox.Show("La Categoría se recuperó correctamente!!!", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    LimpiarTextos();
-                    Listar();
-                }
-                catch (Exception ex)
+                    IdCat = int.Parse(LblIdCat.Text)
+                };
+
+                DialogResult resultado = MessageBox.Show(
+                    "¿Está seguro que desea recuperar esta categoría?",
+                    "Confirmar recuperación",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question
+                );
+
+                if (resultado == DialogResult.Yes)
                 {
-                    MessageBox.Show($"Error: {ex.ToString()}");
-                    throw;
+                    cone.RecuperarCat(Recuperar);
+
+                    try
+                    {
+                        MessageBox.Show("La Categoría se recuperó correctamente!!!", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        LimpiarTextos();
+                        Listar();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Error: {ex.ToString()}");
+                        throw;
+                    }
+
+                    BtnVolver.Focus();
                 }
 
-                BtnVolver.Focus();
             }
-
+            catch (Exception)
+            {
+                MessageBox.Show("Seleccione una categoría para recuperar.", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
         }
+            
         private void iconButton1_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.OK;
@@ -109,8 +117,12 @@ namespace CapaPresentacion
                 Grilla.DataSource = cone.BuscarPapelera(Buscar.Descripcion);
             }
         }
+
         #endregion
 
-      
+        private void FormPAPELERACategoria_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            this.DialogResult = DialogResult.OK;
+        }
     }
 }

@@ -209,6 +209,7 @@
             this.Name = "FormPAPELERAColor";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Papelera de Colores";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormPAPELERAColor_FormClosing);
             this.PnlBarraLateral.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.Grilla)).EndInit();
             this.ResumeLayout(false);
