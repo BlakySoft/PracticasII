@@ -130,7 +130,18 @@ namespace CapaPresentacion
             FormELIMINARusuarios form = new FormELIMINARusuarios();
             form.ShowDialog();
         }
+        private void aGREGARUSUARIOSToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
 
+            FormAgregarUsuarios form = new FormAgregarUsuarios();
+            form.ShowDialog();
+        }
+
+        private void eLMINARUSUARIOSToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormELIMINARusuarios form = new FormELIMINARusuarios();
+            form.ShowDialog();
+        }
         #endregion
 
         #region Varios 
@@ -238,9 +249,10 @@ namespace CapaPresentacion
 
 
         }
+
         #endregion
 
-    
+      
     }
 }
     
