@@ -187,8 +187,6 @@ namespace CapaPresentacion
                 PrintDocument pd = new PrintDocument();
                 pd.PrintPage += new PrintPageEventHandler(ImprimirGrilla);
                 PrintPreviewDialog printPreview = new PrintPreviewDialog();
-                printPreview.Document = pd;
-                printPreview.ShowDialog();
                 pd.Print(); //imprimir
                 MessageBox.Show("Venta realizada con éxito.", "Liz Showroom", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -292,7 +290,7 @@ namespace CapaPresentacion
                     RectangleF rectProducto = new RectangleF(margenIzquierdo, y, anchoProducto, 30);
                     g.DrawString(producto, font, Brushes.Black, rectProducto);
 
-                    g.DrawString(cant, font, Brushes.Black, columnaCant, y, sfDerecha); // CORRECCIÓN: Alineación Derecha para Cant.
+                    g.DrawString(cant, font, Brushes.Black, columnaCant, y, sfDerecha); 
 
                     g.DrawString("$" + subtotal.ToString("N0"), font, Brushes.Black, columnaSubtotal, y, sfDerecha);
 
@@ -687,7 +685,7 @@ namespace CapaPresentacion
                   
                     if (!Existe)
                     {
-                        if (Grilla.Rows.Count > 30)
+                        if (Grilla.Rows.Count >50)
                         {
                             MessageBox.Show("Ha superado el número de productos.", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             BtnGrabar.Focus();

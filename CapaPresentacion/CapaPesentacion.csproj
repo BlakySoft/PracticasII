@@ -119,6 +119,12 @@
     <Compile Include="FormConfiguracion.Designer.cs">
       <DependentUpon>FormConfiguracion.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormELIMINARcliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormELIMINARcliente.Designer.cs">
+      <DependentUpon>FormELIMINARcliente.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormINFORMEcompras.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -301,6 +307,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormConfiguracion.resx">
       <DependentUpon>FormConfiguracion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormELIMINARcliente.resx">
+      <DependentUpon>FormELIMINARcliente.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormINFORMEcompras.resx">
       <DependentUpon>FormINFORMEcompras.cs</DependentUpon>
