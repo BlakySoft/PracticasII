@@ -58,8 +58,8 @@
             this.lblUsuario = new System.Windows.Forms.Label();
             this.PanelVisual = new System.Windows.Forms.Panel();
             this.iconSplitButton1 = new FontAwesome.Sharp.IconSplitButton();
-            this.aGREGARUSUARIOSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.eLIMINARUSUARIOSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aGREGARUSUARIOSToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.eLMINARUSUARIOSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.Panelinf.SuspendLayout();
             this.SuspendLayout();
@@ -273,8 +273,8 @@
             // btnUsuarios
             // 
             this.btnUsuarios.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.aGREGARUSUARIOSToolStripMenuItem,
-            this.eLIMINARUSUARIOSToolStripMenuItem});
+            this.aGREGARUSUARIOSToolStripMenuItem1,
+            this.eLMINARUSUARIOSToolStripMenuItem});
             this.btnUsuarios.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUsuarios.ForeColor = System.Drawing.Color.Black;
             this.btnUsuarios.IconChar = FontAwesome.Sharp.IconChar.Pen;
@@ -283,7 +283,6 @@
             this.btnUsuarios.Name = "btnUsuarios";
             this.btnUsuarios.Size = new System.Drawing.Size(122, 23);
             this.btnUsuarios.Text = "USUARIOS";
-
             // 
             // Reloj
             // 
@@ -349,17 +348,19 @@
             this.iconSplitButton1.Size = new System.Drawing.Size(23, 23);
             this.iconSplitButton1.Text = "iconSplitButton1";
             // 
-            // lblUsuario
+            // aGREGARUSUARIOSToolStripMenuItem1
             // 
-            this.lblUsuario.AutoSize = true;
-            this.lblUsuario.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(203)))), ((int)(((byte)(204)))));
-            this.lblUsuario.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUsuario.ForeColor = System.Drawing.Color.Black;
-            this.lblUsuario.Location = new System.Drawing.Point(12, 8);
-            this.lblUsuario.Name = "lblUsuario";
-            this.lblUsuario.Size = new System.Drawing.Size(87, 24);
-            this.lblUsuario.TabIndex = 4;
-            this.lblUsuario.Text = "Usuario";
+            this.aGREGARUSUARIOSToolStripMenuItem1.Name = "aGREGARUSUARIOSToolStripMenuItem1";
+            this.aGREGARUSUARIOSToolStripMenuItem1.Size = new System.Drawing.Size(248, 24);
+            this.aGREGARUSUARIOSToolStripMenuItem1.Text = "AGREGAR USUARIOS";
+            this.aGREGARUSUARIOSToolStripMenuItem1.Click += new System.EventHandler(this.aGREGARUSUARIOSToolStripMenuItem1_Click);
+            // 
+            // eLMINARUSUARIOSToolStripMenuItem
+            // 
+            this.eLMINARUSUARIOSToolStripMenuItem.Name = "eLMINARUSUARIOSToolStripMenuItem";
+            this.eLMINARUSUARIOSToolStripMenuItem.Size = new System.Drawing.Size(248, 24);
+            this.eLMINARUSUARIOSToolStripMenuItem.Text = "ELMINAR USUARIOS";
+            this.eLMINARUSUARIOSToolStripMenuItem.Click += new System.EventHandler(this.eLMINARUSUARIOSToolStripMenuItem_Click);
             // 
             // FormMENU
             // 
@@ -417,7 +418,7 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.Label lblUsuario;
         private FontAwesome.Sharp.IconMenuItem btnUsuarios;
-        private System.Windows.Forms.ToolStripMenuItem aGREGARUSUARIOSToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem eLIMINARUSUARIOSToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem aGREGARUSUARIOSToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem eLMINARUSUARIOSToolStripMenuItem;
     }
 }
