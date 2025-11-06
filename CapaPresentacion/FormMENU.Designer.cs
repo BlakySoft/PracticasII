@@ -52,14 +52,15 @@
             this.mARCASToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cOLORESToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnUsuarios = new FontAwesome.Sharp.IconMenuItem();
+            this.aGREGARUSUARIOSToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.eLMINARUSUARIOSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Reloj = new System.Windows.Forms.Label();
             this.Timer = new System.Windows.Forms.Timer(this.components);
             this.Panelinf = new System.Windows.Forms.Panel();
             this.lblUsuario = new System.Windows.Forms.Label();
             this.PanelVisual = new System.Windows.Forms.Panel();
             this.iconSplitButton1 = new FontAwesome.Sharp.IconSplitButton();
-            this.aGREGARUSUARIOSToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.eLMINARUSUARIOSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.iconButton1 = new FontAwesome.Sharp.IconButton();
             this.menuStrip1.SuspendLayout();
             this.Panelinf.SuspendLayout();
             this.SuspendLayout();
@@ -284,6 +285,20 @@
             this.btnUsuarios.Size = new System.Drawing.Size(122, 23);
             this.btnUsuarios.Text = "USUARIOS";
             // 
+            // aGREGARUSUARIOSToolStripMenuItem1
+            // 
+            this.aGREGARUSUARIOSToolStripMenuItem1.Name = "aGREGARUSUARIOSToolStripMenuItem1";
+            this.aGREGARUSUARIOSToolStripMenuItem1.Size = new System.Drawing.Size(248, 24);
+            this.aGREGARUSUARIOSToolStripMenuItem1.Text = "AGREGAR USUARIOS";
+            this.aGREGARUSUARIOSToolStripMenuItem1.Click += new System.EventHandler(this.aGREGARUSUARIOSToolStripMenuItem1_Click);
+            // 
+            // eLMINARUSUARIOSToolStripMenuItem
+            // 
+            this.eLMINARUSUARIOSToolStripMenuItem.Name = "eLMINARUSUARIOSToolStripMenuItem";
+            this.eLMINARUSUARIOSToolStripMenuItem.Size = new System.Drawing.Size(248, 24);
+            this.eLMINARUSUARIOSToolStripMenuItem.Text = "ELMINAR USUARIOS";
+            this.eLMINARUSUARIOSToolStripMenuItem.Click += new System.EventHandler(this.eLMINARUSUARIOSToolStripMenuItem_Click);
+            // 
             // Reloj
             // 
             this.Reloj.AutoSize = true;
@@ -348,19 +363,22 @@
             this.iconSplitButton1.Size = new System.Drawing.Size(23, 23);
             this.iconSplitButton1.Text = "iconSplitButton1";
             // 
-            // aGREGARUSUARIOSToolStripMenuItem1
+            // iconButton1
             // 
-            this.aGREGARUSUARIOSToolStripMenuItem1.Name = "aGREGARUSUARIOSToolStripMenuItem1";
-            this.aGREGARUSUARIOSToolStripMenuItem1.Size = new System.Drawing.Size(248, 24);
-            this.aGREGARUSUARIOSToolStripMenuItem1.Text = "AGREGAR USUARIOS";
-            this.aGREGARUSUARIOSToolStripMenuItem1.Click += new System.EventHandler(this.aGREGARUSUARIOSToolStripMenuItem1_Click);
-            // 
-            // eLMINARUSUARIOSToolStripMenuItem
-            // 
-            this.eLMINARUSUARIOSToolStripMenuItem.Name = "eLMINARUSUARIOSToolStripMenuItem";
-            this.eLMINARUSUARIOSToolStripMenuItem.Size = new System.Drawing.Size(248, 24);
-            this.eLMINARUSUARIOSToolStripMenuItem.Text = "ELMINAR USUARIOS";
-            this.eLMINARUSUARIOSToolStripMenuItem.Click += new System.EventHandler(this.eLMINARUSUARIOSToolStripMenuItem_Click);
+            this.iconButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(203)))), ((int)(((byte)(204)))));
+            this.iconButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.iconButton1.IconChar = FontAwesome.Sharp.IconChar.Box;
+            this.iconButton1.IconColor = System.Drawing.Color.Red;
+            this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconButton1.IconSize = 27;
+            this.iconButton1.Location = new System.Drawing.Point(1237, 0);
+            this.iconButton1.Name = "iconButton1";
+            this.iconButton1.Size = new System.Drawing.Size(27, 27);
+            this.iconButton1.TabIndex = 4;
+            this.iconButton1.TabStop = false;
+            this.iconButton1.UseVisualStyleBackColor = false;
+            this.iconButton1.Visible = false;
+            this.iconButton1.Click += new System.EventHandler(this.iconButton1_Click);
             // 
             // FormMENU
             // 
@@ -368,6 +386,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(140)))), ((int)(((byte)(174)))));
             this.ClientSize = new System.Drawing.Size(1264, 681);
+            this.Controls.Add(this.iconButton1);
             this.Controls.Add(this.PanelVisual);
             this.Controls.Add(this.Panelinf);
             this.Controls.Add(this.menuStrip1);
@@ -420,5 +439,6 @@
         private FontAwesome.Sharp.IconMenuItem btnUsuarios;
         private System.Windows.Forms.ToolStripMenuItem aGREGARUSUARIOSToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem eLMINARUSUARIOSToolStripMenuItem;
+        private FontAwesome.Sharp.IconButton iconButton1;
     }
 }

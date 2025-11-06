@@ -7,6 +7,7 @@ using System.Data.OleDb;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms.PropertyGridInternal;
 
 namespace CapaDatos
 {
@@ -306,6 +307,7 @@ namespace CapaDatos
             return false;
         }
 
+        
         public int ObtenerStockDesdeDB(int idProducto)
         {
             int stock = 0;
