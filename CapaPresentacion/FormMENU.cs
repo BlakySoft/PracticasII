@@ -1,8 +1,10 @@
 ﻿using CapaNegocio;
+using CapaNegocios;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.OleDb;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -13,15 +15,94 @@ namespace CapaPresentacion
 {
     public partial class FormMENU: Form
     {
+        CapaDatos.Conexion cn = new CapaDatos.Conexion();
         private Usuario usuarioActual;
+        private ToolTip toolTipAlerta = new ToolTip();
+        private bool count = false;
+
+        private void MostrarBotonConToolTip()
+        {
+            if(count == true)
+            {
+                return;
+            }else
+            {
+                iconButton1.Visible = true;
+                this.BeginInvoke((Action)(() =>
+                {
+                    toolTipAlerta.Show("Uno o mas productos tienen bajo stock", iconButton1, iconButton1.Width / 2, -60);
+
+                }));
+            }
+
+
+                
+
+
+                
+        }
         public FormMENU(CapaNegocio.Usuario usuario)
         {
             InitializeComponent();
             usuarioActual = usuario;
             menuStrip1.Renderer = new CustomRenderer();
+
+            toolTipAlerta = new ToolTip
+            {
+                IsBalloon = true,
+                ToolTipIcon = ToolTipIcon.Warning,
+                ToolTipTitle = "Alerta",
+                AutoPopDelay = 3000,
+                InitialDelay = 0,
+                ReshowDelay = 0,
+                ShowAlways = true
+            };
            
         }
         #region Botones
+
+       
+        private List<Productos> VerifStock()
+        {
+            List<Productos> lista = new List<Productos>();
+
+            using (OleDbConnection con = new OleDbConnection(cn.ConectarDB()))
+            {
+                string query = $"Select IdProducto, Descripcion, Stock FROM Productos WHERE Stock <= {Properties.Settings.Default.LimiteAlertaStock} AND Estado = True";
+                OleDbCommand cmd = new OleDbCommand(query, con);
+                con.Open();
+                OleDbDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    Productos prod = new Productos
+                    {
+                        IdProducto = reader.GetInt32(0),
+                        Descripcion = reader.GetString(1),
+                        Stock = reader.GetInt32(2)
+                    };
+                    lista.Add(prod);
+                }
+                con.Close();
+                
+            }
+
+            
+            if (lista.Count > 0)
+            {
+                
+                MostrarBotonConToolTip();
+                count = true;
+            }
+            else
+            {
+                iconButton1.Visible = false;
+            }
+
+            return lista;
+
+        }
+
+
 
         private void cLIENTESToolStripMenuItem1_Click(object sender, EventArgs e)
         {
@@ -150,6 +231,11 @@ namespace CapaPresentacion
                 btnCompras.Enabled = true;
                 btnInformes.Visible = true;
             }
+            VerifStock();
+
+
+
+
         }
         private void Timer_Tick(object sender, EventArgs e)
         {
@@ -230,6 +316,7 @@ namespace CapaPresentacion
             {
                 FormHelper.ResetearMenuItems(menuStrip1.Items, frmActivo);
                 frmActivo = null;
+                VerifStock();
             };
 
             FrmHijo.Show();
@@ -237,9 +324,36 @@ namespace CapaPresentacion
 
         }
 
+
         #endregion
 
-      
+        private void iconButton1_Click(object sender, EventArgs e)
+        {
+            List<Productos> productosBajoStock = VerifStock();
+
+            if (usuarioActual.TipoUsuario == 1)
+            {
+                string mensaje = "Los siguientes productos tienen bajo stock:\n\n";
+                foreach (var producto in productosBajoStock)
+                {
+                    mensaje += $"- {producto.Descripcion} (Stock: {producto.Stock})\n";
+                }
+                DialogResult resultado = MessageBox.Show(mensaje + "\n ¿Ir a la Base de datos?", "Alerta de Stock", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (resultado == DialogResult.Yes)
+                {
+                    AbrirFrmHijo(new FormABMProductos(), pRODUCTOSToolStripMenuItem1);
+                }
+            }
+            else if (usuarioActual.TipoUsuario == 2)
+            {
+                string mensaje = "Los siguientes productos tienen bajo stock:\n\n";
+                foreach (var producto in productosBajoStock)
+                {
+                    mensaje += $"- {producto.Descripcion} (Stock: {producto.Stock})\n";
+                }
+                MessageBox.Show(mensaje + "\n Notifica al Administrador lo antes posible", "Alerta de Stock", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
     }
 }
     

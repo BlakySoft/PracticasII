@@ -27,14 +27,24 @@ namespace CapaPresentacion
             var lista = datos.ListarUsuarios();
 
             Grilla.DataSource = lista;
-            Grilla.Columns["Pass"].Visible = false;
 
             Grilla.Columns["Id"].HeaderText = "ID";
             Grilla.Columns["Usuarios"].HeaderText = "Usuario";
-            
             Grilla.Columns["TipoUsuario"].HeaderText = "Tipo de Usuario";
+            Grilla.Columns[2].Visible = false;
+            Grilla.Columns[3].HeaderText = "Tipo de Usuario";   
 
-
+            foreach (DataGridViewRow row in Grilla.Rows)
+            {
+                if (row.Cells[2].Value != null && row.Cells[2].Value.ToString() == "1")
+                {
+                    Grilla.Rows[row.Index].Cells[3].Value = "Administrador";
+                }
+                else if (row.Cells[2].Value != null && row.Cells[2].Value.ToString() == "2")
+                {
+                    Grilla.Rows[row.Index].Cells[3].Value = "Empleado";
+                }
+            }
         }
 
         private void BtnEliminar_Click(object sender, EventArgs e)

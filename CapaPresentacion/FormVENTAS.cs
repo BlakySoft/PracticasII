@@ -498,7 +498,7 @@ namespace CapaPresentacion
                             TxtPrecio.Text = Precio.ToString("0,0");
                         }
                         TxtCantidad.Enabled = true;
-                        TxtCantidad.Focus();
+                        //TxtCantidad.Focus();
                     }
                     dr.Close();
                     con.Close();

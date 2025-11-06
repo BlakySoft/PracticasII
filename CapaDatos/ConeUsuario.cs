@@ -95,7 +95,7 @@ namespace CapaDatos
                 try
                 {
                     con.Open();
-                    string query = "SELECT Id, Usuarios, Pass, Tipousuario FROM Usuarios";
+                    string query = "SELECT Id, Usuarios, Tipousuario FROM Usuarios";
 
                     using (OleDbCommand cmd = new OleDbCommand(query, con))
                     {
@@ -107,9 +107,9 @@ namespace CapaDatos
                                 {
                                     Id = Convert.ToInt32(reader["Id"]),
                                     Usuarios = reader["Usuarios"].ToString(),
-                                    Pass = reader["Pass"].ToString(),
                                     TipoUsuario = Convert.ToInt32(reader["Tipousuario"])
                                 };
+                                
                                 lista.Add(u);
                             }
                         }
