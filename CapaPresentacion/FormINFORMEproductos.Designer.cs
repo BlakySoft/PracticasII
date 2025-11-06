@@ -51,8 +51,8 @@
             // 
             this.Grilla1.AllowUserToAddRows = false;
             this.Grilla1.AllowUserToDeleteRows = false;
-            this.Grilla1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.Grilla1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Grilla1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.Grilla1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(216)))), ((int)(((byte)(228)))));
@@ -211,7 +211,7 @@
             this.iconButton1.Size = new System.Drawing.Size(29, 26);
             this.iconButton1.TabIndex = 54;
             this.iconButton1.UseVisualStyleBackColor = false;
-         
+            this.iconButton1.Click += new System.EventHandler(this.iconButton1_Click);
             // 
             // FormINFORMEproductos
             // 
