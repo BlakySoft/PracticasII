@@ -367,15 +367,20 @@
             // 
             this.iconButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(203)))), ((int)(((byte)(204)))));
             this.iconButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.iconButton1.Font = new System.Drawing.Font("Arial", 12.5F, System.Drawing.FontStyle.Bold);
+            this.iconButton1.ForeColor = System.Drawing.Color.Red;
             this.iconButton1.IconChar = FontAwesome.Sharp.IconChar.Box;
             this.iconButton1.IconColor = System.Drawing.Color.Red;
             this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconButton1.IconSize = 27;
-            this.iconButton1.Location = new System.Drawing.Point(1237, 0);
+            this.iconButton1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.iconButton1.Location = new System.Drawing.Point(1204, 0);
             this.iconButton1.Name = "iconButton1";
-            this.iconButton1.Size = new System.Drawing.Size(27, 27);
+            this.iconButton1.Size = new System.Drawing.Size(60, 27);
             this.iconButton1.TabIndex = 4;
             this.iconButton1.TabStop = false;
+            this.iconButton1.Text = "!!!";
+            this.iconButton1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.iconButton1.UseVisualStyleBackColor = false;
             this.iconButton1.Visible = false;
             this.iconButton1.Click += new System.EventHandler(this.iconButton1_Click);

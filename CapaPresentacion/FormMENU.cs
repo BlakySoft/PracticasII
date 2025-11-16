@@ -1,5 +1,6 @@
 ﻿using CapaNegocio;
 using CapaNegocios;
+using CapaPresentacion.Extras;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,7 +18,13 @@ namespace CapaPresentacion
     {
         CapaDatos.Conexion cn = new CapaDatos.Conexion();
         private Usuario usuarioActual;
-        private ToolTip toolTipAlerta = new ToolTip();
+
+        #region CustomToolTip
+        private CustomToolTip toolTipCustom;
+        private ToolTip toolTipDefault;
+        #endregion
+
+
         private bool count = false;
 
         private void MostrarBotonConToolTip()
@@ -30,7 +37,18 @@ namespace CapaPresentacion
                 iconButton1.Visible = true;
                 this.BeginInvoke((Action)(() =>
                 {
-                    toolTipAlerta.Show("Uno o mas productos tienen bajo stock", iconButton1, iconButton1.Width / 2, -60);
+
+                    //ToolTip Formulario 
+                    CustomToolTipForm tip = new CustomToolTipForm("Uno o más productos tienen bajo stock")
+                    {
+                    };
+                    //tip.Mostrar(iconButton1.PointToScreen(new Point(iconButton1.Width,iconButton1.Height)));
+                    tip.MostrarN(iconButton1);
+                    //ToolTip Default 
+                    //toolTipDefault.Show("Uno o mas productos tienen bajo stock", iconButton1, -250,50);
+
+                    //ToolTip personalizado
+                    //toolTipCustom.Show("Uno o mas productos tienen bajo stock", iconButton1,iconButton1.Width-250, iconButton1.Height);
 
                 }));
             }
@@ -47,17 +65,24 @@ namespace CapaPresentacion
             usuarioActual = usuario;
             menuStrip1.Renderer = new CustomRenderer();
 
-            toolTipAlerta = new ToolTip
+            //ToolTip personalizado
+            toolTipCustom = new CustomToolTip();
+            
+            //ToolTip default 
+            toolTipDefault = new ToolTip()
             {
                 IsBalloon = true,
                 ToolTipIcon = ToolTipIcon.Warning,
                 ToolTipTitle = "Alerta",
                 AutoPopDelay = 3000,
-                InitialDelay = 0,
+                InitialDelay = 500,
                 ReshowDelay = 0,
                 ShowAlways = true
             };
-           
+
+            
+
+
         }
         #region Botones
 
