@@ -18,6 +18,8 @@ namespace CapaPresentacion
         private ConeClientes coneClientes;
         private BindingSource bindingSourceClientes;
         private int filaActual = 0;
+        private string filtroCampo = "";
+        private string filtroTexto = "";
 
         public FormINFORMESclientes()
         {
@@ -64,29 +66,49 @@ namespace CapaPresentacion
 
         private void txtBuscar_TextChanged(object sender, EventArgs e)
         {
-            string textoFiltro = txtBuscar.Text.Trim();
+            string texto = txtBuscar.Text.Trim().ToUpper();
+            List<Cliente> todos = coneClientes.ListarCliente();
+            List<Cliente> filtrados;
 
-            if (string.IsNullOrEmpty(textoFiltro))
+            if (string.IsNullOrEmpty(texto))
             {
-                listar();
+                filtrados = todos;
+                filtroCampo = "Sin filtro";
+                filtroTexto = "";
+            }
+            else if (texto.All(char.IsDigit))
+            {
+                filtrados = todos
+                    .Where(c => c.Documento != null && c.Documento.Contains(texto))
+                    .ToList();
+                filtroCampo = "DNI";
+                filtroTexto = texto;
             }
             else
             {
-                List<Cliente> todosLosClientes = coneClientes.ListarCliente();
+                if (texto.Length == 1)
+                {
+                    filtrados = todos
+                        .Where(c => !string.IsNullOrEmpty(c.Apellido) &&
+                                    c.Apellido.ToUpper().StartsWith(texto))
+                        .ToList();
+                    filtroCampo = "Apellido (inicial)";
+                }
+                else
+                {
+                    filtrados = todos
+                        .Where(c => !string.IsNullOrEmpty(c.Apellido) &&
+                                    c.Apellido.ToUpper().Contains(texto))
+                        .ToList();
+                    filtroCampo = "Apellido";
+                }
 
-                var clientesFiltrados = todosLosClientes
-                    .Where(c => c.Apellido.IndexOf(textoFiltro, StringComparison.OrdinalIgnoreCase) >= 0 ||
-                                c.Nombre.IndexOf(textoFiltro, StringComparison.OrdinalIgnoreCase) >= 0 ||
-                                c.Documento.IndexOf(textoFiltro, StringComparison.OrdinalIgnoreCase) >= 0)
-                    .ToList();
-
-                bindingSourceClientes.DataSource = clientesFiltrados;
-                bindingSourceClientes.ResetBindings(false);
+                filtroTexto = texto;
             }
+
+            bindingSourceClientes.DataSource = filtrados;
+            bindingSourceClientes.ResetBindings(false);
         }
-
-        // --- Métodos de Impresión ---
-
         private void ImprimirGrilla(object sender, PrintPageEventArgs e)
         {
             Graphics g = e.Graphics;
@@ -99,8 +121,8 @@ namespace CapaPresentacion
 
             Font titulo = new Font("Arial", 18, FontStyle.Bold);
             Font subtitulo = new Font("Arial", 14, FontStyle.Regular);
-            Font contenido = new Font("Arial", 10, FontStyle.Regular);
-            float espacio = 30;
+            Font contenido = new Font("Arial", 9, FontStyle.Regular);
+            float espacio = 25;
 
             StringFormat formatoCentrado = new StringFormat
             {
@@ -108,26 +130,33 @@ namespace CapaPresentacion
                 LineAlignment = StringAlignment.Center
             };
 
-            g.DrawString("Liz Showroom", titulo, Brushes.Black, xPos + anchoPagina / 2, yPos, formatoCentrado);
+            g.DrawString("Liz Showroom ", titulo, Brushes.Black, xPos + anchoPagina / 2, yPos, formatoCentrado);
             yPos += espacio;
             g.DrawString("Informe de Clientes", subtitulo, Brushes.Black, xPos + anchoPagina / 2, yPos, formatoCentrado);
             yPos += espacio * 1.5f;
 
-            float[] columnasAncho = { 50, 100, 100, 100, 100, 180 };
-            string[] encabezados = { "ID", "Apellido", "Nombre", "Documento", "Teléfono", "Domicilio" };
-
-            if (columnasAncho.Length != encabezados.Length)
+            if (!string.IsNullOrEmpty(filtroCampo))
             {
-                // Manejo de error si los arreglos no coinciden
+                g.DrawString($"Filtrado por: {filtroCampo} = {filtroTexto}",
+                             new Font("Arial", 10, FontStyle.Italic),
+                             Brushes.Gray,
+                             xPos,
+                             yPos);
+                yPos += espacio;
             }
+
+            // 🔸 Columnas
+            float[] columnasAncho = { 120, 120, 80, 100, 200 };
+            string[] encabezados = { "Nombre", "Apellido", "Documento", "Teléfono", "Dirección" };
 
             if (Grilla1.Rows.Count == 0 || Grilla1.Rows.Cast<DataGridViewRow>().All(r => r.IsNewRow))
             {
-                g.DrawString("No hay datos de clientes para imprimir.", subtitulo, Brushes.Gray, xPos, yPos);
+                g.DrawString("No hay clientes para imprimir.", subtitulo, Brushes.Gray, xPos, yPos);
                 e.HasMorePages = false;
                 return;
             }
 
+            // Encabezados
             float xTemp = xPos;
             for (int i = 0; i < encabezados.Length; i++)
             {
@@ -152,18 +181,16 @@ namespace CapaPresentacion
 
                 xTemp = xPos;
 
-                g.DrawString(GetStringValue(row.Cells["IdCliente"]), contenido, Brushes.Black, xTemp, yPos);
+                g.DrawString(GetStringValue(row.Cells["Nombre"]), contenido, Brushes.Black, xTemp, yPos);
                 xTemp += columnasAncho[0];
                 g.DrawString(GetStringValue(row.Cells["Apellido"]), contenido, Brushes.Black, xTemp, yPos);
                 xTemp += columnasAncho[1];
-                g.DrawString(GetStringValue(row.Cells["Nombre"]), contenido, Brushes.Black, xTemp, yPos);
-                xTemp += columnasAncho[2];
                 g.DrawString(GetStringValue(row.Cells["Documento"]), contenido, Brushes.Black, xTemp, yPos);
-                xTemp += columnasAncho[3];
+                xTemp += columnasAncho[2];
                 g.DrawString(GetStringValue(row.Cells["Telefono"]), contenido, Brushes.Black, xTemp, yPos);
-                xTemp += columnasAncho[4];
+                xTemp += columnasAncho[3];
                 g.DrawString(GetStringValue(row.Cells["Domicilio"]), contenido, Brushes.Black, xTemp, yPos);
-                xTemp += columnasAncho[5];
+                xTemp += columnasAncho[4];
 
                 yPos += alturaFila;
                 filaActual++;
@@ -177,9 +204,6 @@ namespace CapaPresentacion
 
             e.HasMorePages = false;
         }
-
-        // --- Método Auxiliar ---
-
         private string GetStringValue(DataGridViewCell cell)
         {
             if (cell == null || cell.Value == null || cell.Value == DBNull.Value)
@@ -193,6 +217,11 @@ namespace CapaPresentacion
             }
 
             return cell.Value.ToString();
+        }
+
+        private void iconButton1_Click(object sender, EventArgs e)
+        {
+            txtBuscar.Clear();
         }
     }
 }

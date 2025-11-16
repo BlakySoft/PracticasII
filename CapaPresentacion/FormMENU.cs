@@ -223,19 +223,6 @@ namespace CapaPresentacion
             form.ShowDialog();
         }
 
-        private void aGREGARUSUARIOSToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-            FormAgregarUsuarios form = new FormAgregarUsuarios();
-            form.ShowDialog();
-        }
-
-        private void eLIMINARUSUARIOSToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-            FormELIMINARusuarios form = new FormELIMINARusuarios();
-            form.ShowDialog();
-        }
         private void aGREGARUSUARIOSToolStripMenuItem1_Click(object sender, EventArgs e)
         {
 
