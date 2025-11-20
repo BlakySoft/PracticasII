@@ -19,6 +19,12 @@ namespace LoginTry
             InitializeComponent();
         }
         public CapaNegocio.Usuario UsuarioAutenticado { get; private set; }
+
+        private void LimpiarCredenciales()
+        {
+            txtUsuario.Clear();
+            txtContraseña.Clear();
+        }
         private void btnEnter_Click(object sender, EventArgs e)
         {
             try
@@ -47,10 +53,21 @@ namespace LoginTry
 
                     if (usuarioEncontrado != null)
                     {
-
                         this.UsuarioAutenticado = usuarioEncontrado; 
                         this.DialogResult = DialogResult.OK;
-                        this.Close();
+
+
+                        FormMENU menu = new FormMENU(usuarioEncontrado);
+                        this.Hide();
+                        LimpiarCredenciales();
+                        menu.Show();
+
+                        menu.FormClosed += (s, args) =>
+                        {
+                            // Al cerrar menú → limpiar login y mostrarlo de nuevo
+                            this.Show();
+                        };
+
                     }
                     else
                     {

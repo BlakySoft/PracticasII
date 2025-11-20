@@ -20,18 +20,8 @@ namespace CapaPresentacion
 
             using (FormLogin login = new FormLogin())
             {
-                //if (login.ShowDialog() == DialogResult.OK)
-                //{
-                    CapaNegocio.Usuario usuarioLogueado = login.UsuarioAutenticado;
-                usuarioLogueado = new CapaNegocio.Usuario
-                {
-                    Id = 1,
-                    Usuarios = "Cristian",
-                    Pass = "1234",
-                    TipoUsuario = 1
-                };
-                    Application.Run(new FormMENU(usuarioLogueado));
-                //}
+                Application.Run(new FormLogin());
+
             }
         }
     }
