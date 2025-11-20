@@ -75,6 +75,8 @@ namespace LoginTry
                         lblAlerta.Text = "Usuario o contraseña incorrecta";
                         lblAlerta.ForeColor = Color.Red;
                         lblAlerta.Visible = true;
+                        txtUsuario.Text = "";
+                        txtContraseña.Text = "";
                     }
                 }
             }
