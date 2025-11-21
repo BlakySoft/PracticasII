@@ -51,6 +51,13 @@ namespace CapaPresentacion
             BtnBuscarProducto.Enabled = false;
             TxtCantidad.Enabled = false;
             TxtIdProducto.Enabled = false;
+
+            if (usuarioActual == 2)
+            {
+                BtnMetodo.Visible = false;
+                BtnAgregarProducto.Visible = false;
+            }
+
             //true
             BtnNuevo.Enabled = true;
             Grilla.Visible = true;
@@ -619,6 +626,13 @@ namespace CapaPresentacion
                 BtnCancelar.PerformClick();
             }
         }
+
+        private void BtnMetodo_Click(object sender, EventArgs e)
+        {
+            FormABMMetododepago frm = new FormABMMetododepago();
+            frm.ShowDialog();
+        }
+
         private void BtnAgregarProveedor_Click(object sender, EventArgs e)
         {
             FormAgregarCliente form = new FormAgregarCliente();

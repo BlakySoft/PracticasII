@@ -38,10 +38,16 @@ namespace CapaPresentacion
                 ShowAlways = true
             };
 
+            tip = new CustomToolTipForm("Uno o más productos tienen bajo stock")
+            {
+
+            };
+
         }
 
         #region CustomToolTip
         private ToolTip toolTipDefault;
+        private CustomToolTipForm tip; 
 
         private void MostrarBotonConToolTip()
         {
@@ -56,9 +62,6 @@ namespace CapaPresentacion
                 {
 
                     //CustomToolTipForm 
-                    CustomToolTipForm tip = new CustomToolTipForm("Uno o más productos tienen bajo stock")
-                    {
-                    };
                     tip.MostrarN(iconButton1);
                     //ToolTip Default 
                         //toolTipDefault.Show("Uno o mas productos tienen bajo stock", iconButton1, -250,50);
@@ -366,6 +369,7 @@ namespace CapaPresentacion
 
 
         }
+
 
 
 

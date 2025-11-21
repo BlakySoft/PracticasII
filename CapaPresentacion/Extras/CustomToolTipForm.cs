@@ -23,20 +23,22 @@ namespace CapaPresentacion.Extras
 
         public bool IsRounded { get; set; } = false; //Con esto se define si el tooltip es redondeado o cuadrado (En el futuro...)
         public int cornerRad { get; set; } = 10; // Con esto se define el radio de las esquinas redondeadas (En el futuro...
-        public Color bgColor { get; set; } = Color.FromArgb(40, 40, 40); //Fondo del tooltip
+        public Color bgColor { get; set; } = Color.White; //Fondo del tooltip
 
-        public Color bdColor { get; set; } = Color.DeepPink; //Color del borde del tooltip
+        public Color bdColor { get; set; } = Color.Pink; //Color del borde del tooltip
         public float bdThick { get; set; } = 4f; //Grosor del borde del tooltip
 
         public int ArrowH { get; set; } = 20; //Altura de la flecha del tooltip 
         public int ArrowW { get; set; } = 20; //Ancho de la flecha del tooltip
+
+
 
         #endregion
 
         #region Controles Internos
         private readonly Label lblMensaje = new Label
         {
-            ForeColor = Color.White,
+            ForeColor = Color.Black,
             TextAlign = ContentAlignment.MiddleLeft,
             AutoSize = true,
             Font = new Font("Segoe UI", 10),
@@ -162,7 +164,7 @@ namespace CapaPresentacion.Extras
             fadeIn.Start();
 
             // Cierre automático
-            var hideTimer = new Timer { Interval = 6000 };
+            var hideTimer = new Timer { Interval = 3000 };
             hideTimer.Tick += (s, e) =>
             {
                 this.Close();

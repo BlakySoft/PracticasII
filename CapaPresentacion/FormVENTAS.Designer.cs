@@ -209,6 +209,7 @@ namespace CapaPresentacion
             this.BtnMetodo.TabIndex = 44;
             this.BtnMetodo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.BtnMetodo.UseVisualStyleBackColor = false;
+            this.BtnMetodo.Click += new System.EventHandler(this.BtnMetodo_Click);
             // 
             // TxtSubTotal
             // 
