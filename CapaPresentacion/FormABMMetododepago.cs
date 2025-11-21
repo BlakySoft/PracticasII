@@ -32,11 +32,10 @@ namespace CapaPresentacion
         {
             ConeMetododepago cone = new ConeMetododepago();
             Grilla.DataSource = cone.Listar();
-            Grilla.Columns[0].HeaderText = "Código";
-            Grilla.Columns[0].Width = 100;
-            Grilla.Columns[1].HeaderText = "Metodo de pago";
-            Grilla.Columns[1].Width = 150;
+
+            Grilla.Columns[0].Visible = false;
             Grilla.Columns[2].Visible = false;
+
 
         }
 

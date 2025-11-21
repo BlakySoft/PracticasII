@@ -23,7 +23,12 @@ namespace LoginTry
         private void LimpiarCredenciales()
         {
             txtUsuario.Clear();
+            txtUsuario.ForeColor = Color.IndianRed;
+            txtUsuario.Text = "USUARIO";
             txtContraseña.Clear();
+            txtContraseña.ForeColor = Color.IndianRed;  
+            txtContraseña.UseSystemPasswordChar = false;
+            txtContraseña.Text = "CONTRASEÑA";
         }
         private void btnEnter_Click(object sender, EventArgs e)
         {
@@ -60,6 +65,7 @@ namespace LoginTry
                         FormMENU menu = new FormMENU(usuarioEncontrado);
                         this.Hide();
                         LimpiarCredenciales();
+                        lblAlerta.Visible = false;
                         menu.Show();
 
                         menu.FormClosed += (s, args) =>
@@ -75,8 +81,7 @@ namespace LoginTry
                         lblAlerta.Text = "Usuario o contraseña incorrecta";
                         lblAlerta.ForeColor = Color.Red;
                         lblAlerta.Visible = true;
-                        txtUsuario.Text = "";
-                        txtContraseña.Text = "";
+                        LimpiarCredenciales();
                     }
                 }
             }
