@@ -29,7 +29,14 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMENU));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.Reloj = new System.Windows.Forms.Label();
+            this.Timer = new System.Windows.Forms.Timer(this.components);
+            this.Panelinf = new System.Windows.Forms.Panel();
+            this.lblUsuario = new System.Windows.Forms.Label();
+            this.iconButton1 = new FontAwesome.Sharp.IconButton();
+            this.PanelVisual = new System.Windows.Forms.Panel();
             this.btnRegistros = new FontAwesome.Sharp.IconMenuItem();
             this.cLIENTESToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.pROVEEDORESToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -54,13 +61,7 @@
             this.btnUsuarios = new FontAwesome.Sharp.IconMenuItem();
             this.aGREGARUSUARIOSToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.eLMINARUSUARIOSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.Reloj = new System.Windows.Forms.Label();
-            this.Timer = new System.Windows.Forms.Timer(this.components);
-            this.Panelinf = new System.Windows.Forms.Panel();
-            this.lblUsuario = new System.Windows.Forms.Label();
-            this.PanelVisual = new System.Windows.Forms.Panel();
             this.iconSplitButton1 = new FontAwesome.Sharp.IconSplitButton();
-            this.iconButton1 = new FontAwesome.Sharp.IconButton();
             this.menuStrip1.SuspendLayout();
             this.Panelinf.SuspendLayout();
             this.SuspendLayout();
@@ -82,6 +83,80 @@
             this.menuStrip1.Size = new System.Drawing.Size(1264, 27);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
+            // 
+            // Reloj
+            // 
+            this.Reloj.AutoSize = true;
+            this.Reloj.Dock = System.Windows.Forms.DockStyle.Right;
+            this.Reloj.Font = new System.Drawing.Font("Bernard MT Condensed", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Reloj.ForeColor = System.Drawing.Color.Black;
+            this.Reloj.Location = new System.Drawing.Point(1173, 0);
+            this.Reloj.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.Reloj.Name = "Reloj";
+            this.Reloj.Size = new System.Drawing.Size(91, 38);
+            this.Reloj.TabIndex = 1;
+            this.Reloj.Text = "RELOJ";
+            // 
+            // Timer
+            // 
+            this.Timer.Tick += new System.EventHandler(this.Timer_Tick);
+            // 
+            // Panelinf
+            // 
+            this.Panelinf.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(203)))), ((int)(((byte)(204)))));
+            this.Panelinf.Controls.Add(this.lblUsuario);
+            this.Panelinf.Controls.Add(this.Reloj);
+            this.Panelinf.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.Panelinf.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.Panelinf.Location = new System.Drawing.Point(0, 640);
+            this.Panelinf.Name = "Panelinf";
+            this.Panelinf.Size = new System.Drawing.Size(1264, 41);
+            this.Panelinf.TabIndex = 2;
+            // 
+            // lblUsuario
+            // 
+            this.lblUsuario.AutoSize = true;
+            this.lblUsuario.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(203)))), ((int)(((byte)(204)))));
+            this.lblUsuario.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUsuario.ForeColor = System.Drawing.Color.Black;
+            this.lblUsuario.Location = new System.Drawing.Point(12, 8);
+            this.lblUsuario.Name = "lblUsuario";
+            this.lblUsuario.Size = new System.Drawing.Size(87, 24);
+            this.lblUsuario.TabIndex = 4;
+            this.lblUsuario.Text = "Usuario";
+            // 
+            // iconButton1
+            // 
+            this.iconButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(203)))), ((int)(((byte)(204)))));
+            this.iconButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.iconButton1.Font = new System.Drawing.Font("Arial", 12.5F, System.Drawing.FontStyle.Bold);
+            this.iconButton1.ForeColor = System.Drawing.Color.Red;
+            this.iconButton1.IconChar = FontAwesome.Sharp.IconChar.Box;
+            this.iconButton1.IconColor = System.Drawing.Color.Red;
+            this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconButton1.IconSize = 27;
+            this.iconButton1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.iconButton1.Location = new System.Drawing.Point(1204, 0);
+            this.iconButton1.Name = "iconButton1";
+            this.iconButton1.Size = new System.Drawing.Size(60, 27);
+            this.iconButton1.TabIndex = 4;
+            this.iconButton1.TabStop = false;
+            this.iconButton1.Text = "!!!";
+            this.iconButton1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.iconButton1.UseVisualStyleBackColor = false;
+            this.iconButton1.Visible = false;
+            this.iconButton1.Click += new System.EventHandler(this.iconButton1_Click);
+            // 
+            // PanelVisual
+            // 
+            this.PanelVisual.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(234)))), ((int)(((byte)(233)))));
+            this.PanelVisual.BackgroundImage = global::CapaPresentacion.Properties.Resources.LizLogo2;
+            this.PanelVisual.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.PanelVisual.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PanelVisual.Location = new System.Drawing.Point(0, 27);
+            this.PanelVisual.Name = "PanelVisual";
+            this.PanelVisual.Size = new System.Drawing.Size(1264, 613);
+            this.PanelVisual.TabIndex = 3;
             // 
             // btnRegistros
             // 
@@ -299,58 +374,6 @@
             this.eLMINARUSUARIOSToolStripMenuItem.Text = "ELMINAR USUARIOS";
             this.eLMINARUSUARIOSToolStripMenuItem.Click += new System.EventHandler(this.eLMINARUSUARIOSToolStripMenuItem_Click);
             // 
-            // Reloj
-            // 
-            this.Reloj.AutoSize = true;
-            this.Reloj.Dock = System.Windows.Forms.DockStyle.Right;
-            this.Reloj.Font = new System.Drawing.Font("Bernard MT Condensed", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Reloj.ForeColor = System.Drawing.Color.Black;
-            this.Reloj.Location = new System.Drawing.Point(1173, 0);
-            this.Reloj.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.Reloj.Name = "Reloj";
-            this.Reloj.Size = new System.Drawing.Size(91, 38);
-            this.Reloj.TabIndex = 1;
-            this.Reloj.Text = "RELOJ";
-            // 
-            // Timer
-            // 
-            this.Timer.Tick += new System.EventHandler(this.Timer_Tick);
-            // 
-            // Panelinf
-            // 
-            this.Panelinf.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(203)))), ((int)(((byte)(204)))));
-            this.Panelinf.Controls.Add(this.lblUsuario);
-            this.Panelinf.Controls.Add(this.Reloj);
-            this.Panelinf.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.Panelinf.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.Panelinf.Location = new System.Drawing.Point(0, 640);
-            this.Panelinf.Name = "Panelinf";
-            this.Panelinf.Size = new System.Drawing.Size(1264, 41);
-            this.Panelinf.TabIndex = 2;
-            // 
-            // lblUsuario
-            // 
-            this.lblUsuario.AutoSize = true;
-            this.lblUsuario.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(203)))), ((int)(((byte)(204)))));
-            this.lblUsuario.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUsuario.ForeColor = System.Drawing.Color.Black;
-            this.lblUsuario.Location = new System.Drawing.Point(12, 8);
-            this.lblUsuario.Name = "lblUsuario";
-            this.lblUsuario.Size = new System.Drawing.Size(87, 24);
-            this.lblUsuario.TabIndex = 4;
-            this.lblUsuario.Text = "Usuario";
-            // 
-            // PanelVisual
-            // 
-            this.PanelVisual.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(234)))), ((int)(((byte)(233)))));
-            this.PanelVisual.BackgroundImage = global::CapaPresentacion.Properties.Resources.LizLogo2;
-            this.PanelVisual.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.PanelVisual.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PanelVisual.Location = new System.Drawing.Point(0, 27);
-            this.PanelVisual.Name = "PanelVisual";
-            this.PanelVisual.Size = new System.Drawing.Size(1264, 613);
-            this.PanelVisual.TabIndex = 3;
-            // 
             // iconSplitButton1
             // 
             this.iconSplitButton1.Flip = FontAwesome.Sharp.FlipOrientation.Normal;
@@ -363,28 +386,6 @@
             this.iconSplitButton1.Size = new System.Drawing.Size(23, 23);
             this.iconSplitButton1.Text = "iconSplitButton1";
             // 
-            // iconButton1
-            // 
-            this.iconButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(203)))), ((int)(((byte)(204)))));
-            this.iconButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.iconButton1.Font = new System.Drawing.Font("Arial", 12.5F, System.Drawing.FontStyle.Bold);
-            this.iconButton1.ForeColor = System.Drawing.Color.Red;
-            this.iconButton1.IconChar = FontAwesome.Sharp.IconChar.Box;
-            this.iconButton1.IconColor = System.Drawing.Color.Red;
-            this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton1.IconSize = 27;
-            this.iconButton1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iconButton1.Location = new System.Drawing.Point(1204, 0);
-            this.iconButton1.Name = "iconButton1";
-            this.iconButton1.Size = new System.Drawing.Size(60, 27);
-            this.iconButton1.TabIndex = 4;
-            this.iconButton1.TabStop = false;
-            this.iconButton1.Text = "!!!";
-            this.iconButton1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.iconButton1.UseVisualStyleBackColor = false;
-            this.iconButton1.Visible = false;
-            this.iconButton1.Click += new System.EventHandler(this.iconButton1_Click);
-            // 
             // FormMENU
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(5F, 15F);
@@ -396,12 +397,12 @@
             this.Controls.Add(this.Panelinf);
             this.Controls.Add(this.menuStrip1);
             this.Font = new System.Drawing.Font("Arial Narrow", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.MinimumSize = new System.Drawing.Size(1280, 718);
             this.Name = "FormMENU";
-            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.FormMENU_Load);
             this.menuStrip1.ResumeLayout(false);
