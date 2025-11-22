@@ -222,6 +222,8 @@ namespace CapaPresentacion
 
                 BtnNuevo.Enabled = true;
                 Grilla.Visible = true;
+
+                this.Tag = "none";
                 #endregion
                 BtnNuevo.Focus();
             }
@@ -401,10 +403,12 @@ namespace CapaPresentacion
                 Grilla.Rows.Clear();
                 Total = 0;
                 BtnNuevo.Focus();
+                this.Tag = "none";
             }
         }
         private void BtnNuevo_Click(object sender, EventArgs e)
         {
+            this.Tag = "process";
 
             #region Enabled yes
             //true

@@ -333,12 +333,32 @@ namespace CapaPresentacion
             public override Color ImageMarginGradientMiddle => Color.FromArgb(245, 203, 204);
             public override Color ImageMarginGradientEnd => Color.FromArgb(245, 203, 204);
         }
+
         private Form frmActivo = null;
         public void AbrirFrmHijo(Form FrmHijo, ToolStripMenuItem menuItem)
         {
 
             if (frmActivo != null && frmActivo.GetType() == FrmHijo.GetType())
                 return;
+
+            if (frmActivo != null && frmActivo.Tag.ToString() == "process")
+            {
+                DialogResult res = MessageBox.Show($"Tiene una operacion pendiente. \n" +
+                    $"¿Está seguro que quiere salir de {frmActivo.Text}?", "Sistema", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                {
+                    if (res == DialogResult.Yes) 
+                    {
+                        frmActivo.Close();
+                    }
+                    else
+                    {
+                        return;
+                    }
+
+                };
+                
+            }
+
             if (frmActivo != null)
                 frmActivo.Close();
 

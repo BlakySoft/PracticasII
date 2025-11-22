@@ -80,6 +80,7 @@ namespace CapaPresentacion
         private void BtnNuevo_Click(object sender, EventArgs e)
         {
             nuevo = true;
+            this.Tag = "process";
 
             #region Enabled yes/no 
             //true
@@ -180,6 +181,8 @@ namespace CapaPresentacion
                     ListarProveedores();
                     BtnNuevo.Focus();
                 }
+
+                this.Tag = "none";
             }
             catch
             {
@@ -246,6 +249,7 @@ namespace CapaPresentacion
         private void BtnModificar_Click(object sender, EventArgs e)
         {
             nuevo = false;
+            this.Tag = "process";
             CargarCbo();
             CboIdLocalidad.SelectedValue = VarLocalidad;
             
@@ -278,6 +282,7 @@ namespace CapaPresentacion
             BtnEliminar.Enabled = false;
             PanelDatos.Enabled = false;
             #endregion
+            this.Tag = "none";
             LimpiarTextos();
             BtnNuevo.Focus();
 

@@ -120,6 +120,7 @@ namespace CapaPresentacion
         private void BtnNuevo_Click(object sender, EventArgs e)
         {
             nuevo = true;
+            this.Tag = "process";
 
             #region Enabled yes/no 
             //true
@@ -241,6 +242,7 @@ namespace CapaPresentacion
                     else return;
                 }
 
+                this.Tag = "none";
                 ListarProducto();
                 LimpiarTextos();
                 CboIdCat.SelectedIndex = -1;
@@ -314,7 +316,7 @@ namespace CapaPresentacion
         private void BtnModificar_Click(object sender, EventArgs e)
         {
             nuevo = false;
-
+            this.Tag = "process";
             #region Enabled yes/no 
             //true
             PanelDatos.Enabled = true;
@@ -344,7 +346,7 @@ namespace CapaPresentacion
             BtnCancelar.Enabled = false;
             BtnEliminar.Enabled = false;
             #endregion
-
+            this.Tag = "none";
             LimpiarTextos();
 
             CargarCbo();

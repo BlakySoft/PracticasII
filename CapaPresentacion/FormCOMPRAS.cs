@@ -87,6 +87,7 @@ namespace CapaPresentacion
         #region Botones
         private void BtnNuevo_Click(object sender, EventArgs e)
         {
+            this.Tag = "process";
             #region EnabledYES
             //false
             BtnNuevo.Enabled = false;
@@ -217,6 +218,7 @@ namespace CapaPresentacion
                 }
 
                 MessageBox.Show("Compra realizada con éxito.", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.Tag = "none";
                 #region EnabledNO
                 //false
                 Fecha.Enabled = false;
@@ -277,7 +279,7 @@ namespace CapaPresentacion
                 BtnNuevo.Enabled = true;
                 Grilla.Visible = true;
                 #endregion
-
+                this.Tag = "none";
                 #region Limpiar
                 TxtRazon.Text = "";
                 TxtBarCode.Text = "";

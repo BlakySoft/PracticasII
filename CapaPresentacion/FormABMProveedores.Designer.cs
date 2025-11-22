@@ -538,6 +538,7 @@
             this.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.Name = "FormABMProveedores";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Tag = "none";
             this.Text = "Proveedores";
             this.Load += new System.EventHandler(this.FormABMProveedores_Load);
             this.Resize += new System.EventHandler(this.FormABMProveedores_Resize);

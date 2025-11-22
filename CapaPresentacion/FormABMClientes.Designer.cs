@@ -127,7 +127,6 @@
             this.Grilla.ReadOnly = true;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Empty;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.Grilla.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.Grilla.RowHeadersVisible = false;
@@ -516,10 +515,12 @@
             this.Controls.Add(this.PanelDatos);
             this.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MinimumSize = new System.Drawing.Size(1138, 581);
             this.Name = "FormABMClientes";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Tag = "none";
+            this.Text = "Clientes";
             this.Load += new System.EventHandler(this.FormABMClientes_Load);
             this.Resize += new System.EventHandler(this.FormABMClientes_Resize);
             ((System.ComponentModel.ISupportInitialize)(this.Grilla)).EndInit();

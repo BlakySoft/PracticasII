@@ -709,6 +709,7 @@
             this.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.Name = "FormABMProductos";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Tag = "none";
             this.Text = "Productos";
             this.Load += new System.EventHandler(this.FormABMProductos_Load);
             ((System.ComponentModel.ISupportInitialize)(this.Grilla)).EndInit();

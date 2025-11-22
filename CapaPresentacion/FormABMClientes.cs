@@ -103,6 +103,7 @@ namespace CapaPresentacion
             BtnModificar.Enabled = false;
             BtnCancelar.Enabled = true;
             #endregion
+            this.Tag = "process";
 
             nuevo = false;
 
@@ -125,6 +126,7 @@ namespace CapaPresentacion
             PanelDatos.Enabled = false;
 
             #endregion
+            this.Tag = "none";
 
             LimpiarTextos();
             BtnNuevo.Focus();
@@ -189,7 +191,7 @@ namespace CapaPresentacion
         private void BtnNuevo_Click(object sender, EventArgs e)
         {
             nuevo = true;
-
+            this.Tag = "process";
             #region Enabled yes/no 
             //true
             BtnGrabar.Enabled = true;
@@ -292,6 +294,7 @@ namespace CapaPresentacion
                         LimpiarTextos();
                         ListarClientes();
                         BtnNuevo.Focus();
+                        this.Tag = "none";
                     }
                     else
                     {
