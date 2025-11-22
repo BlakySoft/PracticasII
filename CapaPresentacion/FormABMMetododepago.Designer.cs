@@ -334,8 +334,9 @@
             this.Controls.Add(this.LblBuscar);
             this.Controls.Add(this.PnlBarraLateral);
             this.Name = "FormABMMetododepago";
+            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Metodos de Pago";
+            this.Text = "Métodos de Pago";
             this.PnlBarraLateral.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.Grilla)).EndInit();
             this.ResumeLayout(false);

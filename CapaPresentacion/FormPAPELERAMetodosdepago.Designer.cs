@@ -208,8 +208,9 @@
             this.Controls.Add(this.TxtBuscar);
             this.Controls.Add(this.PnlBarraLateral);
             this.Name = "FormPAPELERAMetodosdepago";
+            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Papelera de Metodos de pago";
+            this.Text = "Papelera de Métodos de pago";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormPAPELERAMetodosdepago_FormClosing);
             this.PnlBarraLateral.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.Grilla)).EndInit();

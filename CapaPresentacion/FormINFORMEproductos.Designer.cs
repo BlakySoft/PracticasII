@@ -230,6 +230,7 @@
             this.Controls.Add(this.Grilla1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "FormINFORMEproductos";
+            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Informes de Productos";
             ((System.ComponentModel.ISupportInitialize)(this.Grilla1)).EndInit();

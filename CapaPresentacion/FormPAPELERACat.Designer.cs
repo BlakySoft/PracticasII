@@ -207,8 +207,9 @@
             this.Controls.Add(this.LblBuscar);
             this.Controls.Add(this.PnlBarraLateral);
             this.Name = "FormPAPELERACategoria";
+            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Papelera de Categorias";
+            this.Text = "Papelera de Categorías";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormPAPELERACategoria_FormClosing);
             this.PnlBarraLateral.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.Grilla)).EndInit();

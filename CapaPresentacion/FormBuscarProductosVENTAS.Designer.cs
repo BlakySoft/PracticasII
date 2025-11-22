@@ -173,6 +173,7 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.iconButton1);
             this.Name = "FormBuscarProducto";
+            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Buscar Poductos en Ventas";
             this.panel1.ResumeLayout(false);

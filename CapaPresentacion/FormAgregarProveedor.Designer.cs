@@ -324,6 +324,7 @@
             this.Controls.Add(this.PanelDatos);
             this.Controls.Add(this.PanelBotones);
             this.Name = "FormAgregarProveedor";
+            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Agregar Proveedor";
             this.PanelDatos.ResumeLayout(false);

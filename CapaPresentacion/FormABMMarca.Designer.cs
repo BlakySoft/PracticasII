@@ -362,6 +362,7 @@
             this.Controls.Add(this.PnlBarraLateral);
             this.Controls.Add(this.Grilla);
             this.Name = "FormABMMarca";
+            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Marca";
             this.PnlBarraLateral.ResumeLayout(false);

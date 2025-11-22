@@ -345,8 +345,9 @@
             this.Controls.Add(this.PnlBarraLateral);
             this.Controls.Add(this.LblIdCat);
             this.Name = "FormABMCategoria";
+            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Categoria";
+            this.Text = "Categoría";
             this.PnlBarraLateral.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.Grilla)).EndInit();
             this.ResumeLayout(false);

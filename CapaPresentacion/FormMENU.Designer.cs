@@ -240,7 +240,7 @@
             // 
             this.rubrosToolStripMenuItem.Name = "rubrosToolStripMenuItem";
             this.rubrosToolStripMenuItem.Size = new System.Drawing.Size(235, 24);
-            this.rubrosToolStripMenuItem.Text = "CATEGORIA";
+            this.rubrosToolStripMenuItem.Text = "CATEGORÍA";
             this.rubrosToolStripMenuItem.Click += new System.EventHandler(this.rubrosToolStripMenuItem_Click);
             // 
             // localidadesToolStripMenuItem
@@ -254,7 +254,7 @@
             // 
             this.metodosDePagoToolStripMenuItem.Name = "metodosDePagoToolStripMenuItem";
             this.metodosDePagoToolStripMenuItem.Size = new System.Drawing.Size(235, 24);
-            this.metodosDePagoToolStripMenuItem.Text = "METODOS DE PAGO";
+            this.metodosDePagoToolStripMenuItem.Text = "MÉTODOS DE PAGO";
             this.metodosDePagoToolStripMenuItem.Click += new System.EventHandler(this.metodosDePagoToolStripMenuItem_Click);
             // 
             // mARCASToolStripMenuItem

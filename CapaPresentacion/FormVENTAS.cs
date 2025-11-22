@@ -194,6 +194,8 @@ namespace CapaPresentacion
                 PrintDocument pd = new PrintDocument();
                 pd.PrintPage += new PrintPageEventHandler(ImprimirGrilla);
                 PrintPreviewDialog printPreview = new PrintPreviewDialog();
+                printPreview.Document = pd;
+                //printPreview.ShowDialog();
                 pd.Print(); //imprimir
                 MessageBox.Show("Venta realizada con éxito.", "Liz Showroom", MessageBoxButtons.OK, MessageBoxIcon.Information);
 

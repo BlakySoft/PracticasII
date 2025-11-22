@@ -210,6 +210,7 @@
             this.Controls.Add(this.LblBuscar);
             this.Controls.Add(this.PnlBarraLateral);
             this.Name = "FormPAPELERAProveedores";
+            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Papelera de Proveedores";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormPAPELERAProveedores_FormClosing);

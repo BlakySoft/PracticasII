@@ -204,6 +204,7 @@
             this.Controls.Add(this.LblBuscar);
             this.Controls.Add(this.PnlBarraLateral);
             this.Name = "FormPAPELERAClientes";
+            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Papelera de clientes";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormPAPELERAClientes_FormClosing);

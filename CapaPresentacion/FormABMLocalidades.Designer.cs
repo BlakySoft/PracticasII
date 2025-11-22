@@ -355,6 +355,7 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.PnlBarraLateral);
             this.Name = "FormABMLocalidades";
+            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Localidades";
             this.PnlBarraLateral.ResumeLayout(false);

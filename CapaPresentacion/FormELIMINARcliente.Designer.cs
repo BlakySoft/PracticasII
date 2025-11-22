@@ -162,6 +162,7 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.iconButton1);
             this.Name = "FormELIMINARusuarios";
+            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Eliminar Usuario";
             this.Load += new System.EventHandler(this.FormELIMINARusuarios_Load);

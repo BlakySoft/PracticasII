@@ -223,6 +223,7 @@
             this.Controls.Add(this.txtUsuario);
             this.Controls.Add(this.panel1);
             this.Name = "FormAgregarUsuarios";
+            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Agregar Usuarios";
             this.Load += new System.EventHandler(this.FormAgregarUsuarios_Load);

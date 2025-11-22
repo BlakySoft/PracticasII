@@ -203,6 +203,7 @@
             this.Controls.Add(this.TxtBuscar);
             this.Controls.Add(this.PnlBarraLateral);
             this.Name = "FormPAPELERALocalidades";
+            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = resources.GetString("$this.Text");
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormPAPELERALocalidades_FormClosing);

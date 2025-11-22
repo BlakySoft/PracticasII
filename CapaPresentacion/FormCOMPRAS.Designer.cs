@@ -323,7 +323,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(138, 19);
             this.label2.TabIndex = 42;
-            this.label2.Text = "Metodo de pago:";
+            this.label2.Text = "Método de pago:";
             // 
             // BtnBuscarProducto
             // 
@@ -464,7 +464,7 @@
             this.LblTitleApellidoNombre.Name = "LblTitleApellidoNombre";
             this.LblTitleApellidoNombre.Size = new System.Drawing.Size(116, 19);
             this.LblTitleApellidoNombre.TabIndex = 2;
-            this.LblTitleApellidoNombre.Text = "Razon Social:";
+            this.LblTitleApellidoNombre.Text = "Razón Social:";
             // 
             // TxtRazon
             // 

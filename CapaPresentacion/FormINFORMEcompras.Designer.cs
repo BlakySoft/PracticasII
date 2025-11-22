@@ -326,6 +326,7 @@
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "FormINFORMEcompras";
+            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Informes de Compra";
             ((System.ComponentModel.ISupportInitialize)(this.Grilla1)).EndInit();
