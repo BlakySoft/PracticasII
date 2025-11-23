@@ -33,19 +33,10 @@ namespace CapaPresentacion
             Fecha.Text = DateTime.Now.ToString("dd/MM/yyyy");
             #region EnabledNO
             //false
-            BtnMetodo.Enabled = false;
-            CboIdMetodo.Enabled = false;
-            Fecha.Enabled = false;
             BtnGrabar.Enabled = false;
             BtnCancelar.Enabled = false;
-            BtnAgregarProveedor.Enabled = false;
-            BtnBuscarProveedor.Enabled = false;
-            BtnAgregarProducto.Enabled = false;
-            BtnBuscarProducto.Enabled = false;
-            TxtCantidad.Enabled = false;
             //true
             BtnNuevo.Enabled = true;
-            Grilla.Visible = true;
             #endregion
 
             #region Limpiar
@@ -92,18 +83,10 @@ namespace CapaPresentacion
             //false
             BtnNuevo.Enabled = false;
             //true
-            BtnMetodo.Enabled = true;
-            TxtBarCode.Enabled = true;
-            CboIdMetodo.Enabled = true;
-            Fecha.Enabled = true;
             BtnGrabar.Enabled = true;
             BtnCancelar.Enabled = true;
-            Grilla.Visible = true;
-            BtnAgregarProveedor.Enabled = true;
-            BtnBuscarProveedor.Enabled = true;
-            BtnAgregarProducto.Enabled = true;
-            BtnBuscarProducto.Enabled = true;
-            TxtCantidad.Enabled = true;
+            panel3.Enabled = true;
+
             #endregion
 
             #region Limpiar
@@ -221,17 +204,13 @@ namespace CapaPresentacion
                 this.Tag = "none";
                 #region EnabledNO
                 //false
-                Fecha.Enabled = false;
                 BtnGrabar.Enabled = false;
                 BtnCancelar.Enabled = false;
-                BtnAgregarProveedor.Enabled = false;
-                BtnBuscarProveedor.Enabled = false;
-                BtnAgregarProducto.Enabled = false;
-                BtnBuscarProducto.Enabled = false;
-                TxtCantidad.Enabled = false;
+                panel3.Enabled = false;
+                PanelBotones.Enabled = false;
                 //true
                 BtnNuevo.Enabled = true;
-                Grilla.Visible = true;
+                iconButton1.Enabled = true;
                 #endregion
 
                 #region Limpiar
@@ -264,20 +243,14 @@ namespace CapaPresentacion
             {
                 #region EnabledNO
                 //false
-                CboIdMetodo.Enabled = false;
-                BtnMetodo.Enabled = false;
-                Fecha.Enabled = false;
                 BtnGrabar.Enabled = false;
                 BtnCancelar.Enabled = false;
-                TxtBarCode.Enabled = false;
-                BtnAgregarProveedor.Enabled = false;
-                BtnBuscarProveedor.Enabled = false;
-                BtnAgregarProducto.Enabled = false;
-                BtnBuscarProducto.Enabled = false;
-                TxtCantidad.Enabled = false;
+                panel3.Enabled = false;
+                PanelBotones.Enabled = false;
+
                 //true
                 BtnNuevo.Enabled = true;
-                Grilla.Visible = true;
+
                 #endregion
                 this.Tag = "none";
                 #region Limpiar
@@ -313,10 +286,16 @@ namespace CapaPresentacion
         {
             FormBuscarProductosCOMPRAS form = new FormBuscarProductosCOMPRAS();
             AddOwnedForm(form);
-            form.ShowDialog();
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                TxtCantidad.Focus();
 
-            TxtCantidad.Enabled = true;
-            TxtCantidad.Focus();
+            }
+            else
+            {
+                return;
+            }
+
         }
         private void BtnAgregarProducto_Click(object sender, EventArgs e)
         {
@@ -373,7 +352,6 @@ namespace CapaPresentacion
                             TxtPrecio.Text = Precio.ToString("0,0");
                         }
                         TxtCantidad.Enabled = true;
-                        TxtCantidad.Focus();
                     }
                     dr.Close();
                     con.Close();
@@ -410,7 +388,7 @@ namespace CapaPresentacion
 
                     decimal Suma = Grilla.Rows.OfType<DataGridViewRow>().Sum(x => Convert.ToDecimal(x.Cells[4].Value));
                     Total = Suma;
-                    TxtTotal.Text = String.Format("{0:0,0}", Suma);
+                    TxtTotal.Text = "$ " + String.Format("{0:0,0}", Suma);
                 }
             }
         }
@@ -420,6 +398,29 @@ namespace CapaPresentacion
             if (e.KeyCode == Keys.Escape)
             {
                 BtnCancelar.PerformClick();
+            }
+            if (e.KeyCode == Keys.Enter)
+            {
+                TxtCantidad.Focus();
+            }
+        }
+
+        
+        
+
+        private void TxtBarCode_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void PanelBotones_EnabledChanged(object sender, EventArgs e)
+        {
+            if (PanelBotones.Enabled)
+            {
+                this.BeginInvoke(new Action(() => TxtBarCode.Focus()));
             }
         }
 
@@ -481,6 +482,7 @@ namespace CapaPresentacion
                     bool Existe = Grilla.Rows.Cast<DataGridViewRow>().Any(x => x.Cells["Column1"].Value.ToString() == TxtIdProducto
                     .Text);
                     TxtBarCode.Focus();
+                    TxtCantidad.Enabled = false;
 
                     if (!Existe)
                     {
@@ -496,7 +498,7 @@ namespace CapaPresentacion
                           
 
                             Total += Subtotal;
-                            TxtTotal.Text = Total.ToString("0,0");
+                            TxtTotal.Text = "$ "+Total.ToString("0,0");
 
                             LimpiarTextos();
 

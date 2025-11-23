@@ -93,11 +93,14 @@ namespace CapaPresentacion
         {
             #region Enabled yes/no
             //true
+
             PanelDatos.Enabled = true;
             BtnGrabar.Enabled = true;
 
             //false
             BtnNuevo.Enabled = false;
+            BtnPapelera.Enabled = false;
+            TxtDocumento.Enabled = false;
             Grilla.Enabled = false;
             BtnEliminar.Enabled = false;
             BtnModificar.Enabled = false;
@@ -116,6 +119,7 @@ namespace CapaPresentacion
             //true
             TxtBuscar.Enabled = true;
             Grilla.Enabled = true;
+            TxtDocumento.Enabled= true;
             BtnNuevo.Enabled = true;
             BtnPapelera.Enabled = true;
             //false

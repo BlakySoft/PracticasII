@@ -59,7 +59,6 @@ namespace CapaPresentacion
             Grilla.Columns[2].HeaderText = "CUIT";
             Grilla.Columns[3].HeaderText = "Teléfono";
             Grilla.Columns[4].HeaderText = "Direccion";
-            Grilla.Columns[4].Width = 200;
             Grilla.Columns[5].Visible = false; //IdLocalidad
             Grilla.Columns[6].HeaderText = "Localidad";
             Grilla.Columns[7].Visible = false; //Estado
@@ -123,90 +122,92 @@ namespace CapaPresentacion
                     MessageBox.Show("Ingrese la Direccion", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     TxtDomicilio.Focus();
                 }
-                else if (nuevo == true)
-                {
-                    ConeProveedores cone = new ConeProveedores();
-                    Proveedores Agregar = new Proveedores
-                    {
-                        RazonSocial = TxtRazon.Text,
-                        Documento = TxtDocumento.Text,
-                        Telefono = TxtTelefono.Text,
-                        Domicilio = TxtDomicilio.Text,
-                        IdLocalidad = VarLocalidad
-                    };
-
-                    cone.AgregarProveedor(Agregar);
-
-                    #region Enabled yes/no
-                    //true
-                    Grilla.Enabled = true;
-                    BtnNuevo.Enabled = true;
-                    //false
-                    BtnGrabar.Enabled = false;
-                    BtnCancelar.Enabled = false;
-                    PanelDatos.Enabled = false;
-                    #endregion
-
-                    LimpiarTextos();
-                    ListarProveedores();
-                    BtnNuevo.Focus();
-                }
                 else
                 {
+                    DialogResult result = MessageBox.Show(
+                        nuevo ? "¿Está seguro de agregar este Proveedor?" : "¿Está seguro de actualizar este Proveedor?",
+                        "Confirmación",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Question
+                    );
 
-                    ConeProveedores cone = new ConeProveedores();
-                    Proveedores Actualizar = new Proveedores
+                    if (result == DialogResult.Yes)
                     {
-                        IdProveedor = int.Parse(LblIdProveedor.Text),
-                        RazonSocial = TxtRazon.Text,
-                        Documento = TxtDocumento.Text,
-                        Telefono = TxtTelefono.Text,
-                        Domicilio = TxtDomicilio.Text,
-                        IdLocalidad = VarLocalidad
-                    };
+                        ConeProveedores cone = new ConeProveedores();
 
-                    cone.ActualizarProveedor(Actualizar);
+                        if (nuevo)
+                        {
+                            Proveedores Agregar = new Proveedores
+                            {
+                                RazonSocial = TxtRazon.Text,
+                                Documento = TxtDocumento.Text,
+                                Telefono = TxtTelefono.Text,
+                                Domicilio = TxtDomicilio.Text,
+                                IdLocalidad = VarLocalidad
+                            };
+                            cone.AgregarProveedor(Agregar);
+                            MessageBox.Show("Proveedor guardado con éxito.", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    #region Enabled yes/no
-                    //true
-                    Grilla.Enabled = true;
-                    BtnNuevo.Enabled = true;
-                    //false
-                    BtnGrabar.Enabled = false;
-                    BtnCancelar.Enabled = false;
-                    PanelDatos.Enabled = false;
-                    #endregion
 
-                    LimpiarTextos();
-                    ListarProveedores();
-                    BtnNuevo.Focus();
+                            #region Enabled yes/no
+                            //true
+                            Grilla.Enabled = true;
+                            BtnNuevo.Enabled = true;
+                            BtnPapelera.Enabled = true;
+                            //false
+                            BtnGrabar.Enabled = false;
+                            BtnCancelar.Enabled = false;
+                            PanelDatos.Enabled = false;
+                            #endregion
+
+                            LimpiarTextos();
+                            ListarProveedores();
+                            BtnNuevo.Focus();
+                        }
+                        else
+                        {
+                            Proveedores Actualizar = new Proveedores
+                            {
+                                IdProveedor = int.Parse(LblIdProveedor.Text),
+                                RazonSocial = TxtRazon.Text,
+                                Documento = TxtDocumento.Text,
+                                Telefono = TxtTelefono.Text,
+                                Domicilio = TxtDomicilio.Text,
+                                IdLocalidad = VarLocalidad
+                            };
+
+                            cone.ActualizarProveedor(Actualizar);
+                            MessageBox.Show("Proveedor actualizado con éxito.", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+
+                            #region Enabled yes/no
+                            //true
+                            Grilla.Enabled = true;
+                            BtnNuevo.Enabled = true;
+                            BtnPapelera.Enabled = true;
+                            //false
+                            BtnGrabar.Enabled = false;
+                            BtnCancelar.Enabled = false;
+                            PanelDatos.Enabled = false;
+                            #endregion
+
+                            LimpiarTextos();
+                            ListarProveedores();
+                            BtnNuevo.Focus();
+                        }
+                    }
+
                 }
 
+
+                
                 this.Tag = "none";
             }
             catch
             {
                 MessageBox.Show("Error!", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
-            finally
-            {
-
-                //#region Enabled yes/no
-                ////true
-                //TxtBuscar.Enabled = true;
-                //Grilla.Enabled = true;
-                //BtnNuevo.Enabled = true;
-                ////false
-                //BtnGrabar.Enabled = false;
-                //BtnCancelar.Enabled = false;
-                //BtnEliminar.Enabled = false;
-                //PanelDatos.Enabled = false;
-                //#endregion
-
-                //ListarProveedores();
-                //LimpiarTextos();
-                //BtnNuevo.Focus();
-            }
+            
         }
         private void BtnEliminar_Click(object sender, EventArgs e)
         {
@@ -262,6 +263,7 @@ namespace CapaPresentacion
             //false
             BtnNuevo.Enabled = false;
             Grilla.Enabled = false;
+            TxtDocumento.Enabled = false;
             BtnEliminar.Enabled = false;
             BtnModificar.Enabled = false;
             BtnPapelera.Enabled = false;
@@ -274,6 +276,7 @@ namespace CapaPresentacion
             TxtBuscar.Enabled = true;
             Grilla.Enabled = true;
             BtnNuevo.Enabled = true;
+            TxtDocumento.Enabled = true;
             BtnPapelera.Enabled = true;
             //false
             BtnModificar.Enabled = false;
@@ -406,10 +409,7 @@ namespace CapaPresentacion
         private void TxtRazon_KeyPress(object sender, KeyPressEventArgs e)
         {
             // Letras, números, control y espacio
-            if (!char.IsLetterOrDigit(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
-            {
-                e.Handled = true;
-            }
+            
 
             if (e.KeyChar == (char)Keys.Enter)
             {

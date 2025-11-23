@@ -129,6 +129,7 @@ namespace CapaPresentacion
             PanelDatos.Enabled = true;
             //false
             BtnEliminar.Enabled = false;
+            BtnPapelera.Enabled = false;
             TxtBuscar.Enabled = false;
             Grilla.Enabled = false;
             BtnNuevo.Enabled = false;
@@ -326,6 +327,8 @@ namespace CapaPresentacion
             //false
             Grilla.Enabled = false;
             BtnNuevo.Enabled = false;
+            BtnPapelera.Enabled = false;
+            BtnPapelera.Enabled = false;
             BtnEliminar.Enabled = false;
             BtnModificar.Enabled = false;
             #endregion
@@ -552,15 +555,31 @@ namespace CapaPresentacion
         }
         private void CboIdCat_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            VarCat = int.Parse(CboIdCat.SelectedValue.ToString());
+            try
+            {
+                VarCat = int.Parse(CboIdCat.SelectedValue.ToString());
+            }
+            catch(Exception)
+            {
+
+            }
+
         }
         private void CboIdMar_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            VarMar = int.Parse(CboIdMar.SelectedValue.ToString());
+            try
+            {
+                VarMar = int.Parse(CboIdMar.SelectedValue.ToString());
+            }
+            catch(Exception) { }
+        
         }
         private void CboIdCol_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            VarCol = int.Parse(CboIdCol.SelectedValue.ToString());
+            try
+            {
+                VarCol = int.Parse(CboIdCol.SelectedValue.ToString());
+            } catch(Exception) { }
         }
 
         #endregion

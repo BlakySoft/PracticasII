@@ -18,11 +18,11 @@ namespace CapaPresentacion
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            using (FormLogin login = new FormLogin())
-            {
+            
+            
                 Application.Run(new FormLogin());
 
-            }
+            
         }
     }
 }

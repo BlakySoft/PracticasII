@@ -37,7 +37,6 @@
             this.Grilla = new System.Windows.Forms.DataGridView();
             this.panel2 = new System.Windows.Forms.Panel();
             this.iconButton3 = new FontAwesome.Sharp.IconButton();
-            this.iconButton2 = new FontAwesome.Sharp.IconButton();
             this.BtnPapelera = new FontAwesome.Sharp.IconButton();
             this.BtnCancelar = new FontAwesome.Sharp.IconButton();
             this.BtnModificar = new FontAwesome.Sharp.IconButton();
@@ -154,7 +153,6 @@
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(234)))), ((int)(((byte)(233)))));
             this.panel2.Controls.Add(this.iconButton3);
-            this.panel2.Controls.Add(this.iconButton2);
             this.panel2.Controls.Add(this.BtnPapelera);
             this.panel2.Controls.Add(this.BtnCancelar);
             this.panel2.Controls.Add(this.BtnModificar);
@@ -183,26 +181,6 @@
             this.iconButton3.TabIndex = 50;
             this.iconButton3.UseVisualStyleBackColor = false;
             this.iconButton3.Click += new System.EventHandler(this.iconButton3_Click);
-            // 
-            // iconButton2
-            // 
-            this.iconButton2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(234)))), ((int)(((byte)(233)))));
-            this.iconButton2.FlatAppearance.BorderSize = 0;
-            this.iconButton2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.iconButton2.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.iconButton2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.iconButton2.IconChar = FontAwesome.Sharp.IconChar.TrashRestore;
-            this.iconButton2.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(156)))), ((int)(((byte)(191)))), ((int)(((byte)(227)))));
-            this.iconButton2.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton2.IconSize = 42;
-            this.iconButton2.Location = new System.Drawing.Point(-3, 398);
-            this.iconButton2.Name = "iconButton2";
-            this.iconButton2.Size = new System.Drawing.Size(159, 66);
-            this.iconButton2.TabIndex = 47;
-            this.iconButton2.Text = "Papelera";
-            this.iconButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.iconButton2.UseVisualStyleBackColor = false;
-            this.iconButton2.Click += new System.EventHandler(this.BtnPapelera_Click);
             // 
             // BtnPapelera
             // 
@@ -758,7 +736,6 @@
         private System.Windows.Forms.Label label9;
         private FontAwesome.Sharp.IconButton BtnSalir;
         private FontAwesome.Sharp.IconButton iconButton1;
-        private FontAwesome.Sharp.IconButton iconButton2;
         private System.Windows.Forms.TextBox TxtPrecioVenta;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label12;

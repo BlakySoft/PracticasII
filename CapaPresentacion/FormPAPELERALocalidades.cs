@@ -30,7 +30,6 @@ namespace CapaPresentacion
             ConeLocalidades cone = new ConeLocalidades();
             Grilla.DataSource = cone.ListarLocalidadPapelera();
             Grilla.Columns[0].HeaderText = "Código";
-            Grilla.Columns[0].Width = 100;
             Grilla.Columns[1].HeaderText = "Localidad";
             Grilla.Columns[2].Visible = false;
 

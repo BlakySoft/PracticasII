@@ -96,8 +96,8 @@ namespace CapaPresentacion
             if (e.RowIndex >= 0)
             {
                 DataGridViewRow fila = Grilla.Rows[e.RowIndex];
-
                 int idProducto = Convert.ToInt32(fila.Cells["IdProducto"].Value);
+                long Barcode = Convert.ToInt64(fila.Cells["BarCode"].Value);
                 string descripcion = fila.Cells["Descripcion"].Value?.ToString() ?? "";
                 string detalle = fila.Cells["Detalle"].Value?.ToString() ?? "";
                 decimal precio = Convert.ToDecimal(fila.Cells["PrecioCompra"].Value);
@@ -108,12 +108,15 @@ namespace CapaPresentacion
                 if (compras != null)
                 {
                     compras.TxtIdProducto.Text = idProducto.ToString();
+                    compras.TxtBarCode.Text = Barcode.ToString();
                     compras.TxtDescripcion.Text = descripcion;
                     compras.TxtDetalle.Text = detalle;
                     compras.TxtPrecio.Text = precio.ToString("0.00");
                     compras.TxtStock.Text = stock.ToString();
 
                     compras.Precio = precio;
+
+                    this.DialogResult = DialogResult.OK;
 
                     this.Close();
                 }
@@ -126,6 +129,8 @@ namespace CapaPresentacion
             {
                 MessageBox.Show("Seleccione un producto válido.", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
+
+
         }
         private void iconButton1_Click(object sender, EventArgs e)
         {

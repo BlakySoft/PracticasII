@@ -89,6 +89,7 @@ namespace CapaPresentacion
                     FormCOMPRAS compras = Owner as FormCOMPRAS;
                     compras.TxtRazon.Text = $"{RazonSocial}";
                     compras.IdProveedorCompra = IdProveedor;
+                    compras.PanelBotones.Enabled = true;
                     Close();
                 }
                 else
@@ -98,7 +99,6 @@ namespace CapaPresentacion
             }
             catch (Exception)
             {
-                MessageBox.Show("No se puede seleccionar desde la cabecera.", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
         #endregion

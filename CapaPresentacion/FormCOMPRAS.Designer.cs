@@ -117,11 +117,13 @@
             this.PanelBotones.Controls.Add(this.TxtCantidad);
             this.PanelBotones.Controls.Add(this.LblTitleStock);
             this.PanelBotones.Dock = System.Windows.Forms.DockStyle.Left;
+            this.PanelBotones.Enabled = false;
             this.PanelBotones.ForeColor = System.Drawing.Color.Black;
             this.PanelBotones.Location = new System.Drawing.Point(0, 0);
             this.PanelBotones.Name = "PanelBotones";
             this.PanelBotones.Size = new System.Drawing.Size(251, 613);
             this.PanelBotones.TabIndex = 2;
+            this.PanelBotones.EnabledChanged += new System.EventHandler(this.PanelBotones_EnabledChanged);
             // 
             // label13
             // 
@@ -136,7 +138,6 @@
             // TxtBarCode
             // 
             this.TxtBarCode.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.TxtBarCode.Enabled = false;
             this.TxtBarCode.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtBarCode.Location = new System.Drawing.Point(96, 60);
             this.TxtBarCode.MaxLength = 13;
@@ -145,6 +146,7 @@
             this.TxtBarCode.TabIndex = 56;
             this.TxtBarCode.TextChanged += new System.EventHandler(this.TxtBarCode_TextChanged);
             this.TxtBarCode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtBarCode_KeyDown);
+            this.TxtBarCode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtBarCode_KeyPress);
             // 
             // label4
             // 
@@ -179,6 +181,7 @@
             this.TxtSubtotall.Name = "TxtSubtotall";
             this.TxtSubtotall.Size = new System.Drawing.Size(135, 24);
             this.TxtSubtotall.TabIndex = 50;
+            this.TxtSubtotall.Visible = false;
             // 
             // label7
             // 
@@ -190,13 +193,14 @@
             this.label7.Size = new System.Drawing.Size(79, 19);
             this.label7.TabIndex = 49;
             this.label7.Text = "Subtotal:";
+            this.label7.Visible = false;
             // 
             // d
             // 
             this.d.AutoSize = true;
             this.d.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.d.ForeColor = System.Drawing.Color.Black;
-            this.d.Location = new System.Drawing.Point(11, 445);
+            this.d.Location = new System.Drawing.Point(4, 445);
             this.d.Name = "d";
             this.d.Size = new System.Drawing.Size(76, 19);
             this.d.TabIndex = 53;
@@ -213,6 +217,7 @@
             this.TxtCompras.Name = "TxtCompras";
             this.TxtCompras.Size = new System.Drawing.Size(38, 24);
             this.TxtCompras.TabIndex = 54;
+            this.TxtCompras.Visible = false;
             // 
             // TxtIdProducto
             // 
@@ -224,6 +229,7 @@
             this.TxtIdProducto.Name = "TxtIdProducto";
             this.TxtIdProducto.Size = new System.Drawing.Size(46, 15);
             this.TxtIdProducto.TabIndex = 48;
+            this.TxtIdProducto.Visible = false;
             // 
             // TxtDetalle
             // 
@@ -401,6 +407,7 @@
             // 
             this.TxtCantidad.BackColor = System.Drawing.Color.White;
             this.TxtCantidad.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TxtCantidad.Enabled = false;
             this.TxtCantidad.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtCantidad.ForeColor = System.Drawing.Color.Black;
             this.TxtCantidad.Location = new System.Drawing.Point(4, 234);
@@ -427,9 +434,9 @@
             this.Fecha.ForeColor = System.Drawing.Color.Black;
             this.Fecha.Location = new System.Drawing.Point(57, 18);
             this.Fecha.Name = "Fecha";
-            this.Fecha.Size = new System.Drawing.Size(86, 19);
+            this.Fecha.Size = new System.Drawing.Size(56, 19);
             this.Fecha.TabIndex = 55;
-            this.Fecha.Text = "Producto:";
+            this.Fecha.Text = "Fecha";
             // 
             // TxtCompra
             // 
@@ -460,7 +467,7 @@
             this.LblTitleApellidoNombre.AutoSize = true;
             this.LblTitleApellidoNombre.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LblTitleApellidoNombre.ForeColor = System.Drawing.Color.Black;
-            this.LblTitleApellidoNombre.Location = new System.Drawing.Point(-4, 46);
+            this.LblTitleApellidoNombre.Location = new System.Drawing.Point(4, 44);
             this.LblTitleApellidoNombre.Name = "LblTitleApellidoNombre";
             this.LblTitleApellidoNombre.Size = new System.Drawing.Size(116, 19);
             this.LblTitleApellidoNombre.TabIndex = 2;
@@ -475,7 +482,7 @@
             this.TxtRazon.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.TxtRazon.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtRazon.ForeColor = System.Drawing.Color.Black;
-            this.TxtRazon.Location = new System.Drawing.Point(155, 39);
+            this.TxtRazon.Location = new System.Drawing.Point(155, 41);
             this.TxtRazon.Name = "TxtRazon";
             this.TxtRazon.Size = new System.Drawing.Size(556, 25);
             this.TxtRazon.TabIndex = 34;
@@ -538,6 +545,7 @@
             dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.Grilla.RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            this.Grilla.RowHeadersVisible = false;
             this.Grilla.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.Grilla.Size = new System.Drawing.Size(820, 532);
             this.Grilla.TabIndex = 33;
@@ -553,6 +561,7 @@
             this.Column1.FillWeight = 120F;
             this.Column1.HeaderText = "Código";
             this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
             this.Column1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // Column2
@@ -562,6 +571,7 @@
             this.Column2.DefaultCellStyle = dataGridViewCellStyle3;
             this.Column2.HeaderText = "Descripción";
             this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
             this.Column2.Width = 300;
             // 
             // Column3
@@ -573,11 +583,13 @@
             // 
             this.Column4.HeaderText = "Precio";
             this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
             // 
             // Column5
             // 
             this.Column5.HeaderText = "Subtotal";
             this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
             // 
             // TxtSubTotal
             // 
@@ -600,7 +612,7 @@
             this.TxtTotal.ForeColor = System.Drawing.Color.Red;
             this.TxtTotal.Location = new System.Drawing.Point(96, 507);
             this.TxtTotal.Name = "TxtTotal";
-            this.TxtTotal.Size = new System.Drawing.Size(121, 25);
+            this.TxtTotal.Size = new System.Drawing.Size(135, 25);
             this.TxtTotal.TabIndex = 39;
             // 
             // lb
@@ -727,6 +739,7 @@
             this.panel3.Controls.Add(this.LblTitleApellidoNombre);
             this.panel3.Controls.Add(this.LblRazon);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel3.Enabled = false;
             this.panel3.Location = new System.Drawing.Point(251, 0);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(820, 81);
@@ -793,6 +806,7 @@
             this.LblRazon.Size = new System.Drawing.Size(18, 19);
             this.LblRazon.TabIndex = 35;
             this.LblRazon.Text = "0";
+            this.LblRazon.Visible = false;
             // 
             // FormCOMPRAS
             // 
@@ -828,8 +842,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Panel PanelBotones;
         private FontAwesome.Sharp.IconButton BtnNuevo;
         private FontAwesome.Sharp.IconButton BtnCancelar;
         private FontAwesome.Sharp.IconButton BtnGrabar;
@@ -839,7 +851,6 @@
         private FontAwesome.Sharp.IconButton BtnAgregarProveedor;
         private FontAwesome.Sharp.IconButton BtnBuscarProveedor;
         private System.Windows.Forms.Label LblCantidad;
-        private System.Windows.Forms.TextBox TxtCantidad;
         private System.Windows.Forms.Label LblTitlePrecio;
         private System.Windows.Forms.Label lbsub;
         private System.Windows.Forms.DataGridView Grilla;
@@ -872,13 +883,15 @@
         private System.Windows.Forms.Label d;
         public System.Windows.Forms.Label TxtCompras;
         private System.Windows.Forms.Label Fecha;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label13;
+        public System.Windows.Forms.TextBox TxtBarCode;
+        public System.Windows.Forms.Panel PanelBotones;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.TextBox TxtBarCode;
+        public System.Windows.Forms.TextBox TxtCantidad;
     }
 }
