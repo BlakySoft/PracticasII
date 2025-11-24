@@ -130,6 +130,7 @@ namespace CapaPresentacion
             //false
             BtnEliminar.Enabled = false;
             BtnPapelera.Enabled = false;
+            BtnModificar.Enabled = false;
             TxtBuscar.Enabled = false;
             Grilla.Enabled = false;
             BtnNuevo.Enabled = false;

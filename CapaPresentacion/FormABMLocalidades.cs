@@ -57,6 +57,7 @@ namespace CapaPresentacion
             BtnCancelar.Enabled = true;
             //false
             TxtBuscar.Enabled = false;
+            Grilla.Enabled = false;
             BtnNuevo.Enabled = false;
             #endregion
 
@@ -111,6 +112,7 @@ namespace CapaPresentacion
                 //true
                 TxtBuscar.Enabled = true;
                 BtnNuevo.Enabled = true;
+                Grilla.Enabled = true;
                 //false
                 BtnGrabar.Enabled = false;
                 BtnCancelar.Enabled = false;
@@ -129,6 +131,7 @@ namespace CapaPresentacion
             //true
             TxtBuscar.Enabled = true;
             BtnNuevo.Enabled = true;
+            Grilla.Enabled = true;
             //false
             BtnModificar.Enabled = false;
             BtnGrabar.Enabled = false;
@@ -146,12 +149,17 @@ namespace CapaPresentacion
             //true
             PnlBarraLateral.Enabled = true;
             BtnGrabar.Enabled = true;
+            TxtDescripcion.Enabled = true;
+
             //false
+            TxtBuscar.Enabled = false;
             Grilla.Enabled = false;
             BtnNuevo.Enabled = false;
             BtnEliminar.Enabled = false;
             BtnModificar.Enabled = false;
             #endregion
+
+            TxtDescripcion.Focus();
         }
         private void BtnEliminar_Click(object sender, EventArgs e)
         {
@@ -236,9 +244,8 @@ namespace CapaPresentacion
 
                 nuevo = false;
                 BtnNuevo.Enabled = false;
+                TxtDescripcion.Enabled = false;
 
-                TxtDescripcion.Enabled = true;
-                BtnGrabar.Enabled = true;
                 BtnCancelar.Enabled = true;
                 BtnEliminar.Enabled = true;
                 BtnModificar.Enabled = true;
@@ -250,8 +257,15 @@ namespace CapaPresentacion
             }
         }
 
+
         #endregion
 
-
+        private void TxtBuscar_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetterOrDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
     }
 }

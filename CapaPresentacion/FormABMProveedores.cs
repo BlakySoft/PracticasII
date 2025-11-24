@@ -90,6 +90,7 @@ namespace CapaPresentacion
             BtnEliminar.Enabled = false;
             TxtBuscar.Enabled = false;
             Grilla.Enabled = false;
+            BtnModificar.Enabled = false;
             BtnNuevo.Enabled = false;
             BtnPapelera.Enabled = false;
             #endregion

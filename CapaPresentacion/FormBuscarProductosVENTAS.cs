@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -99,6 +100,7 @@ namespace CapaPresentacion
                 DataGridViewRow fila = Grilla.Rows[e.RowIndex];
 
                 int idProducto = Convert.ToInt32(fila.Cells["IdProducto"].Value);
+                long Barcode = Convert.ToInt64(fila.Cells["BarCode"].Value.ToString());
                 string descripcion = fila.Cells["Descripcion"].Value?.ToString() ?? "";
                 string detalle = fila.Cells["Detalle"].Value?.ToString() ?? "";
                 decimal precio = Convert.ToDecimal(fila.Cells["PrecioVenta"].Value);
@@ -109,6 +111,7 @@ namespace CapaPresentacion
                 if (ventas != null)
                 {
                     ventas.TxtIdProducto.Text = idProducto.ToString();
+                    ventas.TxtBarCode.Text = Barcode.ToString();
                     ventas.TxtDescripcion.Text = descripcion;
                     ventas.TxtDetalle.Text = detalle;
                     ventas.TxtPrecio.Text = precio.ToString("0.00");
@@ -116,6 +119,7 @@ namespace CapaPresentacion
 
                     ventas.Precio = precio;
 
+                    this.DialogResult = DialogResult.OK;
                     this.Close();
                 }
                 else

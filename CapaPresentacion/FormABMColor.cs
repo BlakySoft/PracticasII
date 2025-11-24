@@ -120,6 +120,7 @@ namespace CapaPresentacion
                 //true
                 TxtBuscar.Enabled = true;
                 BtnNuevo.Enabled = true;
+                Grilla.Enabled = true;
                 //false
                 BtnGrabar.Enabled = false;
                 BtnCancelar.Enabled = false;

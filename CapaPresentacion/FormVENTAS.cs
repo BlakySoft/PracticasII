@@ -40,27 +40,15 @@ namespace CapaPresentacion
             CargarCbo();
             Fecha.Text = DateTime.Now.ToString("dd/MM/yyyy");
             #region Enabled no
-            //false
-            CboIdMetodo.Enabled = false;
-            BtnMetodo.Enabled = false;
-            BtnGrabar.Enabled = false;
-            BtnCancelar.Enabled = false;
-            BtnAgregarCliente.Enabled = false;
-            BtnBuscarCliente.Enabled = false;
-            BtnAgregarProducto.Enabled = false;
-            BtnBuscarProducto.Enabled = false;
-            TxtCantidad.Enabled = false;
-            TxtIdProducto.Enabled = false;
 
+            
             if (usuarioActual == 2)
             {
                 BtnMetodo.Visible = false;
                 BtnAgregarProducto.Visible = false;
             }
 
-            //true
-            BtnNuevo.Enabled = true;
-            Grilla.Visible = true;
+
             #endregion
 
             #region Limpiar
@@ -111,14 +99,9 @@ namespace CapaPresentacion
                 if (Grilla.Rows.Count == 0)
                 {
                     MessageBox.Show("Debe agregar al menos un producto para realizar la venta.", "Liz Showroom", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    BtnGrabar.Enabled = false;
                     return;
                 }
-                else
-                {
-                    BtnGrabar.Enabled = true;
-                }
-
+                
                 if (string.IsNullOrEmpty(TxtCliente.Text))
                 {
                     TxtCliente.Text = "Cliente Final";
@@ -144,90 +127,100 @@ namespace CapaPresentacion
                     IdMetodo = VarMetodo,
                     Total = totalVenta
                 };
-                cone.AgregarPedido(nuevaVenta);
 
-                int idVenta;
-                using (OleDbConnection con = new OleDbConnection(cn.ConectarDB()))
+                DialogResult result = MessageBox.Show("Esta seguro de realizar esta venta?", "Sistema", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 {
-                    con.Open();
-                    using (OleDbCommand cmd = new OleDbCommand("SELECT MAX(IdVenta) FROM Ventas", con))
+                    if (result == DialogResult.Yes)
                     {
-                        idVenta = (int)cmd.ExecuteScalar();
-                    }
-                    TxtPedido.Text = idVenta.ToString();
+                        cone.AgregarPedido(nuevaVenta);
 
-
-                    foreach (DataGridViewRow fila in Grilla.Rows)
-                    {
-                        if (fila.Cells[0].Value != null)
+                        int idVenta;
+                        using (OleDbConnection con = new OleDbConnection(cn.ConectarDB()))
                         {
-                            int idProducto = Convert.ToInt32(fila.Cells["Column1"].Value);
-                            decimal precio = Convert.ToDecimal(fila.Cells["Column3"].Value);
-                            int cantidad = Convert.ToInt32(fila.Cells["Column4"].Value);
-                            decimal subtotal = Convert.ToDecimal(fila.Cells["Column5"].Value);
-
-                            using (OleDbCommand cmdDetalle = new OleDbCommand(
-                                "INSERT INTO DetalleVentas (IdVenta, IdProducto, PrecioVenta, Cantidad, Subtotal) VALUES (?, ?, ?, ?, ?)", con))
+                            con.Open();
+                            using (OleDbCommand cmd = new OleDbCommand("SELECT MAX(IdVenta) FROM Ventas", con))
                             {
-                                cmdDetalle.Parameters.AddWithValue("?", idVenta);
-                                cmdDetalle.Parameters.AddWithValue("?", idProducto);
-                                cmdDetalle.Parameters.AddWithValue("?", precio);
-                                cmdDetalle.Parameters.AddWithValue("?", cantidad);
-                                cmdDetalle.Parameters.AddWithValue("?", subtotal);
-                                cmdDetalle.ExecuteNonQuery();
+                                idVenta = (int)cmd.ExecuteScalar();
+                            }
+                            TxtPedido.Text = idVenta.ToString();
+
+
+                            foreach (DataGridViewRow fila in Grilla.Rows)
+                            {
+                                if (fila.Cells[0].Value != null)
+                                {
+                                    int idProducto = Convert.ToInt32(fila.Cells["Column1"].Value);
+                                    decimal precio = Convert.ToDecimal(fila.Cells["Column3"].Value);
+                                    int cantidad = Convert.ToInt32(fila.Cells["Column4"].Value);
+                                    decimal subtotal = Convert.ToDecimal(fila.Cells["Column5"].Value);
+
+                                    using (OleDbCommand cmdDetalle = new OleDbCommand(
+                                        "INSERT INTO DetalleVentas (IdVenta, IdProducto, PrecioVenta, Cantidad, Subtotal) VALUES (?, ?, ?, ?, ?)", con))
+                                    {
+                                        cmdDetalle.Parameters.AddWithValue("?", idVenta);
+                                        cmdDetalle.Parameters.AddWithValue("?", idProducto);
+                                        cmdDetalle.Parameters.AddWithValue("?", precio);
+                                        cmdDetalle.Parameters.AddWithValue("?", cantidad);
+                                        cmdDetalle.Parameters.AddWithValue("?", subtotal);
+                                        cmdDetalle.ExecuteNonQuery();
+                                    }
+
+                                    using (OleDbCommand cmdStock = new OleDbCommand(
+                                        "UPDATE Productos SET Stock = Stock - ? WHERE IdProducto = ?", con))
+                                    {
+                                        cmdStock.Parameters.AddWithValue("?", cantidad);
+                                        cmdStock.Parameters.AddWithValue("?", idProducto);
+                                        cmdStock.ExecuteNonQuery();
+                                    }
+                                }
                             }
 
-                            using (OleDbCommand cmdStock = new OleDbCommand(
-                                "UPDATE Productos SET Stock = Stock - ? WHERE IdProducto = ?", con))
-                            {
-                                cmdStock.Parameters.AddWithValue("?", cantidad);
-                                cmdStock.Parameters.AddWithValue("?", idProducto);
-                                cmdStock.ExecuteNonQuery();
-                            }
+                            con.Close();
                         }
+
+                        //Imprimir ticket
+                        PrintDocument pd = new PrintDocument();
+                        pd.PrintPage += new PrintPageEventHandler(ImprimirGrilla);
+                        PrintPreviewDialog printPreview = new PrintPreviewDialog();
+                        printPreview.Document = pd;
+                        //printPreview.ShowDialog();
+                        pd.Print(); //imprimir
+                        MessageBox.Show("Venta realizada con éxito.", "Liz Showroom", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        #region Limpiar y Enabled  yes/no
+                        TxtCliente.Text = "Cliente Final";
+                        LblCliente.Text = "23";
+                        IdCliente = 23;
+                        TxtDescripcion.Text = "";
+                        TxtPrecio.Text = "";
+                        TxtStock.Text = "";
+                        TxtSubTotal.Text = "";
+                        TxtTotal.Text = "";
+                        TxtCantidad.Text = "1";
+                        TxtIdProducto.Text = "";
+                        Grilla.Rows.Clear();
+                        TxtPedido.Text = "";
+
+                        BtnGrabar.Enabled = false;
+                        BtnCancelar.Enabled = false;
+                        PanelBotones.Enabled = false;
+                        panel3.Enabled = false;
+                        PanelBotones.Enabled = false;
+
+                        BtnNuevo.Enabled = true;
+
+                        this.Tag = "none";
+                        #endregion
+                        BtnNuevo.Focus();
+
+                    }
+                    else
+                    {
+                        return;
                     }
 
-                    con.Close();
                 }
-
-                //Imprimir ticket
-                PrintDocument pd = new PrintDocument();
-                pd.PrintPage += new PrintPageEventHandler(ImprimirGrilla);
-                PrintPreviewDialog printPreview = new PrintPreviewDialog();
-                printPreview.Document = pd;
-                //printPreview.ShowDialog();
-                pd.Print(); //imprimir
-                MessageBox.Show("Venta realizada con éxito.", "Liz Showroom", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                #region Limpiar y Enabled  yes/no
-                TxtCliente.Text = "Cliente Final";
-                LblCliente.Text = "23";
-                IdCliente = 23;
-                TxtDescripcion.Text = "";
-                TxtPrecio.Text = "";
-                TxtStock.Text = "";
-                TxtSubTotal.Text = "";
-                TxtTotal.Text = "";
-                TxtCantidad.Text = "1";
-                TxtIdProducto.Text = "";
-                Grilla.Rows.Clear();
-                TxtPedido.Text = "";
-
-                BtnGrabar.Enabled = false;
-                BtnCancelar.Enabled = false;
-                BtnAgregarCliente.Enabled = false;
-                BtnBuscarCliente.Enabled = false;
-                BtnAgregarProducto.Enabled = false;
-                BtnBuscarProducto.Enabled = false;
-                TxtCantidad.Enabled = false;
-                TxtIdProducto.Enabled = false;
-
-                BtnNuevo.Enabled = true;
-                Grilla.Visible = true;
-
-                this.Tag = "none";
-                #endregion
-                BtnNuevo.Focus();
+                    
             }
             catch (Exception ex)
             {
@@ -373,21 +366,12 @@ namespace CapaPresentacion
             {
                 #region EnabledNO
                 //false
-                CboIdMetodo.Enabled = false;
-                TxtBarCode.Enabled = false;
-                BtnMetodo.Enabled = false;
-                Fecha.Enabled = false;
                 BtnGrabar.Enabled = false;
                 BtnCancelar.Enabled = false;
-                BtnAgregarProducto.Enabled = false;
-                BtnBuscarProducto.Enabled = false;
-                BtnAgregarProducto.Enabled = false;
-                BtnBuscarProducto.Enabled = false;
-                TxtCantidad.Enabled = false;
                 panel3.Enabled = false;
+                PanelBotones.Enabled = false;   
                 //true
                 BtnNuevo.Enabled = true;
-                Grilla.Visible = true;
                 #endregion
 
                 #region Limpiar
@@ -415,19 +399,9 @@ namespace CapaPresentacion
             #region Enabled yes
             //true
             panel3.Enabled = true;  
-            TxtCliente.Enabled = true;
-            CboIdMetodo.Enabled = true;
-            BtnMetodo.Enabled = true;
-            TxtBarCode.Enabled = true;
             BtnGrabar.Enabled = true;
             BtnCancelar.Enabled = true;
-            BtnAgregarCliente.Enabled = true;
-            BtnBuscarCliente.Enabled = true;
-            BtnAgregarProducto.Enabled = true;
-            BtnBuscarProducto.Enabled = true;
-            TxtCantidad.Enabled = true;
-            TxtIdProducto.Enabled = true;
-            Grilla.Visible = true;
+
             //false
             BtnNuevo.Enabled = false;
             #endregion
@@ -452,10 +426,21 @@ namespace CapaPresentacion
         {
             FormBuscarProducto form = new FormBuscarProducto();
             AddOwnedForm(form);
-            form.ShowDialog();
+            
+            DialogResult result = form.ShowDialog();
+            {
+                if (result == DialogResult.OK)
+                {
+                    TxtCantidad.Enabled = true;
+                    TxtCantidad.Focus();
 
-            TxtCantidad.Enabled = true;
-            TxtCantidad.Focus();
+                }
+                else
+                {
+                    TxtBarCode.Focus();
+                    return;
+                }
+            }
         }
         private void BtnBuscarProveedor_Click(object sender, EventArgs e)
         {
@@ -463,11 +448,13 @@ namespace CapaPresentacion
             FormBuscarCliente form = new FormBuscarCliente();
             AddOwnedForm(form);
             form.ShowDialog();
+            TxtBarCode.Focus();
         }
         private void BtnAgregarProducto_Click(object sender, EventArgs e)
         {
             FormAgregarProducto form = new FormAgregarProducto();
             form.ShowDialog();
+            TxtBarCode.Focus();
         }
         private void FormVENTAS_Load(object sender, EventArgs e)
         {
@@ -511,7 +498,6 @@ namespace CapaPresentacion
                             TxtPrecio.Text = Precio.ToString("0,0");
                         }
                         TxtCantidad.Enabled = true;
-                        //TxtCantidad.Focus();
                     }
                     dr.Close();
                     con.Close();
@@ -624,6 +610,11 @@ namespace CapaPresentacion
             {
                 BtnCancelar.PerformClick();
             }
+
+            if (e.KeyCode == Keys.Enter)
+            {
+                TxtCantidad.Focus();
+            }
         }
         private void TxtCantidad_KeyDown(object sender, KeyEventArgs e)
         {
@@ -637,6 +628,17 @@ namespace CapaPresentacion
         {
             FormABMMetododepago frm = new FormABMMetododepago();
             frm.ShowDialog();
+        }
+
+        private void panel3_EnabledChanged(object sender, EventArgs e)
+        {
+            if (LblCliente.Text != "")
+            {
+                PanelBotones.Enabled = true;
+                TxtBarCode.Enabled = true;
+                BeginInvoke(new Action(() => TxtBarCode.Focus() ));
+                
+            }
         }
 
         private void BtnAgregarProveedor_Click(object sender, EventArgs e)
@@ -707,7 +709,7 @@ namespace CapaPresentacion
                     {
                         if (Grilla.Rows.Count >50)
                         {
-                            MessageBox.Show("Ha superado el número de productos.", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show("Ha superado el número de productos por venta.", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             BtnGrabar.Focus();
                             return;
                         }
@@ -716,7 +718,7 @@ namespace CapaPresentacion
                             Grilla.Rows.Add(TxtIdProducto.Text, TxtDescripcion.Text, TxtPrecio.Text, TxtCantidad.Text, Subtotal);
 
                             Total += Subtotal;
-                            TxtTotal.Text = Total.ToString("0,0");
+                            TxtTotal.Text ="$ "+ Total.ToString("0,0");
                             LimpiarTextos();
                             TxtBarCode.Focus();
                             BtnGrabar.Enabled = true;
@@ -724,6 +726,9 @@ namespace CapaPresentacion
                     }
                     
                 }
+
+                TxtCantidad.Enabled = false;
+
             }
             if (e.KeyChar == (int)Keys.Escape)
             {
@@ -731,6 +736,7 @@ namespace CapaPresentacion
                 TxtCantidad.Enabled = false;
                 TxtBarCode.Focus();
             }
+
         }
         private void TxtIdProducto_KeyPress(object sender, KeyPressEventArgs e)
         {

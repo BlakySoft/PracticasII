@@ -104,6 +104,7 @@
             this.LblIdCliente.Size = new System.Drawing.Size(16, 18);
             this.LblIdCliente.TabIndex = 47;
             this.LblIdCliente.Text = "0";
+            this.LblIdCliente.Visible = false;
             // 
             // panel1
             // 

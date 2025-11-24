@@ -226,6 +226,7 @@
             this.LblIdLocalidad.Size = new System.Drawing.Size(17, 18);
             this.LblIdLocalidad.TabIndex = 1;
             this.LblIdLocalidad.Text = "0";
+            this.LblIdLocalidad.Visible = false;
             // 
             // TxtDescripcion
             // 
@@ -260,6 +261,7 @@
             this.TxtBuscar.Size = new System.Drawing.Size(184, 26);
             this.TxtBuscar.TabIndex = 35;
             this.TxtBuscar.TextChanged += new System.EventHandler(this.TxtBuscar_TextChanged);
+            this.TxtBuscar.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtBuscar_KeyPress);
             // 
             // LblBuscar
             // 

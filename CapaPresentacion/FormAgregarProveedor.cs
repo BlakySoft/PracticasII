@@ -145,6 +145,7 @@ namespace CapaPresentacion
         {
             FormABMLocalidades form = new FormABMLocalidades();
             form.ShowDialog();
+            CargarCbo();
         }
 
         #endregion
@@ -160,10 +161,6 @@ namespace CapaPresentacion
         private void TxtRazon_KeyPress(object sender, KeyPressEventArgs e)
         {
             // Letras, números, control y espacio
-            if (!char.IsLetterOrDigit(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
-            {
-                e.Handled = true;
-            }
 
             if (e.KeyChar == (char)Keys.Enter)
             {
@@ -191,7 +188,19 @@ namespace CapaPresentacion
             if (e.KeyChar == (char)Keys.Enter)
             {
                 e.Handled = true;
-                this.SelectNextControl((Control)sender, true, true, true, true);
+                ConeProveedores cone = new ConeProveedores();
+                if (cone.ExisteProveedor(TxtDocumento.Text) == true)
+                {
+                    MessageBox.Show("El CUIT ya existe en el sistema.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    TxtDocumento.Focus();
+                    return;
+                }
+                else
+                {
+                    e.Handled = true;
+                    this.SelectNextControl((Control)sender, true, true, true, true);
+
+                }
             }
         }
         private void TxtTelefono_KeyPress(object sender, KeyPressEventArgs e)

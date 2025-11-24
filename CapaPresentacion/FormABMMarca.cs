@@ -136,6 +136,7 @@ namespace CapaPresentacion
             BtnCancelar.Enabled = false;
             BtnEliminar.Enabled = false;
             BtnModificar.Enabled = false;
+            Grilla.Enabled = true;
             BtnNuevo.Focus();
             #endregion
         }
@@ -159,12 +160,14 @@ namespace CapaPresentacion
 
             #region Enabled yes/no
             PnlBarraLateral.Enabled = true;
+            TxtDescripcion.Enabled=true;
             BtnGrabar.Enabled = true;
             Grilla.Enabled = false;
             BtnNuevo.Enabled = false;
             BtnEliminar.Enabled = false;
             BtnModificar.Enabled = false;
             #endregion
+            TxtDescripcion.Focus();
         }
         private void BtnEliminar_Click(object sender, EventArgs e)
         {

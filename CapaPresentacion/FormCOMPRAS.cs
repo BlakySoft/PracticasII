@@ -110,9 +110,9 @@ namespace CapaPresentacion
                 MessageBox.Show("Debe seleccionar un proveedor.", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
-            else if (TxtTotal.Text == "0" || TxtTotal.Text == "")
+            else if (Grilla.Rows.Count == 0)
             {
-                MessageBox.Show("El monto de la compra debe ser mayor a 0", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Debe tener almenos 1 elemento en la grilla", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {

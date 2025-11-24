@@ -51,7 +51,7 @@ namespace CapaPresentacion
             #endregion
 
             LimpiarTextos();
-            TxtNombre.Focus();
+            TxtApellido.Focus();
         }
         private void BtnGrabar_Click(object sender, EventArgs e)
         {
@@ -212,11 +212,9 @@ namespace CapaPresentacion
         }
         private void TxtDocumento_KeyPress(object sender, KeyPressEventArgs e)
         {
-            // Solo números
             if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
             {
                 e.Handled = true;
-               // MessageBox.Show("Solo se permiten números en Documento.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
@@ -231,7 +229,19 @@ namespace CapaPresentacion
             if (e.KeyChar == (char)Keys.Enter)
             {
                 e.Handled = true;
-                this.SelectNextControl((Control)sender, true, true, true, true);
+                ConeClientes cone = new ConeClientes();
+                {
+                    if (cone.ExisteCliente(TxtDocumento.Text) == true)
+                    {
+                        MessageBox.Show("El número de documento ya existe.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        TxtDocumento.Clear();
+                        TxtDocumento.Focus();
+                    }
+                    else
+                    {
+                        this.SelectNextControl((Control)sender, true, true, true, true);
+                    }
+                }
             }
         }
         private void TxtTelefono_KeyPress(object sender, KeyPressEventArgs e)

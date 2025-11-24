@@ -156,6 +156,7 @@
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.Grilla.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            this.Grilla.RowHeadersVisible = false;
             this.Grilla.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.Grilla.Size = new System.Drawing.Size(563, 262);
             this.Grilla.TabIndex = 46;
@@ -172,6 +173,7 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.iconButton1);
             this.Name = "FormBuscarCliente";
+            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Buscar Clientes";
             this.panel1.ResumeLayout(false);
