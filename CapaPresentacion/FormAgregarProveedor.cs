@@ -30,13 +30,15 @@ namespace CapaPresentacion
         {
             ConeLocalidades cone = new ConeLocalidades();
 
+
+            CboIdLocalidad.DataSource = cone.ListarLocalidad();
             CboIdLocalidad.ValueMember = "IdLocalidad";
             CboIdLocalidad.DisplayMember = "Descripcion";
-            CboIdLocalidad.DataSource = cone.ListarLocalidad();
+            LblIdProveedor.Text = CboIdLocalidad.SelectedValue.ToString();
+
         }
         private void LimpiarTextos()
         {
-            LblIdProveedor.Text = "";
             TxtRazon.Clear();
             TxtDocumento.Clear();
             TxtTelefono.Clear();
@@ -99,6 +101,10 @@ namespace CapaPresentacion
                 if (resultado != DialogResult.Yes) return;
 
                 // Crear y agregar proveedor
+                if (VarLocalidad == 0)
+                {
+                    VarLocalidad = int.Parse(LblIdProveedor.Text);
+                }
                 var cone = new ConeProveedores();
                 var proveedor = new Proveedores
                 {
@@ -107,8 +113,12 @@ namespace CapaPresentacion
                     Telefono = TxtTelefono.Text,
                     Domicilio = TxtDomicilio.Text,
                     IdLocalidad = VarLocalidad
+
+
                 };
+                
                 cone.AgregarProveedor(proveedor);
+                MessageBox.Show("El proveedor ha sido añadido con Exito", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
            
                 #region Enabled yes/no
                 //true
@@ -154,6 +164,7 @@ namespace CapaPresentacion
         private void CboIdLocalidad_SelectionChangeCommitted(object sender, EventArgs e)
         {
             VarLocalidad = int.Parse(CboIdLocalidad.SelectedValue.ToString());
+            
         }
         #endregion
 

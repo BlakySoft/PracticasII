@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.OleDb;
+using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -127,107 +128,120 @@ namespace CapaPresentacion
                     Total = Suma
                 };
 
-                cone.Agregar(Agregar);
-
-                OleDbConnection conecta = new OleDbConnection("Provider = Microsoft.Jet.OLEDB.4.0; Data Source =|DataDirectory|DB.mdb;");
-                OleDbCommand comando = new OleDbCommand();
-                OleDbDataReader lector;
-
-                comando.CommandText = "Select max(IdCompra) as IdCompra from Compras";
-                comando.Connection = conecta;
-                conecta.Open();
-
-                lector = comando.ExecuteReader();
-
-                if (lector.Read())
+                DialogResult rest = MessageBox.Show("Estas seguro de guardar esta compra?","Sistema", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 {
-                    Compra compra = new Compra
+                    if (rest == DialogResult.Yes)
                     {
-                        IdCompra = lector.GetInt32(0)
-                    };
-                    TxtCompras.Text = compra.IdCompra.ToString();
-                }
+                        cone.Agregar(Agregar);
 
-                conecta.Close();
+                        OleDbConnection conecta = new OleDbConnection("Provider = Microsoft.Jet.OLEDB.4.0; Data Source =|DataDirectory|DB.mdb;");
+                        OleDbCommand comando = new OleDbCommand();
+                        OleDbDataReader lector;
 
-                if (Grilla.Rows.Count > 0)
-                {
-                    foreach (DataGridViewRow row in Grilla.Rows)
-                    {
-                        if (row.IsNewRow) continue; // Ignorar la fila vacía al final
-
-                        // Obtener valores de forma segura
-                        object valIdProducto = row.Cells["Column1"].Value;
-                        object valCantidad = row.Cells["Column3"].Value;
-
-                        if (valIdProducto == null || valCantidad == null) continue; // Saltar si hay null
-
-                        int idProducto = 0;
-                        int cantidadComprada = 0;
-
-                        if (!int.TryParse(valIdProducto.ToString(), out idProducto)) continue;
-                        if (!int.TryParse(valCantidad.ToString(), out cantidadComprada)) continue;
-
-                        // Insertar detalle (ya lo tenés)
-                        OleDbCommand comando1 = new OleDbCommand
-                        {
-                            CommandType = CommandType.Text,
-                            CommandText = "insert into DetalleCompras (IdCompra, IdProducto, Descripcion, Cantidad, PrecioCompra, Subtotal) values (@IdCompra, @IdProducto, @Descripcion, @Cantidad, @PrecioCompra, @Subtotal)",
-                            Connection = conecta
-                        };
-
-                        comando1.Parameters.AddWithValue("@IdCompra", TxtCompras.Text);
-                        comando1.Parameters.AddWithValue("@IdProducto", idProducto);
-                        comando1.Parameters.AddWithValue("@Descripcion", row.Cells["Column2"].Value?.ToString() ?? "");
-                        comando1.Parameters.AddWithValue("@Cantidad", cantidadComprada);
-                        comando1.Parameters.AddWithValue("@PrecioCompra", Convert.ToDecimal(row.Cells["Column4"].Value));
-                        comando1.Parameters.AddWithValue("@Subtotal", Convert.ToDecimal(row.Cells["Column5"].Value));
-
+                        comando.CommandText = "Select max(IdCompra) as IdCompra from Compras";
+                        comando.Connection = conecta;
                         conecta.Open();
-                        comando1.ExecuteNonQuery();
 
-                        // Actualizar stock de forma segura
-                        OleDbCommand actualizarStock = new OleDbCommand
+                        lector = comando.ExecuteReader();
+
+                        if (lector.Read())
                         {
-                            Connection = conecta,
-                            CommandText = "UPDATE Productos SET Stock = Stock + @Cantidad WHERE IdProducto = @IdProducto"
-                        };
-                        actualizarStock.Parameters.AddWithValue("@Cantidad", cantidadComprada);
-                        actualizarStock.Parameters.AddWithValue("@IdProducto", idProducto);
-                        actualizarStock.ExecuteNonQuery();
+                            Compra compra = new Compra
+                            {
+                                IdCompra = lector.GetInt32(0)
+                            };
+                            TxtCompras.Text = compra.IdCompra.ToString();
+                        }
 
                         conecta.Close();
+
+                        if (Grilla.Rows.Count > 0)
+                        {
+                            foreach (DataGridViewRow row in Grilla.Rows)
+                            {
+                                if (row.IsNewRow) continue; // Ignorar la fila vacía al final
+
+                                // Obtener valores de forma segura
+                                object valIdProducto = row.Cells["Column1"].Value;
+                                object valCantidad = row.Cells["Column3"].Value;
+
+                                if (valIdProducto == null || valCantidad == null) continue; // Saltar si hay null
+
+                                int idProducto = 0;
+                                int cantidadComprada = 0;
+
+                                if (!int.TryParse(valIdProducto.ToString(), out idProducto)) continue;
+                                if (!int.TryParse(valCantidad.ToString(), out cantidadComprada)) continue;
+
+                                // Insertar detalle (ya lo tenés)
+                                OleDbCommand comando1 = new OleDbCommand
+                                {
+                                    CommandType = CommandType.Text,
+                                    CommandText = "insert into DetalleCompras (IdCompra, IdProducto, Descripcion, Cantidad, PrecioCompra, Subtotal) values (@IdCompra, @IdProducto, @Descripcion, @Cantidad, @PrecioCompra, @Subtotal)",
+                                    Connection = conecta
+                                };
+
+                                comando1.Parameters.AddWithValue("@IdCompra", TxtCompras.Text);
+                                comando1.Parameters.AddWithValue("@IdProducto", idProducto);
+                                comando1.Parameters.AddWithValue("@Descripcion", row.Cells["Column2"].Value?.ToString() ?? "");
+                                comando1.Parameters.AddWithValue("@Cantidad", cantidadComprada);
+                                comando1.Parameters.AddWithValue("@PrecioCompra", Convert.ToDecimal(row.Cells["Column4"].Value));
+                                comando1.Parameters.AddWithValue("@Subtotal", Convert.ToDecimal(row.Cells["Column5"].Value));
+
+                                conecta.Open();
+                                comando1.ExecuteNonQuery();
+
+                                // Actualizar stock de forma segura
+                                OleDbCommand actualizarStock = new OleDbCommand
+                                {
+                                    Connection = conecta,
+                                    CommandText = "UPDATE Productos SET Stock = Stock + @Cantidad WHERE IdProducto = @IdProducto"
+                                };
+                                actualizarStock.Parameters.AddWithValue("@Cantidad", cantidadComprada);
+                                actualizarStock.Parameters.AddWithValue("@IdProducto", idProducto);
+                                actualizarStock.ExecuteNonQuery();
+
+                                conecta.Close();
+
+                                MessageBox.Show("Compra realizada con éxito.", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                this.Tag = "none";
+                                #region EnabledNO
+                                //false
+                                BtnGrabar.Enabled = false;
+                                BtnCancelar.Enabled = false;
+                                panel3.Enabled = false;
+                                PanelBotones.Enabled = false;
+                                //true
+                                BtnNuevo.Enabled = true;
+                                iconButton1.Enabled = true;
+                                #endregion
+
+                                #region Limpiar
+                                TxtRazon.Text = "";
+                                TxtDescripcion.Text = "";
+                                TxtDetalle.Text = "";
+                                TxtPrecio.Text = "";
+                                TxtStock.Text = "";
+                                TxtSubtotall.Text = "";
+                                TxtTotal.Text = "";
+                                TxtCantidad.Text = "1";
+                                #endregion
+
+                                Grilla.Rows.Clear();
+                                Total = 0;
+                                BtnNuevo.Focus();
+                            }
+                        }
+                        else
+                        {
+                            return;
+                        }
+                            
                     }
                 }
 
-                MessageBox.Show("Compra realizada con éxito.", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.Tag = "none";
-                #region EnabledNO
-                //false
-                BtnGrabar.Enabled = false;
-                BtnCancelar.Enabled = false;
-                panel3.Enabled = false;
-                PanelBotones.Enabled = false;
-                //true
-                BtnNuevo.Enabled = true;
-                iconButton1.Enabled = true;
-                #endregion
-
-                #region Limpiar
-                TxtRazon.Text = "";
-                TxtDescripcion.Text = "";
-                TxtDetalle.Text = "";
-                TxtPrecio.Text = "";
-                TxtStock.Text = "";
-                TxtSubtotall.Text = "";
-                TxtTotal.Text = "";
-                TxtCantidad.Text = "1";
-                #endregion
-
-                Grilla.Rows.Clear();
-                Total = 0;
-                BtnNuevo.Focus();
-            }
+                }
+                
 
         }       
         private void BtnCancelar_Click(object sender, EventArgs e)

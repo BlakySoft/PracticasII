@@ -215,6 +215,7 @@
             this.LblIdProveedor.Size = new System.Drawing.Size(16, 18);
             this.LblIdProveedor.TabIndex = 47;
             this.LblIdProveedor.Text = "0";
+            this.LblIdProveedor.Visible = false;
             // 
             // panel1
             // 

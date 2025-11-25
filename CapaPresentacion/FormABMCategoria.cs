@@ -99,6 +99,7 @@ namespace CapaPresentacion
                         };
 
                         cone.AgregarCat(agregar);
+                        MessageBox.Show("La marca se Agregó correctamente!!!", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     else
                     {
@@ -109,6 +110,7 @@ namespace CapaPresentacion
                         };
 
                         cone.ActualizarCat(actualizar);
+                        MessageBox.Show("La marca se Actualizó correctamente!!!", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
 
                     #region Enabled yes/no 

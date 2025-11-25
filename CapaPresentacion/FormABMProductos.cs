@@ -260,6 +260,7 @@ namespace CapaPresentacion
                 Grilla.Enabled = true;
                 BtnEliminar.Enabled = false;
                 TxtBuscar.Enabled = true;
+                BtnPapelera.Enabled = true;
                 BtnNuevo.Focus();
             }
             catch (Exception ex)

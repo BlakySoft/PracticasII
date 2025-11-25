@@ -75,6 +75,9 @@ namespace CapaPresentacion
         {
             FormABMLocalidades form = new FormABMLocalidades();
             form.ShowDialog();
+            CargarCbo();
+
+
         }
         private void BtnNuevo_Click(object sender, EventArgs e)
         {
