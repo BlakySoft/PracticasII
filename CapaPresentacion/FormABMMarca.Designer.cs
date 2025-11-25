@@ -254,6 +254,8 @@
             // 
             this.Grilla.AllowUserToAddRows = false;
             this.Grilla.AllowUserToDeleteRows = false;
+            this.Grilla.AllowUserToResizeColumns = false;
+            this.Grilla.AllowUserToResizeRows = false;
             this.Grilla.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -287,6 +289,7 @@
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.Grilla.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.Grilla.RowHeadersVisible = false;
             dataGridViewCellStyle4.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.ActiveCaption;

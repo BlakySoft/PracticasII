@@ -125,6 +125,8 @@
             // 
             this.Grilla.AllowUserToAddRows = false;
             this.Grilla.AllowUserToDeleteRows = false;
+            this.Grilla.AllowUserToResizeColumns = false;
+            this.Grilla.AllowUserToResizeRows = false;
             this.Grilla.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -157,6 +159,7 @@
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.Grilla.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.Grilla.RowHeadersVisible = false;
             this.Grilla.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.Grilla.Size = new System.Drawing.Size(563, 262);
             this.Grilla.TabIndex = 47;

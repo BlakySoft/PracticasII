@@ -61,6 +61,8 @@
             // 
             this.Grilla1.AllowUserToAddRows = false;
             this.Grilla1.AllowUserToDeleteRows = false;
+            this.Grilla1.AllowUserToResizeColumns = false;
+            this.Grilla1.AllowUserToResizeRows = false;
             this.Grilla1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.Grilla1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
@@ -240,6 +242,8 @@
             // 
             this.Grilla2.AllowUserToAddRows = false;
             this.Grilla2.AllowUserToDeleteRows = false;
+            this.Grilla2.AllowUserToResizeColumns = false;
+            this.Grilla2.AllowUserToResizeRows = false;
             this.Grilla2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Grilla2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;

@@ -57,6 +57,7 @@ namespace CapaPresentacion
             Grilla1.Columns["Stock"].HeaderText = "Stock";
 
             Grilla1.Columns["PrecioCompra"].Visible = false;
+            Grilla1.Columns["BarCode"].Visible=false;
             Grilla1.Columns["Detalle"].Visible = false;
             Grilla1.Columns["IdCat"].Visible = false;
             Grilla1.Columns["IdMarca"].Visible = false;

@@ -552,7 +552,6 @@ namespace CapaPresentacion
             }
             catch (Exception)
             {
-                MessageBox.Show("Imposible seleccionar desde la cabecera.", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
         private void CboIdCat_SelectionChangeCommitted(object sender, EventArgs e)
@@ -563,7 +562,7 @@ namespace CapaPresentacion
             }
             catch(Exception)
             {
-
+                return;
             }
 
         }
@@ -573,15 +572,16 @@ namespace CapaPresentacion
             {
                 VarMar = int.Parse(CboIdMar.SelectedValue.ToString());
             }
-            catch(Exception) { }
+            catch(Exception) { return; }
         
         }
         private void CboIdCol_SelectionChangeCommitted(object sender, EventArgs e)
         {
             try
             {
+                
                 VarCol = int.Parse(CboIdCol.SelectedValue.ToString());
-            } catch(Exception) { }
+            } catch(Exception) {return; }
         }
 
         #endregion
@@ -819,12 +819,12 @@ namespace CapaPresentacion
                 {
                     if (stockActual == 0)
                     {
-                        Grilla.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.Black;
+                        Grilla.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.FromArgb(40,40,40);
                         Grilla.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.White;
                     }
                     else if (stockActual <= limiteAlerta)
                     {
-                        Grilla.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.Red;
+                        Grilla.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.IndianRed;
                         Grilla.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.White;
                     }
                     else

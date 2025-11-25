@@ -216,6 +216,7 @@ namespace CapaPresentacion
                     }
                     else
                     {
+                        TxtBarCode.Focus();
                         return;
                     }
 
@@ -806,8 +807,7 @@ namespace CapaPresentacion
             {
                 TxtTotal.Text = "0";
                 TxtSubTotal.Text = "0";
-                BtnGrabar.Enabled = false;
-                TxtIdProducto.Focus();
+                TxtBarCode.Focus();
             }
 
             decimal Suma = Grilla.Rows.OfType<DataGridViewRow>().Sum(x => Convert.ToDecimal(x.Cells[4].Value));

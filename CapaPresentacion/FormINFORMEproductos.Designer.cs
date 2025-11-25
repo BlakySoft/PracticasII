@@ -51,6 +51,8 @@
             // 
             this.Grilla1.AllowUserToAddRows = false;
             this.Grilla1.AllowUserToDeleteRows = false;
+            this.Grilla1.AllowUserToResizeColumns = false;
+            this.Grilla1.AllowUserToResizeRows = false;
             this.Grilla1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));

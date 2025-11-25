@@ -368,7 +368,6 @@ namespace CapaPresentacion
             }
             catch (Exception)
             {
-                MessageBox.Show("Imposible seleccionar desde aquí.", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
         private void Grilla_CellDoubleClick_1(object sender, DataGridViewCellEventArgs e)
@@ -400,7 +399,6 @@ namespace CapaPresentacion
             }
             catch (Exception)
             {
-                MessageBox.Show("Imposible seleccionar desde la cabecera.", "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
         private void CboIdLocalidad_SelectionChangeCommitted(object sender, EventArgs e)
